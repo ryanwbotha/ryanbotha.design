@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crewcation: UI Style Guide & Design Tokens | Ryan Botha</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Nunito+Sans:wght@300;400;600;700&family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0..1,0&display=block" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav id="navbar" class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="assets/ryan_botha_logo.svg" alt="ryan_botha logo" class="logo-svg">
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="index.html#work" class="nav-link">Work</a></li>
+                <li><a href="https://www.linkedin.com/in/ryanbotha/" target="_blank" class="nav-link">LinkedIn Profile</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Style Guide Hero -->
+    <header class="case-study-hero">
+        <div class="case-study-hero-container">
+            <a href="crewcation-ux-and-design-system.html" class="back-home"><i class="fas fa-arrow-left"></i> Back to Case Study</a>
+            <h1 class="case-study-title">Crewcation: <br><span class="serif-italic">UI Style Guide & Design Tokens</span></h1>
+
+        </div>
+    </header>
+
+    <!-- Sticky Sub-Navigation -->
+    <div class="style-guide-nav-wrapper">
+        <div class="style-guide-nav">
+            <a href="#about" class="active">Platform Adaptations</a>
+            <a href="#colors">Colors</a>
+            <a href="#typography">Typography</a>
+            <a href="#buttons">Buttons</a>
+            <a href="#inputs">Inputs</a>
+            <a href="#selection">Selection & Navs</a>
+            <a href="#icons">Icons</a>
+            <a href="#grid">Grid & Radii</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="case-study-body" style="max-width: 1000px; padding-top: 0;">
+        
+        <!-- Section: About -->
+        <section id="about" class="case-study-section" style="border-bottom: 1px solid #e5e5e5; padding-bottom: 60px;">
+            <h2>Platform Adaptations</h2>
+            <p>This UI Style Guide serves as the visual identity baseline and design token specification for <strong>Crewcation</strong>, a dual-platform collaborative travel framework. Rather than forcing rigid 1:1 pixel replication, the design system is tailored to the strengths of each platform, leveraging native iOS paradigms with SwiftUI and responsive web patterns for the Progressive Web App (PWA). Aligning these underlying primitives ensures visual harmony, platform-specific familiarity, and cohesive interaction states across all user viewports.</p>
+        </section>
+
+        <!-- Section: Colors -->
+        <section id="colors" class="case-study-section" style="border-bottom: 1px solid #e5e5e5; padding-bottom: 60px; margin-top: 60px;">
+            <h2>Colors</h2>
+            <p>Our color logic utilizes absolute CSS variable mappings to represent state, visual importance, and layout hierarchy. Rather than using raw, hardcoded hex values, all visual primitives route through semantic design tokens that switch seamlessly between Light and Dark mode canvas layers.</p>
+            
+            <div class="swatch-grid">
+                <!-- Swatch 1: Background Canvas -->
+                <div class="swatch-card">
+                    <div class="swatch-color" style="background: #ffffff; border-bottom: 1px solid #e5e5e5;"></div>
+                    <div class="swatch-info">
+                        <h4>Background Canvas</h4>
+                        <p>--background</p>
+                        <p>Light: #ffffff</p>
+                        <p>Dark: #292524</p>
+                        <span>Role: Main Viewport Canvas</span>
+                    </div>
+                </div>
+
+                <!-- Swatch 2: Foreground Navy -->
+                <div class="swatch-card">
+                    <div class="swatch-color" style="background: #262847;"></div>
+                    <div class="swatch-info">
+                        <h4>Foreground Navy</h4>
+                        <p>--foreground</p>
+                        <p>Light: #262847</p>
+                        <p>Dark: #f5f6f7</p>
+                        <span>Role: Primary Text / Major Borders</span>
+                    </div>
+                </div>
+
+                <!-- Swatch 3: Action Teal -->
+                <div class="swatch-card">
+                    <div class="swatch-color" style="background: #3db9cf;"></div>
+                    <div class="swatch-info">
+                        <h4>Action Teal</h4>
+                        <p>--secondary (Primary CTA)</p>
+                        <p>Light: #3db9cf</p>
+                        <p>Dark: #3db9cf</p>
+                        <span>Role: Main CTA Buttons / Active States</span>
+                    </div>
+                </div>
+
+                <!-- Swatch 4: Discovery Orange -->
+                <div class="swatch-card">
+                    <div class="swatch-color" style="background: #f37b67;"></div>
+                    <div class="swatch-info">
+                        <h4>Discovery Orange</h4>
+                        <p>--primary (Discovery)</p>
+                        <p>Light: #f37b67</p>
+                        <p>Dark: #f37b67</p>
+                        <span>Role: Map Pins / Add suggest triggers</span>
+                    </div>
+                </div>
+
+                <!-- Swatch 5: Muted Soft Grey -->
+                <div class="swatch-card">
+                    <div class="swatch-color" style="background: #f5f5f5;"></div>
+                    <div class="swatch-info">
+                        <h4>Muted Soft Grey</h4>
+                        <p>--muted</p>
+                        <p>Light: #f5f5f5</p>
+                        <p>Dark: #262626</p>
+                        <span>Role: Container Fills / Card Backgrounds</span>
+                    </div>
+                </div>
+
+                <!-- Swatch 6: Border -->
+                <div class="swatch-card">
+                    <div class="swatch-color" style="background: #e5e5e5;"></div>
+                    <div class="swatch-info">
+                        <h4>Border</h4>
+                        <p>--border</p>
+                        <p>Light: #e5e5e5</p>
+                        <p>Dark: rgba(255,255,255,0.1)</p>
+                        <span>Role: Grid Divider / Card Stroke</span>
+                    </div>
+                </div>
+
+                <!-- Swatch 7: Destructive -->
+                <div class="swatch-card">
+                    <div class="swatch-color" style="background: #df2225;"></div>
+                    <div class="swatch-info">
+                        <h4>Destructive</h4>
+                        <p>--destructive</p>
+                        <p>Light: #df2225</p>
+                        <p>Dark: #ff6467</p>
+                        <span>Role: Cancelled States / Error Highlights</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="parity-note">
+                <h5><i class="fas fa-code-branch"></i> Platform Diversion: Colors</h5>
+                <p><strong>PWA / Web:</strong> Uses semantic CSS variables mapped to light/dark mode root selectors (e.g. <code>--background</code>, <code>--foreground</code>) which switch dynamic surface tints using Tailwind class modifiers.</p>
+                <p><strong>iOS / Android:</strong> SwiftUI loads color tokens from native <code>Assets.xcassets</code> catalog. These resolve appearance changes natively from system settings without custom JavaScript toggle triggers.</p>
+            </div>
+        </section>
+
+        <!-- Section: Typography -->
+        <section id="typography" class="case-study-section" style="border-bottom: 1px solid #e5e5e5; padding-bottom: 60px; margin-top: 60px;">
+            <h2>Typography</h2>
+            <p>The typographic rhythm of Crewcation is optimized for high-readability scanning. Heavy headings use tight, left-aligned Inter typography with negative letter-spacing for weight. Body content and list metadata pair with Nunito Sans, with occasional Georgia Serif elements for editorial contrast.</p>
+            
+            <div class="typography-specimen-grid">
+                <!-- H1 -->
+                <div class="typography-row">
+                    <div class="typography-label">
+                        <h4>Large Title</h4>
+                        <p>Font: Inter Bold</p>
+                        <p>Size: 3.5rem (56px)</p>
+                        <p>Spacing: -0.04em</p>
+                    </div>
+                    <div class="typography-sample h1">
+                        The Journey Begins
+                    </div>
+                </div>
+
+                <!-- H2 -->
+                <div class="typography-row">
+                    <div class="typography-label">
+                        <h4>Title 1</h4>
+                        <p>Font: Inter Bold</p>
+                        <p>Size: 1.85rem (30px)</p>
+                        <p>Spacing: -0.03em</p>
+                    </div>
+                    <div class="typography-sample h2">
+                        What is your vibe?
+                    </div>
+                </div>
+
+                <!-- H3 -->
+                <div class="typography-row">
+                    <div class="typography-label">
+                        <h4>Title 2</h4>
+                        <p>Font: Inter Bold Italic</p>
+                        <p>Size: 1.35rem (22px)</p>
+                    </div>
+                    <div class="typography-sample h3" style="font-style: italic;">
+                        Exhaustive Color Audit
+                    </div>
+                </div>
+
+                <!-- Body -->
+                <div class="typography-row">
+                    <div class="typography-label">
+                        <h4>Body Text</h4>
+                        <p>Font: Nunito Sans / Inter</p>
+                        <p>Size: 1.05rem (17px)</p>
+                        <p>Line-Height: 1.6</p>
+                    </div>
+                    <div class="typography-sample body">
+                        Discover the best hidden gems with your family and crew. Planning travel with a group can quickly become a balancing act of moving parts.
+                    </div>
+                </div>
+
+                <!-- Caption -->
+                <div class="typography-row">
+                    <div class="typography-label">
+                        <h4>Caption / Label</h4>
+                        <p>Font: Inter SemiBold</p>
+                        <p>Size: 0.8rem (13px)</p>
+                        <p>Case: Uppercase</p>
+                        <p>Spacing: 0.2em</p>
+                    </div>
+                    <div class="typography-sample caption" style="letter-spacing: 0.2em;">
+                        DESIGN OPS
+                    </div>
+                </div>
+            </div>
+            
+            <div class="parity-note">
+                <h5><i class="fas fa-code-branch"></i> Platform Diversion: Typography</h5>
+                <p><strong>PWA / Web:</strong> Imports Google Web Fonts <code>Inter</code> (for geometric headings) and <code>Nunito Sans</code> (for soft metadata and copy) via stylesheet injections.</p>
+                <p><strong>iOS / Android:</strong> iOS defaults to Apple's system font <code>San Francisco (SF Pro)</code> to match native platform aesthetics, using SwiftUI text modifiers (e.g. <code>.font(.system(.title, design: .default))</code>) for dynamic type scaling.</p>
+            </div>
+        </section>
+
+        <!-- Section: Buttons -->
+        <section id="buttons" class="case-study-section" style="border-bottom: 1px solid #e5e5e5; padding-bottom: 60px; margin-top: 60px;">
+            <h2>Buttons</h2>
+            <p>Buttons represent interactive states and trigger transitions. They utilize strict color rules and micro-animations to present hierarchy clearly.</p>
+            
+            <div class="specimen-grid">
+                <!-- Card 1: Primary Action Button -->
+                <div class="specimen-card">
+                    <h4>Primary Action Button</h4>
+                    <div style="padding: 20px 0; display: flex; justify-content: center;">
+                        <button class="sg-btn sg-btn-primary" style="width: 100%;">Confirm Selection</button>
+                    </div>
+                    <p style="font-size: 0.85rem; color: #718096; margin: 0; line-height: 1.4;">
+                        <strong>PWA Code:</strong> <code>bg-secondary text-white font-bold rounded-[26px]</code><br>
+                        <strong>Geometry:</strong> Exact 26px radius, Action Teal (<code>#3db9cf</code>). active:scale-95 on touch.
+                    </p>
+                </div>
+
+                <!-- Card 2: Secondary Ghost Button -->
+                <div class="specimen-card">
+                    <h4>Secondary Ghost Button</h4>
+                    <div style="padding: 20px 0; display: flex; justify-content: center;">
+                        <button class="sg-btn sg-btn-secondary" style="width: 100%;">Maybe Later</button>
+                    </div>
+                    <p style="font-size: 0.85rem; color: #718096; margin: 0; line-height: 1.4;">
+                        <strong>PWA Code:</strong> <code>bg-gray-50 text-gray-600 font-bold rounded-2xl border border-gray-100</code><br>
+                        <strong>Geometry:</strong> 16px radius, neutral off-white surface.
+                    </p>
+                </div>
+
+                <!-- Card 3: Large Action Pill -->
+                <div class="specimen-card">
+                    <h4>Large Action Pill</h4>
+                    <div style="padding: 20px 0; display: flex; justify-content: center; width: 100%;">
+                        <button class="sg-btn sg-btn-pill">Assign to day</button>
+                    </div>
+                    <p style="font-size: 0.85rem; color: #718096; margin: 0; line-height: 1.4;">
+                        <strong>PWA Code:</strong> <code>h-14 bg-secondary text-white font-bold rounded-[28px]</code><br>
+                        <strong>Geometry:</strong> 56px height, full 28px pill radius.
+                    </p>
+                </div>
+
+                <!-- Card 4: AI Action Button -->
+                <div class="specimen-card">
+                    <h4>AI Action Button</h4>
+                    <div style="padding: 20px 0; display: flex; justify-content: center; width: 100%;">
+                        <button class="sg-btn sg-btn-ai">Generate Itinerary</button>
+                    </div>
+                    <p style="font-size: 0.85rem; color: #718096; margin: 0; line-height: 1.4;">
+                        <strong>PWA Code:</strong> <code>bg-white text-primary font-black rounded-[20px] shadow-lg uppercase tracking-wider</code><br>
+                        <strong>Geometry:</strong> 20px radius, Discovery Orange accent (<code>#f37b67</code>), uppercase.
+                    </p>
+                </div>
+
+                <!-- Card 5: Destructive Icon Button -->
+                <div class="specimen-card">
+                    <h4>Destructive Icon Button</h4>
+                    <div style="padding: 20px 0; display: flex; justify-content: center;">
+                        <button class="sg-btn sg-btn-destructive"><i class="fas fa-trash"></i></button>
+                    </div>
+                    <p style="font-size: 0.85rem; color: #718096; margin: 0; line-height: 1.4;">
+                        <strong>PWA Code:</strong> <code>w-14 h-14 bg-red-50 text-red-500 rounded-[28px]</code><br>
+                        <strong>Geometry:</strong> 56x56px circular detent, red-50 background tint.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="parity-note">
+                <h5><i class="fas fa-code-branch"></i> Platform Diversion: Buttons</h5>
+                <p><strong>PWA / Web:</strong> Rendered using CSS button rules with explicit border-radius (e.g. <code>rounded-[26px]</code>) and active scales declared in index.css. Interaction states rely on standard hover/active selectors.</p>
+                <p><strong>iOS / Android:</strong> Implements SwiftUI <code>Button</code> wrapping text in custom <code>ButtonStyle</code> structures. iOS handles tactile touch scaling and gesture bounds natively with haptic feedbacks.</p>
+            </div>
+        </section>
+
+        <!-- Section: Inputs -->
+        <section id="inputs" class="case-study-section" style="border-bottom: 1px solid #e5e5e5; padding-bottom: 60px; margin-top: 60px;">
+            <h2>Inputs & Forms</h2>
+            <p>Input controls handle dynamic preference specifications. They use clean borders and distinct focus rings to indicate user active inputs.</p>
+            
+            <div class="specimen-grid">
+                <!-- Standard Text Input -->
+                <div class="specimen-card">
+                    <h4>Standard Text Input</h4>
+                    <div class="sg-input-wrapper">
+                        <label class="sg-input-label">Trip Name</label>
+                        <div class="sg-input-container">
+                            <div class="sg-input-circle-icon">
+                                <i class="fas fa-layer-group" style="font-size: 0.85rem;"></i>
+                            </div>
+                            <input type="text" class="sg-input-field" placeholder="e.g. Skiing in Aspen">
+                        </div>
+                    </div>
+                    <p style="font-size: 0.85rem; color: #718096; margin: 0; line-height: 1.4;">
+                        <strong>PWA Code:</strong> <code>bg-[#f5f4f2] border border-[#e5e5e5] rounded-[18px] p-3 py-4</code><br>
+                        <strong>Geometry:</strong> 18px radius, white inner icon circle, warm grey input background.
+                    </p>
+                </div>
+
+                <!-- Multi-line Note Area -->
+                <div class="specimen-card">
+                    <h4>Multi-line Note Area</h4>
+                    <div class="sg-input-wrapper">
+                        <label class="sg-input-label">Crew Notes</label>
+                        <textarea class="sg-textarea" placeholder="Add a note for the crew..."></textarea>
+                    </div>
+                    <p style="font-size: 0.85rem; color: #718096; margin: 0; line-height: 1.4;">
+                        <strong>PWA Code:</strong> <code>bg-gray-50 border border-gray-100 rounded-[24px] focus:outline-none</code><br>
+                        <strong>Geometry:</strong> 24px (3xl) border-radius, soft grey background.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="parity-note">
+                <h5><i class="fas fa-code-branch"></i> Platform Diversion: Inputs & Forms</h5>
+                <p><strong>PWA / Web:</strong> Textboxes are standard HTML inputs/textareas with custom focus rings and warm grey colors. Keyboard overlay offsets and form validations are managed manually using React hooks.</p>
+                <p><strong>iOS / Android:</strong> SwiftUI implements <code>TextField</code> and <code>TextEditor</code>, inheriting iOS system autofill rules, native field clear parameters, and automatic keyboard avoidance layouts.</p>
+            </div>
+        </section>
+
+        <!-- Section: Selection & Navs -->
+        <section id="selection" class="case-study-section" style="border-bottom: 1px solid #e5e5e5; padding-bottom: 60px; margin-top: 60px;">
+            <h2>Selection & Segmented Toggles</h2>
+            <p>Segmented selectors provide choices for trip modes and discovery categories, matching native SwiftUI controls.</p>
+            
+            <div class="specimen-grid">
+                <!-- Segmented Control Generic -->
+                <div class="specimen-card">
+                    <h4>Segmented Control (Generic)</h4>
+                    <div class="sg-input-wrapper">
+                        <label class="sg-input-label">Trip Type</label>
+                        <div class="sg-segmented-control-pwa">
+                            <span class="sg-segment-pwa active">Single Trip</span>
+                            <span class="sg-segment-pwa">Multi-stop</span>
+                        </div>
+                    </div>
+                    <p style="font-size: 0.85rem; color: #718096; margin: 0; line-height: 1.4; padding-top: 12px; border-top: 1px solid #e5e5e5;">
+                        <strong>PWA Code:</strong> <code>flex p-1 bg-gray-100 rounded-2xl w-full</code> + <code>rounded-xl</code><br>
+                        <strong>Geometry:</strong> 16px container radius, 12px active segment radius, white card shadow.
+                    </p>
+                </div>
+
+                <!-- Category Pill Bar -->
+                <div class="specimen-card">
+                    <h4>Category Pill Bar</h4>
+                    <div class="sg-input-wrapper">
+                        <label class="sg-input-label">Map Filters</label>
+                        <div class="sg-category-pill-bar">
+                            <span class="sg-category-pill active">All</span>
+                            <span class="sg-category-pill">Stay</span>
+                            <span class="sg-category-pill">Eat</span>
+                        </div>
+                    </div>
+                    <p style="font-size: 0.85rem; color: #718096; margin: 0; line-height: 1.4; padding-top: 12px; border-top: 1px solid #e5e5e5;">
+                        <strong>PWA Code:</strong> <code>flex bg-secondary rounded-full shadow-lg p-1 w-full</code><br>
+                        <strong>Geometry:</strong> Full-pill rounded wrappers, Action Teal background (<code>#3db9cf</code>), active white pill.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="parity-note">
+                <h5><i class="fas fa-code-branch"></i> Platform Diversion: Selection & Toggles</h5>
+                <p><strong>PWA / Web:</strong> Rendered as custom flexboxes where active items shift position or styles via React state and CSS transitions (active item scale and shadow changes).</p>
+                <p><strong>iOS / Android:</strong> Employs native <code>Picker</code> styled as <code>.pickerStyle(.segmented)</code>, utilizing Apple's native slide transition and standard system tactile feedbacks.</p>
+            </div>
+        </section>
+
+        <!-- Section: Icons -->
+        <section id="icons" class="case-study-section" style="border-bottom: 1px solid #e5e5e5; padding-bottom: 60px; margin-top: 60px;">
+            <h2>Material Symbols & Icon Tokens</h2>
+            <p>Rather than using custom inline vector assets, Crewcation uses standard <strong>Google Material Symbols Rounded</strong> font icons as semantic identifiers (switching properties based on fill or state) alongside <strong>Lucide Icons</strong> for structural UI shells in the PWA. On iOS, native SwiftUI renders corresponding system-configured <strong>SF Symbols</strong> to preserve platform-specific styling paradigms.</p>
+            
+            <h3 style="margin-top: 40px; margin-bottom: 12px; font-size: 1.25rem;">Semantic Indicators (Google Material Symbols Rounded)</h3>
+            <p style="font-size: 0.9rem; color: #718096; margin-top: -8px; margin-bottom: 24px;">These elements convey travel details, status information, and context-specific vibes across the interface.</p>
+            
+            <div class="icon-specimen-grid">
+                <!-- Location Icon -->
+                <div class="icon-card">
+                    <span class="material-symbols-rounded">location_on</span>
+                    <h4>location_on</h4>
+                    <code style="font-family: monospace; font-size: 0.75rem;">iOS: mappin.circle</code>
+                    <p style="font-size: 0.8rem; color: #718096; margin: 0;">Places & Destination Coordinates</p>
+                </div>
+
+                <!-- Schedule Icon -->
+                <div class="icon-card">
+                    <span class="material-symbols-rounded">schedule</span>
+                    <h4>schedule</h4>
+                    <code style="font-family: monospace; font-size: 0.75rem;">iOS: clock</code>
+                    <p style="font-size: 0.8rem; color: #718096; margin: 0;">Hours, Itinerary Time Slots & Ranges</p>
+                </div>
+
+                <!-- Payments Icon -->
+                <div class="icon-card">
+                    <span class="material-symbols-rounded">payments</span>
+                    <h4>payments</h4>
+                    <code style="font-family: monospace; font-size: 0.75rem;">iOS: dollarsign.circle</code>
+                    <p style="font-size: 0.8rem; color: #718096; margin: 0;">Prices & Expense Calculations</p>
+                </div>
+
+                <!-- Star Icon -->
+                <div class="icon-card highlight">
+                    <span class="material-symbols-rounded">star</span>
+                    <h4 style="color: #f37b67;">star</h4>
+                    <code style="font-family: monospace; font-size: 0.75rem;">iOS: star.fill</code>
+                    <p style="font-size: 0.8rem; color: #718096; margin: 0;">Ratings & Active Crew Favorites</p>
+                </div>
+
+                <!-- Vote Icon -->
+                <div class="icon-card">
+                    <span class="material-symbols-rounded">how_to_vote</span>
+                    <h4>how_to_vote</h4>
+                    <code style="font-family: monospace; font-size: 0.75rem;">iOS: hand.thumbsup</code>
+                    <p style="font-size: 0.8rem; color: #718096; margin: 0;">Voting loops & Active Vibe Checks</p>
+                </div>
+
+                <!-- Restaurant Icon -->
+                <div class="icon-card">
+                    <span class="material-symbols-rounded">restaurant</span>
+                    <h4>restaurant</h4>
+                    <code style="font-family: monospace; font-size: 0.75rem;">iOS: fork.knife</code>
+                    <p style="font-size: 0.8rem; color: #718096; margin: 0;">Food, Eat Stops & Dining Venues</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 48px; margin-bottom: 12px; font-size: 1.25rem;">Structural Icons (Lucide React / SVGs)</h3>
+            <p style="font-size: 0.9rem; color: #718096; margin-top: -8px; margin-bottom: 24px;">These structural icons are used for PWA framing, page layout changes, search, and navigation controls.</p>
+            
+            <div class="icon-specimen-grid">
+                <!-- Lucide Close -->
+                <div class="icon-card">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#262847" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 48px; height: 48px;"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                    <h4>X / Close</h4>
+                    <code style="font-family: monospace; font-size: 0.75rem;">iOS: xmark</code>
+                    <p style="font-size: 0.8rem; color: #718096; margin: 0;">Dismisses overlays & modally active views</p>
+                </div>
+
+                <!-- Lucide Back -->
+                <div class="icon-card">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#262847" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 48px; height: 48px;"><path d="m15 18-6-6 6-6"/></svg>
+                    <h4>ChevronLeft</h4>
+                    <code style="font-family: monospace; font-size: 0.75rem;">iOS: chevron.left</code>
+                    <p style="font-size: 0.8rem; color: #718096; margin: 0;">Navigates back in viewport history</p>
+                </div>
+
+                <!-- Lucide Add -->
+                <div class="icon-card">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#262847" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 48px; height: 48px;"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                    <h4>Plus / Add</h4>
+                    <code style="font-family: monospace; font-size: 0.75rem;">iOS: plus</code>
+                    <p style="font-size: 0.8rem; color: #718096; margin: 0;">Adds items, destinations or new trips</p>
+                </div>
+
+                <!-- Lucide Search -->
+                <div class="icon-card">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#262847" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 48px; height: 48px;"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                    <h4>Search</h4>
+                    <code style="font-family: monospace; font-size: 0.75rem;">iOS: magnifyingglass</code>
+                    <p style="font-size: 0.8rem; color: #718096; margin: 0;">Filters results & searches location databases</p>
+                </div>
+
+                <!-- Lucide Sparkles -->
+                <div class="icon-card highlight">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#f37b67" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 48px; height: 48px;"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="m5 3 1 2.5L8.5 6 6 7 5 9.5 4 7 1.5 6 4 5 5 3Z"/><path d="m19 17 1 2.5 2.5.5-2.5 1-1 2.5-1-2.5-2.5-1 2.5-1 1-2.5Z"/></svg>
+                    <h4 style="color: #f37b67;">Sparkles (AI)</h4>
+                    <code style="font-family: monospace; font-size: 0.75rem;">iOS: sparkles</code>
+                    <p style="font-size: 0.8rem; color: #718096; margin: 0;">Triggers Gemini AI itinerary generation</p>
+                </div>
+            </div>
+            
+            <div class="parity-note">
+                <h5><i class="fas fa-code-branch"></i> Platform Diversion: Icons</h5>
+                <p><strong>PWA / Web:</strong> Integrates Google Font-based <code>Material Symbols Rounded</code> for inline content variables and <code>Lucide Icons</code> rendered as local SVG vectors for clean interface grids.</p>
+                <p><strong>iOS / Android:</strong> Discards web font files completely. Uses iOS-native system vector database <code>SF Symbols</code> (e.g. <code>systemName: "mappin.circle"</code>) to match default Apple HIG specifications.</p>
+            </div>
+        </section>
+
+        <!-- Section: Grid and Radius -->
+        <section id="grid" class="case-study-section" style="padding-bottom: 60px; margin-top: 60px;">
+            <h2>Grid Systems & The 26px Corner-Radius Specs</h2>
+            <p>To deliver a premium native feel to the PWA web layer, we match Apple's iOS layout curvature spec. Grid items are arranged in fluid multi-column setups utilizing a signature, heavy 26px corner-radius (<code>border-radius: 26px;</code>) that groups content into solid spatial elements.</p>
+            
+            <div class="radius-grid-specimen">
+                <!-- Card 1 -->
+                <div class="radius-specimen-card">
+                    <div class="radius-specimen-icon">
+                        <i class="fas fa-compass"></i>
+                    </div>
+                    <h4>Trip Initialization</h4>
+                    <p>Captain specifies structural trip boundaries: When, Where, and Who. Sets coordinates of trip nodes.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="radius-specimen-card accent">
+                    <div class="radius-specimen-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h4>Tactile Vibe Check</h4>
+                    <p>Tactile preferences completed silently before access is granted. Overlaps are graphed in area charts.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="radius-specimen-card">
+                    <div class="radius-specimen-icon">
+                          <i class="fas fa-wand-magic-sparkles"></i>
+                    </div>
+                    <h4>AI Decision Sweep</h4>
+                    <p>Google Gemini pulls relational datasets and processes itinerary routes to output high-resolution consensus.</p>
+                </div>
+            </div>
+            
+            <div class="parity-note">
+                <h5><i class="fas fa-code-branch"></i> Platform Diversion: Grid & Radius</h5>
+                <p><strong>PWA / Web:</strong> Content containers use standard CSS flexbox/grid layout and absolute border-radius declarations (e.g. <code>border-radius: 26px;</code>).</p>
+                <p><strong>iOS / Android:</strong> iOS interfaces rely on SwiftUI dynamic stacks (<code>VStack</code>, <code>LazyVGrid</code>) and clip backgrounds using <code>RoundedRectangle(cornerRadius: 26, style: .continuous)</code> to get Apple's smooth squircle geometry.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2026 Ryan Botha - Senior Product Designer</p>
+            <div class="footer-socials">
+                <a href="https://www.linkedin.com/in/ryanbotha/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:ryan@ryanbotha.design"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Script -->
+    <script src="main.js"></script>
+    <script>
+        // Simple active state toggles for interactive elements
+        document.querySelectorAll('.sg-segment-pwa').forEach(el => {
+            el.addEventListener('click', function() {
+                el.parentElement.querySelectorAll('.sg-segment-pwa').forEach(s => s.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        
+        document.querySelectorAll('.sg-category-pill').forEach(el => {
+            el.addEventListener('click', function() {
+                el.parentElement.querySelectorAll('.sg-category-pill').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Simple scrollspy for style guide sticky nav
+        const sections = document.querySelectorAll('.case-study-body section');
+        const navLinks = document.querySelectorAll('.style-guide-nav a');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.scrollY >= sectionTop - 220) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current || 'about'}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

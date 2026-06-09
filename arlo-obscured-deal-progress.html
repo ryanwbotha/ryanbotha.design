@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arlo: Deal Tracking Obscurity | Ryan Botha</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav id="navbar" class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="assets/ryan_botha_logo.svg" alt="ryan_botha logo" class="logo-svg">
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="index.html#work" class="nav-link">Work</a></li>
+                <li><a href="https://www.linkedin.com/in/ryanbotha/" target="_blank" class="nav-link">LinkedIn Profile</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Case Study Hero -->
+    <header class="case-study-hero">
+        <div class="case-study-hero-container">
+            <a href="index.html" class="back-home"><i class="fas fa-arrow-left"></i> Back to Home</a>
+            <h1 class="case-study-title">Arlo: <br><span class="serif-italic">Deal Tracking Obscurity</span></h1>
+            
+            <div class="case-study-meta">
+                <div class="meta-item">
+                    <h4>My Role</h4>
+                    <p>Senior Product Designer</p>
+                </div>
+                <div class="meta-item">
+                    <h4>Deliverables</h4>
+                    <p>UX Design, UI Design, Prototyping</p>
+                </div>
+                <div class="meta-item">
+                    <h4>Focus</h4>
+                    <p>Fintech, SaaS, Portals</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Case Study Content -->
+    <main class="case-study-body">
+        <section class="case-study-section">
+            <h2>Untangling the “Email Tsunami” with Arlo</h2>
+            <p>When I joined, the product was focused on “Energy Partners,” the middlemen selling energy upgrades. But after deep discovery, we realized the partner wasn’t the bottleneck. The Lender was.</p>
+            <p><strong>The Shift:</strong> We pivoted Arlo from a sales-support tool for partners into a Lender-first financial engine. This required a total overhaul of the mental model: moving from a “Project” view to a “Portfolio” view, where a single lender (like Gringotts Finance) could manage hundreds of multi-million dollar deals across diverse partners.</p>
+            
+            <div class="case-study-image">
+                <img src="assets/MacBook-13.jpg" alt="Arlo Deal List on laptop">
+            </div>
+        </section>
+
+        <section class="case-study-section">
+            <h2>Thinking on Paper: The Architectural Blueprint</h2>
+            <p>Before moving pixels in Figma, I had to untangle the “One-to-Many” relationship of commercial finance. A single deal might have one lead borrower, three business entities, and two personal guarantors.</p>
+            <p>My sketches focus on Information Hierarchy. I didn’t just design a list; I designed a permissions-based ecosystem. I mapped out how data would roll up from an individual’s tax return to a business’s balance sheet, ensuring the lender never lost context of the “Action” at the project level.</p>
+            
+            <div class="image-gallery">
+                <div class="case-study-image">
+                    <img src="assets/IMG_2820-1.jpg" alt="Information Architecture Sketch">
+                </div>
+                <div class="case-study-image">
+                    <img src="assets/IMG_2821-1.jpg" alt="Business Information Sketch">
+                </div>
+            </div>
+        </section>
+
+        <section class="case-study-section">
+            <h2>The Entry Point: First Impressions of a Financial Portal</h2>
+            <p><strong>The Strategy:</strong> The “Email Tsunami” started at the very beginning of the relationship. Lenders needed a professional, branded jumping-off point that didn’t feel like a generic file-sharing site.</p>
+            <p><strong>The Design Decision:</strong> In these early sketches, I explored the “Portal Entry.” I wanted the landing experience to feel like an extension of the lender’s institution. I mapped out a “Direct-to-Deal” flow, where a borrower could land, see their specific deal’s progress, and immediately understand their “Next Best Action” without having to dig through an inbox.</p>
+            
+            <div class="case-study-image">
+                <img src="assets/IMG_2817-1.jpg" alt="Portal Landing Sketch">
+            </div>
+        </section>
+
+        <section class="case-study-section">
+            <h2>Defining the MVP: Accountability Over Automation</h2>
+            <p>Early on, the team was focused on AI document extraction. However, our discovery showed that “faster reading” didn’t matter if the borrower didn’t know what to upload in the first place.</p>
+            <p>I used these collaborative sketches to advocate for a Workflow-first MVP. We defined clear roles: who initiates the request and who tracks the hurdle. We decided that “Progress Feedback” was our primary value prop. If the borrower felt the system responding to them, they would finish the application. Working with the Product Manager (and founder) of Arlo, we realized that “faster reading” didn’t matter if the “communication loop” was broken.</p>
+            
+            <div class="case-study-image">
+                <img src="assets/IMG_2826-1.jpg" alt="Workflow MVP Sketch">
+            </div>
+        </section>
+
+        <section class="case-study-section">
+            <h2>The Craft: High-Fidelity Accountability</h2>
+            <p>This screen replaced the email tsunami.</p>
+            <ul>
+                <li><strong>Entity-Specific Tracking:</strong> In B2B finance, “A tax return” isn’t enough. Lenders need “Suzie’s 2023 Tax Return.” I designed the UI to reflect this granularity, separating requirements by individual to ensure clear accountability.</li>
+                <li><strong>The “Contextual Hurdle”:</strong> Instead of a vague “Under Review” status, I designed actionable Issue Alerts. If a driver’s license is expired, the system tells the user exactly what to do.</li>
+                <li><strong>Automated Nudging:</strong> I integrated “Automatic Reminders” directly into the sidebar. By automating the “pestering,” we protected the lender’s human relationship with the borrower while keeping the deal on track.</li>
+            </ul>
+            
+            <div class="case-study-image">
+                <img src="assets/Doc-List-Preview.png" alt="Document List High-Fidelity Design">
+            </div>
+        </section>
+
+        <section class="case-study-section">
+            <h2>Managing Technical Latency: Designing for "The Wait"</h2>
+            <p>Document analysis takes time. If a user uploads a 100-page bank statement, they shouldn't stare at a spinning wheel. I mapped out the system feedback loops: showing progression, providing instant success flags for uploads, and letting the user know they could safely navigate away while the AI processed their files in the background.</p>
+            
+            <div class="image-gallery">
+                <div class="case-study-image">
+                    <img src="assets/IMG_2818-1.jpg" alt="Latency Feedback Sketch 1">
+                </div>
+                <div class="case-study-image">
+                    <img src="assets/IMG_2819-1.jpg" alt="Latency Feedback Sketch 2">
+                </div>
+            </div>
+        </section>
+
+        <section class="case-study-section">
+            <h2>Upload Intelligence</h2>
+            <p>We learned that forcing users to rename or organize files causes drop-off. Instead, we let them drag-and-drop the chaos. Arlo's AI analyzes, renames, and classifies the files in real-time.</p>
+            
+            <div class="case-study-image">
+                <img src="assets/arlo-upload-intelligence.png" alt="Upload Intelligence High Fidelity Screen">
+            </div>
+        </section>
+
+        <section class="case-study-section">
+            <h2>The "Negative Path": Designing an Empathetic Exit</h2>
+            <p>Senior designers don't just design for the “Happy Path.” In lending, the “No” is just as important as the “Yes.”</p>
+            <p>I mapped out the logic for an empathetic denial. If a borrower's revenue is too low, the UI explains why and provides a path for future planning. This prevents “Dead Ends” and protects the lender's brand reputation, ensuring that a rejected applicant today can still be a customer tomorrow.</p>
+            
+            <div class="case-study-image">
+                <img src="assets/IMG_2824-1.jpg" alt="Negative Path Sketches">
+            </div>
+        </section>
+
+        <section class="case-study-section">
+            <h2>High Fidelity Design Solutions</h2>
+            <p>Based on our insights, I set out to make deal progress clear and simple: empower users with clarity and control.</p>
+            
+            <h3>Before: Generic and Unclear</h3>
+            <p>Old design lacked clear indications of progress, leaving analysts in the dark about who needed to act next.</p>
+            <div class="case-study-image">
+                <img src="assets/Deals-List-Before.png" alt="Deals List Before Redesign">
+            </div>
+
+            <h3>After: Visible movement and progress</h3>
+            <p>A simple progress bar and clear status that indicate how much of the application the borrower had completed.</p>
+            <div class="case-study-image">
+                <img src="assets/Arlo-Admin-Role-Updated-Deal-List-1.png" alt="Deals List After Redesign">
+            </div>
+        </section>
+
+        <section class="case-study-section">
+            <h2>The "Scale" Challenge: Managing a Portfolio, Not a Deal</h2>
+            <p><strong>The Strategy:</strong> As we pivoted to a Lender-first model, the UI had to shift from managing a single “Project” to managing a massive portfolio. A lender might be tracking 150 concurrent deals across 20 different partners.</p>
+            <p><strong>The Design Decision:</strong> I designed a robust search and filtering system that allowed lenders to parse deals by “Stage,” “Entity Name,” or “Financial Volume” instantly. By highlighting search terms in bold within the results, I reduced the cognitive load for loan officers who were context-switching between “Acme Corp” and “Vanguard Ventures” dozens of times a day. This wasn't just a utility; it was a speed-to-market advantage.</p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2026 Ryan Botha - Senior Product Designer</p>
+            <div class="footer-socials">
+                <a href="https://www.linkedin.com/in/ryanbotha/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:ryan@ryanbotha.design"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Script -->
+    <script src="main.js"></script>
+</body>
+</html>

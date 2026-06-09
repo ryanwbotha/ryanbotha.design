@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crewcation: UX Strategy & Design System | Ryan Botha</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav id="navbar" class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="assets/ryan_botha_logo.svg" alt="ryan_botha logo" class="logo-svg">
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="index.html#work" class="nav-link">Work</a></li>
+                <li><a href="https://www.linkedin.com/in/ryanbotha/" target="_blank" class="nav-link">LinkedIn Profile</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Case Study Hero -->
+    <header class="case-study-hero">
+        <div class="case-study-hero-container">
+            <a href="index.html" class="back-home"><i class="fas fa-arrow-left"></i> Back to Home</a>
+            <h1 class="case-study-title">Crewcation: <br><span class="serif-italic">UX Strategy & Design System</span></h1>
+            
+            <div class="case-study-meta">
+                <div class="meta-item">
+                    <h4>My Role</h4>
+                    <p>Lead UX Strategist, Product Designer & Front-End Builder</p>
+                </div>
+                <div class="meta-item">
+                    <h4>Deliverables</h4>
+                    <p>UX Research, Component Library, Design Tokens, Figma Mockups</p>
+                </div>
+                <div class="meta-item">
+                    <h4>Focus</h4>
+                    <p>Group Travel, Social UX, Mobile-First Design System</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Case Study Content -->
+    <main class="case-study-body">
+        
+        <!-- Executive Overview -->
+        <section class="case-study-section">
+            <h2>Executive Overview</h2>
+            <p>Planning a group trip is exhausting. What starts as an exciting idea quickly devolves into a mess of 150-message WhatsApp threads, disconnected spreadsheets, and scattered map pins. The hardest part isn't finding things to do; it's the mental load of trying to turn everyone's ideas into a single plan.</p>
+            <p>I built Crewcation to solve this, rescuing the 'Trip Captain' from doing all the work and getting friends out of the group chat and onto the plane. I designed it as a multi-platform ecosystem: a native iOS SwiftUI app for a premium Apple experience, a Next.js Progressive Web App (PWA) so friends can instantly join on the web without downloading anything, and a native Android client (currently in active development) following Google's Material Design 3 paradigms. By using a simple 'Vibe Check' to align budgets privately and an AI engine to build itineraries from votes, the app guides groups through a clear, progressive path:</p>
+            <p style="font-weight: 600; text-align: center; margin: 1.5rem 0; color: var(--text-primary);">Create &gt; Invite &gt; Suggest &gt; Vote &gt; Finalize &amp; Execute.</p>
+            
+            <div class="case-study-image">
+                <img src="assets/crewcation-dashboard-mockup.png" alt="Crewcation Mobile Dashboard and active travel feed">
+            </div>
+        </section>
+
+        <!-- Section 1 -->
+        <section class="case-study-section">
+            <h2>1. Project Background & The Strategic Shift</h2>
+            <p>The origin of this project didn't start with a polished brand identity or even the name "Crewcation." It began as a raw challenge: How do we stop group trips from dying in the chat and let everyone suggest and vote on ideas?</p>
+            <p>When I started building, I began with a simple, functional MVP and iterated on it rapidly. Driven by the speed of thought (thanks to the power of building code with AI) and the urgency to get the product built, I continuously layered new features onto the core system: turning a basic trip planner into a complete workspace with real-time mapping and automated itineraries.</p>
+            <p>I realized traditional travel tools fail because planning can become chaotic and open-ended. When everyone has equal control, it leads to immediate choice paralysis. I flipped the script by splitting the experience into two simple, role-based flows:</p>
+            <ul>
+                <li><strong>The Captain (Organizer):</strong> Curates, sets structural trip boundaries (Where, When, Who), unlocks collaborative milestones, and shoulders the administrative logistics.</li>
+                <li><strong>The Crew (Guests):</strong> Reacts, completion-checks preferences, contributes specific ideas, and casts targeted votes.</li>
+            </ul>
+
+            <div class="case-study-image">
+                <img src="assets/crewcation-funnel-infographic.png" alt="Crewcation funnel comparison infographic: Traditional vs Crewcation Funnel">
+            </div>
+        </section>
+
+        <!-- Section 2 -->
+        <section class="case-study-section">
+            <h2>2. Uncovering the Real Friction: Deep-dives into Group Dynamics</h2>
+            <p>I researched group travel dynamics to understand the emotional and financial friction that happens before booking, and designed features to help groups align on budgets and destinations.</p>
+
+            <div class="staggered-timeline-container">
+                <div class="bauhaus-dot-grid">
+                    <span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span>
+                </div>
+                <div class="bauhaus-accent-circle"></div>
+                
+                <!-- Step 1 -->
+                <div class="timeline-item upstream">
+                    <div class="timeline-badge">01</div>
+                    <div class="timeline-card">
+                        <h4>Chat Thread Chaos</h4>
+                        <p>Endless Messaging</p>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="timeline-item upstream">
+                    <div class="timeline-badge">02</div>
+                    <div class="timeline-card">
+                        <h4>Budget Awkwardness</h4>
+                        <p>Fear of Speaking Up</p>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="timeline-item upstream">
+                    <div class="timeline-badge">03</div>
+                    <div class="timeline-card">
+                        <h4>Choice Paralysis & Disagreements</h4>
+                        <p>Varying Group Interests</p>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="timeline-item downstream">
+                    <div class="timeline-badge">04</div>
+                    <div class="timeline-card">
+                        <h4>Trip Abandonment</h4>
+                        <p>Dying in the Chat</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Key Behavioral Insights</h3>
+            <ul>
+                <li><strong>The "Budget Elephant in the Room":</strong> Financial mismatch causes tension in 59% of traveler relationships (according to the 2026 AAA and Bread Financial Travel Survey). Users frequently remain silent and agree to expensive group options they cannot afford, or ghost the trip entirely out of embarrassment.</li>
+                <li><strong>The Ghosting Phenomenon:</strong> Momentum dies because planners lack tracking observability, and guests feel overwhelmed by arbitrary links shared with zero context.</li>
+                <li><strong>The Multi-Platform Split ("Travel Mixology"):</strong> Users constantly jump platforms, using short-form video for discovery, conversational engines for itinerary drafts, and heavy spreadsheets for splitting costs (a trend identified in the Amadeus Travel Trends 2026 report).</li>
+            </ul>
+
+            <h3>The UX Solution</h3>
+            <p>I designed features to solve these exact frustrations:</p>
+            <ul>
+                <li><strong>Future Vibe Recommendations:</strong> Budget expectations are stored for future recommendations and are currently only used to calculate destination match scores, keeping financial preferences hidden from the rest of the crew.</li>
+                <li><strong>Collaborative Crew Notes:</strong> Instead of dropping contextless links, users write helpful details, links, or instructions to guide the group.</li>
+                <li><strong>Real-Time Sync:</strong> Everyone sees the latest updates instantly on their screens, keeping the group aligned and excited.</li>
+            </ul>
+        </section>
+
+        <!-- Section 3 -->
+        <section class="case-study-section">
+            <h2>3. Product Architecture & The Multi-Platform Playbook</h2>
+            <p>As a solo builder, I had to be smart with my time and energy. I set up a single Supabase backend to keep all the data in sync, and then built separate front-ends on top of it: a native iOS app, a Next.js web app, and a native Android app (currently in active development).</p>
+
+            <div class="case-study-image">
+                <img src="assets/crewcation-architecture.png" alt="Crewcation multi-platform architecture diagram">
+            </div>
+
+            <h3>The Native iOS Client (SwiftUI + SwiftData)</h3>
+            <p>Built natively to harness raw processing efficiency, fluid gestures, and deep system integrations. The data layer utilizes SwiftData models with explicit cascade dependencies (<code>Trip ➔ [TripLeg] ➔ [TripSuggestion] ➔ [Vote]</code>) cached locally for seamless offline performance during flights or in low-connectivity zones, reconciling automatically with Supabase via a customized merge algorithm.</p>
+
+            <h3>The Next.js PWA Client (The "Lite-Brite" Web Experience)</h3>
+            <p>Getting 10 to 15 people to download a native bundle, configure profiles, and accept system alerts before any planning has occurred is a massive barrier to entry. The PWA acts as our frictionless web-based entry. Invited guests receive a secure email invitation that seamlessly populates directly on their Crewcation dashboard, letting them sign in and instantly engage in a web-native view without a restrictive app store download wall.</p>
+
+            <h3>The Native Android Client (Kotlin + Jetpack Compose)</h3>
+            <p>To capture the rest of the mobile market, I initiated development of a native Android client. Built using Kotlin and Jetpack Compose, this app integrates directly with Supabase for data sync. Adhering strictly to Google’s Material Design 3 (M3) guidelines, the Android interface establishes hierarchy through surface elevations and brand-tinted colors (using Coral #FF6F61 as primary), deliberately avoiding Apple-specific visual paradigms like glassmorphic blurs to maintain a platform-native feel.</p>
+
+            <div class="case-study-image placeholder">
+                <i class="fab fa-android"></i>
+                <p>Upload UI mockup of the native Android client showing Jetpack Compose Material 3 elements (Outlined Cards, Bottom Navigation, and the primary Coral theme).</p>
+                <span>assets/crewcation-android-ui-mockup.png</span>
+            </div>
+        </section>
+
+        <!-- Section 4 -->
+        <section class="case-study-section">
+            <h2>4. The Design System & Cross-Platform Parity</h2>
+            <p>When designing Crewcation, I knew users would expect a polished, native-like experience. My goal was to take the fluid interactions of the native iOS app and bring them directly to the web, ensuring that guests joining on mobile-web wouldn't feel like they were getting a watered-down fallback.</p>
+
+            <h3>Visual Foundations: Turning Aesthetic Play into Functional Clarity</h3>
+            <p>The design system is built to reduce the stress of trip coordination by keeping the layout clean and easy to scan. I moved away from the corporate blues and heavy borders typical of traditional travel planners, focusing instead on a premium, minimalist layout:</p>
+            <ul>
+                <li><strong>Depth and Layering:</strong> Instead of heavy borders, I used layered SVG gradients and backdrop blurs to create depth. Sheets and overlays float naturally over maps and details, using elevation to guide the eye.</li>
+                <li><strong>Color with Purpose:</strong> Coral (#F37B67) highlights primary actions and updates, while Cyan (#3DB9CF) is reserved for status and sync indicators. Everything else stays clean and neutral.</li>
+                <li><strong>Clean Typography:</strong> To replicate the bold iOS header style on the web, I chose Nunito Sans. It provides clean, readable visual anchors for scanning long itineraries.</li>
+            </ul>
+
+            <div class="style-guide-preview-card">
+                <div class="bauhaus-dot-grid">
+                    <span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span>
+                </div>
+                <div class="bauhaus-accent-circle"></div>
+                <div class="preview-header">
+                    <h4>Interactive Design Specimen</h4>
+                    <h3>Crewcation UI Style Guide</h3>
+                </div>
+                <p>An interactive, live-rendered style sheet demonstrating the cross-platform design tokens, custom SVG icons, typographic hierarchy, and grid systems used in the dual-client interface.</p>
+                <a href="crewcation-ui-style-guide.html" class="preview-btn">View Live Style Guide <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <h3>Our Approach to Component Parity</h3>
+            <p>Instead of copying layouts pixel-for-pixel across platforms, I mapped components to their native equivalents. For instance, the main trip container uses a full-bleed vertical list on iOS, a responsive multi-column grid on the PWA, and a scrollable lazy column on Android. Similarly, for transitions and sheets, I used native iOS sheet physics, sliding Framer Motion drawers on the web, and Jetpack Compose bottom sheets on Android. This structural mapping kept the experience cohesive while making sure each client feels native to the host OS.</p>
+        </section>
+
+        <!-- Section 5 -->
+        <section class="case-study-section">
+            <h2>5. Core Feature Design: From Chaos to Consensus</h2>
+            
+            <h3>Feature 1: The "Frictionless Onboarding Loop"</h3>
+            <p>We wanted users to start planning trips immediately without onboarding friction. We initially designed a guest flow where users could create itineraries before registering, but migrating guest data to registered accounts proved too complex. Instead, we implemented a quick sign-up using Apple, Google, or email verification codes. This keeps the onboarding process simple while ensuring user data is secure and synced from the start.</p>
+
+            <div class="case-study-image placeholder">
+                <i class="fas fa-sitemap"></i>
+                <p>Upload wireframe flow diagram showing the progressive disclosure loop: Local Trip Initialization ➔ Email Invitation Dispatch ➔ Real-time Dashboard Notification & Seamless Accept.</p>
+                <span>assets/crewcation-email-invite-flow.png</span>
+            </div>
+
+            <p>After setting up the basic trip details, the Captain sends email invites to the crew. If a crew member already has an account, the invite shows up directly on their dashboard. Anyone new to the app can view the basic invite details first and only needs to sign up when they decide to accept the invite and join the workspace.</p>
+
+            <h3>Feature 2: The "Vibe Check" Alignment Suite</h3>
+            <p>The Vibe Check is a quick setup that maps a traveler's style (such as budget, energy, and food preferences) the first time they sign up. Instead of filling out a new survey for every single trip, users set their preferences once in their profile. If they change their travel style later, updating their profile instantly updates their tags and match scores across all active group trips, keeping their preferences anonymous while ensuring recommendations stay accurate.</p>
+
+            <div class="case-study-image placeholder">
+                <i class="fas fa-sliders-h"></i>
+                <p>Upload high-fidelity mockup of the Vibe Check preference interface. Show large, highly immersive card tiles with a "Liquid Glass" selection state (e.g., a serene landscape tile for 'Nature' vs. an active neon street tile for 'City Pulse').</p>
+                <span>assets/crewcation-vibe-check-screenshot.png</span>
+            </div>
+
+            <p>The system logs user preference parameters on an explicit scale:</p>
+            <ul>
+                <li><strong>Energy Level:</strong> 0 (Completely Relaxing) to 100 (High Action/Adrenaline).</li>
+                <li><strong>Budget Tier:</strong> 1 (Save-Savvy) to 4 (Luxury Splurge).</li>
+                <li><strong>Foodie Type:</strong> Fine Dining, Street Food, or Balanced Mix.</li>
+            </ul>
+
+            <div class="case-study-image placeholder">
+                <i class="fas fa-user-cog"></i>
+                <p>Upload UI mockup showing the Profile / Settings Preferences screen where users can edit their travel persona and sync it back to active trips.</p>
+                <span>assets/crewcation-vibe-check-preferences.png</span>
+            </div>
+
+            <h3>Feature 3: The Collaborative Expense Splitter MVP</h3>
+            <p>To eliminate the financial tension of group travel, I designed and built a collaborative expense manager MVP. Although not yet launched to production, this feature allows crew members to log shared trip expenses (with the PWA client designed to capture interest via a waitlist). Users can log costs in three ways: snapping a receipt using the device camera (which triggers a multimodal receipt OCR analysis using a Supabase Edge Function to extract merchant, currency, and total), choosing a receipt image from their photo library, or typing details manually.</p>
+            <p>Once expenses are logged, the app automatically splits the costs. It creates a simple list showing who owes who, with quick buttons to settle up or send a friendly reminder directly in the group chat.</p>
+
+            <div class="case-study-image placeholder">
+                <i class="fas fa-wallet"></i>
+                <p>Upload UI mockup of the iOS Split-Cost Expense Manager. Show the total trip spend banner, the individual crew debts ledger with "Settle Up" and "Nudge" triggers, and the receipt scanning action sheet.</p>
+                <span>assets/crewcation-expense-manager-ui.png</span>
+            </div>
+
+            <h3>Feature 4: Map Discovery & Collaborative Crew Notes</h3>
+            <p>Once the trip details are set, the crew can start suggesting places on the map. I designed a shared map view where anyone can pin locations and add notes.</p>
+
+            <div class="case-study-image placeholder">
+                <i class="fas fa-map-marked-alt"></i>
+                <p>Upload mobile side-by-side comparison mockup. Left screen shows the map discovery view with custom marker pins (Teal for saved items, Solid White for exploration leads). Right screen shows the expanded Suggestion Detail Sheet containing full Google metadata and the collaborative Notes text field.</p>
+                <span>assets/crewcation-map-notes-mockup.png</span>
+            </div>
+
+            <p>Instead of losing links in a group chat, crew members can write check-in details, links, or notes directly on each suggested place. This keeps everything in one spot. I tailored the placeholder prompts for each platform to guide the team:</p>
+            <ul>
+                <li><strong>On Native iOS:</strong> <em>"Add check-in details, flight info, or crew ideas..."</em> guiding mobile users towards logistical entry.</li>
+                <li><strong>On PWA Web:</strong> <em>"Add details, links, or instructions for the crew..."</em> providing web-centric coordination prompts.</li>
+            </ul>
+
+            <h3>Feature 5: The High-Resolution Sentiment Slider</h3>
+            <p>I replaced the standard 5-star rating with a 10-point slider to capture how people actually feel about a suggestion. On iOS, the slider has tactile ticks, and on the web, it uses a color gradient that changes as you drag.</p>
+            <p style="font-family: monospace; font-size: 1rem; text-align: center; margin: 24px 0; font-weight: 600;">
+                [🥱 Boring] ➔ [🫤 Meh] ➔ [🙂 Okay] ➔ [😃 I'm Down!] ➔ [🤩 Must-Do!]<br>
+                &nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;&nbsp;&nbsp;10
+            </p>
+            <p>To keep the database in sync between users on the new 10-point slider and those on older 5-point web versions, the system automatically converts the votes behind the scenes by dividing the 10-point score by two and rounding it (so a 7 out of 10 maps to a 4 out of 5 for legacy clients).</p>
+        </section>
+
+        <!-- Section 6 -->
+        <section class="case-study-section">
+            <h2>6. The Final Flow: AI-Driven Itinerary Generation</h2>
+            <p>Once voting ends, the app locks suggestions and uses Gemini to build a clean itinerary.</p>
+
+            <div class="case-study-image placeholder">
+                <i class="fas fa-calendar-alt"></i>
+                <p>Upload clean, stylized UI layout of "The Plan" tab. Show a beautiful vertical timeline grid displaying sequential travel days. Individual cards feature crisp city headings, a "95% Crew Match" badge, and a personalized, italicized "Gemini Insight" explaining the chronological logic.</p>
+                <span>assets/crewcation-itinerary-plan-mockup.png</span>
+            </div>
+
+            <p>Instead of presenting a disorganized list of suggestions, the AI analyzes the crew's vibe check preferences, geographical coordinates, and top-voted places. It filters out low-voted ideas, groups nearby activities to minimize travel times, and schedules meals and events at logical hours of the day. Every item on the final itinerary also includes a clear justification (e.g., <em>"Added because 4 out of 5 of your crew voted for it and it's 2 minutes from your hotel"</em>) to resolve arguments and get the trip booked.</p>
+        </section>
+
+        <!-- Section 7 -->
+        <section class="case-study-section">
+            <h2>7. Agent-First Development & Platform Parity</h2>
+            <p>Instead of writing all the code myself, I used autonomous AI agents in Google Antigravity to help build, audit, and fix the iOS, web, and Android apps. This cut down development time and let me focus on the design system. Since I am a solo developer, designer, and product manager, keeping track of everything across three platforms was tricky, so I heavily relied on the agents to keep us aligned.</p>
+            <p>To keep the AI agents on track and manage the project without losing context, I set up a simple workflow:</p>
+            
+            <div class="case-study-image placeholder">
+                <i class="fas fa-robot"></i>
+                <p>Upload a screenshot showing the Google Antigravity workspace terminal and active agent session logs</p>
+                <span>assets/crewcation-antigravity-terminal.png</span>
+            </div>
+
+            <h3>Visual Auditing vs. Technical Execution</h3>
+            <p>To find where the platforms differed, I manually reviewed all three apps to spot gaps in the UX and UI. Once I knew what looked wrong visually, I had the AI agents inspect the codebases to find the underlying technical differences between SwiftUI, React, and Jetpack Compose.</p>
+
+            <h3>Visual Feedback and Screen Guidance</h3>
+            <p>To make sure the design stayed high-fidelity, I worked systematically by updating one section at a time. If the agent started making incorrect decisions or hallucinating, I guided it by feeding in screenshots of what it had built along with detailed design markups.</p>
+
+            <h3>Shared Memory with NotebookLM</h3>
+            <p>AI agents can easily lose context in long chats. To solve this, I set up a central repository of architecture files, codebases, and logs in NotebookLM. Whenever a new agent session started, it read these files to instantly get up to speed on the project's state so we never lost track of where we were.</p>
+
+            <h3>Caveman Protocol for Quick Edits</h3>
+            <p>To save time and keep prompts focused, I set up a rule for the AI agents to skip polite chatter. They respond directly with code edits and quick updates to keep the context clean.</p>
+            
+            <div class="case-study-image placeholder">
+                <i class="fas fa-code"></i>
+                <p>Upload graphic comparing standard verbose AI chat with the dense, execution-focused Caveman Protocol format</p>
+                <span>assets/crewcation-caveman-protocol-comparison.png</span>
+            </div>
+
+            <h3>Auto-Audits for Platform Parity</h3>
+            <p>I had the agents scan the iOS code and web code to find gaps, like differences in image loading or styling. They generated checklists and helped refactor the code to keep the features in sync. For example, they refactored the itinerary queries to run through a single server function, ensuring the AI results matched perfectly on both web and mobile.</p>
+            
+            <div class="case-study-image placeholder">
+                <i class="fas fa-project-diagram"></i>
+                <p>Upload diagram showing the Agent-assisted audit pipeline and code refactoring workflow</p>
+                <span>assets/crewcation-agent-parity-pipeline.png</span>
+            </div>
+
+            <h3>The Takeaway</h3>
+            <p>Using AI agents completely changed how I build products. As a solo creator, managing these agents allowed me to maintain high design fidelity and sync features across different platforms much faster than building alone.</p>
+        </section>
+
+        <!-- Section 8 -->
+        <section class="case-study-section">
+            <h2>8. Results, Impact & Key Portfolio Takeaways</h2>
+            <p>Crewcation shows how a strong design system and simple onboarding can turn a stressful group chore into a fun, collaborative experience.</p>
+            
+            <h3>Key UX Achievements:</h3>
+            <ul>
+                <li><strong>Low-Friction Signups:</strong> Deferring signup until users accept an invite kept onboarding simple and helped groups start planning immediately.</li>
+                <li><strong>Visual Parity:</strong> Bringing iOS fluid animations and dynamic styles to React PWA proved that web apps can feel just as premium as native apps.</li>
+                <li><strong>Smart Decision Making:</strong> Shifting from static voting lists to AI-sorted itineraries eliminated choice paralysis and made it easier for groups to lock in their plans.</li>
+            </ul>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2026 Ryan Botha - Senior Product Designer</p>
+            <div class="footer-socials">
+                <a href="https://www.linkedin.com/in/ryanbotha/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:ryan@ryanbotha.design"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Script -->
+    <script src="main.js"></script>
+</body>
+</html>
