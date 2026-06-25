@@ -15,7 +15,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Custom Style Sheet -->
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="index.css?v=1.15">
     <link rel="icon" type="image/png" href="favicon.png">
 </head>
 <body>
@@ -80,87 +81,123 @@
     <section id="work" class="projects-section">
         <div class="section-container">
             <div class="section-header">
-                <h2 class="section-title">Recent Work</h2>
+                <h2 class="section-title">Case Studies</h2>
             </div>
             
-            <div class="projects-grid">
-                <!-- Crewcation Project 1 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="assets/crewcation-dashboard-mockup.png" alt="Crewcation Dashboard & travel feed">
+            <div class="swiper case-studies-swiper">
+                <div class="swiper-wrapper">
+                    
+                    <!-- Crewcation Project 1 -->
+                    <div class="swiper-slide">
+                        <div class="slide-inner">
+                            <div class="slide-bg" style="background-image: url('assets/crewcation-dashboard-mockup.png');"></div>
+                            <div class="slide-overlay"></div>
+                            <div class="slide-content">
+                                <h3>Crewcation</h3>
+                                <p>Architecting collaborative travel preference logic, a cross-platform design system, and leveraging autonomous AI agent pipelines.</p>
+                                <a href="./crewcation-ux-and-design-system.html" class="btn-view">VIEW</a>
+                            </div>
+                            <div class="slide-quote">
+                                <i class="fas fa-quote-left quote-icon-left"></i>
+                                <p>By using a simple 'Vibe Check' to align budgets privately and an AI engine to build itineraries, the app guides groups through a clear, progressive path.</p>
+                                <i class="fas fa-quote-right quote-icon-right"></i>
+                            </div>
+                        </div>
                     </div>
-                    <div class="project-info">
-                        <span class="project-category">UX Strategy, Design System & AI Orchestration</span>
-                        <h3>Crewcation: UX Strategy, Design System & Agentic Workflows</h3>
-                        <p>Architecting collaborative travel preference logic, a cross-platform design system, and leveraging autonomous AI agent pipelines to build and accelerate product delivery.</p>
-                        <a href="./crewcation-ux-and-design-system.html" class="project-link">View Case Study <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
 
-                <!-- Project 1 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="assets/MacBook-13.jpg" alt="Arlo Deal Tracking on Laptop">
+                    <!-- Project 1 -->
+                    <div class="swiper-slide">
+                        <div class="slide-inner">
+                            <div class="slide-bg" style="background-image: url('assets/MacBook-13.jpg');"></div>
+                            <div class="slide-overlay"></div>
+                            <div class="slide-content">
+                                <h3>Arlo</h3>
+                                <p>Streamlining complex pipeline states into visible, intuitive progress trackers.</p>
+                                <a href="./arlo-obscured-deal-progress.html" class="btn-view">VIEW</a>
+                            </div>
+                            <div class="slide-quote">
+                                <i class="fas fa-quote-left quote-icon-left"></i>
+                                <p>We defined clear roles: who initiates the request and who tracks the hurdle. If the borrower felt the system responding to them, they would finish the application.</p>
+                                <i class="fas fa-quote-right quote-icon-right"></i>
+                            </div>
+                        </div>
                     </div>
-                    <div class="project-info">
-                        <span class="project-category">Product Design</span>
-                        <h3>Arlo: Deal Tracking Obscurity</h3>
-                        <p>Streamlining complex pipeline states into visible, intuitive progress trackers.</p>
-                        <a href="./arlo-obscured-deal-progress.html" class="project-link">View Case Study <i class="fas fa-arrow-right"></i></a>
+                    
+                    <!-- Project 2 -->
+                    <div class="swiper-slide">
+                        <div class="slide-inner">
+                            <div class="slide-bg" style="background-image: url('assets/EnPowered-Financing-Accelerator-Ipad-Pro-Mockup-1-scaled.png');"></div>
+                            <div class="slide-overlay"></div>
+                            <div class="slide-content">
+                                <h3>EnPowered</h3>
+                                <p>Empowering cleaner energy financing through frictionless digital accelerator systems.</p>
+                                <a href="./building-the-enpowered-financing-accelerator.html" class="btn-view">VIEW</a>
+                            </div>
+                            <div class="slide-quote">
+                                <i class="fas fa-quote-left quote-icon-left"></i>
+                                <p>The Financing Accelerator allowed partners to generate accurate estimates for solar projects instantly, significantly increasing proposal adoption.</p>
+                                <i class="fas fa-quote-right quote-icon-right"></i>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                
-                <!-- Project 2 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="assets/EnPowered-Financing-Accelerator-Ipad-Pro-Mockup-1-scaled.png" alt="EnPowered Financing Accelerator Mockup">
+                    
+                    <!-- Project 3 -->
+                    <div class="swiper-slide">
+                        <div class="slide-inner">
+                            <div class="slide-bg" style="background-image: url('assets/Nedbank-digital-customer-journey.png');"></div>
+                            <div class="slide-overlay"></div>
+                            <div class="slide-content">
+                                <h3>Nedbank</h3>
+                                <p>Revamping onboarding flows to bring customer-centric simplicity to banking.</p>
+                                <a href="./nedbank-digital-onboarding-experience.html" class="btn-view">VIEW</a>
+                            </div>
+                            <div class="slide-quote">
+                                <i class="fas fa-quote-left quote-icon-left"></i>
+                                <p>By highlighting the real-world struggles, this work drove a customer-first approach that helped shape a frictionless banking registration experience.</p>
+                                <i class="fas fa-quote-right quote-icon-right"></i>
+                            </div>
+                        </div>
                     </div>
-                    <div class="project-info">
-                        <span class="project-category">Product Design</span>
-                        <h3>EnPowered Financing Accelerator</h3>
-                        <p>Empowering cleaner energy financing through frictionless digital accelerator systems.</p>
-                        <a href="./building-the-enpowered-financing-accelerator.html" class="project-link">View Case Study <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-                
-                <!-- Project 3 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="assets/Nedbank-digital-customer-journey.png" alt="Nedbank Digital Customer Journey">
-                    </div>
-                    <div class="project-info">
-                        <span class="project-category">UX Design</span>
-                        <h3>Nedbank Digital Journey</h3>
-                        <p>Revamping onboarding flows to bring customer-centric simplicity to banking.</p>
-                        <a href="./nedbank-digital-onboarding-experience.html" class="project-link">View Case Study <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
 
-                <!-- Project 4 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="assets/avo-auto-mockup-1.png" alt="Avo Auto Mobile App Mockup">
+                    <!-- Project 4 -->
+                    <div class="swiper-slide">
+                        <div class="slide-inner">
+                            <div class="slide-bg" style="background-image: url('assets/avo-auto-mockup-1.png');"></div>
+                            <div class="slide-overlay"></div>
+                            <div class="slide-content">
+                                <h3>Avo Auto</h3>
+                                <p>Redefining vehicle search and purchase journeys for digital car marketplaces.</p>
+                                <a href="./redefining-the-search-experience-for-avo-auto.html" class="btn-view">VIEW</a>
+                            </div>
+                            <div class="slide-quote">
+                                <i class="fas fa-quote-left quote-icon-left"></i>
+                                <p>We transformed the product from a static list of options into a dynamic, intuitive tool by reimagining the entire search and filter experience.</p>
+                                <i class="fas fa-quote-right quote-icon-right"></i>
+                            </div>
+                        </div>
                     </div>
-                    <div class="project-info">
-                        <span class="project-category">Product Design</span>
-                        <h3>Avo Auto</h3>
-                        <p>Redefining vehicle search and purchase journeys for digital car marketplaces.</p>
-                        <a href="./redefining-the-search-experience-for-avo-auto.html" class="project-link">View Case Study <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
 
-                <!-- Project 5 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="assets/Absa-Prepaid-Electricity-mockup-1.png" alt="Absa App Prepaid Electricity Mockup">
+                    <!-- Project 5 -->
+                    <div class="swiper-slide">
+                        <div class="slide-inner">
+                            <div class="slide-bg" style="background-image: url('assets/Absa-Prepaid-Electricity-mockup-1.png');"></div>
+                            <div class="slide-overlay"></div>
+                            <div class="slide-content">
+                                <h3>Absa App</h3>
+                                <p>Optimizing utility purchasing mechanics on mobile applications for absolute ease-of-use.</p>
+                                <a href="./absa-app-prepaid-electricity-ux-case-study.html" class="btn-view">VIEW</a>
+                            </div>
+                            <div class="slide-quote">
+                                <i class="fas fa-quote-left quote-icon-left"></i>
+                                <p>Users were often in a state of stress or urgency when purchasing electricity, a factor that needed to be at the forefront of our design considerations.</p>
+                                <i class="fas fa-quote-right quote-icon-right"></i>
+                            </div>
+                        </div>
                     </div>
-                    <div class="project-info">
-                        <span class="project-category">UX Design</span>
-                        <h3>Absa App Prepaid Electricity Feature</h3>
-                        <p>Optimizing utility purchasing mechanics on mobile applications for absolute ease-of-use.</p>
-                        <a href="./absa-app-prepaid-electricity-ux-case-study.html" class="project-link">View Case Study <i class="fas fa-arrow-right"></i></a>
-                    </div>
+
                 </div>
+                <!-- Pagination -->
+                <div class="swiper-pagination"></div>
             </div>
         </div>
     </section>
@@ -205,12 +242,12 @@
             <p>&copy; 2026 Ryan Botha - Senior Product Designer</p>
             <div class="footer-socials">
                 <a href="https://www.linkedin.com/in/ryanbotha/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="mailto:ryan@ryanbotha.design"><i class="fas fa-envelope"></i></a>
             </div>
         </div>
     </footer>
 
     <!-- Custom Script -->
-    <script src="main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="main.js?v=1.15"></script>
 </body>
 </html>
