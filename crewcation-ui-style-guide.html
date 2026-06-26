@@ -273,35 +273,7 @@
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
 
-        /* Viewport Sizer Controls */
-        .sb-viewport-group {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            border-left: 1px solid #e2e8f0;
-            padding-left: 16px;
-        }
 
-        .sb-viewport-btn {
-            background: transparent;
-            border: 1px solid #e2e8f0;
-            width: 32px;
-            height: 32px;
-            border-radius: 6px;
-            color: #64748b;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.15s ease;
-            font-size: 0.9rem;
-        }
-
-        .sb-viewport-btn:hover, .sb-viewport-btn.active {
-            border-color: var(--sb-teal);
-            color: var(--sb-teal);
-            background: rgba(61, 185, 207, 0.05);
-        }
 
         /* Exit Portfolio Link */
         .sb-exit-link {
@@ -1154,12 +1126,6 @@
                         <button class="sb-tab-btn" data-tab="docs"><i class="fas fa-file-alt"></i> Docs & Code</button>
                     </div>
 
-                    <!-- Viewport Sizer Controls -->
-                    <div class="sb-viewport-group" id="viewport-sizer-group">
-                        <button class="sb-viewport-btn active" data-width="desktop" title="Desktop Viewport"><i class="fas fa-desktop"></i></button>
-                        <button class="sb-viewport-btn" data-width="tablet" title="Tablet Viewport (768px)"><i class="fas fa-tablet-alt"></i></button>
-                        <button class="sb-viewport-btn" data-width="mobile" title="Mobile Viewport (375px)"><i class="fas fa-mobile"></i></button>
-                    </div>
 
                     <!-- Exit button -->
                     <a href="crewcation-ux-and-design-system.html" class="sb-exit-link">
@@ -3613,7 +3579,7 @@ struct SentimentSlider: View {
                 <section id="brand-assets" class="sb-view-panel">
                     <div class="sb-section-header">
                         <h1>Brand Graphics &amp; Guides</h1>
-                        <p>Official logos, marketing illustrations, and onboarding guides pulled from the Crewcation web platform and app setups.</p>
+                        <p>Official logos, marketing imagery, and onboarding guides pulled from the Crewcation web platform and app setups.</p>
                     </div>
 
                     <div class="sb-canvas-workspace">
@@ -3622,7 +3588,7 @@ struct SentimentSlider: View {
                             <!-- Tab controls inside the preview workspace -->
                             <div class="sb-tab-group" id="brand-assets-tabs" style="margin-bottom: 24px; width: fit-content;">
                                 <button class="sb-tab-btn active" data-asset="identity"><i class="fas fa-fingerprint"></i> Brand Identity</button>
-                                <button class="sb-tab-btn" data-asset="marketing"><i class="fas fa-bullhorn"></i> Marketing Illustrations</button>
+                                <button class="sb-tab-btn" data-asset="marketing"><i class="fas fa-bullhorn"></i> Marketing Imagery</button>
                                 <button class="sb-tab-btn" data-asset="onboarding"><i class="fas fa-road"></i> Onboarding Guides</button>
                             </div>
 
@@ -3659,7 +3625,7 @@ struct SentimentSlider: View {
                                     <h4 style="font-size: 1.1rem; color: var(--sb-navy); font-weight: 700; margin: 0 0 8px 0;">Brand Identity Assets</h4>
                                     <p style="font-size: 0.9rem; color: #64748b; margin: 0; line-height: 1.5; max-width: 700px; margin: 0 auto;">These form the foundation of the Crewcation brand visual architecture, ensuring consistent recognition across both native app stores and browser-based workflows.</p>
                                 </div>
-                                <!-- Marketing Illustrations -->
+                                <!-- Marketing Imagery -->
                                 <div id="asset-marketing" class="brand-asset-view" style="display: none;">
                                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 16px;">
                                         <div style="background: #f8fafc; border: 1px solid var(--sb-border); padding: 20px; border-radius: 16px; text-align: center;">
@@ -3888,7 +3854,6 @@ struct SentimentSlider: View {
            Top Controls Panel (Canvas vs Docs & Viewport Sizers)
            ========================================================================== */
         const canvasDocsSwitcher = document.getElementById('canvas-docs-switcher');
-        const viewportSizerGroup = document.getElementById('viewport-sizer-group');
         const workspaces = document.querySelectorAll('.sb-canvas-workspace');
 
         // Canvas vs Docs view toggler
@@ -3908,11 +3873,9 @@ struct SentimentSlider: View {
                 if (viewMode === 'canvas') {
                     preview.style.display = 'flex';
                     docPanel.style.display = 'none';
-                    viewportSizerGroup.style.display = 'flex'; // show sizers in canvas mode
                 } else {
                     preview.style.display = 'none';
                     docPanel.style.display = 'block';
-                    viewportSizerGroup.style.display = 'none'; // hide sizers in docs mode
                 }
             });
         });
@@ -3922,21 +3885,6 @@ struct SentimentSlider: View {
             ws.querySelector('.sb-docs-panel').style.display = 'none';
         });
 
-        // Viewport Resizer buttons
-        viewportSizerGroup.addEventListener('click', (e) => {
-            const btn = e.target.closest('.sb-viewport-btn');
-            if (!btn) return;
-
-            viewportSizerGroup.querySelectorAll('.sb-viewport-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-
-            const widthClass = `width-${btn.getAttribute('data-width')}`;
-
-            workspaces.forEach(ws => {
-                ws.className = 'sb-canvas-workspace'; // reset class
-                ws.classList.add(widthClass);
-            });
-        });
 
         /* ==========================================================================
            Interactive Component Code Block Tabs
