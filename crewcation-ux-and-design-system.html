@@ -116,10 +116,16 @@
                         <span class="toc-sublink">50 Native iOS Screens</span>
                     </a>
 
-                    <a href="#results" class="toc-item">
+                    <a href="#pwa-gallery" class="toc-item">
                         <div class="toc-number">09</div>
+                        <div class="toc-title-text">PWA &amp; Marketing</div>
+                        <span class="toc-sublink">Web &amp; Travel Guides</span>
+                    </a>
+
+                    <a href="#results" class="toc-item">
+                        <div class="toc-number">10</div>
                         <div class="toc-title-text">Conclusion</div>
-                        <span class="toc-sublink">Results, Impact & Takeaways</span>
+                        <span class="toc-sublink">Results, Impact &amp; Takeaways</span>
                     </a>
 
                 </div>
@@ -613,7 +619,6 @@
                 <button class="ios-lb-nav ios-lb-next" id="iosLbNext" aria-label="Next screen">&#8594;</button>
                 <div class="ios-lb-content">
                     <div class="ios-lb-phone-frame" id="iosLbPhoneFrame">
-                        <div class="ios-lb-notch"></div>
                         <img class="ios-lb-image" id="iosLbImage" src="" alt="" loading="lazy">
                     </div>
                     <div class="ios-lb-meta">
@@ -738,7 +743,6 @@
                     /* Standard phone bezel card */
                     return '<article class="ios-phone-card" data-index="' + i + '" style="animation-delay:' + delay + '">' +
                         '<figure class="ios-phone-frame" role="button" tabindex="0" aria-label="View ' + screen.title + ' screenshot">' +
-                            '<div class="ios-phone-notch"></div>' +
                             '<img class="ios-phone-screen" src="' + imgPath + '" alt="' + screen.alt + '" loading="lazy">' +
                             '<figcaption class="ios-phone-overlay">' +
                                 '<span class="ios-overlay-category" style="color:' + catColor + '">' + catLabel + '</span>' +
@@ -1159,13 +1163,6 @@
                             noBezel: meta.noBezel
                         });
                         
-                        // Inject notch for standard iOS phone frames
-                        if (frame.classList.contains('ios-phone-frame') && !frame.querySelector('.ios-phone-notch')) {
-                            var notch = document.createElement('div');
-                            notch.className = 'ios-phone-notch';
-                            frame.insertBefore(notch, frame.firstChild);
-                        }
-                        
                         // Inject "View" overlay hint
                         var overlay = frame.querySelector('.ios-phone-overlay');
                         if (overlay && !overlay.querySelector('.ios-overlay-hint')) {
@@ -1195,9 +1192,94 @@
         }());
         </script>
 
-        <!-- Section 9 -->
+        <!-- Section 9: Next.js PWA Client & Marketing Showcase -->
+        <section class="case-study-section pwa-showcase-section" id="pwa-gallery">
+            <h2>9. Next.js PWA Client &amp; Marketing Showcase</h2>
+            <p>While the iOS app provides a premium native experience, the Next.js Progressive Web App (PWA) serves as the high-reach entry point for invited crew members. It bypasses App Store friction, letting users instantly join planning hubs, do vibe checks, vote, and suggest places from any mobile browser.</p>
+            <p>Below is a showcase of the Crewcation PWA Marketing Site alongside the Hand-Crafted Travel Guides, grouped by device type to highlight the responsive layouts and cross-device presentation.</p>
+            
+            <h3>Desktop Experience</h3>
+            <div class="pwa-showcase-grid desktop-grid">
+                <!-- Marketing Desktop Mockup -->
+                <div class="pwa-showcase-card desktop-card">
+                    <h3>PWA Marketing Site</h3>
+                    <div class="pwa-desktop-frame">
+                        <div class="pwa-desktop-header">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                            <span class="pwa-desktop-url">crewcation.app/marketing</span>
+                        </div>
+                        <img src="assets/crewcation-pwa-marketing-desktop.png" alt="Crewcation PWA Marketing Site Desktop View" loading="lazy">
+                    </div>
+                </div>
+
+                <!-- Travel Guides Index Mockup -->
+                <div class="pwa-showcase-card desktop-card">
+                    <h3>Curated Travel Guides Hub</h3>
+                    <div class="pwa-desktop-frame">
+                        <div class="pwa-desktop-header">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                            <span class="pwa-desktop-url">crewcation.app/travel-guides</span>
+                        </div>
+                        <img src="assets/crewcation-pwa-travel-guides-desktop.png" alt="Crewcation PWA Travel Guides Page View" loading="lazy">
+                    </div>
+                </div>
+
+                <!-- Guide Detail What Is -->
+                <div class="pwa-showcase-card desktop-card">
+                    <h3>Interactive Travel Guide Detail Page</h3>
+                    <div class="pwa-desktop-frame">
+                        <div class="pwa-desktop-header">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                            <span class="pwa-desktop-url">crewcation.app/travel-guides/what-is-a-crewcation</span>
+                        </div>
+                        <img src="assets/crewcation-pwa-guide-detail-whatis.png" alt="Crewcation PWA Travel Guide Detail View" loading="lazy">
+                    </div>
+                </div>
+
+                <!-- Guide Detail Paris -->
+                <div class="pwa-showcase-card desktop-card">
+                    <h3>Paris Hidden Gems Guide Detail Page</h3>
+                    <div class="pwa-desktop-frame">
+                        <div class="pwa-desktop-header">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                            <span class="pwa-desktop-url">crewcation.app/travel-guides/hidden-gems-in-paris</span>
+                        </div>
+                        <img src="assets/crewcation-pwa-guide-detail-paris.png" alt="Paris Hidden Gems Guide Detail Page View" loading="lazy">
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 50px;">Mobile PWA Experience</h3>
+            <div class="pwa-showcase-grid mobile-grid">
+                <!-- Marketing Mobile Mockup -->
+                <div class="pwa-showcase-card mobile-card">
+                    <h3>PWA Marketing Site</h3>
+                    <div class="pwa-mobile-frame">
+                        <img src="assets/crewcation-pwa-marketing-mobile.png" alt="Crewcation PWA Marketing Site Mobile View" loading="lazy">
+                    </div>
+                </div>
+
+                <!-- Travel Guides Mobile Mockup -->
+                <div class="pwa-showcase-card mobile-card">
+                    <h3>Travel Guides Hub</h3>
+                    <div class="pwa-mobile-frame">
+                        <img src="assets/crewcation-pwa-travel-guides-mobile.png" alt="Crewcation PWA Travel Guides Mobile View" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 10 -->
         <section class="case-study-section">
-            <h2 id="results">9. Results, Impact &amp; Key Portfolio Takeaways</h2>
+            <h2 id="results">10. Results, Impact &amp; Key Portfolio Takeaways</h2>
             <p>Crewcation shows how a strong design system and simple onboarding can turn a stressful group chore into a fun, collaborative experience.</p>
             
             <h3>Key UX Achievements:</h3>

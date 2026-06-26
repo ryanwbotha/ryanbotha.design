@@ -2031,18 +2031,7 @@ body.modal-open {
         0 0 50px rgba(243,123,103,0.18);
 }
 
-/* Dynamic Island pill */
-.ios-phone-notch {
-    position: absolute;
-    top: 9px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 65px;
-    height: 22px;
-    background: #000;
-    border-radius: 16px;
-    z-index: 3;
-}
+
 
 .ios-phone-screen {
     width: 100%;
@@ -2152,9 +2141,6 @@ body.modal-open {
     to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-.ios-lb-notch {
-    display: none;
-}
 
 .ios-lb-image {
     width: 100%;
@@ -2181,9 +2167,6 @@ body.modal-open {
     width: 280px !important;
 }
 
-.ios-lb-flat-mode .ios-lb-notch {
-    display: none;
-}
 
 .ios-lb-flat-mode .ios-lb-image {
     border-radius: 14px;
@@ -2301,7 +2284,6 @@ body.modal-open {
     }
 
     .ios-phone-frame { border-radius: 25px; padding: 3px; }
-    .ios-phone-notch { width: 48px; height: 17px; top: 6px; }
     .ios-phone-screen { border-radius: 23px; }
     .ios-phone-overlay { inset: 6px; border-radius: 23px; }
 
@@ -2314,7 +2296,6 @@ body.modal-open {
     }
 
     .ios-lb-phone-frame { width: min(220px, 55vw); border-radius: 42px; }
-    .ios-lb-notch { width: 72px; height: 24px; top: 14px; }
     .ios-lb-image { border-radius: 34px; max-height: 55vh; }
     .ios-lb-meta { text-align: center; max-width: 100%; }
     .ios-lb-nav { width: 42px; height: 42px; font-size: 1rem; }
@@ -2607,5 +2588,126 @@ body.modal-open {
         width: 45px;
         height: 45px;
         font-size: 1rem;
+    }
+}
+
+/* ---- PWA & Marketing Showcase ---- */
+.pwa-showcase-section {
+    padding: 80px 0;
+}
+.pwa-showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    margin-top: 40px;
+}
+.pwa-showcase-card {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.pwa-showcase-card h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+    font-family: var(--font-sans);
+}
+.pwa-showcase-card.full-width-card {
+    grid-column: span 2;
+}
+
+/* Desktop Frame (Browser window mock) */
+.pwa-desktop-frame {
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
+}
+.pwa-desktop-frame:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+}
+.pwa-desktop-header {
+    background: rgba(0, 0, 0, 0.03);
+    border-bottom: 1px solid var(--border-color);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.pwa-desktop-header .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+.pwa-desktop-header .dot.red { background: #ff5f56; }
+.pwa-desktop-header .dot.yellow { background: #ffbd2e; }
+.pwa-desktop-header .dot.green { background: #27c93f; }
+.pwa-desktop-url {
+    margin-left: 12px;
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    background: var(--bg-primary);
+    padding: 2px 20px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    width: 60%;
+    max-width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.pwa-desktop-frame img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* Mobile Frame (Phone bezel mock) */
+.pwa-mobile-frame {
+    position: relative;
+    background: #181818;
+    border-radius: 34px;
+    padding: 6px;
+    box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,0.07),
+        0 0 0 1px rgba(0,0,0,0.75),
+        0 18px 46px rgba(0,0,0,0.15);
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+    overflow: hidden;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
+}
+.pwa-mobile-frame:hover {
+    transform: translateY(-8px);
+    box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,0.1),
+        0 0 0 1px rgba(0,0,0,0.8),
+        0 30px 60px rgba(0,0,0,0.25);
+}
+.pwa-mobile-frame img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 28px;
+    object-fit: cover;
+}
+
+@media (max-width: 992px) {
+    .pwa-showcase-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    .pwa-showcase-card.full-width-card {
+        grid-column: span 1;
     }
 }
