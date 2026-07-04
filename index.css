@@ -25,7 +25,7 @@ html {
     scroll-behavior: smooth;
     font-size: 16px;
     background-color: var(--bg-primary);
-    scroll-padding-top: 140px; /* Accounts for navbar height when jumping to anchors */
+    scroll-padding-top: 90px; /* Accounts for navbar height when jumping to anchors */
 }
 
 body {
@@ -673,7 +673,7 @@ a {
 
 .case-study-section {
     margin-bottom: 60px;
-    scroll-margin-top: 200px; /* Offset for sticky headers */
+    scroll-margin-top: 0; /* Clear double offset so scroll-padding-top aligns target cleanly */
 }
 
 .case-study-section h2 {
