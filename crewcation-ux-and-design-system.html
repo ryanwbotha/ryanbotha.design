@@ -587,10 +587,10 @@
         </section>
 
         <!-- Section 8: iOS App Screen Gallery -->
-        <section class="case-study-section ios-showcase-section" id="ios-app-gallery">
+        <section class="case-study-section ios-showcase-section" id="ios-screens">
             <div class="ios-showcase-inner">
                 <div class="ios-showcase-header">
-                    <h2 id="ios-app-gallery-heading">8. iOS App Screen Gallery</h2>
+                    <h2 id="ios-app-gallery">8. iOS App Screen Gallery</h2>
                     <p class="ios-showcase-subtitle">All 50 native iOS screens — built with SwiftUI and designed to Apple's Human Interface Guidelines.</p>
                     <div class="ios-showcase-divider"></div>
                 </div>
@@ -1368,9 +1368,32 @@
             }
         }
 
-        window.addEventListener('load', () => {
-            setTimeout(scrollToHashTarget, 100);
-        });
+        if (window.location.hash) {
+            scrollToHashTarget();
+            document.addEventListener('DOMContentLoaded', scrollToHashTarget);
+            window.addEventListener('load', () => {
+                setTimeout(scrollToHashTarget, 100);
+                setTimeout(scrollToHashTarget, 500);
+            });
+
+            // Re-align whenever any image above finishes downloading
+            document.querySelectorAll('.case-study-body img').forEach(img => {
+                if (!img.complete) {
+                    img.addEventListener('load', scrollToHashTarget);
+                }
+            });
+
+            // ResizeObserver to track layout height changes
+            if (window.ResizeObserver) {
+                let resizeTimer;
+                const observer = new ResizeObserver(() => {
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(scrollToHashTarget, 50);
+                });
+                const caseBody = document.querySelector('.case-study-body');
+                if (caseBody) observer.observe(caseBody);
+            }
+        }
 
         // Back to top functionality
         const backToTopButton = document.getElementById('backToTop');
