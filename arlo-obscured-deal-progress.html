@@ -126,6 +126,9 @@
 
         
 
+
+        
+
         <section class="case-study-section">
             <h2 id="untangling-the-email-tsunami-with-arlo">Untangling the “Email Tsunami” with Arlo</h2>
             <p>When I joined, the product was focused on “Energy Partners,” the middlemen selling energy upgrades. But after deep discovery, we realized the partner wasn’t the bottleneck. The Lender was.</p>
@@ -404,10 +407,12 @@
                 
                 const isOpening = !tocContainer.classList.contains('open');
                 if (isOpening) {
-                    const stickyThresholdY = tocContainer.getBoundingClientRect().top + window.scrollY - 125;
-                    if (window.scrollY < stickyThresholdY) {
+                    if (stickyThreshold === null) {
+                        stickyThreshold = tocContainer.getBoundingClientRect().top + window.scrollY - 125;
+                    }
+                    if (window.scrollY < stickyThreshold) {
                         window.scrollTo({
-                            top: stickyThresholdY,
+                            top: stickyThreshold,
                             behavior: 'smooth'
                         });
                     }
@@ -494,6 +499,7 @@
 
         // Back to top & TOC scrolled functionality (exactly matching crewcation behavior)
         const backToTopButton = document.getElementById('backToTop');
+        let stickyThreshold = null;
         window.addEventListener('scroll', () => {
             if (backToTopButton) {
                 if (window.scrollY > 500) {
@@ -505,8 +511,11 @@
             
             // TOC shrink effect
             if (tocContainer) {
-                const rect = tocContainer.getBoundingClientRect();
-                if (rect.top <= 126) {
+                if (!tocContainer.classList.contains('scrolled') || stickyThreshold === null) {
+                    stickyThreshold = tocContainer.getBoundingClientRect().top + window.scrollY - 125;
+                }
+                
+                if (window.scrollY >= stickyThreshold) {
                     tocContainer.classList.add('scrolled');
                 } else {
                     tocContainer.classList.remove('scrolled');
@@ -519,6 +528,8 @@
             });
         }
     </script>
+
+    
 
     
 

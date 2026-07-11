@@ -109,6 +109,9 @@
 
         
 
+
+        
+
         <section class="case-study-section">
             <h2 id="overview">Overview</h2>
             <p>Absa Bank, back in 2016, wanted to make a common, everyday task (buying prepaid electricity) easier for its customers. Traditionally, this meant a trip to the store and fumbling with a physical slip. Our goal was to bring this process right to their fingertips through the Absa mobile app, creating a seamless and stress-free experience.</p>
@@ -205,10 +208,12 @@
                 
                 const isOpening = !tocContainer.classList.contains('open');
                 if (isOpening) {
-                    const stickyThresholdY = tocContainer.getBoundingClientRect().top + window.scrollY - 125;
-                    if (window.scrollY < stickyThresholdY) {
+                    if (stickyThreshold === null) {
+                        stickyThreshold = tocContainer.getBoundingClientRect().top + window.scrollY - 125;
+                    }
+                    if (window.scrollY < stickyThreshold) {
                         window.scrollTo({
-                            top: stickyThresholdY,
+                            top: stickyThreshold,
                             behavior: 'smooth'
                         });
                     }
@@ -295,6 +300,7 @@
 
         // Back to top & TOC scrolled functionality (exactly matching crewcation behavior)
         const backToTopButton = document.getElementById('backToTop');
+        let stickyThreshold = null;
         window.addEventListener('scroll', () => {
             if (backToTopButton) {
                 if (window.scrollY > 500) {
@@ -306,8 +312,11 @@
             
             // TOC shrink effect
             if (tocContainer) {
-                const rect = tocContainer.getBoundingClientRect();
-                if (rect.top <= 126) {
+                if (!tocContainer.classList.contains('scrolled') || stickyThreshold === null) {
+                    stickyThreshold = tocContainer.getBoundingClientRect().top + window.scrollY - 125;
+                }
+                
+                if (window.scrollY >= stickyThreshold) {
                     tocContainer.classList.add('scrolled');
                 } else {
                     tocContainer.classList.remove('scrolled');
@@ -320,6 +329,8 @@
             });
         }
     </script>
+
+    
 
     
 

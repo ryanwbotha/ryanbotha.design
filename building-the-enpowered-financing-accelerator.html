@@ -105,6 +105,9 @@
 
         
 
+
+        
+
         <section class="case-study-section">
             <h2 id="overview">Overview</h2>
             <p>Clean energy financing was a tangled mess of complex models and time-consuming paperwork. EnPowered’s partners were struggling to help their customers find the best financing options, leading to frustration and lost opportunities.</p>
@@ -213,10 +216,12 @@
                 
                 const isOpening = !tocContainer.classList.contains('open');
                 if (isOpening) {
-                    const stickyThresholdY = tocContainer.getBoundingClientRect().top + window.scrollY - 125;
-                    if (window.scrollY < stickyThresholdY) {
+                    if (stickyThreshold === null) {
+                        stickyThreshold = tocContainer.getBoundingClientRect().top + window.scrollY - 125;
+                    }
+                    if (window.scrollY < stickyThreshold) {
                         window.scrollTo({
-                            top: stickyThresholdY,
+                            top: stickyThreshold,
                             behavior: 'smooth'
                         });
                     }
@@ -303,6 +308,7 @@
 
         // Back to top & TOC scrolled functionality (exactly matching crewcation behavior)
         const backToTopButton = document.getElementById('backToTop');
+        let stickyThreshold = null;
         window.addEventListener('scroll', () => {
             if (backToTopButton) {
                 if (window.scrollY > 500) {
@@ -314,8 +320,11 @@
             
             // TOC shrink effect
             if (tocContainer) {
-                const rect = tocContainer.getBoundingClientRect();
-                if (rect.top <= 126) {
+                if (!tocContainer.classList.contains('scrolled') || stickyThreshold === null) {
+                    stickyThreshold = tocContainer.getBoundingClientRect().top + window.scrollY - 125;
+                }
+                
+                if (window.scrollY >= stickyThreshold) {
                     tocContainer.classList.add('scrolled');
                 } else {
                     tocContainer.classList.remove('scrolled');
@@ -328,6 +337,8 @@
             });
         }
     </script>
+
+    
 
     
 
