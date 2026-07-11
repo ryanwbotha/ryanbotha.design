@@ -106,6 +106,9 @@
 
         
 
+
+        
+
         <section class="case-study-section">
             <h2 id="overview">Overview</h2>
             <p>Absa Bank, back in 2016, wanted to make a common, everyday task (buying prepaid electricity) easier for its customers. Traditionally, this meant a trip to the store and fumbling with a physical slip. Our goal was to bring this process right to their fingertips through the Absa mobile app, creating a seamless and stress-free experience.</p>
@@ -199,6 +202,18 @@
         if (tocTrigger && tocContainer) {
             tocTrigger.addEventListener('click', (e) => {
                 e.stopPropagation();
+                
+                const isOpening = !tocContainer.classList.contains('open');
+                if (isOpening) {
+                    const stickyThresholdY = tocContainer.getBoundingClientRect().top + window.scrollY - 125;
+                    if (window.scrollY < stickyThresholdY) {
+                        window.scrollTo({
+                            top: stickyThresholdY,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+                
                 tocContainer.classList.toggle('open');
             });
             
@@ -305,6 +320,8 @@
             });
         }
     </script>
+
+    
 
     
 

@@ -102,6 +102,9 @@
 
         
 
+
+        
+
         <section class="case-study-section">
             <h2 id="overview">Overview</h2>
             <p>Avo Auto provides customers with a vast, curated selection of pre-owned vehicles. While the inventory was impressive, the user experience for finding a specific car was not. Customers were presented with a static, overwhelming list of filters that were cumbersome to navigate. The result was a frustrating search experience, often leading to abandoned sessions and missed sales opportunities.</p>
@@ -211,6 +214,18 @@
         if (tocTrigger && tocContainer) {
             tocTrigger.addEventListener('click', (e) => {
                 e.stopPropagation();
+                
+                const isOpening = !tocContainer.classList.contains('open');
+                if (isOpening) {
+                    const stickyThresholdY = tocContainer.getBoundingClientRect().top + window.scrollY - 125;
+                    if (window.scrollY < stickyThresholdY) {
+                        window.scrollTo({
+                            top: stickyThresholdY,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+                
                 tocContainer.classList.toggle('open');
             });
             
@@ -317,6 +332,8 @@
             });
         }
     </script>
+
+    
 
     
 

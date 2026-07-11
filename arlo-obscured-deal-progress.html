@@ -123,6 +123,9 @@
 
         
 
+
+        
+
         <section class="case-study-section">
             <h2 id="untangling-the-email-tsunami-with-arlo">Untangling the “Email Tsunami” with Arlo</h2>
             <p>When I joined, the product was focused on “Energy Partners,” the middlemen selling energy upgrades. But after deep discovery, we realized the partner wasn’t the bottleneck. The Lender was.</p>
@@ -398,6 +401,18 @@
         if (tocTrigger && tocContainer) {
             tocTrigger.addEventListener('click', (e) => {
                 e.stopPropagation();
+                
+                const isOpening = !tocContainer.classList.contains('open');
+                if (isOpening) {
+                    const stickyThresholdY = tocContainer.getBoundingClientRect().top + window.scrollY - 125;
+                    if (window.scrollY < stickyThresholdY) {
+                        window.scrollTo({
+                            top: stickyThresholdY,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+                
                 tocContainer.classList.toggle('open');
             });
             
@@ -504,6 +519,8 @@
             });
         }
     </script>
+
+    
 
     
 

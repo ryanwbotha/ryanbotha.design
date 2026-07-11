@@ -102,6 +102,9 @@
 
         
 
+
+        
+
         <section class="case-study-section">
             <h2 id="overview">Overview</h2>
             <p>Clean energy financing was a tangled mess of complex models and time-consuming paperwork. EnPowered’s partners were struggling to help their customers find the best financing options, leading to frustration and lost opportunities.</p>
@@ -207,6 +210,18 @@
         if (tocTrigger && tocContainer) {
             tocTrigger.addEventListener('click', (e) => {
                 e.stopPropagation();
+                
+                const isOpening = !tocContainer.classList.contains('open');
+                if (isOpening) {
+                    const stickyThresholdY = tocContainer.getBoundingClientRect().top + window.scrollY - 125;
+                    if (window.scrollY < stickyThresholdY) {
+                        window.scrollTo({
+                            top: stickyThresholdY,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+                
                 tocContainer.classList.toggle('open');
             });
             
@@ -313,6 +328,8 @@
             });
         }
     </script>
+
+    
 
     
 

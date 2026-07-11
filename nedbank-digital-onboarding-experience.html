@@ -94,6 +94,9 @@
 
         
 
+
+        
+
         <section class="case-study-section">
             <h2 id="overview">Overview</h2>
             <p>My strategy was to go straight to the source. I needed to understand the real-world experiences of both our customers and banking staff to design a consistent, seamless onboarding journey across all channels.</p>
@@ -165,6 +168,18 @@
         if (tocTrigger && tocContainer) {
             tocTrigger.addEventListener('click', (e) => {
                 e.stopPropagation();
+                
+                const isOpening = !tocContainer.classList.contains('open');
+                if (isOpening) {
+                    const stickyThresholdY = tocContainer.getBoundingClientRect().top + window.scrollY - 125;
+                    if (window.scrollY < stickyThresholdY) {
+                        window.scrollTo({
+                            top: stickyThresholdY,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+                
                 tocContainer.classList.toggle('open');
             });
             
@@ -271,6 +286,8 @@
             });
         }
     </script>
+
+    
 
     
 
