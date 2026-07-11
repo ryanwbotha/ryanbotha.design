@@ -51,8 +51,51 @@
 
     <!-- Case Study Content -->
     <main class="case-study-body">
+
+        <!-- Table of Contents -->
+        <div class="toc-container" id="tocContainer">
+            <div class="toc-trigger" id="tocTrigger">Table of Contents</div>
+            <div class="toc-dropdown-menu">
+                <div class="toc-mobile-header">
+                    <h3>Table of Contents</h3>
+                    <button class="toc-close-btn" id="tocCloseBtn" aria-label="Close menu"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="toc-grid">
+                    <a href="#overview" class="toc-item">
+                        <div class="toc-number">00</div>
+                        <div class="toc-title-text">Overview</div>
+                    </a>
+                    <a href="#journey-mapping-user-flows" class="toc-item">
+                        <div class="toc-number">01</div>
+                        <div class="toc-title-text">Journey Mapping & User Flows</div>
+                    </a>
+                    <a href="#qualitative-research" class="toc-item">
+                        <div class="toc-number">02</div>
+                        <div class="toc-title-text">Qualitative Research</div>
+                    </a>
+                    <a href="#customer-archetype-design" class="toc-item">
+                        <div class="toc-number">03</div>
+                        <div class="toc-title-text">Customer Archetype Design</div>
+                    </a>
+                    <a href="#the-impact" class="toc-item">
+                        <div class="toc-number">04</div>
+                        <div class="toc-title-text">The Impact</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        
+
+
+        
+
+
+        
+
         <section class="case-study-section">
-            <h2>Overview</h2>
+            <h2 id="overview">Overview</h2>
             <p>My strategy was to go straight to the source. I needed to understand the real-world experiences of both our customers and banking staff to design a consistent, seamless onboarding journey across all channels.</p>
             <p>This wasn’t a solo mission. I collaborated closely with a dedicated team, including a design lead and a product owner, analyzing operational gaps and emotional roadblocks that customers encountered during the onboarding process.</p>
             
@@ -62,7 +105,7 @@
         </section>
 
         <section class="case-study-section">
-            <h2>Journey Mapping & User Flows</h2>
+            <h2 id="journey-mapping-user-flows">Journey Mapping & User Flows</h2>
             <p>I created comprehensive user flows that visually captured the convoluted paths customers were forced to take. These maps served to align business stakeholder groups and highlighted the friction between remote digital actions and physical branch visits.</p>
             
             <div class="case-study-image">
@@ -76,7 +119,7 @@
         </section>
 
         <section class="case-study-section">
-            <h2>Qualitative Research</h2>
+            <h2 id="qualitative-research">Qualitative Research</h2>
             <p>My research led to reports that distilled the core frustrations of both customers and staff. We learned that the lack of clear, real-time feedback during digital sign-ups caused customers to abandon flows and visit branches, overloading local staff and increasing processing costs.</p>
             
             <div class="image-gallery">
@@ -88,7 +131,7 @@
         </section>
 
         <section class="case-study-section">
-            <h2>Customer Archetype Design</h2>
+            <h2 id="customer-archetype-design">Customer Archetype Design</h2>
             <p>A key contribution of mine was rethinking our approach to personas. Given Nedbank’s vast and diverse customer base, traditional static personas fell short. We designed dynamic customer archetypes based on digital literacy and onboarding intent, allowing product teams to tailor application interfaces to real-world behaviors.</p>
             
             <div class="image-gallery">
@@ -98,7 +141,7 @@
         </section>
 
         <section class="case-study-section">
-            <h2>The Impact</h2>
+            <h2 id="the-impact">The Impact</h2>
             <p>My research reports and the dynamic archetypes we developed were actively adopted by various design and product teams to inform and guide their digital onboarding strategies. By highlighting the real-world struggles, this work drove a customer-first approach that helped shape a frictionless banking registration experience.</p>
         </section>
     </main>
@@ -115,5 +158,125 @@
 
     <!-- Custom Script -->
     <script src="main.js"></script>
+    <script>
+        // TOC Click toggle
+        const tocContainer = document.getElementById('tocContainer');
+        const tocTrigger = document.getElementById('tocTrigger');
+        if (tocTrigger && tocContainer) {
+            tocTrigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                tocContainer.classList.toggle('open');
+            });
+            
+            // Mobile close button
+            const tocCloseBtn = document.getElementById('tocCloseBtn');
+            if (tocCloseBtn) {
+                tocCloseBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    tocContainer.classList.remove('open');
+                });
+            }
+            
+            // Close if clicking outside
+            document.addEventListener('click', (e) => {
+                if (!tocContainer.contains(e.target)) {
+                    tocContainer.classList.remove('open');
+                }
+            });
+            
+            // Close on Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    tocContainer.classList.remove('open');
+                }
+            });
+            
+            // Close when clicking a link inside it & perform smooth precision scroll
+            const tocLinks = tocContainer.querySelectorAll('a[href^="#"]');
+            tocLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    tocContainer.classList.remove('open');
+                    const targetId = link.getAttribute('href');
+                    const targetEl = document.querySelector(targetId);
+                    if (targetEl) {
+                        history.pushState(null, null, targetId);
+                        const targetY = targetEl.getBoundingClientRect().top + window.scrollY - 90;
+                        window.scrollTo({ top: targetY, behavior: 'smooth' });
+                    }
+                });
+            });
+        }
+
+        // Handle initial URL hash routing after all images & layouts load
+        function scrollToHashTarget() {
+            if (!window.location.hash) return;
+            const targetEl = document.querySelector(window.location.hash);
+            if (targetEl) {
+                const targetY = targetEl.getBoundingClientRect().top + window.scrollY - 90;
+                window.scrollTo({ top: targetY, behavior: 'smooth' });
+            }
+        }
+
+        if (window.location.hash) {
+            document.addEventListener('DOMContentLoaded', scrollToHashTarget);
+            window.addEventListener('load', () => {
+                setTimeout(scrollToHashTarget, 100);
+                setTimeout(scrollToHashTarget, 500);
+            });
+
+            // Re-align whenever any image above finishes downloading
+            document.querySelectorAll('.case-study-body img').forEach(img => {
+                if (!img.complete) {
+                    img.addEventListener('load', scrollToHashTarget);
+                }
+            });
+
+            // ResizeObserver to track layout height changes
+            if (window.ResizeObserver) {
+                let resizeTimer;
+                const observer = new ResizeObserver(() => {
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(scrollToHashTarget, 50);
+                });
+                const caseBody = document.querySelector('.case-study-body');
+                if (caseBody) observer.observe(caseBody);
+            }
+        }
+
+        // Back to top & TOC scrolled functionality (exactly matching crewcation behavior)
+        const backToTopButton = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (backToTopButton) {
+                if (window.scrollY > 500) {
+                    backToTopButton.classList.add('show');
+                } else {
+                    backToTopButton.classList.remove('show');
+                }
+            }
+            
+            // TOC shrink effect
+            if (tocContainer) {
+                const rect = tocContainer.getBoundingClientRect();
+                if (rect.top <= 126) {
+                    tocContainer.classList.add('scrolled');
+                } else {
+                    tocContainer.classList.remove('scrolled');
+                }
+            }
+        });
+        if (backToTopButton) {
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    </script>
+
+    
+
+    
+
+    
+
 </body>
 </html>

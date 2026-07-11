@@ -51,8 +51,80 @@
 
     <!-- Case Study Content -->
     <main class="case-study-body">
+
+        <!-- Table of Contents -->
+        <div class="toc-container" id="tocContainer">
+            <div class="toc-trigger" id="tocTrigger">Table of Contents</div>
+            <div class="toc-dropdown-menu">
+                <div class="toc-mobile-header">
+                    <h3>Table of Contents</h3>
+                    <button class="toc-close-btn" id="tocCloseBtn" aria-label="Close menu"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="toc-grid">
+                    <a href="#untangling-the-email-tsunami-with-arlo" class="toc-item">
+                        <div class="toc-number">00</div>
+                        <div class="toc-title-text">Untangling the “Email Tsunami” with Arlo</div>
+                    </a>
+                    <a href="#thinking-on-paper-the-architectural-blueprint" class="toc-item">
+                        <div class="toc-number">01</div>
+                        <div class="toc-title-text">Thinking on Paper: The Architectural Blueprint</div>
+                    </a>
+                    <a href="#the-entry-point-first-impressions-of-a-financial-portal" class="toc-item">
+                        <div class="toc-number">02</div>
+                        <div class="toc-title-text">The Entry Point: First Impressions of a Financial Portal</div>
+                    </a>
+                    <a href="#defining-the-mvp-accountability-over-automation" class="toc-item">
+                        <div class="toc-number">03</div>
+                        <div class="toc-title-text">Defining the MVP: Accountability Over Automation</div>
+                    </a>
+                    <a href="#the-craft-high-fidelity-accountability" class="toc-item">
+                        <div class="toc-number">04</div>
+                        <div class="toc-title-text">The Craft: High-Fidelity Accountability</div>
+                    </a>
+                    <a href="#lender-document-processing-overview" class="toc-item">
+                        <div class="toc-number">05</div>
+                        <div class="toc-title-text">Lender Document Processing Overview</div>
+                    </a>
+                    <a href="#managing-technical-latency-designing-for-the-wait" class="toc-item">
+                        <div class="toc-number">06</div>
+                        <div class="toc-title-text">Managing Technical Latency: Designing for "The Wait"</div>
+                    </a>
+                    <a href="#upload-intelligence" class="toc-item">
+                        <div class="toc-number">07</div>
+                        <div class="toc-title-text">Upload Intelligence</div>
+                    </a>
+                    <a href="#the-negative-path-designing-an-empathetic-exit" class="toc-item">
+                        <div class="toc-number">08</div>
+                        <div class="toc-title-text">The "Negative Path": Designing an Empathetic Exit</div>
+                    </a>
+                    <a href="#high-fidelity-design-solutions" class="toc-item">
+                        <div class="toc-number">09</div>
+                        <div class="toc-title-text">High Fidelity Design Solutions</div>
+                    </a>
+                    <a href="#the-scale-challenge-managing-a-portfolio-not-a-deal" class="toc-item">
+                        <div class="toc-number">10</div>
+                        <div class="toc-title-text">The "Scale" Challenge: Managing a Portfolio, Not a Deal</div>
+                    </a>
+                    <a href="#borrower-process-experience" class="toc-item">
+                        <div class="toc-number">11</div>
+                        <div class="toc-title-text">Borrower Process Experience</div>
+                    </a>
+                    <a href="#lender-settings-amp-configuration" class="toc-item">
+                        <div class="toc-number">12</div>
+                        <div class="toc-title-text">Lender Settings &amp; Configuration</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        
+
+
+        
+
         <section class="case-study-section">
-            <h2>Untangling the “Email Tsunami” with Arlo</h2>
+            <h2 id="untangling-the-email-tsunami-with-arlo">Untangling the “Email Tsunami” with Arlo</h2>
             <p>When I joined, the product was focused on “Energy Partners,” the middlemen selling energy upgrades. But after deep discovery, we realized the partner wasn’t the bottleneck. The Lender was.</p>
             <p><strong>The Shift:</strong> We pivoted Arlo from a sales-support tool for partners into a Lender-first financial engine. This required a total overhaul of the mental model: moving from a “Project” view to a “Portfolio” view, where a single lender (like Gringotts Finance) could manage hundreds of multi-million dollar deals across diverse partners.</p>
             
@@ -62,7 +134,7 @@
         </section>
 
         <section class="case-study-section">
-            <h2>Thinking on Paper: The Architectural Blueprint</h2>
+            <h2 id="thinking-on-paper-the-architectural-blueprint">Thinking on Paper: The Architectural Blueprint</h2>
             <p>Before moving pixels in Figma, I had to untangle the “One-to-Many” relationship of commercial finance. A single deal might have one lead borrower, three business entities, and two personal guarantors.</p>
             <p>My sketches focus on Information Hierarchy. I didn’t just design a list; I designed a permissions-based ecosystem. I mapped out how data would roll up from an individual’s tax return to a business’s balance sheet, ensuring the lender never lost context of the “Action” at the project level.</p>
             
@@ -77,7 +149,7 @@
         </section>
 
         <section class="case-study-section">
-            <h2>The Entry Point: First Impressions of a Financial Portal</h2>
+            <h2 id="the-entry-point-first-impressions-of-a-financial-portal">The Entry Point: First Impressions of a Financial Portal</h2>
             <p><strong>The Strategy:</strong> The “Email Tsunami” started at the very beginning of the relationship. Lenders needed a professional, branded jumping-off point that didn’t feel like a generic file-sharing site.</p>
             <p><strong>The Design Decision:</strong> In these early sketches, I explored the “Portal Entry.” I wanted the landing experience to feel like an extension of the lender’s institution. I mapped out a “Direct-to-Deal” flow, where a borrower could land, see their specific deal’s progress, and immediately understand their “Next Best Action” without having to dig through an inbox.</p>
             
@@ -87,7 +159,7 @@
         </section>
 
         <section class="case-study-section">
-            <h2>Defining the MVP: Accountability Over Automation</h2>
+            <h2 id="defining-the-mvp-accountability-over-automation">Defining the MVP: Accountability Over Automation</h2>
             <p>Early on, the team was focused on AI document extraction. However, our discovery showed that “faster reading” didn’t matter if the borrower didn’t know what to upload in the first place.</p>
             <p>I used these collaborative sketches to advocate for a Workflow-first MVP. We defined clear roles: who initiates the request and who tracks the hurdle. We decided that “Progress Feedback” was our primary value prop. If the borrower felt the system responding to them, they would finish the application. Working with the Product Manager (and founder) of Arlo, we realized that “faster reading” didn’t matter if the “communication loop” was broken.</p>
             
@@ -97,7 +169,7 @@
         </section>
 
         <section class="case-study-section">
-            <h2>The Craft: High-Fidelity Accountability</h2>
+            <h2 id="the-craft-high-fidelity-accountability">The Craft: High-Fidelity Accountability</h2>
             <p>This screen replaced the email tsunami.</p>
             <ul>
                 <li><strong>Entity-Specific Tracking:</strong> In B2B finance, “A tax return” isn’t enough. Lenders need “Suzie’s 2023 Tax Return.” I designed the UI to reflect this granularity, separating requirements by individual to ensure clear accountability.</li>
@@ -105,13 +177,41 @@
                 <li><strong>Automated Nudging:</strong> I integrated “Automatic Reminders” directly into the sidebar. By automating the “pestering,” we protected the lender’s human relationship with the borrower while keeping the deal on track.</li>
             </ul>
             
-            <div class="case-study-image">
-                <img src="assets/Doc-List-Preview.png" alt="Document List High-Fidelity Design">
+            <div class="case-study-image" style="height: 380px; overflow: hidden; border-radius: 8px;">
+                <img src="assets/Doc-List-Preview.png" alt="Document List High-Fidelity Design" style="width: 100%; height: 100%; object-fit: cover; object-position: top;">
+            </div>
+        </section>
+
+        <section class="case-study-section ios-showcase-section" style="padding-top: 40px;">
+            <div class="ios-showcase-inner">
+                <div class="ios-showcase-header">
+                    <h2 id="lender-document-processing-overview">Lender Document Processing Overview</h2>
+                    <p class="ios-showcase-subtitle">Comprehensive portfolio review and checklist verification interface for lenders.</p>
+                    <div class="ios-showcase-divider"></div>
+                </div>
+
+                <div class="image-gallery">
+                    <div class="case-study-image">
+                        <img src="assets/Arlo-document-processing/Lender-doc%20overview/Arlo%20-%20Updated%20Deal%20List.png" alt="Updated Deal List" loading="lazy">
+                    </div>
+                    <div class="case-study-image">
+                        <img src="assets/Arlo-document-processing/Lender-doc%20overview/Arlo%20-%20Required%20Docs%20No%20Docs%20Uploaded.png" alt="Required Docs No Docs Uploaded" loading="lazy">
+                    </div>
+                    <div class="case-study-image">
+                        <img src="assets/Arlo-document-processing/Lender-doc%20overview/Arlo%20-%20Deal%20Docs%20tab.png" alt="Deal Docs tab" loading="lazy">
+                    </div>
+                    <div class="case-study-image">
+                        <img src="assets/Arlo-document-processing/Lender-doc%20overview/Arlo%20-%20Deal%20Review%20tab%20-%20Business%20Registry%20Check.png" alt="Business Registry Check" loading="lazy">
+                    </div>
+                    <div class="case-study-image">
+                        <img src="assets/Arlo-document-processing/Lender-doc%20overview/Arlo%20-%20Deal%20Review%20tab%20-%20All%20Good.png" alt="Deal Review All Good" loading="lazy">
+                    </div>
+                </div>
             </div>
         </section>
 
         <section class="case-study-section">
-            <h2>Managing Technical Latency: Designing for "The Wait"</h2>
+            <h2 id="managing-technical-latency-designing-for-the-wait">Managing Technical Latency: Designing for "The Wait"</h2>
             <p>Document analysis takes time. If a user uploads a 100-page bank statement, they shouldn't stare at a spinning wheel. I mapped out the system feedback loops: showing progression, providing instant success flags for uploads, and letting the user know they could safely navigate away while the AI processed their files in the background.</p>
             
             <div class="image-gallery">
@@ -125,7 +225,7 @@
         </section>
 
         <section class="case-study-section">
-            <h2>Upload Intelligence</h2>
+            <h2 id="upload-intelligence">Upload Intelligence</h2>
             <p>We learned that forcing users to rename or organize files causes drop-off. Instead, we let them drag-and-drop the chaos. Arlo's AI analyzes, renames, and classifies the files in real-time.</p>
             
             <div class="case-study-image">
@@ -134,7 +234,7 @@
         </section>
 
         <section class="case-study-section">
-            <h2>The "Negative Path": Designing an Empathetic Exit</h2>
+            <h2 id="the-negative-path-designing-an-empathetic-exit">The "Negative Path": Designing an Empathetic Exit</h2>
             <p>Senior designers don't just design for the “Happy Path.” In lending, the “No” is just as important as the “Yes.”</p>
             <p>I mapped out the logic for an empathetic denial. If a borrower's revenue is too low, the UI explains why and provides a path for future planning. This prevents “Dead Ends” and protects the lender's brand reputation, ensuring that a rejected applicant today can still be a customer tomorrow.</p>
             
@@ -144,7 +244,7 @@
         </section>
 
         <section class="case-study-section">
-            <h2>High Fidelity Design Solutions</h2>
+            <h2 id="high-fidelity-design-solutions">High Fidelity Design Solutions</h2>
             <p>Based on our insights, I set out to make deal progress clear and simple: empower users with clarity and control.</p>
             
             <h3>Before: Generic and Unclear</h3>
@@ -161,9 +261,121 @@
         </section>
 
         <section class="case-study-section">
-            <h2>The "Scale" Challenge: Managing a Portfolio, Not a Deal</h2>
+            <h2 id="the-scale-challenge-managing-a-portfolio-not-a-deal">The "Scale" Challenge: Managing a Portfolio, Not a Deal</h2>
             <p><strong>The Strategy:</strong> As we pivoted to a Lender-first model, the UI had to shift from managing a single “Project” to managing a massive portfolio. A lender might be tracking 150 concurrent deals across 20 different partners.</p>
             <p><strong>The Design Decision:</strong> I designed a robust search and filtering system that allowed lenders to parse deals by “Stage,” “Entity Name,” or “Financial Volume” instantly. By highlighting search terms in bold within the results, I reduced the cognitive load for loan officers who were context-switching between “Acme Corp” and “Vanguard Ventures” dozens of times a day. This wasn't just a utility; it was a speed-to-market advantage.</p>
+        </section>
+
+        <section class="case-study-section ios-showcase-section" style="padding-top: 40px;">
+            <div class="ios-showcase-inner">
+                <div class="ios-showcase-header">
+                    <h2 id="borrower-process-experience">Borrower Process Experience</h2>
+                    <p class="ios-showcase-subtitle">Streamlined application and tracking interface for borrowers.</p>
+                    <div class="ios-showcase-divider"></div>
+                </div>
+
+                <div class="ios-phone-grid" style="margin-top: 24px;">
+                    <article class="ios-phone-card ios-flat-card in-view" style="animation-delay: 0s;">
+                        <div class="ios-flat-frame">
+                            <img class="ios-flat-image" src="assets/Arlo-document-processing/Landing%20Modal.png" alt="Landing Modal" loading="lazy">
+                            <div class="ios-phone-overlay ios-flat-overlay">
+                                <span class="ios-overlay-category" style="color:#10b981">Step 1</span>
+                                <span class="ios-overlay-title">Landing Modal</span>
+                            </div>
+                        </div>
+                        <p class="image-caption" style="font-size: 0.85em; margin-top: 12px; text-align: center;">1. Landing Modal</p>
+                    </article>
+                    
+                    <article class="ios-phone-card ios-flat-card in-view" style="animation-delay: 0.05s;">
+                        <div class="ios-flat-frame">
+                            <img class="ios-flat-image" src="assets/Arlo-document-processing/form-completed.png" alt="Form Completed" loading="lazy">
+                            <div class="ios-phone-overlay ios-flat-overlay">
+                                <span class="ios-overlay-category" style="color:#10b981">Done</span>
+                                <span class="ios-overlay-title">Form Completed</span>
+                            </div>
+                        </div>
+                        <p class="image-caption" style="font-size: 0.85em; margin-top: 12px; text-align: center;">2. Form Completed</p>
+                    </article>
+                    
+                    <article class="ios-phone-card ios-flat-card in-view" style="animation-delay: 0.1s;">
+                        <div class="ios-flat-frame">
+                            <img class="ios-flat-image" src="assets/Arlo-document-processing/Finance%20Application%20-%20Supporting%20Docs%20-%20File%20Issues.png" alt="File Issues" loading="lazy">
+                            <div class="ios-phone-overlay ios-flat-overlay">
+                                <span class="ios-overlay-category" style="color:#ef4444">Issues</span>
+                                <span class="ios-overlay-title">File Issues</span>
+                            </div>
+                        </div>
+                        <p class="image-caption" style="font-size: 0.85em; margin-top: 12px; text-align: center;">3. Document Issues</p>
+                    </article>
+
+                    <article class="ios-phone-card ios-flat-card in-view" style="animation-delay: 0.15s;">
+                        <div class="ios-flat-frame">
+                            <img class="ios-flat-image" src="assets/Arlo-document-processing/Finance%20Application%20-%20Supporting%20Docs%20-%20Completed%20Status.png" alt="Completed Status" loading="lazy">
+                            <div class="ios-phone-overlay ios-flat-overlay">
+                                <span class="ios-overlay-category" style="color:#10b981">Complete</span>
+                                <span class="ios-overlay-title">Application Status</span>
+                            </div>
+                        </div>
+                        <p class="image-caption" style="font-size: 0.85em; margin-top: 12px; text-align: center;">4. Completed Status</p>
+                    </article>
+
+                    <article class="ios-phone-card ios-flat-card in-view" style="animation-delay: 0.2s;">
+                        <div class="ios-flat-frame">
+                            <img class="ios-flat-image" src="assets/Arlo-document-processing/Arlo%20Borrower_%20Application%20Review.png" alt="Application Review" loading="lazy">
+                            <div class="ios-phone-overlay ios-flat-overlay">
+                                <span class="ios-overlay-category" style="color:#f59e0b">Review</span>
+                                <span class="ios-overlay-title">Application Review</span>
+                            </div>
+                        </div>
+                        <p class="image-caption" style="font-size: 0.85em; margin-top: 12px; text-align: center;">5. Application Review</p>
+                    </article>
+
+                    <article class="ios-phone-card ios-flat-card in-view" style="animation-delay: 0.25s;">
+                        <div class="ios-flat-frame">
+                            <img class="ios-flat-image" src="assets/Arlo-document-processing/Arlo%20Borrower_%20Application%20Review%20Missing%20text%20area%20reasons.png" alt="Missing Info Review" loading="lazy">
+                            <div class="ios-phone-overlay ios-flat-overlay">
+                                <span class="ios-overlay-category" style="color:#f59e0b">Action</span>
+                                <span class="ios-overlay-title">Missing Info Review</span>
+                            </div>
+                        </div>
+                        <p class="image-caption" style="font-size: 0.85em; margin-top: 12px; text-align: center;">6. Addressing Missing Info</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="case-study-section ios-showcase-section" style="padding-top: 40px;">
+            <div class="ios-showcase-inner">
+                <div class="ios-showcase-header">
+                    <h2 id="lender-settings-amp-configuration">Lender Settings &amp; Configuration</h2>
+                    <p class="ios-showcase-subtitle">Customization panels for automated email alerts, active user management, and nudges.</p>
+                    <div class="ios-showcase-divider"></div>
+                </div>
+
+                <div class="image-gallery">
+                    <div class="case-study-image">
+                        <img src="assets/Arlo-document-processing/Arlo-settings/Arlo-Settings%20-%20Connect%20Email.png" alt="Email Integration Setup" loading="lazy">
+                    </div>
+                    <div class="case-study-image">
+                        <img src="assets/Arlo-document-processing/Arlo-settings/Arlo-Settings%20-%20Connect%20Email%20Connected%20Account.png" alt="Connected Email Account details" loading="lazy">
+                    </div>
+                    <div class="case-study-image">
+                        <img src="assets/Arlo-document-processing/Arlo-settings/Arlo-Settings%20-%20Connect%20Email%20-%20more%20button.png" alt="Connected Email options" loading="lazy">
+                    </div>
+                    <div class="case-study-image">
+                        <img src="assets/Arlo-document-processing/Arlo-settings/Arlo-Settings%20-%20Borrower%20Notifications%20-%20Subject%20edit.png" alt="Edit notification subject line" loading="lazy">
+                    </div>
+                    <div class="case-study-image">
+                        <img src="assets/Arlo-document-processing/Arlo-settings/Arlo-Settings%20-%20Borrower%20Notifications%20-%20Application%20message%20edit.png" alt="Edit notification message body" loading="lazy">
+                    </div>
+                    <div class="case-study-image">
+                        <img src="assets/Arlo-document-processing/Arlo-settings/Arlo-Settings%20-%20Manage%20Users.png" alt="User Management console" loading="lazy">
+                    </div>
+                    <div class="case-study-image">
+                        <img src="assets/Arlo-document-processing/Arlo-settings/Arlo-Settings%20-%20Reminders.png" alt="Nudges and Reminder settings" loading="lazy">
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 
@@ -179,5 +391,123 @@
 
     <!-- Custom Script -->
     <script src="main.js"></script>
+    <script>
+        // TOC Click toggle
+        const tocContainer = document.getElementById('tocContainer');
+        const tocTrigger = document.getElementById('tocTrigger');
+        if (tocTrigger && tocContainer) {
+            tocTrigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                tocContainer.classList.toggle('open');
+            });
+            
+            // Mobile close button
+            const tocCloseBtn = document.getElementById('tocCloseBtn');
+            if (tocCloseBtn) {
+                tocCloseBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    tocContainer.classList.remove('open');
+                });
+            }
+            
+            // Close if clicking outside
+            document.addEventListener('click', (e) => {
+                if (!tocContainer.contains(e.target)) {
+                    tocContainer.classList.remove('open');
+                }
+            });
+            
+            // Close on Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    tocContainer.classList.remove('open');
+                }
+            });
+            
+            // Close when clicking a link inside it & perform smooth precision scroll
+            const tocLinks = tocContainer.querySelectorAll('a[href^="#"]');
+            tocLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    tocContainer.classList.remove('open');
+                    const targetId = link.getAttribute('href');
+                    const targetEl = document.querySelector(targetId);
+                    if (targetEl) {
+                        history.pushState(null, null, targetId);
+                        const targetY = targetEl.getBoundingClientRect().top + window.scrollY - 90;
+                        window.scrollTo({ top: targetY, behavior: 'smooth' });
+                    }
+                });
+            });
+        }
+
+        // Handle initial URL hash routing after all images & layouts load
+        function scrollToHashTarget() {
+            if (!window.location.hash) return;
+            const targetEl = document.querySelector(window.location.hash);
+            if (targetEl) {
+                const targetY = targetEl.getBoundingClientRect().top + window.scrollY - 90;
+                window.scrollTo({ top: targetY, behavior: 'smooth' });
+            }
+        }
+
+        if (window.location.hash) {
+            document.addEventListener('DOMContentLoaded', scrollToHashTarget);
+            window.addEventListener('load', () => {
+                setTimeout(scrollToHashTarget, 100);
+                setTimeout(scrollToHashTarget, 500);
+            });
+
+            // Re-align whenever any image above finishes downloading
+            document.querySelectorAll('.case-study-body img').forEach(img => {
+                if (!img.complete) {
+                    img.addEventListener('load', scrollToHashTarget);
+                }
+            });
+
+            // ResizeObserver to track layout height changes
+            if (window.ResizeObserver) {
+                let resizeTimer;
+                const observer = new ResizeObserver(() => {
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(scrollToHashTarget, 50);
+                });
+                const caseBody = document.querySelector('.case-study-body');
+                if (caseBody) observer.observe(caseBody);
+            }
+        }
+
+        // Back to top & TOC scrolled functionality (exactly matching crewcation behavior)
+        const backToTopButton = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (backToTopButton) {
+                if (window.scrollY > 500) {
+                    backToTopButton.classList.add('show');
+                } else {
+                    backToTopButton.classList.remove('show');
+                }
+            }
+            
+            // TOC shrink effect
+            if (tocContainer) {
+                const rect = tocContainer.getBoundingClientRect();
+                if (rect.top <= 126) {
+                    tocContainer.classList.add('scrolled');
+                } else {
+                    tocContainer.classList.remove('scrolled');
+                }
+            }
+        });
+        if (backToTopButton) {
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    </script>
+
+    
+
+    
+
 </body>
 </html>

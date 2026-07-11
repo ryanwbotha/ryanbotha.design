@@ -34,13 +34,15 @@ function initApp() {
     });
 
     // Image Modal Functionality
-    const caseImages = document.querySelectorAll('.case-study-image img:not(.no-modal)');
+    const caseImages = document.querySelectorAll('.case-study-image img:not(.no-modal), .ios-phone-screen:not(.no-modal), .ios-flat-image:not(.no-modal)');
     
     if (caseImages.length > 0) {
         const modalOverlay = document.createElement('div');
         modalOverlay.className = 'image-modal-overlay';
         modalOverlay.innerHTML = `
             <button class="image-modal-close" aria-label="Close image modal">&times;</button>
+            <button class="image-modal-prev" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
+            <button class="image-modal-next" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
             <div class="image-modal-container">
                 <img class="image-modal-content" src="" alt="Zoomed view">
                 <p class="image-modal-caption"></p>
@@ -50,19 +52,54 @@ function initApp() {
 
         const modalImg = modalOverlay.querySelector('.image-modal-content');
         const modalClose = modalOverlay.querySelector('.image-modal-close');
+        const modalPrev = modalOverlay.querySelector('.image-modal-prev');
+        const modalNext = modalOverlay.querySelector('.image-modal-next');
+        let currentGroupImages = [];
+        let currentIndex = -1;
 
-        const openModal = (src, alt, captionText) => {
-            modalImg.src = src;
-            modalImg.alt = alt || 'Zoomed view';
+        const openModal = (imgEl) => {
+            const section = imgEl.closest('section') || document.body;
+            currentGroupImages = Array.from(section.querySelectorAll('.case-study-image img:not(.no-modal), .ios-phone-screen:not(.no-modal), .ios-flat-image:not(.no-modal)'));
+            currentIndex = currentGroupImages.indexOf(imgEl);
+            if (currentIndex === -1) currentIndex = 0;
+
+            const img = currentGroupImages[currentIndex];
+            modalImg.src = img.src;
+            modalImg.alt = img.alt || 'Zoomed view';
+            
+            // Try to find a caption
+            let captionText = '';
+            const container = img.closest('.case-study-image, .ios-phone-card');
+            if (container) {
+                const next = container.nextElementSibling || container.querySelector('.image-caption');
+                if (next && next.classList.contains('image-caption')) {
+                    captionText = next.textContent;
+                } else {
+                    const parent = container.parentElement;
+                    if (parent && parent.classList.contains('image-gallery')) {
+                        const nextGallery = parent.nextElementSibling;
+                        if (nextGallery && nextGallery.classList.contains('image-caption')) {
+                            captionText = nextGallery.textContent;
+                        }
+                    }
+                }
+            }
+            
             const caption = modalOverlay.querySelector('.image-modal-caption');
             caption.textContent = captionText || '';
-            if (!captionText) {
-                caption.style.display = 'none';
+            caption.style.display = captionText ? 'block' : 'none';
+
+            if (currentGroupImages.length <= 1) {
+                modalPrev.style.display = 'none';
+                modalNext.style.display = 'none';
             } else {
-                caption.style.display = 'block';
+                modalPrev.style.display = 'block';
+                modalNext.style.display = 'block';
             }
+            
             modalOverlay.classList.add('active');
             document.body.classList.add('modal-open');
+            modalOverlay.scrollTo(0, 0); // Reset scroll to top
         };
 
         const closeModal = () => {
@@ -73,39 +110,38 @@ function initApp() {
             }, 250);
         };
 
+        const showPrev = () => {
+            if (currentGroupImages.length <= 1) return;
+            let newIndex = currentIndex > 0 ? currentIndex - 1 : currentGroupImages.length - 1;
+            openModal(currentGroupImages[newIndex]);
+        };
+
+        const showNext = () => {
+            if (currentGroupImages.length <= 1) return;
+            let newIndex = currentIndex < currentGroupImages.length - 1 ? currentIndex + 1 : 0;
+            openModal(currentGroupImages[newIndex]);
+        };
+
         caseImages.forEach(img => {
-            img.addEventListener('click', () => {
-                const container = img.closest('.case-study-image');
-                let captionText = '';
-                if (container) {
-                    const parent = container.parentElement;
-                    if (parent && parent.classList.contains('image-gallery')) {
-                        const next = parent.nextElementSibling;
-                        if (next && next.classList.contains('image-caption')) {
-                            captionText = next.textContent;
-                        }
-                    } else {
-                        const next = container.nextElementSibling;
-                        if (next && next.classList.contains('image-caption')) {
-                            captionText = next.textContent;
-                        }
-                    }
-                }
-                openModal(img.src, img.alt, captionText);
-            });
+            img.style.cursor = 'pointer';
+            img.addEventListener('click', () => openModal(img));
         });
+
+        modalPrev.addEventListener('click', (e) => { e.stopPropagation(); showPrev(); });
+        modalNext.addEventListener('click', (e) => { e.stopPropagation(); showNext(); });
 
         modalClose.addEventListener('click', closeModal);
         modalOverlay.addEventListener('click', (e) => {
-            if (e.target === modalOverlay) {
+            if (e.target === modalOverlay || e.target.classList.contains('image-modal-container')) {
                 closeModal();
             }
         });
 
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
-                closeModal();
-            }
+            if (!modalOverlay.classList.contains('active')) return;
+            if (e.key === 'Escape') closeModal();
+            if (e.key === 'ArrowLeft') showPrev();
+            if (e.key === 'ArrowRight') showNext();
         });
     }
 
@@ -117,6 +153,11 @@ function initApp() {
             slidesPerView: 'auto',
             spaceBetween: 16,
             loop: true,
+            mousewheel: {
+                forceToAxis: true,
+                sensitivity: 0.5,
+                thresholdDelta: 50,
+            },
             pagination: {
                 el: '.swiper-pagination',
                 clickable: true,

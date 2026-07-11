@@ -51,8 +51,59 @@
 
     <!-- Case Study Content -->
     <main class="case-study-body">
+
+        <!-- Table of Contents -->
+        <div class="toc-container" id="tocContainer">
+            <div class="toc-trigger" id="tocTrigger">Table of Contents</div>
+            <div class="toc-dropdown-menu">
+                <div class="toc-mobile-header">
+                    <h3>Table of Contents</h3>
+                    <button class="toc-close-btn" id="tocCloseBtn" aria-label="Close menu"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="toc-grid">
+                    <a href="#overview" class="toc-item">
+                        <div class="toc-number">00</div>
+                        <div class="toc-title-text">Overview</div>
+                    </a>
+                    <a href="#the-outcome" class="toc-item">
+                        <div class="toc-number">01</div>
+                        <div class="toc-title-text">The Outcome</div>
+                    </a>
+                    <a href="#designing-for-speed-and-clarity" class="toc-item">
+                        <div class="toc-number">02</div>
+                        <div class="toc-title-text">Designing for Speed and Clarity</div>
+                    </a>
+                    <a href="#second-iteration-the-in-house-pivot" class="toc-item">
+                        <div class="toc-number">03</div>
+                        <div class="toc-title-text">Second Iteration: The In-House Pivot</div>
+                    </a>
+                    <a href="#ideation-information-architecture" class="toc-item">
+                        <div class="toc-number">04</div>
+                        <div class="toc-title-text">Ideation & Information Architecture</div>
+                    </a>
+                    <a href="#the-evolved-solution-the-financing-accelerator" class="toc-item">
+                        <div class="toc-number">05</div>
+                        <div class="toc-title-text">The Evolved Solution: The Financing Accelerator</div>
+                    </a>
+                    <a href="#the-impact" class="toc-item">
+                        <div class="toc-number">06</div>
+                        <div class="toc-title-text">The Impact</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        
+
+
+        
+
+
+        
+
         <section class="case-study-section">
-            <h2>Overview</h2>
+            <h2 id="overview">Overview</h2>
             <p>Clean energy financing was a tangled mess of complex models and time-consuming paperwork. EnPowered’s partners were struggling to help their customers find the best financing options, leading to frustration and lost opportunities.</p>
             <p>As the sole UX/UI Designer, I guided the product from a simple spreadsheet to a scalable, cloud-based platform. My responsibilities included user research, interaction design, information architecture, and building the brand's design system.</p>
             
@@ -62,12 +113,12 @@
         </section>
 
         <section class="case-study-section">
-            <h2>The Outcome</h2>
+            <h2 id="the-outcome">The Outcome</h2>
             <p>The EnPowered Financing Accelerator became a powerful tool that streamlined the financing process. Partners could generate accurate financial estimates in minutes and directly share financing applications with their customers, significantly increasing the rate at which projects were funded.</p>
         </section>
 
         <section class="case-study-section">
-            <h2>Designing for Speed and Clarity</h2>
+            <h2 id="designing-for-speed-and-clarity">Designing for Speed and Clarity</h2>
             <p>Our goal was clear: create a simple, scalable platform that would empower partners to become financing experts. We knew the solution had to simplify the entire process, from initial estimate to final application.</p>
             
             <h3>The First Iteration: Typeform Wizard</h3>
@@ -82,7 +133,7 @@
         </section>
 
         <section class="case-study-section">
-            <h2>Second Iteration: The In-House Pivot</h2>
+            <h2 id="second-iteration-the-in-house-pivot">Second Iteration: The In-House Pivot</h2>
             <p>We received positive feedback from partners after calls with them, and received valuable insights from their using the form. We used the qualitative anecdotes and usage data to inform the next iteration of the proposal generator.</p>
             <p>We soon learned of the limitations of using the third-party platform, as there was no easy way to adjust interest amounts, cater for depreciation, and many other factors. The product team kicked into gear to start building an in-house cloud-based solution.</p>
             
@@ -95,7 +146,7 @@
         </section>
 
         <section class="case-study-section">
-            <h2>Ideation & Information Architecture</h2>
+            <h2 id="ideation-information-architecture">Ideation & Information Architecture</h2>
             <p>I sketched out a new information architecture, moving away from the linear wizard format and explored a tab-based structure to logically group information. This challenging change provided our financing partners a holistic view of their projects (later called deals) and the ability to jump between sections without losing context.</p>
             
             <div class="case-study-image">
@@ -114,7 +165,7 @@
         </section>
 
         <section class="case-study-section">
-            <h2>The Evolved Solution: The Financing Accelerator</h2>
+            <h2 id="the-evolved-solution-the-financing-accelerator">The Evolved Solution: The Financing Accelerator</h2>
             <p>The new Financing Accelerator was a cloud-based platform with a streamlined, tab-based navigation. Partners could input project details, see a real-time summary of the financial results, and then generate a professional, branded proposal to send to their customers. We also integrated the ability for customers to complete the final financing application directly through the tool, eliminating the endless email chains and file attachments.</p>
             
             <div class="case-study-image">
@@ -132,7 +183,7 @@
         </section>
 
         <section class="case-study-section">
-            <h2>The Impact</h2>
+            <h2 id="the-impact">The Impact</h2>
             <p>While working in a startup environment meant we didn't always have a complete data set, we saw clear, qualitative evidence of its impact. Over a period of about 6 months, the Financing Accelerator allowed partners to generate accurate estimates for solar projects instantly, significantly increasing proposal adoption and empowering users to close cleaner energy deals faster.</p>
         </section>
     </main>
@@ -149,5 +200,125 @@
 
     <!-- Custom Script -->
     <script src="main.js"></script>
+    <script>
+        // TOC Click toggle
+        const tocContainer = document.getElementById('tocContainer');
+        const tocTrigger = document.getElementById('tocTrigger');
+        if (tocTrigger && tocContainer) {
+            tocTrigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                tocContainer.classList.toggle('open');
+            });
+            
+            // Mobile close button
+            const tocCloseBtn = document.getElementById('tocCloseBtn');
+            if (tocCloseBtn) {
+                tocCloseBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    tocContainer.classList.remove('open');
+                });
+            }
+            
+            // Close if clicking outside
+            document.addEventListener('click', (e) => {
+                if (!tocContainer.contains(e.target)) {
+                    tocContainer.classList.remove('open');
+                }
+            });
+            
+            // Close on Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    tocContainer.classList.remove('open');
+                }
+            });
+            
+            // Close when clicking a link inside it & perform smooth precision scroll
+            const tocLinks = tocContainer.querySelectorAll('a[href^="#"]');
+            tocLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    tocContainer.classList.remove('open');
+                    const targetId = link.getAttribute('href');
+                    const targetEl = document.querySelector(targetId);
+                    if (targetEl) {
+                        history.pushState(null, null, targetId);
+                        const targetY = targetEl.getBoundingClientRect().top + window.scrollY - 90;
+                        window.scrollTo({ top: targetY, behavior: 'smooth' });
+                    }
+                });
+            });
+        }
+
+        // Handle initial URL hash routing after all images & layouts load
+        function scrollToHashTarget() {
+            if (!window.location.hash) return;
+            const targetEl = document.querySelector(window.location.hash);
+            if (targetEl) {
+                const targetY = targetEl.getBoundingClientRect().top + window.scrollY - 90;
+                window.scrollTo({ top: targetY, behavior: 'smooth' });
+            }
+        }
+
+        if (window.location.hash) {
+            document.addEventListener('DOMContentLoaded', scrollToHashTarget);
+            window.addEventListener('load', () => {
+                setTimeout(scrollToHashTarget, 100);
+                setTimeout(scrollToHashTarget, 500);
+            });
+
+            // Re-align whenever any image above finishes downloading
+            document.querySelectorAll('.case-study-body img').forEach(img => {
+                if (!img.complete) {
+                    img.addEventListener('load', scrollToHashTarget);
+                }
+            });
+
+            // ResizeObserver to track layout height changes
+            if (window.ResizeObserver) {
+                let resizeTimer;
+                const observer = new ResizeObserver(() => {
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(scrollToHashTarget, 50);
+                });
+                const caseBody = document.querySelector('.case-study-body');
+                if (caseBody) observer.observe(caseBody);
+            }
+        }
+
+        // Back to top & TOC scrolled functionality (exactly matching crewcation behavior)
+        const backToTopButton = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (backToTopButton) {
+                if (window.scrollY > 500) {
+                    backToTopButton.classList.add('show');
+                } else {
+                    backToTopButton.classList.remove('show');
+                }
+            }
+            
+            // TOC shrink effect
+            if (tocContainer) {
+                const rect = tocContainer.getBoundingClientRect();
+                if (rect.top <= 126) {
+                    tocContainer.classList.add('scrolled');
+                } else {
+                    tocContainer.classList.remove('scrolled');
+                }
+            }
+        });
+        if (backToTopButton) {
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    </script>
+
+    
+
+    
+
+    
+
 </body>
 </html>

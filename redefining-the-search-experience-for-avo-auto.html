@@ -51,8 +51,59 @@
 
     <!-- Case Study Content -->
     <main class="case-study-body">
+
+        <!-- Table of Contents -->
+        <div class="toc-container" id="tocContainer">
+            <div class="toc-trigger" id="tocTrigger">Table of Contents</div>
+            <div class="toc-dropdown-menu">
+                <div class="toc-mobile-header">
+                    <h3>Table of Contents</h3>
+                    <button class="toc-close-btn" id="tocCloseBtn" aria-label="Close menu"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="toc-grid">
+                    <a href="#overview" class="toc-item">
+                        <div class="toc-number">00</div>
+                        <div class="toc-title-text">Overview</div>
+                    </a>
+                    <a href="#the-design-process" class="toc-item">
+                        <div class="toc-number">01</div>
+                        <div class="toc-title-text">The Design Process</div>
+                    </a>
+                    <a href="#discovery-research" class="toc-item">
+                        <div class="toc-number">02</div>
+                        <div class="toc-title-text">Discovery & Research</div>
+                    </a>
+                    <a href="#ideation-wireframing" class="toc-item">
+                        <div class="toc-number">03</div>
+                        <div class="toc-title-text">Ideation & Wireframing</div>
+                    </a>
+                    <a href="#the-solution" class="toc-item">
+                        <div class="toc-number">04</div>
+                        <div class="toc-title-text">The Solution</div>
+                    </a>
+                    <a href="#design-iterations" class="toc-item">
+                        <div class="toc-number">05</div>
+                        <div class="toc-title-text">Design Iterations</div>
+                    </a>
+                    <a href="#the-impact" class="toc-item">
+                        <div class="toc-number">06</div>
+                        <div class="toc-title-text">The Impact</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        
+
+
+        
+
+
+        
+
         <section class="case-study-section">
-            <h2>Overview</h2>
+            <h2 id="overview">Overview</h2>
             <p>Avo Auto provides customers with a vast, curated selection of pre-owned vehicles. While the inventory was impressive, the user experience for finding a specific car was not. Customers were presented with a static, overwhelming list of filters that were cumbersome to navigate. The result was a frustrating search experience, often leading to abandoned sessions and missed sales opportunities.</p>
             <p>As the lead UX designer, my primary responsibility was to solve this problem by reimagining the entire search and filter experience. I worked in close collaboration with a talented team of UI designers to transform the product from a static list of options into a dynamic, intuitive tool. My focus was on understanding user behavior, defining the new information architecture, and validating the design through testing.</p>
             
@@ -62,7 +113,7 @@
         </section>
 
         <section class="case-study-section">
-            <h2>The Design Process</h2>
+            <h2 id="the-design-process">The Design Process</h2>
             <p>My approach was rooted in a user-centric methodology, focusing on research and rapid iteration to arrive at an effective solution.</p>
             
             <div class="case-study-image">
@@ -71,7 +122,7 @@
         </section>
 
         <section class="case-study-section">
-            <h2>Discovery & Research</h2>
+            <h2 id="discovery-research">Discovery & Research</h2>
             <p>I began by gathering insights to understand the root cause of the user frustration.</p>
             
             <h3>Heuristic Analysis</h3>
@@ -91,7 +142,7 @@
         </section>
 
         <section class="case-study-section">
-            <h2>Ideation & Wireframing</h2>
+            <h2 id="ideation-wireframing">Ideation & Wireframing</h2>
             <p>With a clear understanding of the problem and user needs, I began exploring potential solutions. My goal was to move away from a one-size-fits-all approach and create a system that felt intelligent and responsive.</p>
             
             <div class="case-study-image">
@@ -100,7 +151,7 @@
         </section>
 
         <section class="case-study-section">
-            <h2>The Solution</h2>
+            <h2 id="the-solution">The Solution</h2>
             <p>The final design for the Avo Auto search and filter system was a direct result of this iterative process and a strong collaboration with the UI team.</p>
             
             <div class="case-study-image">
@@ -117,7 +168,7 @@
         </section>
 
         <section class="case-study-section">
-            <h2>Design Iterations</h2>
+            <h2 id="design-iterations">Design Iterations</h2>
             <p>To ensure we arrived at the most optimal layout for mobile and desktop screens, I led several design iterations, testing different chip alignments and slider behaviors.</p>
             
             <div class="image-gallery">
@@ -131,7 +182,7 @@
         </section>
 
         <section class="case-study-section">
-            <h2>The Impact</h2>
+            <h2 id="the-impact">The Impact</h2>
             <p>By focusing on user needs and a structured design process, the redesign transformed a point of frustration into a core strength of the product. While specific metrics are proprietary, the outcomes of the new system led to:</p>
             <ul>
                 <li><strong>Higher Engagement:</strong> A more intuitive search experience encouraged users to explore the inventory more deeply.</li>
@@ -153,5 +204,125 @@
 
     <!-- Custom Script -->
     <script src="main.js"></script>
+    <script>
+        // TOC Click toggle
+        const tocContainer = document.getElementById('tocContainer');
+        const tocTrigger = document.getElementById('tocTrigger');
+        if (tocTrigger && tocContainer) {
+            tocTrigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                tocContainer.classList.toggle('open');
+            });
+            
+            // Mobile close button
+            const tocCloseBtn = document.getElementById('tocCloseBtn');
+            if (tocCloseBtn) {
+                tocCloseBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    tocContainer.classList.remove('open');
+                });
+            }
+            
+            // Close if clicking outside
+            document.addEventListener('click', (e) => {
+                if (!tocContainer.contains(e.target)) {
+                    tocContainer.classList.remove('open');
+                }
+            });
+            
+            // Close on Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    tocContainer.classList.remove('open');
+                }
+            });
+            
+            // Close when clicking a link inside it & perform smooth precision scroll
+            const tocLinks = tocContainer.querySelectorAll('a[href^="#"]');
+            tocLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    tocContainer.classList.remove('open');
+                    const targetId = link.getAttribute('href');
+                    const targetEl = document.querySelector(targetId);
+                    if (targetEl) {
+                        history.pushState(null, null, targetId);
+                        const targetY = targetEl.getBoundingClientRect().top + window.scrollY - 90;
+                        window.scrollTo({ top: targetY, behavior: 'smooth' });
+                    }
+                });
+            });
+        }
+
+        // Handle initial URL hash routing after all images & layouts load
+        function scrollToHashTarget() {
+            if (!window.location.hash) return;
+            const targetEl = document.querySelector(window.location.hash);
+            if (targetEl) {
+                const targetY = targetEl.getBoundingClientRect().top + window.scrollY - 90;
+                window.scrollTo({ top: targetY, behavior: 'smooth' });
+            }
+        }
+
+        if (window.location.hash) {
+            document.addEventListener('DOMContentLoaded', scrollToHashTarget);
+            window.addEventListener('load', () => {
+                setTimeout(scrollToHashTarget, 100);
+                setTimeout(scrollToHashTarget, 500);
+            });
+
+            // Re-align whenever any image above finishes downloading
+            document.querySelectorAll('.case-study-body img').forEach(img => {
+                if (!img.complete) {
+                    img.addEventListener('load', scrollToHashTarget);
+                }
+            });
+
+            // ResizeObserver to track layout height changes
+            if (window.ResizeObserver) {
+                let resizeTimer;
+                const observer = new ResizeObserver(() => {
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(scrollToHashTarget, 50);
+                });
+                const caseBody = document.querySelector('.case-study-body');
+                if (caseBody) observer.observe(caseBody);
+            }
+        }
+
+        // Back to top & TOC scrolled functionality (exactly matching crewcation behavior)
+        const backToTopButton = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (backToTopButton) {
+                if (window.scrollY > 500) {
+                    backToTopButton.classList.add('show');
+                } else {
+                    backToTopButton.classList.remove('show');
+                }
+            }
+            
+            // TOC shrink effect
+            if (tocContainer) {
+                const rect = tocContainer.getBoundingClientRect();
+                if (rect.top <= 126) {
+                    tocContainer.classList.add('scrolled');
+                } else {
+                    tocContainer.classList.remove('scrolled');
+                }
+            }
+        });
+        if (backToTopButton) {
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    </script>
+
+    
+
+    
+
+    
+
 </body>
 </html>
