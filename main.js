@@ -205,16 +205,16 @@ function initApp() {
         }
     }
 
-    // Intercept clicks on navbar Work link
-    const workLink = document.querySelector('a[href="#work"]');
-    if (workLink) {
-        workLink.addEventListener('click', (e) => {
+    // Intercept clicks on navbar Work link and scroll down arrow
+    const workLinks = document.querySelectorAll('a[href="#work"]');
+    workLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
             e.preventDefault();
             // Update URL hash without jumping
             history.pushState(null, null, '#work');
             scrollToCarouselCenter(true);
         });
-    }
+    });
 
     // Handle initial page load with hash
     if (window.location.hash === '#work') {
