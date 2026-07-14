@@ -24,4 +24,5 @@ jobs:
           **/.git*
           **/.git*/**
           **/.agents/**
-          **/Absa App 2016 Overdraft /**
+          **/Absa App 2016 Overdraft*/**
+          **/Absa App 2016 Overdraft*
