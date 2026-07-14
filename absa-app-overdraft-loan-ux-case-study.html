@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Absa App: Overdraft Loan UX Case Study | Ryan Botha</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <style>
+        /* iPhone 7 sharp corner overrides */
+        .ios-phone-frame {
+            border-radius: 12px !important;
+            padding: 4px !important;
+        }
+        .ios-phone-screen {
+            border-radius: 8px !important;
+        }
+        .ios-phone-overlay {
+            border-radius: 8px !important;
+            inset: 6px !important;
+        }
+        
+        .ios-lb-phone-frame {
+            border-radius: 16px !important;
+            padding: 6px !important;
+            width: 380px !important; /* Significantly larger on desktop */
+        }
+        .ios-lb-image {
+            border-radius: 12px !important;
+            max-height: 80vh !important;
+        }
+
+        @media (max-width: 768px) {
+            .ios-lb-phone-frame {
+                width: min(300px, 70vw) !important;
+                border-radius: 12px !important;
+                padding: 4px !important;
+            }
+            .ios-lb-image {
+                border-radius: 8px !important;
+                max-height: 70vh !important;
+            }
+        }
+
+        /* Make target modal images for the body screens half the size */
+        .image-modal-overlay .image-modal-content[src*="/hi-fidelity-ux/Home.png"],
+        .image-modal-overlay .image-modal-content[src*="OD%20on%20Acc%20Summary"],
+        .image-modal-overlay .image-modal-content[src*="/UX-screens/My%20Offers.png"] {
+            max-width: 400px !important;
+        }
+
+        /* Concept grid styling */
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+            gap: 16px !important;
+            margin: 40px auto;
+            max-width: 860px;
+        }
+        .concept-grid .ios-phone-frame {
+            padding: 3px !important;
+            border-radius: 8px !important;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+        }
+        .concept-grid .ios-phone-screen {
+            border-radius: 6px !important;
+            pointer-events: auto !important;
+            cursor: pointer !important;
+        }
+        @media (max-width: 768px) {
+            .concept-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+                gap: 12px !important;
+            }
+        }
+        @media (max-width: 480px) {
+            .concept-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+                gap: 10px !important;
+            }
+        }
+
+        /* Make gallery images slightly larger */
+        .ios-phone-grid {
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
+            gap: 44px !important;
+        }
+
+        @media (max-width: 768px) {
+            .ios-phone-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) !important;
+                gap: 28px !important;
+            }
+        }
+        @media (max-width: 480px) {
+            .ios-phone-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 20px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav id="navbar" class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="assets/ryan_botha_logo.svg" alt="ryan_botha logo" class="logo-svg">
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="index.html#work" class="nav-link">Work</a></li>
+                <li><a href="https://www.linkedin.com/in/ryanbotha/" target="_blank" class="nav-link">LinkedIn Profile</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Case Study Hero -->
+    <header class="case-study-hero">
+        <div class="case-study-hero-container">
+            <a href="index.html" class="back-home"><i class="fas fa-arrow-left"></i> Back to Home</a>
+            <h1 class="case-study-title">Absa App: <br><span class="serif-italic">Overdraft Loan UX Case Study (2016)</span></h1>
+            
+            <div class="case-study-meta">
+                <div class="meta-item">
+                    <h4>My Role</h4>
+                    <p>Lead UX Designer</p>
+                </div>
+                <div class="meta-item">
+                    <h4>Deliverables</h4>
+                    <p>UX Design, UI Design, Ethical Placement Framework, Interactive Prototypes</p>
+                </div>
+                <div class="meta-item">
+                    <h4>Focus</h4>
+                    <p>FinTech, Ethical Banking, Mobile Overdraft Application</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Case Study Content -->
+    <main class="case-study-body">
+
+        <!-- Table of Contents -->
+        <div class="toc-container" id="tocContainer">
+            <div class="toc-trigger" id="tocTrigger">Table of Contents</div>
+            <div class="toc-dropdown-menu">
+                <div class="toc-mobile-header">
+                    <h3>Table of Contents</h3>
+                    <button class="toc-close-btn" id="tocCloseBtn" aria-label="Close menu"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="toc-grid">
+                    <a href="#overview" class="toc-item">
+                        <div class="toc-number">00</div>
+                        <div class="toc-title-text">Overview</div>
+                    </a>
+                    <a href="#ethical-dilemma" class="toc-item">
+                        <div class="toc-number">01</div>
+                        <div class="toc-title-text">The Ethical Dilemma</div>
+                    </a>
+                    <a href="#concept-decorations" class="toc-item">
+                        <div class="toc-number">02</div>
+                        <div class="toc-title-text">Concept Decorations</div>
+                    </a>
+                    <a href="#low-fi-ux-flow" class="toc-item">
+                        <div class="toc-number">03</div>
+                        <div class="toc-title-text">Low-Fi UX Flow</div>
+                    </a>
+                    <a href="#final-ui-experience" class="toc-item">
+                        <div class="toc-number">04</div>
+                        <div class="toc-title-text">Final UI Experience</div>
+                    </a>
+                    <a href="#wireframes-gallery" class="toc-item">
+                        <div class="toc-number">05</div>
+                        <div class="toc-title-text">UX Wireframes Flow</div>
+                    </a>
+                    <a href="#hifi-gallery" class="toc-item">
+                        <div class="toc-number">06</div>
+                        <div class="toc-title-text">Final UI Screens</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <section class="case-study-section">
+            <h2 id="overview">Overview</h2>
+            <p>During 2016, Absa Bank sought to implement a new feature to the app that would enable the availability for customers to apply for overdraft loans.</p> 
+
+            <p>This made possible for qualified clients to be able to safely apply for financial products directly from their smartphones. In my capacity as a Lead UX Designer on this project, I was responsible for moving from the strategy concepts through low fidelity wireframes to collaborating with other designers to build high-fidelity UI.</p>
+
+            <p>Our task was to solve an important issue of how to inform a client about their eligibility for an overdraft loan without distracting or disturbing them, without using any kind of dark patterns. Since the screen was adjusted for the iPhone 7, we had to follow the viewport and design system restrictions of that time period.</p>
+            
+            <div class="case-study-image" style="max-width: 300px; margin: 40px auto;">
+                <img src="assets/Absa%20App%202016%20Overdraft%20/hi-fidelity-ux/Home.png" alt="Absa Overdraft Application Home Screen UI">
+            </div>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="ethical-dilemma">The Dilemma: Balancing Awareness against Responsibility</h2>
+            <p>When it comes to financial products, loan applications are very sensitive products. Subjectively necessary as a safeguard, encouraging people to use these loans when not needed by them is unethical and bad for their finances. As for our UX issue, we were facing the following problem:</p>
+            
+            <blockquote>
+                <strong>How can we inform those clients who have the opportunity to use this overdraft limit about their ability to do so without cluttering the main account screen, which may obstruct essential balance information, or encouraging the unnecessary use of credit?</strong>
+            </blockquote>
+
+            <p>To solve this issue, we attempted to use an "Ethical Placement" concept. In this case, we did not go for aggressive fullscreen notifications or flashing prompts but created subtle "decorations" on home screen and access points for this loan function.</p>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="concept-decorations">Concept Decorations: Finding the Right Entry Point</h2>
+            <p>We designed a few UI concepts to consider various ways on how to raise the overdraft option awareness. This exploration covered such approaches as banners, contextual widgets related to account balance, and non-intrusive notification badges. The following tests were conducted in order to find an interface that would create some awareness while still maintaining banking utility:</p>
+            
+            <ul>
+                <li><strong>Inline Message Cards:</strong> Small text messages that would pop up under account balances and could be quickly dismissed by users either temporarily or forever.</li>
+                <li><strong>Balance Badging:</strong> Implementation of a subtle tap-able tag within the transactional account box indicating pre-approved loan status, visible whenever users check their account balance.</li>
+                <li><strong>Account Offer Cards:</strong> Temporary account cards that occur only if account balance gets lower than a certain level.</li>
+            </ul>
+
+            <!-- Concept Screens Grid -->
+            <div class="concept-grid">
+                <!-- Concept 1 -->
+                <div class="concept-item" style="text-align: center;">
+                    <figure class="ios-phone-frame" style="margin: 0 auto;">
+                        <img class="ios-phone-screen" src="assets/Absa%20App%202016%20Overdraft%20/OD%20on%20Acc%20Summary%2001.png" alt="Concept 1: Closed Badge">
+                    </figure>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 10px; font-weight: 500;">Concept 1: Closed Badge</p>
+                </div>
+
+                <!-- Concept 1 Open -->
+                <div class="concept-item" style="text-align: center;">
+                    <figure class="ios-phone-frame" style="margin: 0 auto;">
+                        <img class="ios-phone-screen" src="assets/Absa%20App%202016%20Overdraft%20/OD%20on%20Acc%20Summary%2001-open.png" alt="Concept 1 Open: Expanded Panel">
+                    </figure>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 10px; font-weight: 500;">Concept 1: Expanded Panel</p>
+                </div>
+
+                <!-- Concept 2 -->
+                <div class="concept-item" style="text-align: center;">
+                    <figure class="ios-phone-frame" style="margin: 0 auto;">
+                        <img class="ios-phone-screen" src="assets/Absa%20App%202016%20Overdraft%20/OD%20on%20Acc%20Summary%2002.png" alt="Concept 2: Contextual Toast">
+                    </figure>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 10px; font-weight: 500;">Concept 2: Account Toast</p>
+                </div>
+
+                <!-- Concept 3 -->
+                <div class="concept-item" style="text-align: center;">
+                    <figure class="ios-phone-frame" style="margin: 0 auto;">
+                        <img class="ios-phone-screen" src="assets/Absa%20App%202016%20Overdraft%20/OD%20on%20Acc%20Summary%2003.png" alt="Concept 3: Inline Banners">
+                    </figure>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 10px; font-weight: 500;">Concept 3: Inline Banner</p>
+                </div>
+
+                <!-- Concept 4 -->
+                <div class="concept-item" style="text-align: center;">
+                    <figure class="ios-phone-frame" style="margin: 0 auto;">
+                        <img class="ios-phone-screen" src="assets/Absa%20App%202016%20Overdraft%20/OD%20on%20Acc%20Summary%2004.png" alt="Concept 4: Balance Inline Card">
+                    </figure>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 10px; font-weight: 500;">Concept 4: Balance Card</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="low-fi-ux-flow">From Greyscale to Polished Flows: The Application Wireframes</h2>
+            <p>Before jumping into visual layouts, we mapped the end-to-end application funnel in greyscale. The wireframes focused on structuring complex regulatory requirements (collecting income details, existing debt obligations, and terms acceptances) into small, digestible screens.</p>
+            
+            <p>Structuring this data entry on an iPhone 7 required careful layout of form fields and progress steps. By testing the flow in greyscale first, we could isolate usability issues, optimize button placements, and streamline the salary and debt verification fields.</p>
+            
+            <div class="case-study-image" style="max-width: 300px; margin: 40px auto;">
+                <img src="assets/Absa%20App%202016%20Overdraft%20/UX-screens/My%20Offers.png" alt="Absa App Overdraft Wireframe UX Screen">
+            </div>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="final-ui-experience">The Final UI: Integrating with the Absa Brand System</h2>
+            <p>The high-fidelity designs translated the greyscale structure into Absa's signature brand system. Using a red color palette with clear typography and soft borders, we built a polished, premium experience. The final application flow featured:</p>
+            
+            <ul>
+                <li><strong>A Clean Limit Calculator:</strong> Users could drag an interactive slider to select the exact overdraft amount they needed, showing immediate interest rates.</li>
+                <li><strong>The "Surecheck" Credit Status:</strong> A clear, simple screen displaying the credit checks running in the background, managing user expectations.</li>
+                <li><strong>Instant Activation:</strong> Once approved, the home screen balance dynamically updated to display the overdraft limit immediately, providing a seamless loop.</li>
+            </ul>
+        </section>
+
+        <!-- UX Wireframes Gallery Section -->
+        <section class="case-study-section ios-showcase-section" id="wireframes-gallery" style="padding-top: 40px;">
+            <div class="ios-showcase-inner">
+                <div class="ios-showcase-header">
+                    <h2>UX Wireframes (Greyscale Flow)</h2>
+                    <p class="ios-showcase-subtitle">The low-fidelity user flow designed to structure regulatory inputs on the iPhone 7.</p>
+                    <div class="ios-showcase-divider" style="background: #3db9cf;"></div>
+                </div>
+
+                <!-- Phone Grid -->
+                <div class="ios-phone-grid" id="wireframesGrid" aria-label="Absa App overdraft wireframe screenshots"></div>
+            </div>
+        </section>
+
+        <!-- High-Fidelity UI Gallery Section -->
+        <section class="case-study-section ios-showcase-section" id="hifi-gallery" style="padding-top: 40px; background: linear-gradient(160deg, #1a0306 0%, #2b0b11 55%, #180306 100%);">
+            <div class="ios-showcase-inner">
+                <div class="ios-showcase-header">
+                    <h2>High-Fidelity UI Screens</h2>
+                    <p class="ios-showcase-subtitle">The final user interface applying Absa's signature branding and polished everyday banking controls.</p>
+                    <div class="ios-showcase-divider" style="background: #e11d48;"></div>
+                </div>
+
+                <!-- Phone Grid -->
+                <div class="ios-phone-grid" id="hifiGrid" aria-label="Absa App overdraft hifi screenshots"></div>
+            </div>
+        </section>
+
+        <!-- Shared Lightbox -->
+        <div class="ios-lightbox" id="iosLightbox" aria-modal="true" role="dialog" aria-label="Screen detail view">
+            <button class="ios-lb-close" id="iosLbClose" aria-label="Close lightbox">&#x2715;</button>
+            <button class="ios-lb-nav ios-lb-prev" id="iosLbPrev" aria-label="Previous screen">&#8592;</button>
+            <button class="ios-lb-nav ios-lb-next" id="iosLbNext" aria-label="Next screen">&#8594;</button>
+            <div class="ios-lb-content">
+                <div class="ios-lb-phone-frame" id="iosLbPhoneFrame">
+                    <img class="ios-lb-image" id="iosLbImage" src="" alt="" loading="lazy">
+                </div>
+                <div class="ios-lb-meta">
+                    <span class="ios-lb-category" id="iosLbCategory"></span>
+                    <h3 class="ios-lb-title" id="iosLbTitle"></h3>
+                    <p class="ios-lb-desc" id="iosLbDesc"></p>
+                    <p class="ios-lb-counter" id="iosLbCounter"></p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2026 Ryan Botha - Senior Product Designer</p>
+            <div class="footer-socials">
+                <a href="https://www.linkedin.com/in/ryanbotha/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- TOC and Lightbox Script -->
+    <script src="main.js"></script>
+    <script>
+        (function () {
+            // Screen Data
+            var WIREFRAME_SCREENS = [
+                { file: 'assets/Absa%20App%202016%20Overdraft%20/UX-screens/Home.png', title: 'Home Wireframe', alt: 'Absa Overdraft Home Wireframe', desc: 'The low-fidelity layout mapping the primary banking feed and entry points.' },
+                { file: 'assets/Absa%20App%202016%20Overdraft%20/UX-screens/My%20Offers.png', title: 'My Offers Wireframe', alt: 'Absa Overdraft My Offers Wireframe', desc: 'The customized dashboard screen gathering all pre-approved bank limits.' },
+                { file: 'assets/Absa%20App%202016%20Overdraft%20/UX-screens/Apply%20for%20OD-1.png', title: 'Apply Landing Wireframe', alt: 'Absa Overdraft Application Landing Wireframe', desc: 'The initial step in the flow, outlining eligibility constraints and simple welcome terms.' },
+                { file: 'assets/Absa%20App%202016%20Overdraft%20/UX-screens/OD%20Information.png', title: 'Limit Calculator Wireframe', alt: 'Absa Overdraft Limit Selection Wireframe', desc: 'A user-adjustable calculator for picking the exact limit, interest margins, and activation costs.' },
+                { file: 'assets/Absa%20App%202016%20Overdraft%20/UX-screens/Income.png', title: 'Income Verification Wireframe', alt: 'Absa Overdraft Income Verification Wireframe', desc: 'Step for inputting monthly income parameters and salary deposit verification.' },
+                { file: 'assets/Absa%20App%202016%20Overdraft%20/UX-screens/User%27s%20stuff.png', title: 'User Expenses Wireframe', alt: 'Absa Overdraft User Expenses Wireframe', desc: 'Form fields to gather monthly household expenses and general costs.' },
+                { file: 'assets/Absa%20App%202016%20Overdraft%20/UX-screens/Fixed%20debt%20repayments.png', title: 'Existing Debt Wireframe', alt: 'Absa Overdraft Debt Declarations Wireframe', desc: 'Declared monthly debt limits, repayments, and external credit agreements.' },
+                { file: 'assets/Absa%20App%202016%20Overdraft%20/UX-screens/Salary%20deductions.png', title: 'Salary Deductions Wireframe', alt: 'Absa Overdraft Deductions Wireframe', desc: 'Capturing off-slip deductions such as medical aid and pension deposits.' },
+                { file: 'assets/Absa%20App%202016%20Overdraft%20/UX-screens/Surecheck.png', title: 'Surecheck Processing Wireframe', alt: 'Absa Overdraft Surecheck Wireframe', desc: 'Automated background validation state displaying the Credit Surecheck analysis progress.' },
+                { file: 'assets/Absa%20App%202016%20Overdraft%20/UX-screens/T%27s%20and%20C%27s.png', title: 'Terms & Conditions Wireframe', alt: 'Absa Overdraft Terms and Conditions Wireframe', desc: 'Mandatory statutory conditions, legal checkmarks, and product rules declarations.' },
+                { file: 'assets/Absa%20App%202016%20Overdraft%20/UX-screens/Referal.png', title: 'Confirmation Wireframe', alt: 'Absa Overdraft Completion Wireframe', desc: 'Successful submission feedback showing reference registration codes.' }
+            ];
+
+            var HIFI_SCREENS = [
+                { file: 'assets/Absa%20App%202016%20Overdraft%20/hi-fidelity-ux/Home.png', title: 'Polished Home Screen', alt: 'Absa Overdraft Polished Home UI', desc: 'The finalized Account Summary screen showcasing clean balances and ethical entries.' },
+                { file: 'assets/Absa%20App%202016%20Overdraft%20/hi-fidelity-ux/All%20about%20me%20Quick%20Link.png', title: 'All About Me Profile', alt: 'Absa Overdraft All About Me UI', desc: 'Quick actions panel displaying custom limits and credit alerts.' },
+                { file: 'assets/Absa%20App%202016%20Overdraft%20/hi-fidelity-ux/My%20Offers.png', title: 'Polished My Offers UI', alt: 'Absa Overdraft Polished My Offers UI', desc: 'The completed pre-approved list showing credit eligibility in corporate branding.' },
+                { file: 'assets/Absa%20App%202016%20Overdraft%20/hi-fidelity-ux/Acc%20summary%20with%20VCL.png', title: 'Account Summary & VCL', alt: 'Absa Overdraft Account Summary VCL UI', desc: 'Account balance list integrating pre-approved Value Added Loan/Overdraft features.' },
+                { file: 'assets/Absa%20App%202016%20Overdraft%20/hi-fidelity-ux/Apply%20for%20OD-1.png', title: 'Polished Application Onboarding', alt: 'Absa Overdraft Polished Landing UI', desc: 'A clean onboarding step clarifying application criteria before data entry.' },
+                { file: 'assets/Absa%20App%202016%20Overdraft%20/hi-fidelity-ux/Surecheck.png', title: 'Surecheck Security', alt: 'Absa Overdraft Surecheck UI', desc: 'The credit verification dashboard displaying secure check steps.' },
+                { file: 'assets/Absa%20App%202016%20Overdraft%20/hi-fidelity-ux/OD%20Information.png', title: 'Polished Limit Selection', alt: 'Absa Overdraft Polished Limit Calculator UI', desc: 'Polished red slider calculator to customize overdraft limits and check immediate repayments.' },
+                { file: 'assets/Absa%20App%202016%20Overdraft%20/hi-fidelity-ux/T%27s%20and%20C%27s%201.png', title: 'Polished Terms Agreement', alt: 'Absa Overdraft Polished Terms and Conditions UI', desc: 'Polished Terms and Conditions containing statutory disclosures and confirm actions.' },
+                { file: 'assets/Absa%20App%202016%20Overdraft%20/hi-fidelity-ux/Overview.png', title: 'Account Overview UI', alt: 'Absa Overdraft Account Overview UI', desc: 'Clean, card-based interface structure for managing everyday balances.' },
+                { file: 'assets/Absa%20App%202016%20Overdraft%20/hi-fidelity-ux/processing%20application.png', title: 'Processing Application', alt: 'Absa Overdraft Processing UI', desc: 'Visual feedback displaying background application verification status.' },
+                { file: 'assets/Absa%20App%202016%20Overdraft%20/hi-fidelity-ux/Approved.png', title: 'Application Approved Screen', alt: 'Absa Overdraft Approved UI Screen', desc: 'Success page displaying approved limits and terms. Immediate access to buffer funds.' }
+            ];
+
+            var activeScreens = [];
+            var activeIndex = 0;
+            var activeCategoryLabel = '';
+            var activeCategoryColor = '';
+
+            function renderGrid(gridId, screensArray, catLabel, catColor) {
+                var grid = document.getElementById(gridId);
+                if (!grid) return;
+
+                grid.innerHTML = screensArray.map(function(screen, i) {
+                    var delay = ((i % 12) * 0.045) + 's';
+
+                    return '<article class="ios-phone-card" data-index="' + i + '" style="animation-delay:' + delay + '">' +
+                        '<figure class="ios-phone-frame" role="button" tabindex="0" aria-label="View ' + screen.title + ' screenshot">' +
+                            '<img class="ios-phone-screen no-modal" src="' + screen.file + '" alt="' + screen.alt + '" loading="lazy">' +
+                            '<figcaption class="ios-phone-overlay">' +
+                                '<span class="ios-overlay-category" style="color:' + catColor + '">' + catLabel + '</span>' +
+                                '<span class="ios-overlay-title">' + screen.title + '</span>' +
+                                '<span class="ios-overlay-hint"><i class="fas fa-expand-alt"></i> View</span>' +
+                            '</figcaption>' +
+                        '</figure>' +
+                    '</article>';
+                }).join('');
+
+                grid.querySelectorAll('.ios-phone-frame').forEach(function(frame, i) {
+                    frame.addEventListener('click', function() { openLightbox(screensArray, i, catLabel, catColor); });
+                    frame.addEventListener('keydown', function(e) {
+                        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(screensArray, i, catLabel, catColor); }
+                    });
+                });
+
+                var observer = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('in-view');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
+
+                grid.querySelectorAll('.ios-phone-card').forEach(function(card) { observer.observe(card); });
+            }
+
+            // Lightbox
+            function openLightbox(screens, index, catLabel, catColor) {
+                activeScreens = screens;
+                activeIndex = index;
+                activeCategoryLabel = catLabel;
+                activeCategoryColor = catColor;
+                updateLightbox();
+                document.getElementById('iosLightbox').classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeLightbox() {
+                document.getElementById('iosLightbox').classList.remove('open');
+                document.body.style.overflow = '';
+            }
+
+            function updateLightbox() {
+                var screen = activeScreens[activeIndex];
+                var img = document.getElementById('iosLbImage');
+                var phoneFrame = document.getElementById('iosLbPhoneFrame');
+
+                img.style.opacity = '0';
+                img.src = screen.file;
+                img.alt = screen.alt;
+                
+                phoneFrame.classList.remove('ios-lb-wide-mode', 'ios-lb-phone-width');
+                
+                img.onload = function() {
+                    img.style.transition = 'opacity 0.25s ease';
+                    img.style.opacity = '1';
+                    
+                    var ratio = img.naturalWidth / img.naturalHeight;
+                    if (ratio > 0.8) {
+                        phoneFrame.classList.add('ios-lb-wide-mode');
+                    } else {
+                        phoneFrame.classList.add('ios-lb-phone-width');
+                    }
+                };
+
+                document.getElementById('iosLbTitle').textContent = screen.title;
+                document.getElementById('iosLbDesc').textContent = screen.desc;
+                document.getElementById('iosLbCounter').textContent = (activeIndex + 1) + ' / ' + activeScreens.length;
+
+                var catEl = document.getElementById('iosLbCategory');
+                catEl.textContent = activeCategoryLabel;
+                catEl.style.background = activeCategoryColor + '22';
+                catEl.style.color = activeCategoryColor;
+                catEl.style.borderColor = activeCategoryColor + '55';
+            }
+
+            function navigatePrev() {
+                activeIndex = (activeIndex - 1 + activeScreens.length) % activeScreens.length;
+                updateLightbox();
+            }
+
+            function navigateNext() {
+                activeIndex = (activeIndex + 1) % activeScreens.length;
+                updateLightbox();
+            }
+
+            document.getElementById('iosLbClose').addEventListener('click', closeLightbox);
+            document.getElementById('iosLbPrev').addEventListener('click', navigatePrev);
+            document.getElementById('iosLbNext').addEventListener('click', navigateNext);
+            
+            document.getElementById('iosLightbox').addEventListener('click', function(e) {
+                if (e.target === e.currentTarget) closeLightbox();
+            });
+            document.addEventListener('keydown', function(e) {
+                var lb = document.getElementById('iosLightbox');
+                if (!lb.classList.contains('open')) return;
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') navigatePrev();
+                if (e.key === 'ArrowRight') navigateNext();
+            });
+
+            // Initial Load for both grids
+            renderGrid('wireframesGrid', WIREFRAME_SCREENS, 'UX Wireframe', '#3db9cf');
+            renderGrid('hifiGrid', HIFI_SCREENS, 'Final UI', '#e11d48');
+        })();
+
+        // TOC Functions
+        const tocContainer = document.getElementById('tocContainer');
+        const tocTrigger = document.getElementById('tocTrigger');
+        if (tocTrigger && tocContainer) {
+            tocTrigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                tocContainer.classList.toggle('open');
+            });
+            
+            const tocCloseBtn = document.getElementById('tocCloseBtn');
+            if (tocCloseBtn) {
+                tocCloseBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    tocContainer.classList.remove('open');
+                });
+            }
+            
+            document.addEventListener('click', (e) => {
+                if (!tocContainer.contains(e.target)) {
+                    tocContainer.classList.remove('open');
+                }
+            });
+            
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    tocContainer.classList.remove('open');
+                }
+            });
+            
+            const tocLinks = tocContainer.querySelectorAll('a[href^="#"]');
+            tocLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    tocContainer.classList.remove('open');
+                    const targetId = link.getAttribute('href');
+                    const targetEl = document.querySelector(targetId);
+                    if (targetEl) {
+                        history.pushState(null, null, targetId);
+                        const targetY = targetEl.getBoundingClientRect().top + window.scrollY - 90;
+                        window.scrollTo({ top: targetY, behavior: 'smooth' });
+                    }
+                });
+            });
+        }
+
+        // Scroll adjustments
+        window.addEventListener('scroll', () => {
+            if (tocContainer) {
+                const rect = tocContainer.getBoundingClientRect();
+                if (rect.top <= 126) {
+                    tocContainer.classList.add('scrolled');
+                } else {
+                    tocContainer.classList.remove('scrolled');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
