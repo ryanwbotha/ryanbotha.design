@@ -2755,3 +2755,82 @@ body.modal-open {
         grid-column: span 1;
     }
 }
+
+/* How I Design With AI Section */
+.ai-workflow-section {
+    border-top: 1px solid var(--border-color);
+    background-color: var(--bg-primary);
+}
+
+.ai-workflow-section .section-container {
+    padding-top: 90px;
+    padding-bottom: 90px;
+}
+
+.ai-workflow-section .section-header {
+    margin-bottom: 40px;
+}
+
+.ai-workflow-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-bottom: 48px;
+}
+
+.ai-workflow-card {
+    display: flex;
+    flex-direction: column;
+    padding: 32px 28px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    transition: var(--transition);
+}
+
+.ai-workflow-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+}
+
+.ai-workflow-card h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+}
+
+.ai-workflow-card p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.ai-workflow-closer {
+    padding-top: 28px;
+    border-top: 1px dashed var(--border-color);
+}
+
+.ai-workflow-closer p {
+    font-size: 1.25rem;
+    color: var(--text-primary);
+    line-height: 1.5;
+}
+
+@media (max-width: 860px) {
+    .ai-workflow-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .ai-workflow-section .section-container {
+        padding-top: 70px;
+        padding-bottom: 70px;
+    }
+    
+    .ai-workflow-closer p {
+        font-size: 1.15rem;
+    }
+}
+
