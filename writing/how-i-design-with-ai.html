@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How I Design with AI | Ryan Botha</title>
+    <meta name="description" content="Notes on clustering research with Gemini, agent pipelines with Google Antigravity, and keeping cross-platform parity on Crewcation.">
+    
+    <!-- Google Fonts: Inter for clean UI, Playfair Display for editorial serif -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom Style Sheet -->
+    <link rel="stylesheet" href="../index.css">
+    <link rel="icon" type="image/png" href="../favicon.png">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav id="navbar" class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <img src="../assets/ryan_botha_logo.svg" alt="ryan_botha logo" class="logo-svg">
+            </a>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="../index.html#work" class="nav-link">Work</a></li>
+                <li><a href="../writing.html" class="nav-link active">Writing</a></li>
+                <li><a href="https://www.linkedin.com/in/ryanbotha/" target="_blank" class="nav-link">LinkedIn Profile</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Article Content -->
+    <main class="article-section">
+        <div class="article-container">
+            <a href="../writing.html" class="article-back-link">
+                <i class="fas fa-arrow-left"></i> Back to Writing
+            </a>
+
+            <header class="article-header">
+                <div class="article-draft-badge">Draft &mdash; For Ryan to edit</div>
+                <h1 class="article-title">How I design with AI</h1>
+                <div class="article-meta-row">
+                    <span>October 2026</span>
+                    <span>&bull;</span>
+                    <span>3 min read</span>
+                </div>
+            </header>
+
+            <p class="article-intro">
+                AI hasn't changed why I design, but it has completely transformed the speed and scope of how I move from raw discovery notes to working software across multiple platforms.
+            </p>
+
+            <article class="article-body">
+                <h2>1. Research Synthesis with Gemini</h2>
+                <p>
+                    User research often begins in fragments: messy interview recordings, raw notes, transcripts, and stakeholder observations.
+                </p>
+                <p>
+                    I use Gemini to cluster interview notes and pull out recurring themes fast. Instead of losing days to manual affinity mapping, I synthesize qualitative feedback quickly, validate insights against original recordings, and transition directly into UX problem definition.
+                </p>
+
+                <h2>2. Fast Prototyping with Google Antigravity Agents</h2>
+                <p>
+                    Moving from a concept in Figma to a tangible prototype traditionally took days or weeks of manual engineering handoff.
+                </p>
+                <p>
+                    I use Google Antigravity agents to turn Figma flows into working builds in hours, not weeks. The agents generate interactive, running software straight from designed screens and layout structures, allowing rapid testing of actual touch interactions, responsive layouts, and state transitions.
+                </p>
+
+                <!-- Full-Width Image -->
+                <figure class="article-figure">
+                    <img src="../assets/crewcation-dashboard-mockup.png" alt="Crewcation cross-platform interface">
+                    <figcaption>Crewcation interface: leveraging agent pipelines with Figma as the visual source of truth.</figcaption>
+                </figure>
+
+                <h2>3. Cross-Platform Execution on Crewcation</h2>
+                <p>
+                    On Crewcation, I put this workflow into production across iOS, web, and Android apps. 
+                </p>
+                <p>
+                    I kept Figma as my visual source of truth while deploying autonomous agents to build, audit, and fix code across each platform. To keep everyone aligned:
+                </p>
+                <ul>
+                    <li><strong>Shared Project Memory:</strong> I kept agents on track with shared project memory in NotebookLM, ensuring architectural context and product rules were never lost across sessions.</li>
+                    <li><strong>Visual Course Correction:</strong> When agents drifted from intended layouts or styling nuances, I guided them directly with screenshots and visual design markups.</li>
+                    <li><strong>Platform Parity Audits:</strong> Agents ran continuous parity audits across iOS, web, and Android to catch deviations and verify that design tokens, components, and logic matched the intended experience.</li>
+                </ul>
+
+                <!-- Pull Quote -->
+                <div class="article-pullquote">
+                    <p>"AI speeds up exploration. My taste decides what ships."</p>
+                </div>
+
+                <p>
+                    Tools accelerate synthesis and execution, but human discernment defines the craft, the user empathy, and the final quality bar.
+                </p>
+            </article>
+
+            <div class="article-footer-cta">
+                <a href="../writing.html" class="article-back-link">
+                    <i class="fas fa-arrow-left"></i> Back to all articles
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2026 Ryan Botha - Senior Product Designer</p>
+            <div class="footer-socials">
+                <a href="https://www.linkedin.com/in/ryanbotha/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

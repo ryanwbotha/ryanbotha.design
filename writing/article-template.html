@@ -1,0 +1,116 @@
+<!--
+=============================================================================
+ARTICLE TEMPLATE - HOW TO CREATE A NEW ARTICLE:
+1. Duplicate this file and save it inside the 'writing/' directory (e.g. writing/my-new-article.html).
+2. Update the <title>, meta description, and canonical links in <head>.
+3. Update the article title, publication date, reading time estimate, and intro paragraph.
+4. Replace the body content, H2 headings, pull quote, and figure image as needed.
+5. Add a corresponding article card in 'writing.html' linking to your new article.
+=============================================================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article Title | Ryan Botha</title>
+    <meta name="description" content="A short summary of this article by Ryan Botha.">
+    
+    <!-- Google Fonts: Inter for clean UI, Playfair Display for editorial serif -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom Style Sheet -->
+    <link rel="stylesheet" href="../index.css">
+    <link rel="icon" type="image/png" href="../favicon.png">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav id="navbar" class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <img src="../assets/ryan_botha_logo.svg" alt="ryan_botha logo" class="logo-svg">
+            </a>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="../index.html#work" class="nav-link">Work</a></li>
+                <li><a href="../writing.html" class="nav-link active">Writing</a></li>
+                <li><a href="https://www.linkedin.com/in/ryanbotha/" target="_blank" class="nav-link">LinkedIn Profile</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Article Content -->
+    <main class="article-section">
+        <div class="article-container">
+            <a href="../writing.html" class="article-back-link">
+                <i class="fas fa-arrow-left"></i> Back to Writing
+            </a>
+
+            <header class="article-header">
+                <h1 class="article-title">Article Title: Subtitle or Hook Goes Here</h1>
+                <div class="article-meta-row">
+                    <span>October 2026</span>
+                    <span>&bull;</span>
+                    <span>4 min read</span>
+                </div>
+            </header>
+
+            <p class="article-intro">
+                This is the opening intro paragraph that establishes the premise, thesis, or tension of the article in a slightly larger editorial font size.
+            </p>
+
+            <article class="article-body">
+                <h2>First Major Heading</h2>
+                <p>
+                    Body text begins here. Break your reasoning down into sharp, accessible paragraphs that explore the problem space, the creative constraints, or the operational workflow.
+                </p>
+                <p>
+                    Follow up with concrete real-world details, tradeoffs encountered, and observations on how the design system or technology supported the outcome.
+                </p>
+
+                <!-- Pull Quote -->
+                <div class="article-pullquote">
+                    <p>"A memorable takeaway or philosophy quote that captures the core essence of the piece."</p>
+                </div>
+
+                <h2>Second Major Heading</h2>
+                <p>
+                    Continue the discussion with structural analysis, implementation nuance, or user feedback patterns. Keep sentences clear and direct.
+                </p>
+
+                <!-- Full-Width Image -->
+                <figure class="article-figure">
+                    <img src="../assets/crewcation-dashboard-mockup.png" alt="Descriptive alt text for the visual">
+                    <figcaption>Visual artifact, workflow overview, or UI screenshot supporting the narrative.</figcaption>
+                </figure>
+
+                <h2>Key Takeaways</h2>
+                <p>
+                    Conclude by summarizing the operational learnings, key design decisions, or future implications for the craft.
+                </p>
+            </article>
+
+            <div class="article-footer-cta">
+                <a href="../writing.html" class="article-back-link">
+                    <i class="fas fa-arrow-left"></i> Back to all articles
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2026 Ryan Botha - Senior Product Designer</p>
+            <div class="footer-socials">
+                <a href="https://www.linkedin.com/in/ryanbotha/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
