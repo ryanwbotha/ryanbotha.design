@@ -658,6 +658,8 @@ body.nav-open {
         opacity: 0;
         visibility: hidden;
         pointer-events: none;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
         transition: opacity 350ms ease, visibility 350ms ease;
         z-index: 1001;
     }

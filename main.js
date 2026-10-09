@@ -23,7 +23,7 @@ function initMobileNav() {
 
         if (open) {
             const firstLink = navMenu.querySelector('.nav-link');
-            if (firstLink) firstLink.focus();
+            if (firstLink) firstLink.focus({ preventScroll: true });
         }
     };
 
