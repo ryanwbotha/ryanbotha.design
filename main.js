@@ -3,6 +3,42 @@ function initApp() {
     const navLinks = document.querySelectorAll('.nav-link');
     const sections = document.querySelectorAll('section');
 
+    // Mobile Navigation Toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    if (navToggle && navMenu) {
+        const setMenuState = (open) => {
+            navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+            navMenu.classList.toggle('open', open);
+            document.body.classList.toggle('nav-open', open);
+        };
+
+        navToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = navToggle.getAttribute('aria-expanded') === 'true';
+            setMenuState(!isOpen);
+        });
+
+        navMenu.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                setMenuState(false);
+            });
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navToggle.getAttribute('aria-expanded') === 'true') {
+                setMenuState(false);
+                navToggle.focus();
+            }
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768 && navToggle.getAttribute('aria-expanded') === 'true') {
+                setMenuState(false);
+            }
+        });
+    }
+
     // Shrink Navbar on Scroll
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {

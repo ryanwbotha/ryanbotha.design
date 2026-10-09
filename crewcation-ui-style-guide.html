@@ -1046,7 +1046,12 @@
             <a href="index.html" class="logo">
                 <img src="assets/ryan_botha_logo.svg" alt="ryan_botha logo" class="logo-svg">
             </a>
-            <ul class="nav-menu">
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-menu">
+                <span class="nav-toggle-bar bar-1"></span>
+                <span class="nav-toggle-bar bar-2"></span>
+                <span class="nav-toggle-bar bar-3"></span>
+            </button>
+            <ul id="nav-menu" class="nav-menu">
                 <li><a href="index.html" class="nav-link">Home</a></li>
                 <li><a href="index.html#work" class="nav-link">Work</a></li>
                 <li><a href="writing.html" class="nav-link">Writing</a></li>
@@ -4148,5 +4153,6 @@ struct SentimentSlider: View {
         }
 
     </script>
+    <script src="main.js"></script>
 </body>
 </html>
