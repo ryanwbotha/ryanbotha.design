@@ -1,73 +1,110 @@
+function initMobileNav() {
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    const navbar = document.getElementById('navbar') || document.querySelector('.navbar');
+    if (!navToggle || !navMenu) return;
+
+    if (navToggle.dataset.navBound === 'true') return;
+    navToggle.dataset.navBound = 'true';
+
+    // Ensure backdrop exists in DOM
+    let navBackdrop = document.querySelector('.nav-backdrop');
+    if (!navBackdrop && navbar) {
+        navBackdrop = document.createElement('div');
+        navBackdrop.className = 'nav-backdrop';
+        navbar.appendChild(navBackdrop);
+    }
+
+    const setMenuState = (open) => {
+        navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        navMenu.classList.toggle('open', open);
+        document.body.classList.toggle('nav-open', open);
+        document.documentElement.classList.toggle('nav-open', open);
+
+        if (open) {
+            const firstLink = navMenu.querySelector('.nav-link');
+            if (firstLink) firstLink.focus();
+        }
+    };
+
+    // Toggle button click/tap
+    navToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const isOpen = navToggle.getAttribute('aria-expanded') === 'true';
+        setMenuState(!isOpen);
+    });
+
+    // Backdrop click/tap
+    if (navBackdrop) {
+        navBackdrop.addEventListener('click', (e) => {
+            e.preventDefault();
+            setMenuState(false);
+            navToggle.focus();
+        });
+    }
+
+    // Nav link click (close menu)
+    navMenu.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            setMenuState(false);
+        });
+    });
+
+    // Close on Escape key and return focus
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navToggle.getAttribute('aria-expanded') === 'true') {
+            setMenuState(false);
+            navToggle.focus();
+        }
+    });
+
+    // Auto-close when resized to desktop viewport
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768 && navToggle.getAttribute('aria-expanded') === 'true') {
+            setMenuState(false);
+        }
+    });
+}
+
 function initApp() {
     const navbar = document.getElementById('navbar');
     const navLinks = document.querySelectorAll('.nav-link');
     const sections = document.querySelectorAll('section');
 
-    // Mobile Navigation Toggle
-    const navToggle = document.querySelector('.nav-toggle');
-    const navMenu = document.querySelector('.nav-menu');
-    if (navToggle && navMenu) {
-        const setMenuState = (open) => {
-            navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-            navMenu.classList.toggle('open', open);
-            document.body.classList.toggle('nav-open', open);
-        };
+    initMobileNav();
 
-        navToggle.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const isOpen = navToggle.getAttribute('aria-expanded') === 'true';
-            setMenuState(!isOpen);
-        });
+    // Shrink Navbar on Scroll & Active Link Highlighting
+    if (navbar) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.style.padding = '12px 0';
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.05)';
+            } else {
+                navbar.style.padding = '20px 0';
+                navbar.style.background = 'rgba(255, 255, 255, 0.9)';
+                navbar.style.boxShadow = 'none';
+            }
 
-        navMenu.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                setMenuState(false);
+            // Active Link Highlighting
+            let currentSectionId = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= sectionTop - 150) {
+                    currentSectionId = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSectionId}`) {
+                    link.classList.add('active');
+                }
             });
         });
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && navToggle.getAttribute('aria-expanded') === 'true') {
-                setMenuState(false);
-                navToggle.focus();
-            }
-        });
-
-        window.addEventListener('resize', () => {
-            if (window.innerWidth > 768 && navToggle.getAttribute('aria-expanded') === 'true') {
-                setMenuState(false);
-            }
-        });
     }
-
-    // Shrink Navbar on Scroll
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.style.padding = '12px 0';
-            navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-            navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.05)';
-        } else {
-            navbar.style.padding = '20px 0';
-            navbar.style.background = 'rgba(255, 255, 255, 0.9)';
-            navbar.style.boxShadow = 'none';
-        }
-
-        // Active Link Highlighting
-        let currentSectionId = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            if (window.scrollY >= sectionTop - 150) {
-                currentSectionId = section.getAttribute('id');
-            }
-        });
-
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${currentSectionId}`) {
-                link.classList.add('active');
-            }
-        });
-    });
 
     // Image Modal Functionality
     const caseImages = document.querySelectorAll('.case-study-image img:not(.no-modal), .ios-phone-screen:not(.no-modal), .ios-flat-image:not(.no-modal)');
@@ -265,5 +302,7 @@ if (document.readyState === 'loading') {
 } else {
     initApp();
 }
+// Run mobile nav initialization immediately since script is placed at bottom of body
+initMobileNav();
 
 
