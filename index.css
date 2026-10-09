@@ -189,9 +189,6 @@ a {
 }
 
 /* About Section */
-.about-section {
-    border-top: 1px solid var(--border-color);
-}
 
 .about-grid {
     display: grid;
@@ -237,7 +234,6 @@ a {
 
 /* Projects Section */
 .projects-section {
-    border-top: 1px solid var(--border-color);
     scroll-margin-top: 90px; /* Aligns section top close to navbar */
 }
 
@@ -469,9 +465,6 @@ a {
 }
 
 /* Skills Section */
-.skills-section {
-    border-top: 1px solid var(--border-color);
-}
 
 .skills-grid {
     display: grid;
@@ -498,7 +491,6 @@ a {
 
 /* Footer */
 .footer {
-    border-top: 1px solid var(--border-color);
     background-color: var(--bg-primary);
 }
 
@@ -2758,7 +2750,6 @@ body.modal-open {
 
 /* How I Design With AI Section */
 .ai-workflow-section {
-    border-top: 1px solid var(--border-color);
     background-color: var(--bg-primary);
 }
 
