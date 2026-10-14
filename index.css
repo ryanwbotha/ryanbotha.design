@@ -3275,4 +3275,5 @@ body.modal-open {
     }
 }
 
-
+/* Keep images at natural aspect ratio when width/height attributes are set */
+:where(img[width][height]) { height: auto; }
