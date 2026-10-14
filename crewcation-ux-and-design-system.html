@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="index.css?v=2.2">
+    <link rel="stylesheet" href="index.css?v=2.3">
     <link rel="icon" type="image/png" href="favicon.png">
 
     <!-- Feature Flag: Prevent FOUC for hidden writing content -->
@@ -53,7 +53,7 @@
     <nav id="navbar" class="navbar">
         <div class="nav-container">
             <a href="index.html" class="logo">
-                <img src="assets/ryan_botha_logo.svg" alt="ryan_botha logo" class="logo-svg">
+                <img src="assets/ryan_botha_logo.svg" alt="ryan_botha logo" class="logo-svg" decoding="async">
             </a>
             <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-menu">
                 <span class="nav-toggle-bar bar-1"></span>
@@ -184,7 +184,7 @@
             <p style="font-weight: 600; text-align: center; margin: 1.5rem 0; color: var(--text-primary);">Create &gt; Invite &gt; Suggest &gt; Vote &gt; Finalize &amp; Execute.</p>
             
             <div class="case-study-image">
-                <img src="assets/crewcation-dashboard-mockup.png" alt="Crewcation Mobile Dashboard and active travel feed">
+                <img src="assets/crewcation-dashboard-mockup.webp" alt="Crewcation Mobile Dashboard and active travel feed" loading="lazy" decoding="async" width="2400" height="1422">
             </div>
         </section>
 
@@ -200,7 +200,7 @@
             </ul>
 
             <div class="case-study-image">
-                <img src="assets/crewcation-funnel-infographic.png" alt="Crewcation funnel comparison infographic: Traditional vs Crewcation Funnel">
+                <img src="assets/crewcation-funnel-infographic.webp" alt="Crewcation funnel comparison infographic: Traditional vs Crewcation Funnel" loading="lazy" decoding="async" width="1854" height="2400">
             </div>
         </section>
 
@@ -277,7 +277,7 @@
             <p>As a solo builder, I had to be smart with my time and energy. I set up a single Supabase backend to keep all the data in sync, and then built separate front-ends on top of it: a native iOS app, a Next.js web app, and a native Android app (currently in active development).</p>
 
             <div class="case-study-image">
-                <img src="assets/crewcation-architecture.png" alt="Crewcation multi-platform architecture diagram">
+                <img src="assets/crewcation-architecture.webp" alt="Crewcation multi-platform architecture diagram" loading="lazy" decoding="async" width="1929" height="2400">
             </div>
 
             <h3>A Frictionless Multi-Platform Narrative</h3>
@@ -358,12 +358,12 @@
             <p>We wanted users to start planning trips immediately without onboarding friction. We initially designed a guest flow where users could create itineraries before registering, but migrating guest data to registered accounts proved too complex. Instead, we implemented a quick sign-up using Apple, Google, or email verification codes. This keeps the onboarding process simple while ensuring user data is secure and synced from the start.</p>
 
             <div class="case-study-image">
-                <img src="assets/Trip%20Creation%20Flow.png" alt="Crewcation Trip Creation Flow: Local Trip Initialization and quick sign-up">
+                <img src="assets/Trip%20Creation%20Flow.webp" alt="Crewcation Trip Creation Flow: Local Trip Initialization and quick sign-up" loading="lazy" decoding="async" width="2400" height="1015">
             </div>
             <p class="image-caption">Figure 1: Captain's Trip Creation Flow — Visualizing local trip initialization and quick cross-platform sign-up.</p>
 
             <div class="case-study-image">
-                <img src="assets/Crew%20Invitation.png" alt="Crewcation Crew Invitation Flow: Email Invitation Dispatch, Dashboard Notification & Seamless Accept">
+                <img src="assets/Crew%20Invitation.webp" alt="Crewcation Crew Invitation Flow: Email Invitation Dispatch, Dashboard Notification & Seamless Accept" loading="lazy" decoding="async" width="2400" height="1688">
             </div>
             <p class="image-caption">Figure 2: Crew Onboarding & Invitation Loop — The guest invitation flow with deferred registration upon acceptance.</p>
 
@@ -373,7 +373,7 @@
             <p>The Vibe Check is a quick setup that maps a traveler's style (such as budget, energy, and food preferences) the first time they sign up. Instead of filling out a new survey for every single trip, users set their preferences once in their profile. If they change their travel style later, updating their profile instantly updates their tags and match scores across all active group trips, keeping their preferences anonymous while ensuring recommendations stay accurate.</p>
 
             <div class="case-study-image">
-                <img src="assets/crewcation-vibe-check.png" alt="Crewcation Vibe Check Interface: Immersive selection tiles for travel style preference settings">
+                <img src="assets/crewcation-vibe-check.webp" alt="Crewcation Vibe Check Interface: Immersive selection tiles for travel style preference settings" loading="lazy" decoding="async" width="2400" height="1422">
             </div>
             <p class="image-caption">Figure 3: Vibe Check Preference Interface — Immersive preference selection tiles designed to capture individual travel styles while preserving budget privacy.</p>
 
@@ -385,7 +385,7 @@
             </ul>
 
             <div class="case-study-image" style="max-width: 60%; margin: 40px auto;">
-                <img src="assets/crewcation-PWA-vibe-check.png" alt="Crewcation PWA Vibe Check Profile & Settings preferences interface">
+                <img src="assets/crewcation-PWA-vibe-check.webp" alt="Crewcation PWA Vibe Check Profile & Settings preferences interface" loading="lazy" decoding="async" width="1422" height="2400">
             </div>
             <p class="image-caption">Figure 4: PWA Vibe Check Interface</p>
 
@@ -394,7 +394,7 @@
             <p>Once the trip details are set, the crew can start suggesting places on the map. I designed a shared map view where anyone can pin locations and add notes.</p>
 
             <div class="case-study-image">
-                <img src="assets/crewcation-ios-places-map.png" alt="Crewcation iOS Places Map showing map discovery view with custom marker pins and collaborative crew notes">
+                <img src="assets/crewcation-ios-places-map.webp" alt="Crewcation iOS Places Map showing map discovery view with custom marker pins and collaborative crew notes" loading="lazy" decoding="async" width="2400" height="1422">
             </div>
             <p class="image-caption">Crewcation iOS App — Places Map showing crew map suggestion pins</p>
 
@@ -434,7 +434,7 @@
             </div>
 
             <div class="case-study-image">
-                <img src="assets/crewcation-ios-sentiment-voting.png" alt="Crewcation iOS Sentiment Voting Interface showing 10-point selection slider">
+                <img src="assets/crewcation-ios-sentiment-voting.webp" alt="Crewcation iOS Sentiment Voting Interface showing 10-point selection slider" loading="lazy" decoding="async" width="2400" height="1407">
             </div>
             <p class="image-caption">Figure 5: Sentiment Slider UI on iOS</p>
 
@@ -451,14 +451,14 @@
             <p>Once expenses are logged, the app automatically calculates who owes who and surfaces a simple settlement list — with quick actions to settle up or send a friendly nudge directly in the group chat. The PWA version is designed to capture early interest via a waitlist while the feature reaches production readiness.</p>
 
             <div class="case-study-image">
-                <img class="no-modal" src="assets/ios-trip-screens/expense/crewcation-split-bill.png" alt="Crewcation Split Bill Concept Drawing">
+                <img class="no-modal" src="assets/ios-trip-screens/expense/crewcation-split-bill.webp" alt="Crewcation Split Bill Concept Drawing" loading="lazy" decoding="async" width="2400" height="1847">
             </div>
             <p class="image-caption">Primary Concept Drawing — Split-Cost Expense Manager</p>
 
             <div class="ios-phone-grid" style="margin-top: 32px;">
                 <article class="ios-phone-card in-view" style="animation-delay: 0s;">
                     <figure class="ios-phone-frame">
-                        <img class="ios-phone-screen" src="assets/ios-trip-screens/expense/ios-split-bill-mvp.png" alt="Split Bill Overview" loading="lazy">
+                        <img class="ios-phone-screen" src="assets/ios-trip-screens/expense/ios-split-bill-mvp.webp" alt="Split Bill Overview" loading="lazy" decoding="async" width="1104" height="2400">
                         <figcaption class="ios-phone-overlay">
                             <span class="ios-overlay-category" style="color:#f59e0b">Step 1</span>
                             <span class="ios-overlay-title">Trip Expense Overview</span>
@@ -468,7 +468,7 @@
                 </article>
                 <article class="ios-phone-card in-view" style="animation-delay: 0.05s;">
                     <figure class="ios-phone-frame">
-                        <img class="ios-phone-screen" src="assets/ios-trip-screens/expense/ios-split-bill-mvp-receipt-pic.png" alt="Capture Receipt" loading="lazy">
+                        <img class="ios-phone-screen" src="assets/ios-trip-screens/expense/ios-split-bill-mvp-receipt-pic.webp" alt="Capture Receipt" loading="lazy" decoding="async" width="1104" height="2400">
                         <figcaption class="ios-phone-overlay">
                             <span class="ios-overlay-category" style="color:#f59e0b">Step 2</span>
                             <span class="ios-overlay-title">Capture Receipt</span>
@@ -478,7 +478,7 @@
                 </article>
                 <article class="ios-phone-card in-view" style="animation-delay: 0.1s;">
                     <figure class="ios-phone-frame">
-                        <img class="ios-phone-screen" src="assets/ios-trip-screens/expense/ios-split-bill-mvp-ai-reading-receipt.png" alt="AI Reading Receipt" loading="lazy">
+                        <img class="ios-phone-screen" src="assets/ios-trip-screens/expense/ios-split-bill-mvp-ai-reading-receipt.webp" alt="AI Reading Receipt" loading="lazy" decoding="async" width="1104" height="2400">
                         <figcaption class="ios-phone-overlay">
                             <span class="ios-overlay-category" style="color:#f59e0b">Step 3</span>
                             <span class="ios-overlay-title">AI Reading Receipt</span>
@@ -488,7 +488,7 @@
                 </article>
                 <article class="ios-phone-card in-view" style="animation-delay: 0.15s;">
                     <figure class="ios-phone-frame">
-                        <img class="ios-phone-screen" src="assets/ios-trip-screens/expense/ios-split-bill-mvp-ai-read-receipt-result.png" alt="AI Extraction Result" loading="lazy">
+                        <img class="ios-phone-screen" src="assets/ios-trip-screens/expense/ios-split-bill-mvp-ai-read-receipt-result.webp" alt="AI Extraction Result" loading="lazy" decoding="async" width="1104" height="2400">
                         <figcaption class="ios-phone-overlay">
                             <span class="ios-overlay-category" style="color:#f59e0b">Step 4</span>
                             <span class="ios-overlay-title">AI Extraction Result</span>
@@ -498,7 +498,7 @@
                 </article>
                 <article class="ios-phone-card in-view" style="animation-delay: 0.2s;">
                     <figure class="ios-phone-frame">
-                        <img class="ios-phone-screen" src="assets/ios-trip-screens/expense/ios-split-bill-mvp-expense-added.png" alt="Expense Added" loading="lazy">
+                        <img class="ios-phone-screen" src="assets/ios-trip-screens/expense/ios-split-bill-mvp-expense-added.webp" alt="Expense Added" loading="lazy" decoding="async" width="1104" height="2400">
                         <figcaption class="ios-phone-overlay">
                             <span class="ios-overlay-category" style="color:#f59e0b">Step 5</span>
                             <span class="ios-overlay-title">Expense Added to Trip</span>
@@ -508,7 +508,7 @@
                 </article>
                 <article class="ios-phone-card in-view" style="animation-delay: 0.25s;">
                     <figure class="ios-phone-frame">
-                        <img class="ios-phone-screen" src="assets/ios-trip-screens/expense/ios-split-bill-mvp-crew-settle-split.png" alt="Settle Split" loading="lazy">
+                        <img class="ios-phone-screen" src="assets/ios-trip-screens/expense/ios-split-bill-mvp-crew-settle-split.webp" alt="Settle Split" loading="lazy" decoding="async" width="1104" height="2400">
                         <figcaption class="ios-phone-overlay">
                             <span class="ios-overlay-category" style="color:#f59e0b">Step 6</span>
                             <span class="ios-overlay-title">Settle Split Balances</span>
@@ -518,7 +518,7 @@
                 </article>
                 <article class="ios-phone-card in-view" style="animation-delay: 0.3s;">
                     <figure class="ios-phone-frame">
-                        <img class="ios-phone-screen" src="assets/ios-trip-screens/expense/ios-split-bill-mvp-crew-settle-message.png" alt="Settle Message" loading="lazy">
+                        <img class="ios-phone-screen" src="assets/ios-trip-screens/expense/ios-split-bill-mvp-crew-settle-message.webp" alt="Settle Message" loading="lazy" decoding="async" width="1104" height="2400">
                         <figcaption class="ios-phone-overlay">
                             <span class="ios-overlay-category" style="color:#f59e0b">Step 7</span>
                             <span class="ios-overlay-title">Settle Message</span>
@@ -533,7 +533,7 @@
             <div class="ios-phone-grid" style="margin-top: 24px;">
                 <article class="ios-phone-card in-view" style="animation-delay: 0s;">
                     <div class="ios-flat-frame">
-                        <img class="ios-flat-image" src="assets/ios-trip-screens/expense/android-split-bill-idea-01.png" alt="Android Concept 1" loading="lazy">
+                        <img class="ios-flat-image" src="assets/ios-trip-screens/expense/android-split-bill-idea-01.webp" alt="Android Concept 1" loading="lazy" decoding="async" width="1106" height="2400">
                         <div class="ios-phone-overlay ios-flat-overlay">
                             <span class="ios-overlay-category" style="color:#10b981">Concept 1</span>
                             <span class="ios-overlay-title">Material 3 Dashboard</span>
@@ -543,7 +543,7 @@
                 </article>
                 <article class="ios-phone-card in-view" style="animation-delay: 0.05s;">
                     <div class="ios-flat-frame">
-                        <img class="ios-flat-image" src="assets/ios-trip-screens/expense/android-split-bill-idea-02.png" alt="Android Concept 2" loading="lazy">
+                        <img class="ios-flat-image" src="assets/ios-trip-screens/expense/android-split-bill-idea-02.webp" alt="Android Concept 2" loading="lazy" decoding="async" width="1106" height="2400">
                         <div class="ios-phone-overlay ios-flat-overlay">
                             <span class="ios-overlay-category" style="color:#10b981">Concept 2</span>
                             <span class="ios-overlay-title">Expense Summary</span>
@@ -553,7 +553,7 @@
                 </article>
                 <article class="ios-phone-card in-view" style="animation-delay: 0.1s;">
                     <div class="ios-flat-frame">
-                        <img class="ios-flat-image" src="assets/ios-trip-screens/expense/android-split-bill-idea-scan.png" alt="Scan Receipt" loading="lazy">
+                        <img class="ios-flat-image" src="assets/ios-trip-screens/expense/android-split-bill-idea-scan.webp" alt="Scan Receipt" loading="lazy" decoding="async" width="1106" height="2400">
                         <div class="ios-phone-overlay ios-flat-overlay">
                             <span class="ios-overlay-category" style="color:#10b981">Scan</span>
                             <span class="ios-overlay-title">Capture Receipt</span>
@@ -563,7 +563,7 @@
                 </article>
                 <article class="ios-phone-card in-view" style="animation-delay: 0.15s;">
                     <div class="ios-flat-frame">
-                        <img class="ios-flat-image" src="assets/ios-trip-screens/expense/android-split-bill-ai-read-receipt.png" alt="AI Reading Receipt" loading="lazy">
+                        <img class="ios-flat-image" src="assets/ios-trip-screens/expense/android-split-bill-ai-read-receipt.webp" alt="AI Reading Receipt" loading="lazy" decoding="async" width="1106" height="2400">
                         <div class="ios-phone-overlay ios-flat-overlay">
                             <span class="ios-overlay-category" style="color:#10b981">AI Processing</span>
                             <span class="ios-overlay-title">Reading Details</span>
@@ -573,7 +573,7 @@
                 </article>
                 <article class="ios-phone-card in-view" style="animation-delay: 0.2s;">
                     <div class="ios-flat-frame">
-                        <img class="ios-flat-image" src="assets/ios-trip-screens/expense/android-split-bill-ai-read-receipt-result.png" alt="AI Result" loading="lazy">
+                        <img class="ios-flat-image" src="assets/ios-trip-screens/expense/android-split-bill-ai-read-receipt-result.webp" alt="AI Result" loading="lazy" decoding="async" width="1106" height="2400">
                         <div class="ios-phone-overlay ios-flat-overlay">
                             <span class="ios-overlay-category" style="color:#10b981">AI Result</span>
                             <span class="ios-overlay-title">Extraction Complete</span>
@@ -597,7 +597,7 @@
             <p>To keep the AI agents on track and manage the project without losing context, I set up a central repository of architecture files, codebases, and logs in NotebookLM. AI agents can easily lose context in long chats, so whenever a new agent session started, it read these files to instantly get up to speed on the project's state and maintain logic persistence of the original concept across all 3 platforms. While this wasn't a linear workflow, maintaining a modular approach and using NotebookLM to record project progress and logic allowed us to keep feature parity without losing track of where we were.</p>
             
             <div class="case-study-image">
-                <img src="assets/Crewcation-Agentic-Workflows.png" alt="Crewcation Agentic Workflows overview diagram showing user query, planning, and tool execution loops">
+                <img src="assets/Crewcation-Agentic-Workflows.webp" alt="Crewcation Agentic Workflows overview diagram showing user query, planning, and tool execution loops" loading="lazy" decoding="async" width="2400" height="1415">
             </div>
             <p class="image-caption">Figure 6: Crewcation Agentic Workflows Overview</p>
 
@@ -609,7 +609,7 @@
 
             <h3>Caveman Protocol for Token Efficiency</h3>
             <div class="case-study-image">
-                <img src="assets/caveman.png" alt="Caveman Protocol visual representation comparing standard verbose AI chat with dense, direct code edits">
+                <img src="assets/caveman.webp" alt="Caveman Protocol visual representation comparing standard verbose AI chat with dense, direct code edits" loading="lazy" decoding="async" width="1824" height="1326">
             </div>
             <p>To slash token consumption, minimize API costs, and keep context windows focused, I established the Caveman Protocol. By forcing the AI agents to strip away all polite chatter and conversational padding, they respond directly with dense, execution-focused code edits. This even led to the AI agent hilariously adopting the persona of 'Grog'—communicating in primal caveman grunts and short phrases while executing precise code updates to maximize speed and efficiency.</p>
 
@@ -618,10 +618,10 @@
             
             <div class="image-gallery">
                 <div class="case-study-image">
-                    <img src="assets/xcode-agentic-workflow.png" alt="Xcode Agentic Workflow for iOS app development">
+                    <img src="assets/xcode-agentic-workflow.webp" alt="Xcode Agentic Workflow for iOS app development" loading="lazy" decoding="async" width="2400" height="1362">
                 </div>
                 <div class="case-study-image">
-                    <img src="assets/pwa-android-workflow.png" alt="PWA and Android Agentic Workflow for web and Android app development">
+                    <img src="assets/pwa-android-workflow.webp" alt="PWA and Android Agentic Workflow for web and Android app development" loading="lazy" decoding="async" width="2400" height="1362">
                 </div>
             </div>
             <p class="image-caption">Figure 7: Platform-specific Agentic Workflows (Xcode/iOS left, PWA/Android right)</p>
@@ -663,7 +663,7 @@
                 <button class="ios-lb-nav ios-lb-next" id="iosLbNext" aria-label="Next screen">&#8594;</button>
                 <div class="ios-lb-content">
                     <div class="ios-lb-phone-frame" id="iosLbPhoneFrame">
-                        <img class="ios-lb-image" id="iosLbImage" src="" alt="" loading="lazy">
+                        <img class="ios-lb-image" id="iosLbImage" src="" alt="" loading="lazy" decoding="async">
                     </div>
                     <div class="ios-lb-meta">
                         <span class="ios-lb-category" id="iosLbCategory"></span>
@@ -680,63 +680,63 @@
             /* ---- Screen Data ---- */
             var IOS_SCREENS = [
                 // Onboarding — logo + loader first
-                { file: 'crewcation-ios-app-logo.png',              title: 'App Logo',             category: 'onboarding',    alt: 'Crewcation iOS app logo splash screen',                      desc: 'Crewcation brand identity displayed on the iOS splash screen.' },
-                { file: 'crewcation-ios-loading-screen.png',        title: 'Loading Screen',       category: 'onboarding',    alt: 'Crewcation iOS animated loading screen',                     desc: 'Loading state shown while the app syncs trip data from Supabase.' },
-                { file: 'crewcation-ios-onboarding.png',            title: 'Onboarding',           category: 'onboarding',    alt: 'Crewcation iOS app onboarding welcome screen',               desc: 'Full-screen onboarding experience introducing Crewcation\'s group travel planning concept.' },
-                { file: 'crewcation-ios-get-started-card.png',      title: 'Get Started',          category: 'onboarding',    alt: 'Crewcation iOS get started card screen',                     desc: 'Entry card welcoming users and guiding them to create their first trip.' },
-                { file: 'crewcation-ios-email-sign-in.png',         title: 'Email Sign In',        category: 'onboarding',    alt: 'Crewcation iOS email sign in screen',                        desc: 'Magic link authentication via email — no password required.' },
-                { file: 'crewcation-ios-sign-in-verification.png',  title: 'Sign In Verification', category: 'onboarding',    alt: 'Crewcation iOS sign in verification code screen',             desc: 'Email verification code entry for secure, frictionless login.' },
+                { file: 'crewcation-ios-app-logo.webp',              title: 'App Logo',             category: 'onboarding',    alt: 'Crewcation iOS app logo splash screen',                      desc: 'Crewcation brand identity displayed on the iOS splash screen.' },
+                { file: 'crewcation-ios-loading-screen.webp',        title: 'Loading Screen',       category: 'onboarding',    alt: 'Crewcation iOS animated loading screen',                     desc: 'Loading state shown while the app syncs trip data from Supabase.' },
+                { file: 'crewcation-ios-onboarding.webp',            title: 'Onboarding',           category: 'onboarding',    alt: 'Crewcation iOS app onboarding welcome screen',               desc: 'Full-screen onboarding experience introducing Crewcation\'s group travel planning concept.' },
+                { file: 'crewcation-ios-get-started-card.webp',      title: 'Get Started',          category: 'onboarding',    alt: 'Crewcation iOS get started card screen',                     desc: 'Entry card welcoming users and guiding them to create their first trip.' },
+                { file: 'crewcation-ios-email-sign-in.webp',         title: 'Email Sign In',        category: 'onboarding',    alt: 'Crewcation iOS email sign in screen',                        desc: 'Magic link authentication via email — no password required.' },
+                { file: 'crewcation-ios-sign-in-verification.webp',  title: 'Sign In Verification', category: 'onboarding',    alt: 'Crewcation iOS sign in verification code screen',             desc: 'Email verification code entry for secure, frictionless login.' },
                 // Crew — phone screens first, flat email/web last
-                { file: 'crewcation-ios-invite-crew.png',                 title: 'Invite Crew',            category: 'crew',          alt: 'Crewcation iOS invite crew members screen',            desc: 'Captain\'s interface for entering and sending email invites to crew members.' },
-                { file: 'crewcation-ios-invite-crew-invited-state.png',   title: 'Crew Invited',           category: 'crew',          alt: 'Crewcation iOS crew invited confirmation state',        desc: 'Confirmation state after crew invitations have been dispatched.' },
-                { file: 'crewcation-ios-invitation-modal.png',            title: 'Invitation Modal',       category: 'crew',          alt: 'Crewcation iOS in-app invitation modal',               desc: 'In-app modal showing trip invitation details and accept/decline actions.' },
-                { file: 'crewcation-ios-manage-crew-popover.png',         title: 'Manage Crew',            category: 'crew',          alt: 'Crewcation iOS manage crew members popover',           desc: 'Popover sheet for managing crew member roles and permissions.' },
-                { file: 'crewcation-ios-trip-invite-card.png',            title: 'Trip Invite Card',       category: 'crew',          alt: 'Crewcation iOS shareable trip invite card',            desc: 'Shareable trip invite card displaying destination and crew details.' },
-                { file: 'crewcation-ios-invitation-email-screen.png',     title: 'Invitation Email',       category: 'crew',          noBezel: true, alt: 'Crewcation iOS trip invitation email screen',   desc: 'Email notification design for crew trip invitations sent to guests.' },
-                { file: 'crewcation-ios-web-invitation-screen.png',       title: 'Web Invitation',         category: 'crew',          noBezel: true, alt: 'Crewcation iOS web invitation landing screen',  desc: 'Cross-platform invitation view seen by guests joining via web link.' },
+                { file: 'crewcation-ios-invite-crew.webp',                 title: 'Invite Crew',            category: 'crew',          alt: 'Crewcation iOS invite crew members screen',            desc: 'Captain\'s interface for entering and sending email invites to crew members.' },
+                { file: 'crewcation-ios-invite-crew-invited-state.webp',   title: 'Crew Invited',           category: 'crew',          alt: 'Crewcation iOS crew invited confirmation state',        desc: 'Confirmation state after crew invitations have been dispatched.' },
+                { file: 'crewcation-ios-invitation-modal.webp',            title: 'Invitation Modal',       category: 'crew',          alt: 'Crewcation iOS in-app invitation modal',               desc: 'In-app modal showing trip invitation details and accept/decline actions.' },
+                { file: 'crewcation-ios-manage-crew-popover.webp',         title: 'Manage Crew',            category: 'crew',          alt: 'Crewcation iOS manage crew members popover',           desc: 'Popover sheet for managing crew member roles and permissions.' },
+                { file: 'crewcation-ios-trip-invite-card.webp',            title: 'Trip Invite Card',       category: 'crew',          alt: 'Crewcation iOS shareable trip invite card',            desc: 'Shareable trip invite card displaying destination and crew details.' },
+                { file: 'crewcation-ios-invitation-email-screen.webp',     title: 'Invitation Email',       category: 'crew',          noBezel: true, alt: 'Crewcation iOS trip invitation email screen',   desc: 'Email notification design for crew trip invitations sent to guests.' },
+                { file: 'crewcation-ios-web-invitation-screen.webp',       title: 'Web Invitation',         category: 'crew',          noBezel: true, alt: 'Crewcation iOS web invitation landing screen',  desc: 'Cross-platform invitation view seen by guests joining via web link.' },
                 // Trip Planning — place suggestions second, detail stops last
-                { file: 'crewcation-ios-trip-list.png',                   title: 'Trip List',              category: 'trip-planning', alt: 'Crewcation iOS trip list dashboard',                   desc: 'Main dashboard showing all active and past trips with status indicators.' },
-                { file: 'crewcation-ios-stop-place-suggestions.png',      title: 'Place Suggestions',      category: 'trip-planning', alt: 'Crewcation iOS crew place suggestions for a stop',     desc: 'Crew-sourced place suggestions for a trip stop, ranked by vote count.' },
-                { file: 'crewcation-ios-new-trip.png',                    title: 'New Trip',               category: 'trip-planning', alt: 'Crewcation iOS new trip creation screen',              desc: 'Trip creation flow — entering destination, dates, and trip type.' },
-                { file: 'crewcation-ios-new-trip-stops.png',              title: 'Trip Stops',             category: 'trip-planning', alt: 'Crewcation iOS new trip multi-stop screen',            desc: 'Adding multiple destination stops for a multi-city trip itinerary.' },
-                { file: 'crewcation-ios-trip-date-selector.png',          title: 'Date Selector',          category: 'trip-planning', alt: 'Crewcation iOS native calendar date selector',         desc: 'Native iOS calendar picker for selecting trip departure and return dates.' },
-                { file: 'crewcation-ios-update-trip-type.png',            title: 'Update Trip Type',       category: 'trip-planning', alt: 'Crewcation iOS update trip type selector',             desc: 'Trip type selector — weekend getaway, city break, adventure, and more.' },
-                { file: 'crewcation-ios-curated-trip.png',                title: 'Curated Trip',           category: 'trip-planning', alt: 'Crewcation iOS AI curated trip suggestion screen',     desc: 'AI-curated trip suggestion based on collective crew vibe check preferences.' },
-                { file: 'crewcation-ios-curated-trip-continued.png',      title: 'Curated Trip (cont.)',   category: 'trip-planning', alt: 'Crewcation iOS curated trip details continued',        desc: 'Continuation of the curated trip view showing additional destination details.' },
-                { file: 'crewcation-ios-curated-destinations.png',        title: 'Curated Destinations',   category: 'trip-planning', alt: 'Crewcation iOS curated destination discovery grid',    desc: 'Destination discovery grid filtered by crew vibe check match scores.' },
-                { file: 'crewcation-ios-single-destination.png',          title: 'Single Destination',     category: 'trip-planning', alt: 'Crewcation iOS single destination match card',         desc: 'Focused destination card showing match score, highlights, and quick add action.' },
-                { file: 'crewcation-ios-select-destination.png',          title: 'Select Destination',     category: 'trip-planning', alt: 'Crewcation iOS select trip destination screen',        desc: 'Destination selection interface for locking in the trip location.' },
-                { file: 'crewcation-ios-stop-itinerary.png',              title: 'Stop Itinerary',         category: 'trip-planning', alt: 'Crewcation iOS stop day-by-day itinerary view',        desc: 'Day-by-day itinerary view for a single trip stop.' },
-                { file: 'crewcation-ios-stop-timeline.png',               title: 'Stop Timeline',          category: 'trip-planning', alt: 'Crewcation iOS trip stop chronological timeline',      desc: 'Chronological timeline view of all activities and events for a trip stop.' },
-                { file: 'crewcation-ios-trip-detail-stops.png',           title: 'Trip Detail Stops',      category: 'trip-planning', alt: 'Crewcation iOS trip detail stops view',                desc: 'Detailed view of all trip stops with crew activity and status per stop.' },
+                { file: 'crewcation-ios-trip-list.webp',                   title: 'Trip List',              category: 'trip-planning', alt: 'Crewcation iOS trip list dashboard',                   desc: 'Main dashboard showing all active and past trips with status indicators.' },
+                { file: 'crewcation-ios-stop-place-suggestions.webp',      title: 'Place Suggestions',      category: 'trip-planning', alt: 'Crewcation iOS crew place suggestions for a stop',     desc: 'Crew-sourced place suggestions for a trip stop, ranked by vote count.' },
+                { file: 'crewcation-ios-new-trip.webp',                    title: 'New Trip',               category: 'trip-planning', alt: 'Crewcation iOS new trip creation screen',              desc: 'Trip creation flow — entering destination, dates, and trip type.' },
+                { file: 'crewcation-ios-new-trip-stops.webp',              title: 'Trip Stops',             category: 'trip-planning', alt: 'Crewcation iOS new trip multi-stop screen',            desc: 'Adding multiple destination stops for a multi-city trip itinerary.' },
+                { file: 'crewcation-ios-trip-date-selector.webp',          title: 'Date Selector',          category: 'trip-planning', alt: 'Crewcation iOS native calendar date selector',         desc: 'Native iOS calendar picker for selecting trip departure and return dates.' },
+                { file: 'crewcation-ios-update-trip-type.webp',            title: 'Update Trip Type',       category: 'trip-planning', alt: 'Crewcation iOS update trip type selector',             desc: 'Trip type selector — weekend getaway, city break, adventure, and more.' },
+                { file: 'crewcation-ios-curated-trip.webp',                title: 'Curated Trip',           category: 'trip-planning', alt: 'Crewcation iOS AI curated trip suggestion screen',     desc: 'AI-curated trip suggestion based on collective crew vibe check preferences.' },
+                { file: 'crewcation-ios-curated-trip-continued.webp',      title: 'Curated Trip (cont.)',   category: 'trip-planning', alt: 'Crewcation iOS curated trip details continued',        desc: 'Continuation of the curated trip view showing additional destination details.' },
+                { file: 'crewcation-ios-curated-destinations.webp',        title: 'Curated Destinations',   category: 'trip-planning', alt: 'Crewcation iOS curated destination discovery grid',    desc: 'Destination discovery grid filtered by crew vibe check match scores.' },
+                { file: 'crewcation-ios-single-destination.webp',          title: 'Single Destination',     category: 'trip-planning', alt: 'Crewcation iOS single destination match card',         desc: 'Focused destination card showing match score, highlights, and quick add action.' },
+                { file: 'crewcation-ios-select-destination.webp',          title: 'Select Destination',     category: 'trip-planning', alt: 'Crewcation iOS select trip destination screen',        desc: 'Destination selection interface for locking in the trip location.' },
+                { file: 'crewcation-ios-stop-itinerary.webp',              title: 'Stop Itinerary',         category: 'trip-planning', alt: 'Crewcation iOS stop day-by-day itinerary view',        desc: 'Day-by-day itinerary view for a single trip stop.' },
+                { file: 'crewcation-ios-stop-timeline.webp',               title: 'Stop Timeline',          category: 'trip-planning', alt: 'Crewcation iOS trip stop chronological timeline',      desc: 'Chronological timeline view of all activities and events for a trip stop.' },
+                { file: 'crewcation-ios-trip-detail-stops.webp',           title: 'Trip Detail Stops',      category: 'trip-planning', alt: 'Crewcation iOS trip detail stops view',                desc: 'Detailed view of all trip stops with crew activity and status per stop.' },
                 // Places & Map
-                { file: 'crewcation-ios-map-loading.png',                 title: 'Map Loading',            category: 'places-map',    alt: 'Crewcation iOS shared map loading screen',             desc: 'Animated map loading state as place pins and crew suggestions load in real-time.' },
-                { file: 'crewcation-ios-map-pin-added.png',               title: 'Map Pin Added',          category: 'places-map',    alt: 'Crewcation iOS map pin added confirmation',            desc: 'Success state shown after a crew member pins a new place to the shared map.' },
-                { file: 'crewcation-ios-map-pins.png',                    title: 'Map Pins',               category: 'places-map',    alt: 'Crewcation iOS map with all crew suggestion pins',     desc: 'Shared crew map showing all pinned locations with custom Crewcation markers.' },
-                { file: 'crewcation-ios-map-place-cards.png',             title: 'Map Place Cards',        category: 'places-map',    alt: 'Crewcation iOS map with scrollable place cards',       desc: 'Horizontal scrollable place cards overlaid on the map for quick discovery.' },
-                { file: 'crewcation-ios-place-details.png',               title: 'Place Details',          category: 'places-map',    alt: 'Crewcation iOS place detail sheet',                    desc: 'Full detail sheet for a suggested place — photos, crew notes, voting, and booking.' },
-                { file: 'crewcation-ios-place-added-confirmation.png',    title: 'Place Added',            category: 'places-map',    alt: 'Crewcation iOS place added to trip confirmation',      desc: 'Confirmation screen after successfully adding a place to the crew trip.' },
-                { file: 'crewcation-ios-add-place-to-day.png',            title: 'Add Place to Day',       category: 'places-map',    alt: 'Crewcation iOS add place to itinerary day screen',     desc: 'Bottom sheet for assigning a suggested place to a specific itinerary day.' },
-                { file: 'crewcation-ios-assign-place-to-day-sheet.png',   title: 'Assign to Day Sheet',    category: 'places-map',    alt: 'Crewcation iOS assign place to day sheet with picker', desc: 'Day assignment sheet with date picker for scheduling places in the itinerary.' },
-                { file: 'crewcation-ios-place-crew-notes.png',            title: 'Crew Notes',             category: 'places-map',    alt: 'Crewcation iOS collaborative place crew notes',        desc: 'Collaborative crew notes panel — members share links, tips, and logistics per place.' },
-                { file: 'crewcation-ios-place-crew-picks.png',            title: 'Crew Picks',             category: 'places-map',    alt: 'Crewcation iOS crew top picks ranked list',            desc: 'Curated list of top crew-voted places ranked by collective sentiment scores.' },
-                { file: 'crewcation-ios-stop-votes-needed.png',           title: 'Votes Needed',           category: 'places-map',    alt: 'Crewcation iOS stop votes needed prompt',              desc: 'Prompt shown when a trip stop still has pending votes required from crew.' },
-                { file: 'crewcation-ios-voted-place-status.png',          title: 'Voted Place Status',     category: 'places-map',    alt: 'Crewcation iOS voted place voting progress screen',    desc: 'Place card status view showing current voting progress across crew members.' },
-                { file: 'crewcation-ios-place-voted-notice.png',          title: 'Place Voted Notice',     category: 'places-map',    alt: 'Crewcation iOS vote recorded notice',                  desc: 'In-app notice confirming a user\'s vote has been recorded for a suggested place.' },
+                { file: 'crewcation-ios-map-loading.webp',                 title: 'Map Loading',            category: 'places-map',    alt: 'Crewcation iOS shared map loading screen',             desc: 'Animated map loading state as place pins and crew suggestions load in real-time.' },
+                { file: 'crewcation-ios-map-pin-added.webp',               title: 'Map Pin Added',          category: 'places-map',    alt: 'Crewcation iOS map pin added confirmation',            desc: 'Success state shown after a crew member pins a new place to the shared map.' },
+                { file: 'crewcation-ios-map-pins.webp',                    title: 'Map Pins',               category: 'places-map',    alt: 'Crewcation iOS map with all crew suggestion pins',     desc: 'Shared crew map showing all pinned locations with custom Crewcation markers.' },
+                { file: 'crewcation-ios-map-place-cards.webp',             title: 'Map Place Cards',        category: 'places-map',    alt: 'Crewcation iOS map with scrollable place cards',       desc: 'Horizontal scrollable place cards overlaid on the map for quick discovery.' },
+                { file: 'crewcation-ios-place-details.webp',               title: 'Place Details',          category: 'places-map',    alt: 'Crewcation iOS place detail sheet',                    desc: 'Full detail sheet for a suggested place — photos, crew notes, voting, and booking.' },
+                { file: 'crewcation-ios-place-added-confirmation.webp',    title: 'Place Added',            category: 'places-map',    alt: 'Crewcation iOS place added to trip confirmation',      desc: 'Confirmation screen after successfully adding a place to the crew trip.' },
+                { file: 'crewcation-ios-add-place-to-day.webp',            title: 'Add Place to Day',       category: 'places-map',    alt: 'Crewcation iOS add place to itinerary day screen',     desc: 'Bottom sheet for assigning a suggested place to a specific itinerary day.' },
+                { file: 'crewcation-ios-assign-place-to-day-sheet.webp',   title: 'Assign to Day Sheet',    category: 'places-map',    alt: 'Crewcation iOS assign place to day sheet with picker', desc: 'Day assignment sheet with date picker for scheduling places in the itinerary.' },
+                { file: 'crewcation-ios-place-crew-notes.webp',            title: 'Crew Notes',             category: 'places-map',    alt: 'Crewcation iOS collaborative place crew notes',        desc: 'Collaborative crew notes panel — members share links, tips, and logistics per place.' },
+                { file: 'crewcation-ios-place-crew-picks.webp',            title: 'Crew Picks',             category: 'places-map',    alt: 'Crewcation iOS crew top picks ranked list',            desc: 'Curated list of top crew-voted places ranked by collective sentiment scores.' },
+                { file: 'crewcation-ios-stop-votes-needed.webp',           title: 'Votes Needed',           category: 'places-map',    alt: 'Crewcation iOS stop votes needed prompt',              desc: 'Prompt shown when a trip stop still has pending votes required from crew.' },
+                { file: 'crewcation-ios-voted-place-status.webp',          title: 'Voted Place Status',     category: 'places-map',    alt: 'Crewcation iOS voted place voting progress screen',    desc: 'Place card status view showing current voting progress across crew members.' },
+                { file: 'crewcation-ios-place-voted-notice.webp',          title: 'Place Voted Notice',     category: 'places-map',    alt: 'Crewcation iOS vote recorded notice',                  desc: 'In-app notice confirming a user\'s vote has been recorded for a suggested place.' },
                 // Hotels — alt hotels last
-                { file: 'crewcation-ios-hotel-availability.png',             title: 'Hotel Availability',  category: 'hotels',        alt: 'Crewcation iOS live hotel availability screen',         desc: 'Live hotel availability pulled from the LiteAPI integration for the trip destination.' },
-                { file: 'crewcation-ios-hotel-no-rooms.png',                 title: 'No Rooms Available',  category: 'hotels',        alt: 'Crewcation iOS hotel no rooms available empty state',  desc: 'Empty state shown when a hotel has no available rooms for the selected dates.' },
-                { file: 'crewcation-ios-hotel-alternative-availability.png', title: 'Alternative Hotels',  category: 'hotels',        alt: 'Crewcation iOS alternative hotel options screen',      desc: 'Alternative hotel options shown when the preferred property is fully booked.' },
+                { file: 'crewcation-ios-hotel-availability.webp',             title: 'Hotel Availability',  category: 'hotels',        alt: 'Crewcation iOS live hotel availability screen',         desc: 'Live hotel availability pulled from the LiteAPI integration for the trip destination.' },
+                { file: 'crewcation-ios-hotel-no-rooms.webp',                 title: 'No Rooms Available',  category: 'hotels',        alt: 'Crewcation iOS hotel no rooms available empty state',  desc: 'Empty state shown when a hotel has no available rooms for the selected dates.' },
+                { file: 'crewcation-ios-hotel-alternative-availability.webp', title: 'Alternative Hotels',  category: 'hotels',        alt: 'Crewcation iOS alternative hotel options screen',      desc: 'Alternative hotel options shown when the preferred property is fully booked.' },
                 // Sentiment
-                { file: 'crewcation-ios-sentiment-slider.png',            title: 'Sentiment Slider',       category: 'sentiment',     alt: 'Crewcation iOS 10-point sentiment voting slider',       desc: '10-point sentiment slider with haptic feedback for nuanced place preference voting.' },
-                { file: 'crewcation-ios-sentiment-slider-action.png',     title: 'Slider in Action',       category: 'sentiment',     alt: 'Crewcation iOS sentiment slider dragging in action',   desc: 'Slider in active dragging state — emoji feedback updates in real-time as users vote.' },
+                { file: 'crewcation-ios-sentiment-slider.webp',            title: 'Sentiment Slider',       category: 'sentiment',     alt: 'Crewcation iOS 10-point sentiment voting slider',       desc: '10-point sentiment slider with haptic feedback for nuanced place preference voting.' },
+                { file: 'crewcation-ios-sentiment-slider-action.webp',     title: 'Slider in Action',       category: 'sentiment',     alt: 'Crewcation iOS sentiment slider dragging in action',   desc: 'Slider in active dragging state — emoji feedback updates in real-time as users vote.' },
                 // Vibe Check — budget third
-                { file: 'crewcation-ios-vibe-check.png',                  title: 'Vibe Check',             category: 'vibe-check',    alt: 'Crewcation iOS vibe check travel preferences screen',  desc: 'Vibe Check preference setup — travellers choose energy level, budget tier, and food style.' },
-                { file: 'crewcation-ios-vibe-check-eat.png',              title: 'Vibe Check: Food',       category: 'vibe-check',    alt: 'Crewcation iOS vibe check food preference screen',     desc: 'Foodie type selector — Fine Dining, Street Food, or Balanced Mix.' },
-                { file: 'crewcation-ios-vibe-check-budget.png',           title: 'Vibe Check: Budget',     category: 'vibe-check',    alt: 'Crewcation iOS vibe check private budget selector',    desc: 'Private budget preference selector — values are never exposed to other crew members.' },
-                { file: 'crewcation-ios-vibe-check-updated.png',          title: 'Vibe Check Updated',     category: 'vibe-check',    alt: 'Crewcation iOS vibe check updated confirmation',       desc: 'Confirmation state after successfully updating Vibe Check preferences.' },
+                { file: 'crewcation-ios-vibe-check.webp',                  title: 'Vibe Check',             category: 'vibe-check',    alt: 'Crewcation iOS vibe check travel preferences screen',  desc: 'Vibe Check preference setup — travellers choose energy level, budget tier, and food style.' },
+                { file: 'crewcation-ios-vibe-check-eat.webp',              title: 'Vibe Check: Food',       category: 'vibe-check',    alt: 'Crewcation iOS vibe check food preference screen',     desc: 'Foodie type selector — Fine Dining, Street Food, or Balanced Mix.' },
+                { file: 'crewcation-ios-vibe-check-budget.webp',           title: 'Vibe Check: Budget',     category: 'vibe-check',    alt: 'Crewcation iOS vibe check private budget selector',    desc: 'Private budget preference selector — values are never exposed to other crew members.' },
+                { file: 'crewcation-ios-vibe-check-updated.webp',          title: 'Vibe Check Updated',     category: 'vibe-check',    alt: 'Crewcation iOS vibe check updated confirmation',       desc: 'Confirmation state after successfully updating Vibe Check preferences.' },
                 // Settings
-                { file: 'crewcation-ios-settings.png',                    title: 'Settings',               category: 'settings',      alt: 'Crewcation iOS app settings and account screen',       desc: 'User settings and account management — notifications, profile, and app preferences.' }
+                { file: 'crewcation-ios-settings.webp',                    title: 'Settings',               category: 'settings',      alt: 'Crewcation iOS app settings and account screen',       desc: 'User settings and account management — notifications, profile, and app preferences.' }
             ];
 
             var CATEGORY_LABELS = {
@@ -774,7 +774,7 @@
                         /* Flat card — email / web screenshots, no phone bezel */
                         return '<article class="ios-phone-card ios-flat-card" data-index="' + i + '" style="animation-delay:' + delay + '">' +
                             '<div class="ios-flat-frame" role="button" tabindex="0" aria-label="View ' + screen.title + '">' +
-                                '<img class="ios-flat-image" src="' + imgPath + '" alt="' + screen.alt + '" loading="lazy">' +
+                                '<img class="ios-flat-image" src="' + imgPath + '" alt="' + screen.alt + '" loading="lazy" decoding="async">' +
                                 '<div class="ios-phone-overlay ios-flat-overlay">' +
                                     '<span class="ios-overlay-category" style="color:' + catColor + '">' + catLabel + '</span>' +
                                     '<span class="ios-overlay-title">' + screen.title + '</span>' +
@@ -787,7 +787,7 @@
                     /* Standard phone bezel card */
                     return '<article class="ios-phone-card" data-index="' + i + '" style="animation-delay:' + delay + '">' +
                         '<figure class="ios-phone-frame" role="button" tabindex="0" aria-label="View ' + screen.title + ' screenshot">' +
-                            '<img class="ios-phone-screen" src="' + imgPath + '" alt="' + screen.alt + '" loading="lazy">' +
+                            '<img class="ios-phone-screen" src="' + imgPath + '" alt="' + screen.alt + '" loading="lazy" decoding="async">' +
                             '<figcaption class="ios-phone-overlay">' +
                                 '<span class="ios-overlay-category" style="color:' + catColor + '">' + catLabel + '</span>' +
                                 '<span class="ios-overlay-title">' + screen.title + '</span>' +
@@ -1017,7 +1017,7 @@
             (function() {
                 var EXPENSE_SCREENS = [
                     {
-                        file: 'crewcation-split-bill.png',
+                        file: 'crewcation-split-bill.webp',
                         title: 'Expense Concept',
                         category: 'Concept',
                         catColor: '#ec4899',
@@ -1025,7 +1025,7 @@
                         noBezel: true
                     },
                     {
-                        file: 'ios-split-bill-mvp.png',
+                        file: 'ios-split-bill-mvp.webp',
                         title: 'Trip Expense Overview',
                         category: 'iOS Step 1',
                         catColor: '#f59e0b',
@@ -1033,7 +1033,7 @@
                         noBezel: false
                     },
                     {
-                        file: 'ios-split-bill-mvp-receipt-pic.png',
+                        file: 'ios-split-bill-mvp-receipt-pic.webp',
                         title: 'Capture Receipt',
                         category: 'iOS Step 2',
                         catColor: '#f59e0b',
@@ -1041,7 +1041,7 @@
                         noBezel: false
                     },
                     {
-                        file: 'ios-split-bill-mvp-ai-reading-receipt.png',
+                        file: 'ios-split-bill-mvp-ai-reading-receipt.webp',
                         title: 'AI Reading Receipt',
                         category: 'iOS Step 3',
                         catColor: '#f59e0b',
@@ -1049,7 +1049,7 @@
                         noBezel: false
                     },
                     {
-                        file: 'ios-split-bill-mvp-ai-read-receipt-result.png',
+                        file: 'ios-split-bill-mvp-ai-read-receipt-result.webp',
                         title: 'AI Extraction Result',
                         category: 'iOS Step 4',
                         catColor: '#f59e0b',
@@ -1057,7 +1057,7 @@
                         noBezel: false
                     },
                     {
-                        file: 'ios-split-bill-mvp-expense-added.png',
+                        file: 'ios-split-bill-mvp-expense-added.webp',
                         title: 'Expense Added to Trip',
                         category: 'iOS Step 5',
                         catColor: '#f59e0b',
@@ -1065,7 +1065,7 @@
                         noBezel: false
                     },
                     {
-                        file: 'ios-split-bill-mvp-crew-settle-split.png',
+                        file: 'ios-split-bill-mvp-crew-settle-split.webp',
                         title: 'Settle Split Balances',
                         category: 'iOS Step 6',
                         catColor: '#f59e0b',
@@ -1073,7 +1073,7 @@
                         noBezel: false
                     },
                     {
-                        file: 'ios-split-bill-mvp-crew-settle-message.png',
+                        file: 'ios-split-bill-mvp-crew-settle-message.webp',
                         title: 'Settle Message',
                         category: 'iOS Step 7',
                         catColor: '#f59e0b',
@@ -1081,7 +1081,7 @@
                         noBezel: false
                     },
                     {
-                        file: 'android-split-bill-idea-01.png',
+                        file: 'android-split-bill-idea-01.webp',
                         title: 'Material 3 Dashboard',
                         category: 'Android Concept 1',
                         catColor: '#10b981',
@@ -1089,7 +1089,7 @@
                         noBezel: true
                     },
                     {
-                        file: 'android-split-bill-idea-02.png',
+                        file: 'android-split-bill-idea-02.webp',
                         title: 'Expense Summary',
                         category: 'Android Concept 2',
                         catColor: '#10b981',
@@ -1097,7 +1097,7 @@
                         noBezel: true
                     },
                     {
-                        file: 'android-split-bill-idea-scan.png',
+                        file: 'android-split-bill-idea-scan.webp',
                         title: 'Capture Receipt',
                         category: 'Android Concept 3',
                         catColor: '#10b981',
@@ -1105,7 +1105,7 @@
                         noBezel: true
                     },
                     {
-                        file: 'android-split-bill-ai-read-receipt.png',
+                        file: 'android-split-bill-ai-read-receipt.webp',
                         title: 'Reading Details',
                         category: 'Android Concept 4',
                         catColor: '#10b981',
@@ -1113,7 +1113,7 @@
                         noBezel: true
                     },
                     {
-                        file: 'android-split-bill-ai-read-receipt-result.png',
+                        file: 'android-split-bill-ai-read-receipt-result.webp',
                         title: 'Extraction Complete',
                         category: 'Android Concept 5',
                         catColor: '#10b981',
@@ -1254,7 +1254,7 @@
                             <span class="dot green"></span>
                             <span class="pwa-desktop-url">crewcation.app/marketing</span>
                         </div>
-                        <img src="assets/crewcation-pwa-marketing-desktop.png" alt="Crewcation PWA Marketing Site Desktop View" loading="lazy">
+                        <img src="assets/crewcation-pwa-marketing-desktop.webp" alt="Crewcation PWA Marketing Site Desktop View" loading="lazy" decoding="async" width="1280" height="800">
                     </div>
                 </div>
 
@@ -1268,7 +1268,7 @@
                             <span class="dot green"></span>
                             <span class="pwa-desktop-url">crewcation.app/travel-guides</span>
                         </div>
-                        <img src="assets/crewcation-pwa-travel-guides-desktop.png" alt="Crewcation PWA Travel Guides Page View" loading="lazy">
+                        <img src="assets/crewcation-pwa-travel-guides-desktop.webp" alt="Crewcation PWA Travel Guides Page View" loading="lazy" decoding="async" width="1280" height="800">
                     </div>
                 </div>
 
@@ -1282,7 +1282,7 @@
                             <span class="dot green"></span>
                             <span class="pwa-desktop-url">crewcation.app/travel-guides/what-is-a-crewcation</span>
                         </div>
-                        <img src="assets/crewcation-pwa-guide-detail-whatis.png" alt="Crewcation PWA Travel Guide Detail View" loading="lazy">
+                        <img src="assets/crewcation-pwa-guide-detail-whatis.webp" alt="Crewcation PWA Travel Guide Detail View" loading="lazy" decoding="async" width="1280" height="800">
                     </div>
                 </div>
 
@@ -1296,7 +1296,7 @@
                             <span class="dot green"></span>
                             <span class="pwa-desktop-url">crewcation.app/travel-guides/hidden-gems-in-paris</span>
                         </div>
-                        <img src="assets/crewcation-pwa-guide-detail-paris.png" alt="Paris Hidden Gems Guide Detail Page View" loading="lazy">
+                        <img src="assets/crewcation-pwa-guide-detail-paris.webp" alt="Paris Hidden Gems Guide Detail Page View" loading="lazy" decoding="async" width="1280" height="800">
                     </div>
                 </div>
             </div>
@@ -1307,7 +1307,7 @@
                 <div class="pwa-showcase-card mobile-card">
                     <h3>PWA Marketing Site</h3>
                     <div class="pwa-mobile-frame">
-                        <img src="assets/crewcation-pwa-marketing-mobile.png" alt="Crewcation PWA Marketing Site Mobile View" loading="lazy">
+                        <img src="assets/crewcation-pwa-marketing-mobile.webp" alt="Crewcation PWA Marketing Site Mobile View" loading="lazy" decoding="async" width="390" height="844">
                     </div>
                 </div>
 
@@ -1315,7 +1315,7 @@
                 <div class="pwa-showcase-card mobile-card">
                     <h3>Travel Guides Hub</h3>
                     <div class="pwa-mobile-frame">
-                        <img src="assets/crewcation-pwa-travel-guides-mobile.png" alt="Crewcation PWA Travel Guides Mobile View" loading="lazy">
+                        <img src="assets/crewcation-pwa-travel-guides-mobile.webp" alt="Crewcation PWA Travel Guides Mobile View" loading="lazy" decoding="async" width="390" height="844">
                     </div>
                 </div>
             </div>
