@@ -5,12 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taste Still Matters | Ryan Botha</title>
     <meta name="description" content="Why AI makes design taste more valuable, not less. A short reflection by Ryan Botha, Senior Product Designer.">
+    <meta name="robots" content="noindex">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="index.css?v=2.2">
     <link rel="icon" type="image/png" href="favicon.png">
+
+    <!-- Feature Flag: Prevent FOUC for hidden writing content -->
+    <script>
+        (function() {
+            var SHOW_WRITING = false;
+            try {
+                var p = new URLSearchParams(window.location.search);
+                var w = p.get('writing');
+                if (w === '1') { localStorage.setItem('showWriting', '1'); }
+                else if (w === '0') { localStorage.removeItem('showWriting'); }
+            } catch (e) {}
+            var isWriting = SHOW_WRITING;
+            try {
+                var p = new URLSearchParams(window.location.search);
+                if (p.get('writing') === '1' || (typeof localStorage !== 'undefined' && localStorage.getItem('showWriting') === '1')) {
+                    isWriting = true;
+                }
+            } catch (e) {}
+            if (!isWriting) {
+                document.documentElement.classList.add('writing-hidden');
+                var path = window.location.pathname;
+                var isWritingPage = path.indexOf('writing.html') !== -1 ||
+                                      path.indexOf('/writing/') !== -1 ||
+                                      path.indexOf('taste-still-matters') !== -1;
+                if (isWritingPage) {
+                    var target = path.indexOf('/writing/') !== -1 ? '../index.html' : 'index.html';
+                    window.location.replace(target);
+                }
+            }
+        })();
+    </script>
+    <style>
+        html.writing-hidden [data-writing],
+        html.writing-hidden .writing-only {
+            display: none !important;
+        }
+    </style>
     <style>
         .writing-quote { margin: 2.5rem 0; padding: 0 0 0 1.5rem; border-left: 3px solid currentColor; font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.35rem; line-height: 1.55; }
         .writing-quote cite { display: block; margin-top: 0.75rem; font-family: 'Inter', sans-serif; font-style: normal; font-size: 0.9rem; opacity: 0.7; }
@@ -31,12 +69,12 @@
             <ul id="nav-menu" class="nav-menu">
                 <li><a href="index.html" class="nav-link">Home</a></li>
                 <li><a href="index.html#work" class="nav-link">Work</a></li>
-                <li><a href="writing.html" class="nav-link">Writing</a></li>
+                <li data-writing="true"><a href="writing.html" class="nav-link">Writing</a></li>
                 <li><a href="https://www.linkedin.com/in/ryanbotha/" target="_blank" class="nav-link">LinkedIn Profile</a></li>
             </ul>
         </div>
     </nav>
-    <header class="case-study-hero">
+    <header class="case-study-hero" data-writing="true">
         <div class="case-study-hero-container">
             <a href="index.html" class="back-home"><i class="fas fa-arrow-left"></i> Back to Home</a>
             <h1 class="case-study-title">Taste Still Matters <br><span class="serif-italic">Why I'm not becoming a plumber</span></h1>
@@ -47,7 +85,7 @@
             </div>
         </div>
     </header>
-    <main class="case-study-body">
+    <main class="case-study-body" data-writing="true">
         <section class="case-study-section">
             <div class="case-study-image">
                 <img src="assets/writing/taste-still-matters.svg" alt="Illustration of a designer collaborating with artificial intelligence" loading="eager" decoding="async">

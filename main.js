@@ -1,3 +1,41 @@
+const SHOW_WRITING = false;
+
+function isWritingEnabled() {
+    try {
+        const params = new URLSearchParams(window.location.search);
+        const writingParam = params.get('writing');
+        if (writingParam === '1') {
+            try { localStorage.setItem('showWriting', '1'); } catch (e) {}
+            return true;
+        }
+        if (writingParam === '0') {
+            try { localStorage.removeItem('showWriting'); } catch (e) {}
+            return false;
+        }
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('showWriting') === '1') {
+            return true;
+        }
+    } catch (e) {}
+    return SHOW_WRITING;
+}
+
+(function applyWritingFeatureFlag() {
+    const enabled = isWritingEnabled();
+    if (!enabled) {
+        document.documentElement.classList.add('writing-hidden');
+        const path = window.location.pathname;
+        const isWritingPage = path.indexOf('writing.html') !== -1 ||
+                              path.indexOf('/writing/') !== -1 ||
+                              path.indexOf('taste-still-matters') !== -1;
+        if (isWritingPage) {
+            const redirectTarget = path.indexOf('/writing/') !== -1 ? '../index.html' : 'index.html';
+            window.location.replace(redirectTarget);
+        }
+    } else {
+        document.documentElement.classList.remove('writing-hidden');
+    }
+})();
+
 function initMobileNav() {
     const navToggle = document.querySelector('.nav-toggle');
     const navMenu = document.querySelector('.nav-menu');
