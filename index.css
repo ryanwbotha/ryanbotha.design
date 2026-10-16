@@ -3319,22 +3319,3 @@ body.modal-open {
 /* Keep images at natural aspect ratio when width/height attributes are set */
 :where(img[width][height]) { height: auto; }
 
-/* At a glance block for case studies */
-.case-study-glance {
-    margin-top: 32px;
-    padding-top: 24px;
-    border-top: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-.glance-title {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--text-muted);
-    font-weight: 700;
-    margin-bottom: 16px;
-}
-
-.glance-grid {
-    margin-top: 0 !important;
-}
