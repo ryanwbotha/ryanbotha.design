@@ -295,21 +295,109 @@ function initApp() {
     function initWorkViewToggle(swiperInstance) {
         const workSection = document.getElementById('work');
         const toggleBtns = document.querySelectorAll('.view-toggle-btn');
+        const wrapper = document.getElementById('work-views-wrapper');
+        const swiperEl = document.querySelector('.case-studies-swiper');
+        const gridEl = document.querySelector('.case-studies-grid');
+        const gridContainer = document.querySelector('.case-studies-grid-container');
         if (!workSection || toggleBtns.length === 0) return;
 
-        function setView(view) {
-            workSection.setAttribute('data-view', view);
+        let isTransitioning = false;
+
+        function updateButtons(view) {
             toggleBtns.forEach(btn => {
                 const isActive = btn.dataset.view === view;
                 btn.classList.toggle('active', isActive);
                 btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
             });
+        }
+
+        function applyViewDOM(view) {
+            workSection.setAttribute('data-view', view);
+            updateButtons(view);
             try {
                 localStorage.setItem('workView', view);
             } catch(e) {}
+        }
 
-            if (view === 'carousel' && swiperInstance) {
-                swiperInstance.update();
+        function setView(view, animate = false) {
+            const currentView = workSection.getAttribute('data-view');
+            if (currentView === view && !animate) return;
+
+            const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            // Instant switch on page load or when reduced motion is preferred
+            if (!animate || prefersReducedMotion || !wrapper) {
+                applyViewDOM(view);
+                if (view === 'carousel' && swiperInstance) {
+                    swiperInstance.update();
+                }
+                return;
+            }
+
+            if (isTransitioning) return;
+            isTransitioning = true;
+
+            const outgoingEl = currentView === 'carousel' ? swiperEl : gridContainer;
+            const incomingEl = view === 'carousel' ? swiperEl : gridContainer;
+
+            // Reserve height to prevent section height snapping
+            const initialHeight = wrapper.offsetHeight;
+            wrapper.style.minHeight = initialHeight + 'px';
+
+            const performSwap = () => {
+                if (outgoingEl) outgoingEl.classList.remove('view-outgoing');
+                applyViewDOM(view);
+
+                if (view === 'carousel') {
+                    if (swiperEl) {
+                        swiperEl.classList.remove('view-incoming');
+                        void swiperEl.offsetWidth; // trigger reflow
+                        swiperEl.classList.add('view-incoming');
+                    }
+                    if (swiperInstance) {
+                        swiperInstance.update();
+                        if (typeof swiperInstance.slideToLoop === 'function') {
+                            swiperInstance.slideToLoop(swiperInstance.realIndex || 0, 0);
+                        }
+                    }
+                } else {
+                    if (gridEl) {
+                        gridEl.classList.remove('view-incoming');
+                        void gridEl.offsetWidth; // trigger reflow
+                        gridEl.classList.add('view-incoming');
+                    }
+                }
+
+                // Animate wrapper height to match new content height smoothly
+                requestAnimationFrame(() => {
+                    const newHeight = incomingEl ? incomingEl.offsetHeight : wrapper.scrollHeight;
+                    if (newHeight) {
+                        wrapper.style.minHeight = newHeight + 'px';
+                    }
+                });
+
+                setTimeout(() => {
+                    if (wrapper) wrapper.style.minHeight = '';
+                    if (swiperEl) swiperEl.classList.remove('view-incoming');
+                    if (gridEl) gridEl.classList.remove('view-incoming');
+                    isTransitioning = false;
+                }, 400);
+            };
+
+            // Check if View Transitions API is supported
+            if (document.startViewTransition && !prefersReducedMotion) {
+                if (outgoingEl) outgoingEl.classList.add('view-outgoing');
+                setTimeout(() => {
+                    document.startViewTransition(() => {
+                        performSwap();
+                    });
+                }, 200);
+            } else {
+                // Class-based fallback
+                if (outgoingEl) outgoingEl.classList.add('view-outgoing');
+                setTimeout(() => {
+                    performSwap();
+                }, 200);
             }
         }
 
@@ -320,13 +408,15 @@ function initApp() {
                 initialView = saved;
             }
         } catch(e) {}
-        setView(initialView);
+        setView(initialView, false);
 
         toggleBtns.forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
                 const view = btn.dataset.view;
-                if (view) setView(view);
+                if (view && workSection.getAttribute('data-view') !== view) {
+                    setView(view, true);
+                }
             });
         });
     }
