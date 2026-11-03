@@ -3224,8 +3224,10 @@ body.modal-open {
 }
 
 /* How I Work Section */
-.how-i-work-section {
+.how-i-work-section,
+#design-process {
     background-color: #ffffff;
+    scroll-margin-top: 96px;
 }
 
 .how-i-work-section .section-container {

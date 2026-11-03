@@ -465,10 +465,56 @@ function initApp() {
         });
     });
 
+    function scrollToDesignProcess(smooth = true) {
+        const heading = document.querySelector('#design-process .how-i-work-title') || document.getElementById('design-process');
+        if (!heading) return;
+        const navbar = document.getElementById('navbar') || document.querySelector('.navbar');
+        const navbarHeight = navbar ? navbar.offsetHeight : 72;
+        const targetScrollY = heading.getBoundingClientRect().top + window.scrollY - navbarHeight - 24;
+        const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({
+            top: targetScrollY,
+            behavior: (smooth && !prefersReducedMotion) ? 'smooth' : 'auto'
+        });
+    }
+
+    // Intercept clicks on navbar Design Process link
+    const designProcessLinks = document.querySelectorAll('a[href="#design-process"]');
+    designProcessLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            // Update URL hash without jumping
+            history.pushState(null, null, '#design-process');
+
+            const isNavOpen = document.body.classList.contains('nav-open') ||
+                              (document.querySelector('.nav-toggle') && document.querySelector('.nav-toggle').getAttribute('aria-expanded') === 'true');
+            if (isNavOpen) {
+                // Close mobile nav drawer first
+                const navToggle = document.querySelector('.nav-toggle');
+                const navMenu = document.querySelector('.nav-menu');
+                if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
+                if (navMenu) navMenu.classList.remove('open');
+                document.body.classList.remove('nav-open');
+                document.documentElement.classList.remove('nav-open');
+
+                // Wait for drawer close and body overflow unlock before scrolling
+                setTimeout(() => {
+                    scrollToDesignProcess(true);
+                }, 50);
+            } else {
+                scrollToDesignProcess(true);
+            }
+        });
+    });
+
     // Handle initial page load with hash
     if (window.location.hash === '#work') {
         setTimeout(() => {
             scrollToWork(false);
+        }, 150);
+    } else if (window.location.hash === '#design-process') {
+        setTimeout(() => {
+            scrollToDesignProcess(false);
         }, 150);
     }
 }
