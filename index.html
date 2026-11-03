@@ -82,11 +82,28 @@
     <section class="hero-section">
         <div class="hero-container">
             <div class="hero-content">
-                <h1 class="hero-title">
+                <h1 id="hero-title" class="hero-title">
                     What if digital <br>
                     interactions <br>
                     <span class="serif-italic">felt effortless?</span>
                 </h1>
+                <script>
+                    (function() {
+                        var statements = [
+                            ["Good design.", "A human decision."],
+                            ["Building got easy.", "Understanding people didn't."],
+                            ["AI moves fast.", "Taste takes time."],
+                            ["AI makes building easy.", "Design makes it right."],
+                            ["Screens are cheap.", "Design clarity isn't."],
+                            ["Less noise.", "More design clarity."]
+                        ];
+                        var item = statements[Math.floor(Math.random() * statements.length)];
+                        var el = document.getElementById('hero-title');
+                        if (el) {
+                            el.innerHTML = item[0] + ' <br><span class="serif-italic">' + item[1] + '</span>';
+                        }
+                    })();
+                </script>
                 <a href="#work" class="scroll-down">
                     <i class="fas fa-arrow-down scroll-arrow"></i>
                 </a>
