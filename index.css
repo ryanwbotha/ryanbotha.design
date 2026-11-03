@@ -2928,7 +2928,7 @@ body.modal-open {
 
 .how-i-work-intro-row {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 0.9fr 1.1fr;
     gap: 48px;
     align-items: center;
     margin-bottom: 80px;
@@ -2947,7 +2947,7 @@ body.modal-open {
 
 .how-i-work-cube {
     width: 100%;
-    max-width: 560px;
+    max-width: 780px;
     height: auto;
     border-radius: 16px;
     display: block;
@@ -3000,6 +3000,7 @@ body.modal-open {
 .stage-num {
     font-family: var(--font-serif);
     font-weight: 600;
+    color: var(--accent);
     margin-right: 6px;
 }
 
@@ -3075,8 +3076,6 @@ body.modal-open {
 }
 
 .how-i-work-pullquote p {
-    font-family: var(--font-serif);
-    font-style: italic;
     font-size: 1.85rem;
     line-height: 1.35;
     color: var(--text-primary);
