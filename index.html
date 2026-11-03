@@ -16,7 +16,7 @@
     
     <!-- Custom Style Sheet -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="index.css?v=2.3">
+    <link rel="stylesheet" href="index.css?v=2.4">
     <link rel="icon" type="image/png" href="favicon.png">
 
     <!-- Feature Flag: Prevent FOUC for hidden writing content -->
@@ -240,90 +240,101 @@
         </div>
     </section>
 
-    <!-- How I design with AI Section -->
-    <section id="ai-design" class="ai-workflow-section">
+    <!-- How I work Section -->
+    <section id="how-i-work" class="how-i-work-section">
         <div class="section-container">
-            <div class="section-header">
-                <h2 class="section-title">How I design with AI</h2>
+            <div class="how-i-work-header">
+                <span class="how-i-work-eyebrow">How I work</span>
+                <h2 class="how-i-work-title">I still start with a pencil. Then I direct the work.</h2>
             </div>
-            <div class="ai-workflow-grid">
-                <div class="ai-workflow-card">
-                    <h3>Research synthesis</h3>
-                    <p>I use Gemini to cluster interview notes and pull out themes fast.</p>
-                </div>
-                <div class="ai-workflow-card">
-                    <h3>Prototyping</h3>
-                    <p>I use Google Antigravity agents to turn Figma flows into working builds in hours, not weeks.</p>
-                </div>
-                <div class="ai-workflow-card">
-                    <h3>Production</h3>
-                    <p>Agents audit parity between Crewcation's iOS app and web app, with Figma and Figma AI as the source of truth.</p>
-                </div>
-            </div>
-            <div class="ai-workflow-closer">
-                <p class="serif-italic">AI speeds up exploration. My taste decides what ships.</p>
-                <p data-writing="true"><a href="./taste-still-matters.html" class="btn btn-primary">Read: Taste still matters <i class="fas fa-arrow-right"></i></a></p>
-                <div data-writing="true">
-                    <a href="writing.html" class="writing-teaser-link">Read more notes on design & AI in Writing <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- About Section -->
-    <section id="about" class="about-section">
-        <div class="section-container">
-            <div class="about-grid">
-                <div class="about-header">
-                    <h2 class="section-title">The Philosophy</h2>
+            <div class="how-i-work-intro-row">
+                <div class="how-i-work-intro-text">
+                    <p>I'm a senior product designer with 10+ years in workflow-heavy, rule-bound products: B2B lending platforms, KYC onboarding and mobile banking for 2M+ active customers. These days I spend less time pushing every pixel and more time directing the work: setting the vision and the boundaries, and deciding what's good enough to ship.</p>
                 </div>
-                <div class="about-text">
-                    <p class="lead-text">
-                        I'm a senior product designer who makes complex products feel like one system. For 10+ years I've designed where workflows, data and trust meet: B2B lending platforms, KYC onboarding and mobile banking for 2M+ active customers.
-                    </p>
-                    <p class="body-text">
-                        I find where people get stuck between tools and teams, design the way through, and measure whether it worked. At EnPowered that meant cutting loan document collection from 2–4 weeks to 1–2 days. At Nedbank it meant cutting sign-up drop-off by 25–35%. AI is part of my daily workflow, so ideas reach testable prototypes fast, and I took Crewcation from idea to live on the App Store.
-                    </p>
-                    <div class="about-cta-container">
-                        <a href="https://www.linkedin.com/in/ryanbotha/" target="_blank" class="btn btn-primary">
-                            More about me on LinkedIn <i class="fab fa-linkedin"></i>
-                        </a>
+                <div class="how-i-work-intro-visual">
+                    <img src="assets/how-i-work-cube.webp" alt="Stippled glass cube with a blue core" class="how-i-work-cube" loading="lazy" width="1376" height="768">
+                </div>
+            </div>
+
+            <div class="how-i-work-stages-block">
+                <h3 class="how-i-work-subheading">From sketch to shipped</h3>
+                <div class="how-i-work-stages-grid">
+                    <div class="stage-card stage-card-1">
+                        <h4 class="stage-title">01 Think on paper</h4>
+                        <div class="stage-content">
+                            <p class="stage-line"><strong class="stage-label">Me:</strong> Ideas start as pencil scribbles. I talk with the client and team, run customer interviews, and plan the MVP with stakeholders.</p>
+                            <p class="stage-line"><strong class="stage-label">Agents:</strong> Gemini and project agents organize the research and conversations, write up what they found, and help sort my messy thinking.</p>
+                        </div>
+                    </div>
+
+                    <div class="stage-card stage-card-2">
+                        <h4 class="stage-title">02 Build in greyscale</h4>
+                        <div class="stage-content">
+                            <p class="stage-line"><strong class="stage-label">Agents:</strong> Google Antigravity agents turn the flow into a working greyscale build in hours, not weeks. No colour on purpose, so we judge the flow, not the paint.</p>
+                            <p class="stage-line"><strong class="stage-label">Me:</strong> I review it, decide what changes, goes or gets added, and feed it back.</p>
+                        </div>
+                    </div>
+
+                    <div class="stage-card stage-card-3">
+                        <h4 class="stage-title">03 Put it in front of people</h4>
+                        <div class="stage-content">
+                            <p class="stage-line"><strong class="stage-label">Me:</strong> Stakeholders try it, and users too when there's budget for testing. Meanwhile I'm on moodboards, type and colour.</p>
+                        </div>
+                    </div>
+
+                    <div class="stage-card stage-card-4">
+                        <h4 class="stage-title">04 Iterate and ship</h4>
+                        <div class="stage-content">
+                            <p class="stage-line"><strong class="stage-label">Me:</strong> I design in Figma, with Figma AI, as the source of truth.</p>
+                            <p class="stage-line"><strong class="stage-label">Agents:</strong> They build side by side with me until it ships, and audit parity between Crewcation's iOS and web apps.</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="how-i-work-subline">That's how I took <a href="crewcation-ux-and-design-system.html">Crewcation</a> from an idea to the App Store as a team of one.</p>
+            </div>
+
+            <div class="how-i-work-two-cols">
+                <div class="how-i-work-col">
+                    <h3 class="how-i-work-col-title">The work you don't see</h3>
+                    <p class="how-i-work-col-text">It can look like vibe coding. Most of the effort lives in the in-between: where data is stored, accounts and security, version control, the design system, and the rules agents work inside so the product stays true to the vision.</p>
+                </div>
+                <div class="how-i-work-col">
+                    <h3 class="how-i-work-col-title">What stays human</h3>
+                    <p class="how-i-work-col-text">An agent can tick every UX checkbox and make something usable. It still doesn't know when something shouldn't be built, or whether it feels right. That judgment, on behalf of the person using the product, stays with me.</p>
+                </div>
+            </div>
+
+            <div class="how-i-work-pullquote">
+                <p class="serif-italic">AI speeds up exploration. My taste decides what ships.</p>
+            </div>
+
+            <div class="how-i-work-offerings-block">
+                <h3 class="how-i-work-subheading">What I'd bring to your team</h3>
+                <div class="how-i-work-offerings-grid">
+                    <div class="offering-card">
+                        <h4 class="offering-title">Untangling complex workflows</h4>
+                        <p class="offering-text">I find where people get stuck between tools and teams, design the way through, and measure whether it worked. At EnPowered, loan document collection went from 2–4 weeks to 1–2 days, with 80% less back-and-forth between lenders and borrowers.</p>
+                    </div>
+                    <div class="offering-card">
+                        <h4 class="offering-title">Design that respects the rules</h4>
+                        <p class="offering-text">At Nedbank I found KYC checks set stricter than the bank's anti-fraud rules required, and redesigned onboarding to cut sign-up drop-off by 25–35% without weakening security.</p>
+                    </div>
+                    <div class="offering-card">
+                        <h4 class="offering-title">Systems, not screens</h4>
+                        <p class="offering-text">I build and maintain scalable design systems that keep products consistent and speed up engineering delivery, including one system across Crewcation's iOS and web apps.</p>
+                    </div>
+                    <div class="offering-card">
+                        <h4 class="offering-title">Growing designers</h4>
+                        <p class="offering-text">I've mentored 115+ career-changers at CareerFoundry through 1:1 calls and portfolio and case-study reviews. At least 25 of them now work in design roles.</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="skills-section">
-        <div class="section-container">
-            <div class="section-header">
-                <h2 class="section-title">Core Competencies</h2>
-            </div>
-            <div class="skills-grid">
-                <!-- Skill 1 -->
-                <div class="skill-card">
-                    <h3>Strategic UX Leadership</h3>
-                    <p>I lead the charge in defining and executing UX strategies that align with overarching product and business goals. This involves architecting user experiences for core platforms, optimizing workflows, and enhancing capabilities for sales and operations teams.</p>
-                </div>
-                
-                <!-- Skill 2 -->
-                <div class="skill-card">
-                    <h3>Human-Centered Design & Research</h3>
-                    <p>My design philosophy is rooted in empathy. I excel at orchestrating comprehensive usability testing, conducting customer interviews, and translating complex user stories into intuitive, elegant experiences.</p>
-                </div>
-                
-                <!-- Skill 3 -->
-                <div class="skill-card">
-                    <h3>Product & Design Systems</h3>
-                    <p>I bring a hands-on approach from detailed user flows to low-fidelity prototypes. A key strength is architecting and maintaining scalable design systems that ensure design consistency and speed up engineering delivery.</p>
-                </div>
-
-                <!-- Skill 4 -->
-                <div class="skill-card">
-                    <h3>Mentorship & Design Empowerment</h3>
-                    <p>I've mentored 115+ career-changers at CareerFoundry through 1:1 calls and portfolio and case-study reviews. At least 25 of them now work in design roles, from UX and product design to UX research.</p>
-                </div>
+            <div class="how-i-work-links-row">
+                <a href="taste-still-matters.html" class="how-i-work-link" data-writing="true">Read: Taste still matters <i class="fas fa-arrow-right"></i></a>
+                <a href="writing.html" class="how-i-work-link" data-writing="true">More notes in Writing <i class="fas fa-arrow-right"></i></a>
+                <a href="https://www.linkedin.com/in/ryanbotha/" target="_blank" rel="noopener noreferrer" class="how-i-work-link">Let's talk on LinkedIn <i class="fab fa-linkedin"></i></a>
             </div>
         </div>
     </section>
