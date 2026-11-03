@@ -3395,6 +3395,10 @@ body.modal-open {
     border: none;
     background: var(--bg-secondary);
     border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
 }
 
 .how-i-work-pullquote p {
@@ -3402,6 +3406,15 @@ body.modal-open {
     line-height: 1.35;
     color: var(--text-primary);
     margin: 0;
+    flex: 1;
+}
+
+.how-i-work-heart {
+    width: 200px;
+    max-width: 220px;
+    height: auto;
+    flex-shrink: 0;
+    display: block;
 }
 
 /* Offerings 2x2 Grid */
@@ -3555,6 +3568,22 @@ body.modal-open {
 
     .how-i-work-link {
         justify-content: center;
+    }
+}
+
+@media (max-width: 640px) {
+    .how-i-work-pullquote {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .how-i-work-heart {
+        order: -1;
+        width: 140px;
+        max-width: 140px;
+        margin: 0 auto;
     }
 }
 
