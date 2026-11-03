@@ -423,53 +423,17 @@ function initApp() {
 
     initWorkViewToggle(caseSwiper);
 
-    // Smart scroll centering function
-    function scrollToCarouselCenter(smooth = true) {
-        const activeSlideInner = document.querySelector('.swiper-slide-active .slide-inner') || document.querySelector('.swiper-slide .slide-inner');
-        const activeSlideQuote = document.querySelector('.swiper-slide-active .slide-quote') || document.querySelector('.swiper-slide .slide-quote');
-        
-        if (activeSlideInner) {
-            const cardRect = activeSlideInner.getBoundingClientRect();
-            const cardTop = cardRect.top + window.scrollY;
-            const cardBottom = cardRect.bottom + window.scrollY;
-            
-            let visualBottom = cardBottom;
-            if (activeSlideQuote) {
-                const quoteRect = activeSlideQuote.getBoundingClientRect();
-                const quoteBottom = quoteRect.bottom + window.scrollY;
-                visualBottom = Math.max(cardBottom, quoteBottom);
-            }
-            
-            const visualHeight = visualBottom - cardTop;
-            const visualCenter = cardTop + visualHeight / 2;
-            let targetScrollY = visualCenter - (window.innerHeight / 2);
-            
-            // Ensure the card top does not get hidden under the sticky navbar
-            const navbarHeight = navbar ? navbar.offsetHeight : 80;
-            const maxScrollY = cardTop - navbarHeight - 20; // 20px padding/buffer
-            if (targetScrollY > maxScrollY) {
-                targetScrollY = maxScrollY;
-            }
-            
-            window.scrollTo({
-                top: targetScrollY,
-                behavior: smooth ? 'smooth' : 'auto'
-            });
-        }
-    }
-
     function scrollToWork(smooth = true) {
-        const workSection = document.getElementById('work');
-        if (workSection && workSection.getAttribute('data-view') === 'grid') {
-            const navbarHeight = navbar ? navbar.offsetHeight : 80;
-            const targetScrollY = workSection.offsetTop - navbarHeight;
-            window.scrollTo({
-                top: targetScrollY,
-                behavior: smooth ? 'smooth' : 'auto'
-            });
-        } else {
-            scrollToCarouselCenter(smooth);
-        }
+        const heading = document.querySelector('#work .section-title') || document.getElementById('work');
+        if (!heading) return;
+        const navbar = document.getElementById('navbar') || document.querySelector('.navbar');
+        const navbarHeight = navbar ? navbar.offsetHeight : 72;
+        const targetScrollY = heading.getBoundingClientRect().top + window.scrollY - navbarHeight - 24;
+        const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({
+            top: targetScrollY,
+            behavior: (smooth && !prefersReducedMotion) ? 'smooth' : 'auto'
+        });
     }
 
     // Intercept clicks on navbar Work link and scroll down arrow
@@ -479,7 +443,25 @@ function initApp() {
             e.preventDefault();
             // Update URL hash without jumping
             history.pushState(null, null, '#work');
-            scrollToWork(true);
+
+            const isNavOpen = document.body.classList.contains('nav-open') ||
+                              (document.querySelector('.nav-toggle') && document.querySelector('.nav-toggle').getAttribute('aria-expanded') === 'true');
+            if (isNavOpen) {
+                // Close mobile nav drawer first
+                const navToggle = document.querySelector('.nav-toggle');
+                const navMenu = document.querySelector('.nav-menu');
+                if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
+                if (navMenu) navMenu.classList.remove('open');
+                document.body.classList.remove('nav-open');
+                document.documentElement.classList.remove('nav-open');
+
+                // Wait for drawer close and body overflow unlock before scrolling
+                setTimeout(() => {
+                    scrollToWork(true);
+                }, 50);
+            } else {
+                scrollToWork(true);
+            }
         });
     });
 
@@ -487,7 +469,7 @@ function initApp() {
     if (window.location.hash === '#work') {
         setTimeout(() => {
             scrollToWork(false);
-        }, 300); // 300ms delay to allow Swiper layout to stabilize
+        }, 150);
     }
 }
 

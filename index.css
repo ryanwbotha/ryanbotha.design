@@ -304,11 +304,12 @@ body.nav-open {
 
 /* Projects Section */
 .projects-section {
-    scroll-margin-top: 90px; /* Aligns section top close to navbar */
+    scroll-margin-top: 96px; /* navbar height (~72px) + ~24px */
+    margin-top: 60px;
 }
 
 #work .section-container {
-    padding-top: 100px; /* Increased padding above the case studies heading */
+    padding-top: 0px; /* Aligns heading with section top for accurate scroll-margin */
     padding-bottom: 0px; /* Removed padding-bottom since swiper is now outside */
 }
 
