@@ -3143,6 +3143,25 @@ body.modal-open {
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
 }
 
+/* Desktop Spacing Adjustments */
+@media (min-width: 1024px) {
+    .how-i-work-intro-row {
+        margin-bottom: 120px;
+    }
+
+    .how-i-work-stages-block {
+        margin-bottom: 120px;
+    }
+
+    .how-i-work-pullquote {
+        margin-bottom: 120px;
+    }
+
+    .how-i-work-offerings-block {
+        margin-bottom: 90px;
+    }
+}
+
 /* Responsive adjustments for How I Work */
 @media (max-width: 992px) {
     .how-i-work-intro-row {
