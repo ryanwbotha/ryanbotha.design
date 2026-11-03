@@ -257,13 +257,23 @@ function initApp() {
     }
 
     // Initialize Swiper Carousel for Case Studies
+    let caseSwiper = null;
     if (typeof Swiper !== 'undefined' && document.querySelector('.case-studies-swiper')) {
-        new Swiper('.case-studies-swiper', {
+        caseSwiper = new Swiper('.case-studies-swiper', {
             grabCursor: true,
             centeredSlides: true,
             slidesPerView: 'auto',
             spaceBetween: 16,
             loop: true,
+            autoplay: false,
+            keyboard: {
+                enabled: true,
+                onlyInViewport: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
             mousewheel: {
                 forceToAxis: true,
                 sensitivity: 0.5,
@@ -280,6 +290,48 @@ function initApp() {
             }
         });
     }
+
+    // Work View Switcher (Carousel vs Card Grid)
+    function initWorkViewToggle(swiperInstance) {
+        const workSection = document.getElementById('work');
+        const toggleBtns = document.querySelectorAll('.view-toggle-btn');
+        if (!workSection || toggleBtns.length === 0) return;
+
+        function setView(view) {
+            workSection.setAttribute('data-view', view);
+            toggleBtns.forEach(btn => {
+                const isActive = btn.dataset.view === view;
+                btn.classList.toggle('active', isActive);
+                btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+            });
+            try {
+                localStorage.setItem('workView', view);
+            } catch(e) {}
+
+            if (view === 'carousel' && swiperInstance) {
+                swiperInstance.update();
+            }
+        }
+
+        let initialView = 'carousel';
+        try {
+            const saved = localStorage.getItem('workView');
+            if (saved === 'grid' || saved === 'carousel') {
+                initialView = saved;
+            }
+        } catch(e) {}
+        setView(initialView);
+
+        toggleBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const view = btn.dataset.view;
+                if (view) setView(view);
+            });
+        });
+    }
+
+    initWorkViewToggle(caseSwiper);
 
     // Smart scroll centering function
     function scrollToCarouselCenter(smooth = true) {
@@ -316,6 +368,20 @@ function initApp() {
         }
     }
 
+    function scrollToWork(smooth = true) {
+        const workSection = document.getElementById('work');
+        if (workSection && workSection.getAttribute('data-view') === 'grid') {
+            const navbarHeight = navbar ? navbar.offsetHeight : 80;
+            const targetScrollY = workSection.offsetTop - navbarHeight;
+            window.scrollTo({
+                top: targetScrollY,
+                behavior: smooth ? 'smooth' : 'auto'
+            });
+        } else {
+            scrollToCarouselCenter(smooth);
+        }
+    }
+
     // Intercept clicks on navbar Work link and scroll down arrow
     const workLinks = document.querySelectorAll('a[href="#work"]');
     workLinks.forEach(link => {
@@ -323,14 +389,14 @@ function initApp() {
             e.preventDefault();
             // Update URL hash without jumping
             history.pushState(null, null, '#work');
-            scrollToCarouselCenter(true);
+            scrollToWork(true);
         });
     });
 
     // Handle initial page load with hash
     if (window.location.hash === '#work') {
         setTimeout(() => {
-            scrollToCarouselCenter(false);
+            scrollToWork(false);
         }, 300); // 300ms delay to allow Swiper layout to stabilize
     }
 }

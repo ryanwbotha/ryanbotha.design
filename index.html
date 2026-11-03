@@ -16,7 +16,7 @@
     
     <!-- Custom Style Sheet -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="index.css?v=2.4">
+    <link rel="stylesheet" href="index.css?v=2.5">
     <link rel="icon" type="image/png" href="favicon.png">
 
     <!-- Feature Flag: Prevent FOUC for hidden writing content -->
@@ -55,6 +55,13 @@
             display: none !important;
         }
     </style>
+    <noscript>
+        <style>
+            .view-toggle { display: none !important; }
+            .case-studies-swiper { display: none !important; }
+            .case-studies-grid-container { display: block !important; }
+        </style>
+    </noscript>
 </head>
 <body>
     <!-- Navbar -->
@@ -115,10 +122,29 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="work" class="projects-section">
+    <section id="work" class="projects-section" data-view="carousel">
+        <script>
+            (function() {
+                try {
+                    var v = localStorage.getItem('workView');
+                    if (v === 'grid') {
+                        var sec = document.getElementById('work');
+                        if (sec) sec.setAttribute('data-view', 'grid');
+                    }
+                } catch(e) {}
+            })();
+        </script>
         <div class="section-container">
-            <div class="section-header">
+            <div class="section-header work-header">
                 <h2 class="section-title">Case Studies</h2>
+                <div class="view-toggle" role="group" aria-label="Case studies view switcher">
+                    <button type="button" class="view-toggle-btn active" data-view="carousel" aria-label="Carousel view" aria-pressed="true">
+                        <i class="fas fa-rectangle-list" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="view-toggle-btn" data-view="grid" aria-label="Card view" aria-pressed="false">
+                        <i class="fas fa-th-large" aria-hidden="true"></i>
+                    </button>
+                </div>
             </div>
         </div>
             
@@ -252,8 +278,100 @@
                 </div>
 
             </div>
+            <!-- Navigation Buttons -->
+            <button type="button" class="swiper-button-prev work-swiper-arrow" aria-label="Previous case study"></button>
+            <button type="button" class="swiper-button-next work-swiper-arrow" aria-label="Next case study"></button>
             <!-- Pagination -->
             <div class="swiper-pagination"></div>
+        </div>
+
+        <!-- Card Grid View -->
+        <div class="case-studies-grid-container section-container" id="case-studies-grid">
+            <div class="case-studies-grid">
+                <!-- Project 1: EnPowered -->
+                <a href="./building-the-enpowered-financing-accelerator.html" class="work-card">
+                    <div class="work-card-media">
+                        <img src="assets/EnPowered-Financing-Accelerator-Ipad-Pro-Mockup-1-scaled.webp" alt="EnPowered Financing Accelerator" loading="lazy" decoding="async">
+                    </div>
+                    <div class="work-card-body">
+                        <h3 class="work-card-title">EnPowered</h3>
+                        <p class="work-card-desc">Empowering cleaner energy financing through frictionless digital accelerator systems.</p>
+                        <p class="work-card-outcome">The Financing Accelerator allowed partners to generate accurate estimates for solar projects instantly, significantly increasing proposal adoption.</p>
+                    </div>
+                </a>
+
+                <!-- Project 2: Arlo -->
+                <a href="./arlo-obscured-deal-progress.html" class="work-card">
+                    <div class="work-card-media">
+                        <img src="assets/MacBook-13.webp" alt="Arlo Deal Progress" loading="lazy" decoding="async">
+                    </div>
+                    <div class="work-card-body">
+                        <h3 class="work-card-title">Arlo</h3>
+                        <p class="work-card-desc">Streamlining complex pipeline states into visible, intuitive progress trackers.</p>
+                        <p class="work-card-outcome">Cut loan document collection from 2–4 weeks to 1–2 days, with 80% less back-and-forth between lenders and borrowers.</p>
+                    </div>
+                </a>
+
+                <!-- Project 3: Crewcation -->
+                <a href="./crewcation-ux-and-design-system.html" class="work-card">
+                    <div class="work-card-media">
+                        <img src="assets/crewcation-dashboard-mockup.webp" alt="Crewcation Dashboard" loading="lazy" decoding="async">
+                    </div>
+                    <div class="work-card-body">
+                        <h3 class="work-card-title">Crewcation</h3>
+                        <p class="work-card-desc">Architecting collaborative travel preference logic, a cross-platform design system, and leveraging autonomous AI agent pipelines.</p>
+                        <p class="work-card-outcome">A private Vibe Check aligns budgets without awkward money talk, and suggest-and-vote rounds guide groups along a clear, progressive path.</p>
+                    </div>
+                </a>
+
+                <!-- Project 4: Absa Overdraft -->
+                <a href="./absa-app-overdraft-loan-ux-case-study.html" class="work-card">
+                    <div class="work-card-media">
+                        <img src="assets/absa-app-2016-overdraft/Absa-Overdraft-case-study-hero.webp" alt="Absa Overdraft" loading="lazy" decoding="async">
+                    </div>
+                    <div class="work-card-body">
+                        <h3 class="work-card-title">Absa Overdraft</h3>
+                        <p class="work-card-desc">Designing an ethical and intuitive mobile experience for overdraft loan applications.</p>
+                        <p class="work-card-outcome">We designed subtle home screen decorations and contextual entries to notify eligible customers of credit availability without pushing debt.</p>
+                    </div>
+                </a>
+
+                <!-- Project 5: Absa App -->
+                <a href="./absa-app-prepaid-electricity-ux-case-study.html" class="work-card">
+                    <div class="work-card-media">
+                        <img src="assets/Absa-Prepaid-Electricity-mockup-1.webp" alt="Absa App Prepaid Electricity" loading="lazy" decoding="async">
+                    </div>
+                    <div class="work-card-body">
+                        <h3 class="work-card-title">Absa App</h3>
+                        <p class="work-card-desc">Optimizing utility purchasing mechanics on mobile applications for absolute ease-of-use.</p>
+                        <p class="work-card-outcome">Users were often in a state of stress or urgency when purchasing electricity, a factor that needed to be at the forefront of our design considerations.</p>
+                    </div>
+                </a>
+
+                <!-- Project 6: Nedbank -->
+                <a href="./nedbank-digital-onboarding-experience.html" class="work-card">
+                    <div class="work-card-media">
+                        <img src="assets/Nedbank-digital-customer-journey.webp" alt="Nedbank Digital Customer Journey" loading="lazy" decoding="async">
+                    </div>
+                    <div class="work-card-body">
+                        <h3 class="work-card-title">Nedbank</h3>
+                        <p class="work-card-desc">Revamping onboarding flows to bring customer-centric simplicity to banking.</p>
+                        <p class="work-card-outcome">Found KYC checks set stricter than the bank's anti-fraud rules required, and redesigned onboarding to cut sign-up drop-off by 25–35% without weakening security.</p>
+                    </div>
+                </a>
+
+                <!-- Project 7: Avo Auto -->
+                <a href="./redefining-the-search-experience-for-avo-auto.html" class="work-card">
+                    <div class="work-card-media">
+                        <img src="assets/avo-auto-mockup-1.webp" alt="Avo Auto Vehicle Search" loading="lazy" decoding="async">
+                    </div>
+                    <div class="work-card-body">
+                        <h3 class="work-card-title">Avo Auto</h3>
+                        <p class="work-card-desc">Redefining vehicle search and purchase journeys for digital car marketplaces.</p>
+                        <p class="work-card-outcome">We transformed the product from a static list of options into a dynamic, intuitive tool by reimagining the entire search and filter experience.</p>
+                    </div>
+                </a>
+            </div>
         </div>
     </section>
 
@@ -366,6 +484,6 @@
 
     <!-- Custom Script -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="main.js?v=2.2"></script>
+    <script src="main.js?v=2.3"></script>
 </body>
 </html>
