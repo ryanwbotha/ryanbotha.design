@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>Designing Inside Rules We Didn&#x27;t Write (Draft) | Ryan Botha</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="index.css?v=2.7">
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <!-- Feature Flag: Prevent FOUC for hidden writing content -->
+    <script>
+        (function() {
+            var SHOW_WRITING = false;
+            try {
+                var p = new URLSearchParams(window.location.search);
+                var w = p.get('writing');
+                if (w === '1') { localStorage.setItem('showWriting', '1'); }
+                else if (w === '0') { localStorage.removeItem('showWriting'); }
+            } catch (e) {}
+            var isWriting = SHOW_WRITING;
+            try {
+                var p = new URLSearchParams(window.location.search);
+                if (p.get('writing') === '1' || (typeof localStorage !== 'undefined' && localStorage.getItem('showWriting') === '1')) {
+                    isWriting = true;
+                }
+            } catch (e) {}
+            if (!isWriting) {
+                document.documentElement.classList.add('writing-hidden');
+                var path = window.location.pathname;
+                var isWritingPage = path.indexOf('writing.html') !== -1 ||
+                                      path.indexOf('/writing/') !== -1 ||
+                                      path.indexOf('taste-still-matters') !== -1;
+                if (isWritingPage) {
+                    var target = path.indexOf('/writing/') !== -1 ? '../index.html' : 'index.html';
+                    window.location.replace(target);
+                }
+            }
+        })();
+    </script>
+    <style>
+        html.writing-hidden [data-writing],
+        html.writing-hidden .writing-only {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav id="navbar" class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="assets/ryan_botha_logo.svg" alt="ryan_botha logo" class="logo-svg" decoding="async">
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-menu">
+                <span class="nav-toggle-bar bar-1"></span>
+                <span class="nav-toggle-bar bar-2"></span>
+                <span class="nav-toggle-bar bar-3"></span>
+            </button>
+            <div class="nav-backdrop"></div>
+            <ul id="nav-menu" class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="index.html#work" class="nav-link">Work</a></li>
+                <li><a href="index.html#design-process" class="nav-link">Design Process</a></li>
+                <li data-writing="true"><a href="writing.html" class="nav-link">Writing</a></li>
+                <li><a href="https://www.linkedin.com/in/ryanbotha/" target="_blank" class="nav-link">LinkedIn Profile</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Case Study Hero -->
+    <header class="case-study-hero">
+        <div class="case-study-hero-container">
+            <a href="draft-absa-electricity.html" class="back-home"><i class="fas fa-arrow-left"></i> Back to the prepaid electricity case study</a>
+            <h1 class="case-study-title">Absa App: <br><span class="serif-italic">Designing Inside Rules We Didn&rsquo;t Write</span></h1>
+            
+            <div class="case-study-meta">
+                <div class="meta-item">
+                    <h4>My Role</h4>
+                    <p>Lead UX Designer</p>
+                </div>
+                <div class="meta-item">
+                    <h4>Deliverables</h4>
+                    <p>UX Design, UI Design, Information Architecture, Prototyping</p>
+                </div>
+                <div class="meta-item">
+                    <h4>Focus</h4>
+                    <p>FinTech, Utilities, Mobile Banking App</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Case Study Content -->
+        <main class="case-study-body">
+
+        <!-- Table of Contents -->
+        <div class="toc-container" id="tocContainer">
+            <div class="toc-trigger" id="tocTrigger">Table of Contents</div>
+            <div class="toc-dropdown-menu">
+                <div class="toc-mobile-header">
+                    <h3>Table of Contents</h3>
+                    <button class="toc-close-btn" id="tocCloseBtn" aria-label="Close menu"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="toc-grid">
+                    <a href="#intro" class="toc-item">
+                        <div class="toc-number">01</div>
+                        <div class="toc-title-text">Rules we didn&#x27;t write</div>
+                    </a>
+                    <a href="#mapping" class="toc-item">
+                        <div class="toc-number">02</div>
+                        <div class="toc-title-text">Mapping the differences</div>
+                    </a>
+                    <a href="#rule-to-screen" class="toc-item">
+                        <div class="toc-number">03</div>
+                        <div class="toc-title-text">Rule to screen</div>
+                    </a>
+                    <a href="#wait" class="toc-item">
+                        <div class="toc-number">04</div>
+                        <div class="toc-title-text">Designing the wait</div>
+                    </a>
+                    <a href="#taught" class="toc-item">
+                        <div class="toc-number">05</div>
+                        <div class="toc-title-text">What it taught me</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <section class="case-study-section">
+            <h2 id="intro">Rules we didn&#x27;t write</h2>
+            <p>Part of the <a href="draft-absa-electricity.html">Absa App prepaid electricity case study</a>. Absa, 2016. Lead UX Designer.</p>
+            <p>Selling electricity in a banking app sounds like a payment with a meter number attached. It wasn&rsquo;t. Municipalities set the rules, a third-party vendor carried the request, and the bank owned none of it. This is how I turned those rules into screens people could get through in a hurry.</p>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="mapping">First, I mapped where municipalities differed</h2>
+            <p>Each municipality had its own rules and procedures for selling prepaid electricity, in a store or online. I studied them and mapped where the requirements differed, then sat with business analysts and systems architects to trace each request: what the app sends, which outside service answers, and what comes back. Much of it sat outside the bank&rsquo;s systems, so the design had to plan for slow and failed replies.</p>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="rule-to-screen">Then each rule got a moment on screen</h2>
+            <p>The earlier web steps listed the rules as notes. In the app, each one became something the customer sees at the moment it matters:</p>
+            <ul>
+                <li><strong>The meter must be valid.</strong> The number goes to the utility first, so an invalid or blocked meter shows inline on the first screen, with a contact number.</li>
+                <li><strong>The meter&rsquo;s details belong to the utility.</strong> The registered name, address and provider come back and fill in for you. If there&rsquo;s no address, the field is hidden.</li>
+                <li><strong>Arrears are paid first.</strong> Any arrears show before you pay. If your amount is lower, a message warns that you won&rsquo;t receive any electricity.</li>
+                <li><strong>R30 to R1,000 per purchase.</strong> Checked inline as you type.</li>
+                <li><strong>Purchases can&rsquo;t be reversed.</strong> An Important Information step asks you to confirm you&rsquo;ve read it before you continue.</li>
+                <li><strong>A new recipient needs extra security.</strong> Buying for someone new triggers a Surecheck security confirmation.</li>
+                <li><strong>Each municipality sets the receipt.</strong> The full receipt holds everything required, while the token screen shows only what you need at the meter.</li>
+                <li><strong>Key-change tokens go in order.</strong> They&rsquo;re numbered, and shared tokens carry the same note.</li>
+            </ul>
+            <div class="case-study-image">
+                <img src="assets/absa-prepaid-old-web-flow.webp" alt="Absa's earlier prepaid purchase steps on the web" loading="lazy" decoding="async" width="2400" height="450">
+            </div>
+            <p class="image-caption">Before: the rules as notes under the fields.</p>
+            <div class="case-study-image">
+                <img src="assets/absa-prepaid-annotated-flow.webp" alt="Annotated wireframe flow: Buy electricity for someone new" loading="lazy" decoding="async" width="2400" height="1844">
+            </div>
+            <p class="image-caption">After: the annotated flow, with each rule tied to a screen and a behaviour.</p>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="wait">Designing for a reply we didn&#x27;t control</h2>
+            <p>Once you confirm, the app has to wait for the municipality&rsquo;s system to issue the token, and that can take up to 60 seconds. We designed a waiting screen that says exactly that, so a slow reply reads as normal rather than broken. After launch, analytics showed many customers weren&rsquo;t receiving tokens, and I worked with engineering to make delivery from the provider more reliable.</p>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="taught">What it taught me</h2>
+            <p>Rule-heavy products tempt you to push the rules into small print and hope. I&rsquo;d rather find the moment each rule actually affects the person and put it there, in plain words. It&rsquo;s the same work I look for now in regulated B2B tools: understand the system first, then design the screens around what it can and can&rsquo;t promise.</p>
+            <p><a href="draft-absa-electricity.html"><i class="fas fa-arrow-left"></i> Back to the full prepaid electricity case study</a></p>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2026 Ryan Botha - Senior Product Designer</p>
+            <div class="footer-socials">
+                <a href="https://www.linkedin.com/in/ryanbotha/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Script -->
+    <script src="main.js?v=2.5"></script>
+    <script>
+        // TOC Click toggle
+        const tocContainer = document.getElementById('tocContainer');
+        const tocTrigger = document.getElementById('tocTrigger');
+        if (tocTrigger && tocContainer) {
+            tocTrigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                
+                const isOpening = !tocContainer.classList.contains('open');
+                if (isOpening) {
+                    if (stickyThreshold === null) {
+                        stickyThreshold = tocContainer.getBoundingClientRect().top + window.scrollY - 125;
+                    }
+                    if (window.scrollY < stickyThreshold) {
+                        window.scrollTo({
+                            top: stickyThreshold,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+                
+                tocContainer.classList.toggle('open');
+            });
+            
+            // Mobile close button
+            const tocCloseBtn = document.getElementById('tocCloseBtn');
+            if (tocCloseBtn) {
+                tocCloseBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    tocContainer.classList.remove('open');
+                });
+            }
+            
+            // Close if clicking outside
+            document.addEventListener('click', (e) => {
+                if (!tocContainer.contains(e.target)) {
+                    tocContainer.classList.remove('open');
+                }
+            });
+            
+            // Close on Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    tocContainer.classList.remove('open');
+                }
+            });
+            
+            // Close when clicking a link inside it & perform smooth precision scroll
+            const tocLinks = tocContainer.querySelectorAll('a[href^="#"]');
+            tocLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    tocContainer.classList.remove('open');
+                    const targetId = link.getAttribute('href');
+                    const targetEl = document.querySelector(targetId);
+                    if (targetEl) {
+                        history.pushState(null, null, targetId);
+                        const targetY = targetEl.getBoundingClientRect().top + window.scrollY - 90;
+                        window.scrollTo({ top: targetY, behavior: 'smooth' });
+                    }
+                });
+            });
+        }
+
+        // Handle initial URL hash routing after all images & layouts load
+        function scrollToHashTarget() {
+            if (!window.location.hash) return;
+            const targetEl = document.querySelector(window.location.hash);
+            if (targetEl) {
+                const targetY = targetEl.getBoundingClientRect().top + window.scrollY - 90;
+                window.scrollTo({ top: targetY, behavior: 'smooth' });
+            }
+        }
+
+        if (window.location.hash) {
+            document.addEventListener('DOMContentLoaded', scrollToHashTarget);
+            window.addEventListener('load', () => {
+                setTimeout(scrollToHashTarget, 100);
+                setTimeout(scrollToHashTarget, 500);
+            });
+
+            // Re-align whenever any image above finishes downloading
+            document.querySelectorAll('.case-study-body img').forEach(img => {
+                if (!img.complete) {
+                    img.addEventListener('load', scrollToHashTarget);
+                }
+            });
+
+            // ResizeObserver to track layout height changes
+            if (window.ResizeObserver) {
+                let resizeTimer;
+                const observer = new ResizeObserver(() => {
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(scrollToHashTarget, 50);
+                });
+                const caseBody = document.querySelector('.case-study-body');
+                if (caseBody) observer.observe(caseBody);
+            }
+        }
+
+        // Back to top & TOC scrolled functionality (exactly matching crewcation behavior)
+        const backToTopButton = document.getElementById('backToTop');
+        let stickyThreshold = null;
+        window.addEventListener('scroll', () => {
+            if (backToTopButton) {
+                if (window.scrollY > 500) {
+                    backToTopButton.classList.add('show');
+                } else {
+                    backToTopButton.classList.remove('show');
+                }
+            }
+            
+            // TOC shrink effect
+            if (tocContainer) {
+                if (!tocContainer.classList.contains('scrolled') || stickyThreshold === null) {
+                    stickyThreshold = tocContainer.getBoundingClientRect().top + window.scrollY - 125;
+                }
+                
+                if (window.scrollY >= stickyThreshold) {
+                    tocContainer.classList.add('scrolled');
+                } else {
+                    tocContainer.classList.remove('scrolled');
+                }
+            }
+        });
+        if (backToTopButton) {
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    </script>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+</body>
+</html>

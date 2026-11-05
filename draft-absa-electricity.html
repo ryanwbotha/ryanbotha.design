@@ -123,21 +123,33 @@
                         <div class="toc-number">04</div>
                         <div class="toc-title-text">Every municipality, its own rules</div>
                     </a>
-                    <a href="#fewer-digits" class="toc-item">
+                    <a href="#rules-into-screens" class="toc-item">
                         <div class="toc-number">05</div>
+                        <div class="toc-title-text">Rules into screens</div>
+                    </a>
+                    <a href="#testing" class="toc-item">
+                        <div class="toc-number">06</div>
+                        <div class="toc-title-text">Testing while the plumbing moved</div>
+                    </a>
+                    <a href="#fewer-digits" class="toc-item">
+                        <div class="toc-number">07</div>
                         <div class="toc-title-text">Fewer digits to type</div>
                     </a>
                     <a href="#token-first" class="toc-item">
-                        <div class="toc-number">06</div>
+                        <div class="toc-number">08</div>
                         <div class="toc-title-text">The token goes first</div>
                     </a>
                     <a href="#i-m-in-the-dark" class="toc-item">
-                        <div class="toc-number">07</div>
+                        <div class="toc-number">09</div>
                         <div class="toc-title-text">I&#x27;m in the dark!</div>
                     </a>
+                    <a href="#after-launch" class="toc-item">
+                        <div class="toc-number">10</div>
+                        <div class="toc-title-text">Lost tokens</div>
+                    </a>
                     <a href="#outcome" class="toc-item">
-                        <div class="toc-number">08</div>
-                        <div class="toc-title-text">Usage grew on its own</div>
+                        <div class="toc-number">11</div>
+                        <div class="toc-title-text">Usage grew</div>
                     </a>
                 </div>
             </div>
@@ -145,8 +157,8 @@
 
         <section class="case-study-section">
             <h2 id="overview">Overview</h2>
-            <p>In 2016 Absa wanted customers to buy prepaid electricity in the Absa app instead of queuing at a shop for a paper slip. I led UX, working with two UI designers and a systems analyst.</p>
-            <p>Our biggest insight was about mood: people usually buy electricity under stress, often at night after the power has already gone, so every screen had to work for someone in a hurry and possibly in the dark. Usage grew month on month before any commercial push, and most people who tried it kept using it.</p>
+            <p>In 2016 Absa wanted customers to buy prepaid electricity in the Absa app instead of queuing at a shop for a paper slip. I led UX, working with UI designers, a business analyst, a systems analyst, a product owner and the developers. We had about three months for design and one for development.</p>
+            <p>Two things shaped the work. Every municipality had its own rules for selling electricity, and people usually buy it under stress, often at night after the power has gone. Usage grew month on month, and most people who tried it kept using it.</p>
             <div class="case-study-image">
                 <img src="assets/Absa-Prepaid-Electricity-mockup-1.webp" alt="Absa prepaid electricity purchase flow on Android" loading="lazy" decoding="async" width="1500" height="1125">
             </div>
@@ -155,7 +167,7 @@
 
         <section class="case-study-section">
             <h2 id="lights-off">People buy electricity when the lights are already off</h2>
-            <p>We ran workshops and interviews and mapped the journey from cash in hand to token in the meter. The pattern that stuck was the state people were in. Buying electricity was rarely planned. It happened when the meter ran out, often late at night or in bad weather, so people were stressed and wanted it done fast. That shaped every decision that followed.</p>
+            <p>We ran workshops and interviews and mapped the journey from cash in hand to token in the meter. The pattern that stuck was the state people were in. Buying electricity was rarely planned. It happened when the meter ran out, often late at night or in bad weather, so people were stressed and wanted it done fast.</p>
             <div class="case-study-image">
                 <img src="assets/prepaid%20infographic.webp" alt="The pain of prepaid: journey pain points" loading="lazy" decoding="async" width="1920" height="2400">
             </div>
@@ -164,17 +176,36 @@
 
         <section class="case-study-section">
             <h2 id="old-way">The old way meant a trip and a slip of paper</h2>
-            <p>By 2016 about 90% of South African households had electricity, and prepaid meters were the norm, especially in lower-income areas and new developments. Buying meant a trip to a shop or petrol station, often paying cash, for a slip with a 20-digit token you then typed into a keypad at home. Many households on uneven incomes bought small amounts often, so they made that trip a lot.</p>
+            <p>Most prepaid customers bought a voucher at a petrol station or shop and got a slip with a 20-digit token to type into the meter at home. Absa already sold prepaid electricity on other channels, but the app needed its own experience. The earlier web steps listed the rules as small print: purchases can&rsquo;t be reversed, arrears come off first, a keypad is needed.</p>
+            <div class="case-study-image">
+                <img src="assets/absa-prepaid-old-web-flow.webp" alt="Absa's earlier prepaid purchase steps on the web" loading="lazy" decoding="async" width="2400" height="450">
+            </div>
+            <p class="image-caption">Absa&#x27;s earlier PrePaid purchase steps. The rules are there, but only as notes under the fields.</p>
         </section>
 
         <section class="case-study-section">
             <h2 id="municipal-rules">Every municipality had its own rules</h2>
-            <p>Before we could build even a proof of concept, I had to understand how prepaid electricity worked behind the counter. Each municipality had its own rules and procedures for selling electricity, in a store or online, so I studied them and mapped where the requirements differed. Then I sat with business analysts and systems architects to work out how the app would get what it needed from several third-party services outside the bank's control, and what each API call had to ask for. It was the biggest lift of the project.</p>
+            <p>Before we could build even a proof of concept, I had to understand how prepaid electricity worked behind the counter. Each municipality had its own rules and procedures for selling electricity, in a store or online, so I studied them and mapped where the requirements differed. Then I sat with business analysts and systems architects to work out how the app would get what it needed from several third-party services outside the bank&rsquo;s control, and what each API call had to ask for. It was the biggest lift of the project.</p>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="rules-into-screens">The rules had to show up on screen, not in small print</h2>
+            <p>We turned each rule into a moment the customer could act on. The meter number goes to the utility first, so a blocked meter fails on the first screen, not at payment. The meter owner&rsquo;s name and address come back from the provider and fill in for you. Any arrears show before you pay, with a warning if your amount won&rsquo;t cover them. Limits of R30 to R1,000 are checked as you type.</p>
+            <div class="case-study-image">
+                <img src="assets/absa-prepaid-annotated-flow.webp" alt="Annotated wireframe flow: Buy electricity for someone new" loading="lazy" decoding="async" width="2400" height="1844">
+            </div>
+            <p class="image-caption">The annotated flow for buying electricity for someone new, from the Buy hub to the shared token, with the rule behind each screen.</p>
+            <p><a href="draft-absa-electricity-rules.html">Read the short case study: Designing inside rules we didn&#x27;t write <i class="fas fa-arrow-right"></i></a></p>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="testing">We tested while the plumbing was still moving</h2>
+            <p>New technical details kept surfacing, and each one sent us back to the information architecture. So there wasn&rsquo;t time for many formal rounds. We built an InVision prototype and ran guerrilla tests with any staff member we could find, fixed the structure, then ran formal user interviews on the high-fidelity prototype. Two usability sessions also checked that people could find the feature in the app.</p>
         </section>
 
         <section class="case-study-section">
             <h2 id="fewer-digits">Fewer digits to type at the worst moment</h2>
-            <p>Meter numbers run to 11 or 13 digits, and nobody wants to type one in a hurry. So customers can save a meter and pick it next time, next to their recent purchases. We also guessed people wouldn&rsquo;t always be at home when they bought. Every token goes into a purchase history, so you can buy at work and find the token again when you get to the meter.</p>
+            <p>Meter numbers run to 11 or 13 digits, and nobody wants to type one in a hurry. So customers can save a meter as a beneficiary and pick it next time, and the Buy hub shows their five most recent purchases. If you add a meter you&rsquo;ve already saved, the app tells you and offers to carry on with the saved one.</p>
             <div class="case-study-image">
                 <img src="assets/Absa-App_-Basic-Prepaid-Electricity-Purchase.webp" alt="Greyscale wireframes of the basic prepaid electricity purchase flow" loading="lazy" decoding="async" width="2400" height="1274">
             </div>
@@ -183,12 +214,12 @@
 
         <section class="case-study-section">
             <h2 id="token-first">The token goes first on the receipt</h2>
-            <p>The utility&rsquo;s system sent back a long receipt, and much of it was detail nobody needs while standing at a meter. We reordered it so the 20-digit token and the kWh you bought sit at the top, and the rest moves to a separate receipt view. Some purchases return more than one token, like key-change tokens that must go in a set order, so we show them one at a time and numbered.</p>
+            <p>Each municipality decides what a receipt must show, and much of it is detail nobody needs while standing at a meter. We put the token and the kWh you bought at the top and moved the rest to a full receipt one tap away. Key-change tokens must go in a set order, so we number them. Share sends the tokens in a ready-made message, sequence note included.</p>
         </section>
 
         <section class="case-study-section">
             <h2 id="i-m-in-the-dark">A torch switch on the token screen</h2>
-            <p>In one workshop we pictured where people actually are at this point: often in the dark, trying to make dinner or light the house, phone in one hand, squinting at a meter keypad. So we put an on/off torch switch on the screen that shows the token. One tap turns on the phone&rsquo;s flashlight, and the token stays on screen while you type it in.</p>
+            <p>In one workshop we pictured where people actually are at this point: often in the dark, trying to make dinner, phone in one hand, squinting at a meter keypad. So we put an on/off torch switch on the screen that shows the token. One tap turns on the phone&rsquo;s flashlight, and the token stays on screen while you type it in.</p>
             <div class="case-study-image">
                 <img src="assets/Absa-Prepaid-Electricity-flash.webp" alt="Token screen with the torch switch turned on" loading="lazy" decoding="async" width="1600" height="1060">
             </div>
@@ -197,9 +228,13 @@
         </section>
 
         <section class="case-study-section">
-            <h2 id="outcome">Usage grew before anyone marketed it</h2>
-            <p>The feature took off on its own. Usage grew month on month before any commercial push.</p>
-            <p>Repeat purchases were high, which told us people who tried it once mostly stopped going to the shop. It also gave the bank a new revenue stream.</p>
+            <h2 id="after-launch">After launch, lost tokens told us what to build next</h2>
+            <p>Analytics showed a large share of customers weren&rsquo;t receiving their tokens, so I worked with engineering to make delivery from the service provider more reliable. App store reviews and the call centre showed a second problem: people emailing and calling to get tokens back. Surveys explained it. They bought before they got home and lost the token on the way. We added a purchase history so any token is a tap away.</p>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="outcome">Usage grew month on month</h2>
+            <p>We measured success by completed purchases, usability and repeat purchases. Prepaid purchase activity grew month on month, repeat purchases were high, and it gave the bank a new revenue stream.</p>
             <p>This sat inside the wider Absa app redesign, which reached a 4-star average on both app stores and reduced calls to the call centre. Those are app-wide results, not this feature&rsquo;s alone.</p>
             <div class="case-study-image">
                 <img src="assets/Absa-Prepaid-App-Old-vs-New-1.webp" alt="Old versus new Absa prepaid purchase" loading="lazy" decoding="async" width="1500" height="1021">
