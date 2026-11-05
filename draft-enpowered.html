@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EnPowered Financing Accelerator (Draft) | Ryan Botha</title>
+    <meta name="robots" content="noindex">
+    <style>
+        /* draft-only: captions inside galleries */
+        .draft-figure { margin: 0; }
+        .draft-figure .image-caption { margin: 12px 0 0; }
+        .ask-ryan { background: #fff3b0; padding: 0 4px; border-radius: 3px; font-style: normal; }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="index.css?v=2.7">
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <!-- Feature Flag: Prevent FOUC for hidden writing content -->
+    <script>
+        (function() {
+            var SHOW_WRITING = false;
+            try {
+                var p = new URLSearchParams(window.location.search);
+                var w = p.get('writing');
+                if (w === '1') { localStorage.setItem('showWriting', '1'); }
+                else if (w === '0') { localStorage.removeItem('showWriting'); }
+            } catch (e) {}
+            var isWriting = SHOW_WRITING;
+            try {
+                var p = new URLSearchParams(window.location.search);
+                if (p.get('writing') === '1' || (typeof localStorage !== 'undefined' && localStorage.getItem('showWriting') === '1')) {
+                    isWriting = true;
+                }
+            } catch (e) {}
+            if (!isWriting) {
+                document.documentElement.classList.add('writing-hidden');
+                var path = window.location.pathname;
+                var isWritingPage = path.indexOf('writing.html') !== -1 ||
+                                      path.indexOf('/writing/') !== -1 ||
+                                      path.indexOf('taste-still-matters') !== -1;
+                if (isWritingPage) {
+                    var target = path.indexOf('/writing/') !== -1 ? '../index.html' : 'index.html';
+                    window.location.replace(target);
+                }
+            }
+        })();
+    </script>
+    <style>
+        html.writing-hidden [data-writing],
+        html.writing-hidden .writing-only {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav id="navbar" class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="assets/ryan_botha_logo.svg" alt="ryan_botha logo" class="logo-svg" decoding="async">
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-menu">
+                <span class="nav-toggle-bar bar-1"></span>
+                <span class="nav-toggle-bar bar-2"></span>
+                <span class="nav-toggle-bar bar-3"></span>
+            </button>
+            <div class="nav-backdrop"></div>
+            <ul id="nav-menu" class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="index.html#work" class="nav-link">Work</a></li>
+                <li><a href="index.html#design-process" class="nav-link">Design Process</a></li>
+                <li data-writing="true"><a href="writing.html" class="nav-link">Writing</a></li>
+                <li><a href="https://www.linkedin.com/in/ryanbotha/" target="_blank" class="nav-link">LinkedIn Profile</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Case Study Hero -->
+    <header class="case-study-hero">
+        <div class="case-study-hero-container">
+            <a href="index.html" class="back-home"><i class="fas fa-arrow-left"></i> Back to Home</a>
+            <h1 class="case-study-title">EnPowered <br><span class="serif-italic">Financing Accelerator</span></h1>
+            
+            <div class="case-study-meta">
+                <div class="meta-item">
+                    <h4>My Role</h4>
+                    <p>Lead UX/UI Designer</p>
+                </div>
+                <div class="meta-item">
+                    <h4>Deliverables</h4>
+                    <p>UX Design, UI Design, Information Architecture</p>
+                </div>
+                <div class="meta-item">
+                    <h4>Focus</h4>
+                    <p>Clean Energy Financing, B2B SaaS</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Case Study Content -->
+    <main class="case-study-body">
+
+        <!-- Table of Contents -->
+        <div class="toc-container" id="tocContainer">
+            <div class="toc-trigger" id="tocTrigger">Table of Contents</div>
+            <div class="toc-dropdown-menu">
+                <div class="toc-mobile-header">
+                    <h3>Table of Contents</h3>
+                    <button class="toc-close-btn" id="tocCloseBtn" aria-label="Close menu"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="toc-grid">
+                    <a href="#overview" class="toc-item">
+                        <div class="toc-number">00</div>
+                        <div class="toc-title-text">Overview</div>
+                    </a>
+                    <a href="#the-spreadsheet" class="toc-item">
+                        <div class="toc-number">01</div>
+                        <div class="toc-title-text">The spreadsheet</div>
+                    </a>
+                    <a href="#the-wizard" class="toc-item">
+                        <div class="toc-number">02</div>
+                        <div class="toc-title-text">The wizard</div>
+                    </a>
+                    <a href="#leaving-typeform" class="toc-item">
+                        <div class="toc-number">03</div>
+                        <div class="toc-title-text">Leaving Typeform</div>
+                    </a>
+                    <a href="#wizard-to-tabs" class="toc-item">
+                        <div class="toc-number">04</div>
+                        <div class="toc-title-text">Wizard to tabs</div>
+                    </a>
+                    <a href="#help-in-context" class="toc-item">
+                        <div class="toc-number">05</div>
+                        <div class="toc-title-text">Help in context</div>
+                    </a>
+                    <a href="#one-place" class="toc-item">
+                        <div class="toc-number">06</div>
+                        <div class="toc-title-text">One place</div>
+                    </a>
+                    <a href="#the-outcome" class="toc-item">
+                        <div class="toc-number">07</div>
+                        <div class="toc-title-text">The outcome</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        
+
+
+        
+
+
+        
+
+
+        
+
+
+        
+
+        <section class="case-study-section">
+            <h2 id="overview">From a loan spreadsheet to a tool partners could sell with</h2>
+            <p>EnPowered helps businesses pay for clean energy projects, like solar, out of the savings those projects create. Its partners priced that financing with a dense spreadsheet, which was slow and hard to explain to customers. As the sole UX/UI designer, I took the tool from that spreadsheet to a Typeform wizard and then to an in-house platform where partners build an estimate, send a branded proposal and collect the financing application in one place. Partners went from wrestling with a spreadsheet to accurate estimates in minutes, and proposal adoption went up over the first six months <mark class="ask-ryan">[ASK RYAN: the number for proposal adoption, before vs after]</mark>.</p>
+            <div class="case-study-image">
+                <img src="assets/EnPowered-Financing-Accelerator-Ipad-Pro-Mockup.webp" alt="EnPowered Financing Accelerator Ipad Pro Mockup" loading="lazy" decoding="async" width="2400" height="1714">
+            </div>
+            <p class="image-caption">Where it ended up: the financing application, three steps from start to submit.</p>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="the-spreadsheet">Partners were quoting solar loans from a spreadsheet</h2>
+            <p>Before the Financing Accelerator, a quote meant filling in EnPowered's Solar Loan Calculator. It was accurate. It handled tax credits, depreciation, downpayments and cost of capital. But it was a wall of yellow cells, and partners struggled to use it with their customers. Our goal was a tool partners could run on their own, from first estimate to final application.</p>
+            <div class="case-study-image">
+                <img src="assets/FA-Proposal-MVP-Sheet.webp" alt="FA Proposal MVP Sheet" loading="lazy" decoding="async" width="2083" height="1080">
+            </div>
+            <p class="image-caption">The starting point. Notice the ITC and depreciation rows: the next version couldn't hold them.</p>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="the-wizard">A Typeform wizard proved the idea fast</h2>
+            <p>We started cheap. A Typeform wizard asked one question at a time and produced a clean, automated proposal at the end. It was a big step up from the spreadsheet. We ran calls with partners and watched the usage data, and the feedback told us the direction was right.</p>
+            <div class="image-gallery">
+                <figure class="draft-figure">
+                    <div class="case-study-image"><img src="assets/Wizard-MVP01.webp" alt="Wizard MVP Step 1" loading="lazy" decoding="async" width="2083" height="1080"></div>
+                    <p class="image-caption">One question per screen. Easy to start, hard to see the whole deal.</p>
+                </figure>
+                <figure class="draft-figure">
+                    <div class="case-study-image"><img src="assets/Wizard-MVP03.webp" alt="Wizard MVP Step 3" loading="lazy" decoding="async" width="2083" height="1080"></div>
+                    <p class="image-caption">Incentives as one flat number, with none of the detail the spreadsheet carried.</p>
+                </figure>
+                <figure class="draft-figure">
+                    <div class="case-study-image"><img src="assets/Wizard-MVP04.webp" alt="Wizard MVP Step 4" loading="lazy" decoding="async" width="2083" height="1080"></div>
+                    <p class="image-caption">Simple fields on top of maths the form tool couldn't model.</p>
+                </figure>
+            </div>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="leaving-typeform">Typeform couldn't do the maths, so we built our own</h2>
+            <p>The wizard's success showed its limits. Typeform had no easy way to adjust interest, account for depreciation or handle the other variables the spreadsheet already managed. We could keep bending a form tool, or own the product. We chose to build an in-house, cloud-based version. The first one kept the wizard flow partners had validated, now in EnPowered's brand, with room for detail like when an incentive is applied. <mark class="ask-ryan">[ASK RYAN: was leaving Typeform your call or the product lead's, and what convinced the team?]</mark></p>
+            <div class="image-gallery">
+                <figure class="draft-figure">
+                    <div class="case-study-image"><img src="assets/Payment-Proposal-Start.webp" alt="Payment Proposal Start" loading="lazy" decoding="async" width="1512" height="982"></div>
+                    <p class="image-caption">First in-house version: the same wizard, on our own stack and in EnPowered's brand.</p>
+                </figure>
+                <figure class="draft-figure">
+                    <div class="case-study-image"><img src="assets/Payment-Proposal-01.webp" alt="Payment Proposal Step 1" loading="lazy" decoding="async" width="1512" height="982"></div>
+                    <p class="image-caption">Representative becomes a searchable dropdown with helper text, not free typing.</p>
+                </figure>
+                <figure class="draft-figure">
+                    <div class="case-study-image"><img src="assets/Payment-Proposal-Incentive.webp" alt="Payment Proposal Incentive" loading="lazy" decoding="async" width="1512" height="982"></div>
+                    <p class="image-caption">Detail Typeform couldn't hold: the incentive lump sum is applied in month 12 to reduce the loan.</p>
+                </figure>
+                <figure class="draft-figure">
+                    <div class="case-study-image"><img src="assets/Payment-Proposal-Summary.webp" alt="Payment Proposal Summary" loading="lazy" decoding="async" width="1512" height="982"></div>
+                    <p class="image-caption">A review step, with a plain note that the 8.5% default cost of capital can change.</p>
+                </figure>
+            </div>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="wizard-to-tabs">A wizard is good at starting and poor at editing</h2>
+            <p>Partners needed a view of the whole project (later called a deal) and a way to jump between sections without losing context. A linear wizard couldn't give them either. I mapped a new structure around the deal itself, with a project list and a summary page as the hubs. Then I sketched several layouts and kept the simplest: the wizard's sections as tabs down the left. <a href="draft-enpowered-wizard-to-tabs.html">Read the full story of the wizard-to-tabs shift</a>.</p>
+            <div class="case-study-image">
+                <img src="assets/Pre-sales-Tools-User-Flow.webp" alt="Pre-sales Tools User Flow IA Map" loading="lazy" decoding="async" width="2046" height="1245">
+            </div>
+            <p class="image-caption">The IA map. Share, export, preview and request financing all hang off the project list and summary pages.</p>
+            <div class="case-study-image">
+                <img src="assets/layout-sketch-01.webp" alt="Layout Sketch 1" loading="lazy" decoding="async" width="2400" height="1501">
+            </div>
+            <p class="image-caption">Early sketch of the left-hand tabs, with an info panel beside the form.</p>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="help-in-context">Help where partners get stuck, with a way to switch it off</h2>
+            <p>Fields like cost of capital or a utility cost escalator mean little to someone new to financing. In sketches I explored a helper-text toggle, tooltips that show when a field is active, an intro modal on what gives a project its best chance of funding, and an offer to fill a new project with example data. Each idea came with an off switch, so experienced partners weren't slowed down. <mark class="ask-ryan">[ASK RYAN: which of these shipped?]</mark></p>
+            <div class="image-gallery">
+                <figure class="draft-figure">
+                    <div class="case-study-image"><img src="assets/Help-Me.webp" alt="Help Me Wireframe" loading="lazy" decoding="async" width="1500" height="1130"></div>
+                    <p class="image-caption">Helper text as a toggle, plus my notes on error states in preview and a decision tree for contextual help.</p>
+                </figure>
+                <figure class="draft-figure">
+                    <div class="case-study-image"><img src="assets/new-project-intro-modal.webp" alt="New Project Modal Sketch" loading="lazy" decoding="async" width="2400" height="792"></div>
+                    <p class="image-caption">Intro modal: show the funding matrix, link to learning material, and offer “don't show again”.</p>
+                </figure>
+                <figure class="draft-figure">
+                    <div class="case-study-image"><img src="assets/layout-sketch-03.webp" alt="Layout Sketch 3" loading="lazy" decoding="async" width="2400" height="792"></div>
+                    <p class="image-caption">Offer first-time users example scenario data, with an opt-out.</p>
+                </figure>
+            </div>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="one-place">Estimate, proposal and application in one place</h2>
+            <p>The Financing Accelerator puts the whole deal behind a few tabs. Partners enter project details, see a real-time summary of the financial results, and download a branded proposal as a PDF or the payment schedules as a CSV. When the customer is ready, the partner shares a secure link to the financing application or completes it on their behalf. That replaced the email chains and file attachments.</p>
+            <div class="case-study-image">
+                <img src="assets/EnPowered-FA-Mockup-3.webp" alt="EnPowered FA High-Fidelity Mockup" loading="lazy" decoding="async" width="2400" height="1242">
+            </div>
+            <p class="image-caption">Cost &amp; Savings: inputs at the top, first-year estimates and the payment schedule right below.</p>
+            <div class="image-gallery">
+                <figure class="draft-figure">
+                    <div class="case-study-image"><img src="assets/Finance-Proposal-Cost-Savings-information.webp" alt="Finance Proposal Cost and Savings Information" loading="lazy" decoding="async" width="1502" height="731"></div>
+                    <p class="image-caption">Change an input and the term, savings and payment schedule update together.</p>
+                </figure>
+                <figure class="draft-figure">
+                    <div class="case-study-image"><img src="assets/Project-Estimate-Preview.webp" alt="Project Estimate Preview Screen" loading="lazy" decoding="async" width="1512" height="982"></div>
+                    <p class="image-caption">Live estimate preview. Download the proposal as a PDF or the schedules as a CSV.</p>
+                </figure>
+                <figure class="draft-figure">
+                    <div class="case-study-image"><img src="assets/Finance-Proposal-Tax-exempt-Yes.webp" alt="Finance Proposal Tax Exempt Option" loading="lazy" decoding="async" width="1512" height="741"></div>
+                    <p class="image-caption">Get started asks only what the maths needs first, like whether the customer is tax-exempt.</p>
+                </figure>
+                <figure class="draft-figure">
+                    <div class="case-study-image"><img src="assets/Finance-Proposal-Customer-Entity.webp" alt="Finance Proposal Customer Entity" loading="lazy" decoding="async" width="1512" height="741"></div>
+                    <p class="image-caption">Validation says exactly what's missing before a project can be saved and estimated.</p>
+                </figure>
+                <figure class="draft-figure">
+                    <div class="case-study-image"><img src="assets/Projects-List.webp" alt="Projects List Interface" loading="lazy" decoding="async" width="1512" height="982"></div>
+                    <p class="image-caption">Every deal in one list: search it, archive it, pick it up where you left off.</p>
+                </figure>
+                <figure class="draft-figure">
+                    <div class="case-study-image"><img src="assets/Financing-Application-Start.webp" alt="Financing Application Start" loading="lazy" decoding="async" width="1512" height="986"></div>
+                    <p class="image-caption">The financing application: start it, share it with the customer, submit for financing.</p>
+                </figure>
+            </div>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="the-outcome">Partners could quote, propose and apply on their own</h2>
+            <p>We were a startup and didn't track everything, so most of the evidence is qualitative. Over about six months, partners went from needing a spreadsheet and our help to generating accurate estimates in minutes <mark class="ask-ryan">[ASK RYAN: the number for time per estimate, before vs after]</mark>. More of them sent proposals, and customers completed financing applications through the tool instead of by email. That raised the rate at which projects got funded <mark class="ask-ryan">[ASK RYAN: the number for funded projects or completed applications]</mark>.</p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2026 Ryan Botha - Senior Product Designer</p>
+            <div class="footer-socials">
+                <a href="https://www.linkedin.com/in/ryanbotha/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Script -->
+    <script src="main.js?v=2.5"></script>
+    <script>
+        // TOC Click toggle
+        const tocContainer = document.getElementById('tocContainer');
+        const tocTrigger = document.getElementById('tocTrigger');
+        if (tocTrigger && tocContainer) {
+            tocTrigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                
+                const isOpening = !tocContainer.classList.contains('open');
+                if (isOpening) {
+                    if (stickyThreshold === null) {
+                        stickyThreshold = tocContainer.getBoundingClientRect().top + window.scrollY - 125;
+                    }
+                    if (window.scrollY < stickyThreshold) {
+                        window.scrollTo({
+                            top: stickyThreshold,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+                
+                tocContainer.classList.toggle('open');
+            });
+            
+            // Mobile close button
+            const tocCloseBtn = document.getElementById('tocCloseBtn');
+            if (tocCloseBtn) {
+                tocCloseBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    tocContainer.classList.remove('open');
+                });
+            }
+            
+            // Close if clicking outside
+            document.addEventListener('click', (e) => {
+                if (!tocContainer.contains(e.target)) {
+                    tocContainer.classList.remove('open');
+                }
+            });
+            
+            // Close on Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    tocContainer.classList.remove('open');
+                }
+            });
+            
+            // Close when clicking a link inside it & perform smooth precision scroll
+            const tocLinks = tocContainer.querySelectorAll('a[href^="#"]');
+            tocLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    tocContainer.classList.remove('open');
+                    const targetId = link.getAttribute('href');
+                    const targetEl = document.querySelector(targetId);
+                    if (targetEl) {
+                        history.pushState(null, null, targetId);
+                        const targetY = targetEl.getBoundingClientRect().top + window.scrollY - 90;
+                        window.scrollTo({ top: targetY, behavior: 'smooth' });
+                    }
+                });
+            });
+        }
+
+        // Handle initial URL hash routing after all images & layouts load
+        function scrollToHashTarget() {
+            if (!window.location.hash) return;
+            const targetEl = document.querySelector(window.location.hash);
+            if (targetEl) {
+                const targetY = targetEl.getBoundingClientRect().top + window.scrollY - 90;
+                window.scrollTo({ top: targetY, behavior: 'smooth' });
+            }
+        }
+
+        if (window.location.hash) {
+            document.addEventListener('DOMContentLoaded', scrollToHashTarget);
+            window.addEventListener('load', () => {
+                setTimeout(scrollToHashTarget, 100);
+                setTimeout(scrollToHashTarget, 500);
+            });
+
+            // Re-align whenever any image above finishes downloading
+            document.querySelectorAll('.case-study-body img').forEach(img => {
+                if (!img.complete) {
+                    img.addEventListener('load', scrollToHashTarget);
+                }
+            });
+
+            // ResizeObserver to track layout height changes
+            if (window.ResizeObserver) {
+                let resizeTimer;
+                const observer = new ResizeObserver(() => {
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(scrollToHashTarget, 50);
+                });
+                const caseBody = document.querySelector('.case-study-body');
+                if (caseBody) observer.observe(caseBody);
+            }
+        }
+
+        // Back to top & TOC scrolled functionality (exactly matching crewcation behavior)
+        const backToTopButton = document.getElementById('backToTop');
+        let stickyThreshold = null;
+        window.addEventListener('scroll', () => {
+            if (backToTopButton) {
+                if (window.scrollY > 500) {
+                    backToTopButton.classList.add('show');
+                } else {
+                    backToTopButton.classList.remove('show');
+                }
+            }
+            
+            // TOC shrink effect
+            if (tocContainer) {
+                if (!tocContainer.classList.contains('scrolled') || stickyThreshold === null) {
+                    stickyThreshold = tocContainer.getBoundingClientRect().top + window.scrollY - 125;
+                }
+                
+                if (window.scrollY >= stickyThreshold) {
+                    tocContainer.classList.add('scrolled');
+                } else {
+                    tocContainer.classList.remove('scrolled');
+                }
+            }
+        });
+        if (backToTopButton) {
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    </script>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+</body>
+</html>

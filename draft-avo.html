@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>Avo Auto: Redefining the Search Experience | Ryan Botha</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="index.css?v=2.7">
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <!-- Feature Flag: Prevent FOUC for hidden writing content -->
+    <script>
+        (function() {
+            var SHOW_WRITING = false;
+            try {
+                var p = new URLSearchParams(window.location.search);
+                var w = p.get('writing');
+                if (w === '1') { localStorage.setItem('showWriting', '1'); }
+                else if (w === '0') { localStorage.removeItem('showWriting'); }
+            } catch (e) {}
+            var isWriting = SHOW_WRITING;
+            try {
+                var p = new URLSearchParams(window.location.search);
+                if (p.get('writing') === '1' || (typeof localStorage !== 'undefined' && localStorage.getItem('showWriting') === '1')) {
+                    isWriting = true;
+                }
+            } catch (e) {}
+            if (!isWriting) {
+                document.documentElement.classList.add('writing-hidden');
+                var path = window.location.pathname;
+                var isWritingPage = path.indexOf('writing.html') !== -1 ||
+                                      path.indexOf('/writing/') !== -1 ||
+                                      path.indexOf('taste-still-matters') !== -1;
+                if (isWritingPage) {
+                    var target = path.indexOf('/writing/') !== -1 ? '../index.html' : 'index.html';
+                    window.location.replace(target);
+                }
+            }
+        })();
+    </script>
+    <style>
+        html.writing-hidden [data-writing],
+        html.writing-hidden .writing-only {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav id="navbar" class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="assets/ryan_botha_logo.svg" alt="ryan_botha logo" class="logo-svg" decoding="async">
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-menu">
+                <span class="nav-toggle-bar bar-1"></span>
+                <span class="nav-toggle-bar bar-2"></span>
+                <span class="nav-toggle-bar bar-3"></span>
+            </button>
+            <div class="nav-backdrop"></div>
+            <ul id="nav-menu" class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="index.html#work" class="nav-link">Work</a></li>
+                <li><a href="index.html#design-process" class="nav-link">Design Process</a></li>
+                <li data-writing="true"><a href="writing.html" class="nav-link">Writing</a></li>
+                <li><a href="https://www.linkedin.com/in/ryanbotha/" target="_blank" class="nav-link">LinkedIn Profile</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Case Study Hero -->
+    <header class="case-study-hero">
+        <div class="case-study-hero-container">
+            <a href="index.html" class="back-home"><i class="fas fa-arrow-left"></i> Back to Home</a>
+            <h1 class="case-study-title">Avo Auto: <br><span class="serif-italic">Redefining the Search Experience</span></h1>
+            
+            <div class="case-study-meta">
+                <div class="meta-item">
+                    <h4>My Role</h4>
+                    <p>Lead UX Designer</p>
+                </div>
+                <div class="meta-item">
+                    <h4>Deliverables</h4>
+                    <p>UX Design, UI Design, Information Architecture</p>
+                </div>
+                <div class="meta-item">
+                    <h4>Focus</h4>
+                    <p>Automotive, E-commerce, Search & Filtering</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Case Study Content -->
+    <main class="case-study-body">
+
+        <!-- Table of Contents -->
+        <div class="toc-container" id="tocContainer">
+            <div class="toc-trigger" id="tocTrigger">Table of Contents</div>
+            <div class="toc-dropdown-menu">
+                <div class="toc-mobile-header">
+                    <h3>Table of Contents</h3>
+                    <button class="toc-close-btn" id="tocCloseBtn" aria-label="Close menu"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="toc-grid">
+                    <a href="#overview" class="toc-item">
+                        <div class="toc-number">00</div>
+                        <div class="toc-title-text">Overview</div>
+                    </a>
+                    <a href="#five-filters" class="toc-item">
+                        <div class="toc-number">01</div>
+                        <div class="toc-title-text">Five filters did most of the work</div>
+                    </a>
+                    <a href="#long-dropdowns" class="toc-item">
+                        <div class="toc-number">02</div>
+                        <div class="toc-title-text">Long dropdowns were the real drag</div>
+                    </a>
+                    <a href="#phone-to-laptop" class="toc-item">
+                        <div class="toc-number">03</div>
+                        <div class="toc-title-text">Searches started on a phone and finished on a laptop</div>
+                    </a>
+                    <a href="#filter-chips" class="toc-item">
+                        <div class="toc-number">04</div>
+                        <div class="toc-title-text">Chips put the five filters in one row</div>
+                    </a>
+                    <a href="#the-tradeoff" class="toc-item">
+                        <div class="toc-number">05</div>
+                        <div class="toc-title-text">The tradeoff: fewer filters on show</div>
+                    </a>
+                    <a href="#compare" class="toc-item">
+                        <div class="toc-number">06</div>
+                        <div class="toc-title-text">A few buyers asked to compare</div>
+                    </a>
+                    <a href="#landing-search" class="toc-item">
+                        <div class="toc-number">07</div>
+                        <div class="toc-title-text">Two versions of the landing search</div>
+                    </a>
+                    <a href="#outcome" class="toc-item">
+                        <div class="toc-number">08</div>
+                        <div class="toc-title-text">Outcome</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <section class="case-study-section">
+            <h2 id="overview">Overview</h2>
+            <p>Avo Auto is a used and new car marketplace on Nedbank’s Avo platform. The inventory was good, but finding a car meant working down a long column of filters and dropdowns. I led UX on the redesign and worked with a team of UI designers. Our research showed most buyers only touch five filters, so we pulled those into a single row of filter chips, put the rest behind “More filters”, and added a compare option buyers had asked for.</p>
+            <div class="case-study-image">
+                <img src="assets/avo-auto-mockup-1.webp" alt="Avo Auto listings page on a laptop with the price filter open" loading="lazy" decoding="async" width="2000" height="1428">
+            </div>
+            <p class="image-caption">The new listings page: the main filters sit in one row, the price filter opens as a small panel, and applied filters stay visible as removable chips.</p>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="five-filters">Five filters did most of the work</h2>
+            <p>When we watched people search, most used the same few filters: make and model, body type, price, year and mileage. The other filters only came out after they had a shortlist, to narrow it down. Most buyers also arrived knowing roughly what they wanted, often the type, the brand and a price range, because they’d already been looking on other sites. That told me the page didn’t need every filter on show. It needed those five to be fast.</p>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="long-dropdowns">Long dropdowns were the real drag</h2>
+            <p>Make, model and variant lists got very long, and stacking them in a vertical column made a long page longer. It was worse on a phone. We looked at the car sites our buyers were already using. Most showed body type as a long text list, often in a dropdown. A few used icons with listing counts, and those were far easier to scan.</p>
+            <div class="case-study-image">
+                <img src="assets/Avo-Auto-UX-Design-Auto-Search-competitor.webp" alt="Body type filters on eleven South African car sites" loading="lazy" decoding="async" width="2160" height="1851">
+            </div>
+            <p class="image-caption">Body type on eleven South African car sites. Most list 15 to 20 options, and about half do it as plain text or a dropdown.</p>
+            <div class="case-study-image">
+                <img src="assets/image-4.webp" alt="Vertical filter column on an Avo Auto listings page" loading="lazy" decoding="async" width="1440" height="982">
+            </div>
+            <p class="image-caption">The vertical filter pattern: a search box, checkboxes and nine dropdowns stacked in one column, all with the same weight.</p>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="phone-to-laptop">Searches started on a phone and finished on a laptop</h2>
+            <p>Most people began looking on their phone and came back to a laptop or desktop for the detailed search. So the first search had to work on a small screen, and it had to carry over to a bigger one without feeling like a different product. We kept the same six search fields on both.</p>
+            <div class="case-study-image">
+                <img src="assets/Avo-Auto-Iphone-Mockup-sq.webp" alt="Avo Auto mobile search on an iPhone" loading="lazy" decoding="async" width="2160" height="2334">
+            </div>
+            <p class="image-caption">Mobile: new, used or demo, then make, model, year, price, location and mileage, two to a row with one Search button.</p>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="filter-chips">Chips put the five filters in one row</h2>
+            <p>I swapped the vertical list for a row of filter chips across the top of the results. Each chip opens a small panel for one filter, and whatever you pick shows as a removable chip underneath, so you can see and undo your search at a glance. Body type became a grid of icons with a count for each, which is quicker to scan than a 20-line list. Anything less common lives under “More filters”.</p>
+            <div class="case-study-image">
+                <img src="assets/AVO-AUTO-SKETCHES-2.webp" alt="Wireframes of the filter chip row" loading="lazy" decoding="async" width="1600" height="1200">
+            </div>
+            <p class="image-caption">Early wireframes: the chip row with a body-type panel dropped open over the results.</p>
+            <div class="image-gallery">
+                <div class="case-study-image"><img src="assets/05_CarListing_Filter-body-type.webp" alt="Body type filter panel with icons and counts" loading="lazy" decoding="async" width="2400" height="1559"></div>
+                <div class="case-study-image"><img src="assets/05_CarListing_Filter-Price.webp" alt="Price filter panel with fields and slider" loading="lazy" decoding="async" width="1512" height="982"></div>
+            </div>
+            <p class="image-caption">Left: body type as icons with counts, and the Compare checkbox on each card. Right: price as two fields plus a slider, with Clear and Apply in the panel.</p>
+            <p>I wrote up the chip pattern on its own: <a href="draft-avo-filter-chips.html">Filter chips vs. the vertical filter list</a>.</p>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="the-tradeoff">The tradeoff: fewer filters on show</h2>
+            <p>Moving to chips meant most filters were no longer visible on the page. I was fine with that because the research was clear: people reach for the extra filters after they’ve shortlisted, not before. Putting everything up front made the common search slower for everyone to help the few who wanted a niche filter first. “More filters” kept those one tap away. [ASK RYAN: Did anyone on the team or at Avo push back on hiding filters, and how did you settle it?]</p>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="compare">A few buyers asked to compare</h2>
+            <p>Some people asked if they could compare the cars on their shortlist. We added a Compare checkbox to every listing card, so you can tick cars as you browse instead of keeping tabs open.</p>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="landing-search">Two versions of the landing search</h2>
+            <p>The landing page search went through a couple of rounds. In the first, the search card sat to the right of the hero. In the second, it became a full-width panel under the hero with the fields in two rows, which lined up better with the mobile layout and left room for popular listings and dealerships below.</p>
+            <div class="image-gallery">
+                <div class="case-study-image"><img src="assets/01_Buyer_Landing_Screen-iteration-01.webp" alt="Landing page iteration 1" loading="lazy" decoding="async" width="1440" height="1556"></div>
+                <div class="case-study-image"><img src="assets/01_Buyer_Landing_Screen-iteration-2.webp" alt="Landing page iteration 2" loading="lazy" decoding="async" width="1440" height="1556"></div>
+            </div>
+            <p class="image-caption">Left: iteration 1, the search card floats beside the hero. Right: iteration 2, a full-width panel under the hero with fields in two rows of three.</p>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="outcome">Outcome</h2>
+            <p>The new search put the filters people actually used in one row, made applied filters visible and easy to undo, and added the compare option buyers asked for. People could get to a shortlist faster and spent more time browsing the inventory. The chip pattern also became the standard for search across the rest of Avo Auto. [ASK RYAN: the number for time to result or engagement after launch, or confirm it can’t be shared]</p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2026 Ryan Botha - Senior Product Designer</p>
+            <div class="footer-socials">
+                <a href="https://www.linkedin.com/in/ryanbotha/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Script -->
+    <script src="main.js?v=2.5"></script>
+    <script>
+        // TOC Click toggle
+        const tocContainer = document.getElementById('tocContainer');
+        const tocTrigger = document.getElementById('tocTrigger');
+        if (tocTrigger && tocContainer) {
+            tocTrigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                
+                const isOpening = !tocContainer.classList.contains('open');
+                if (isOpening) {
+                    if (stickyThreshold === null) {
+                        stickyThreshold = tocContainer.getBoundingClientRect().top + window.scrollY - 125;
+                    }
+                    if (window.scrollY < stickyThreshold) {
+                        window.scrollTo({
+                            top: stickyThreshold,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+                
+                tocContainer.classList.toggle('open');
+            });
+            
+            // Mobile close button
+            const tocCloseBtn = document.getElementById('tocCloseBtn');
+            if (tocCloseBtn) {
+                tocCloseBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    tocContainer.classList.remove('open');
+                });
+            }
+            
+            // Close if clicking outside
+            document.addEventListener('click', (e) => {
+                if (!tocContainer.contains(e.target)) {
+                    tocContainer.classList.remove('open');
+                }
+            });
+            
+            // Close on Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    tocContainer.classList.remove('open');
+                }
+            });
+            
+            // Close when clicking a link inside it & perform smooth precision scroll
+            const tocLinks = tocContainer.querySelectorAll('a[href^="#"]');
+            tocLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    tocContainer.classList.remove('open');
+                    const targetId = link.getAttribute('href');
+                    const targetEl = document.querySelector(targetId);
+                    if (targetEl) {
+                        history.pushState(null, null, targetId);
+                        const targetY = targetEl.getBoundingClientRect().top + window.scrollY - 90;
+                        window.scrollTo({ top: targetY, behavior: 'smooth' });
+                    }
+                });
+            });
+        }
+
+        // Handle initial URL hash routing after all images & layouts load
+        function scrollToHashTarget() {
+            if (!window.location.hash) return;
+            const targetEl = document.querySelector(window.location.hash);
+            if (targetEl) {
+                const targetY = targetEl.getBoundingClientRect().top + window.scrollY - 90;
+                window.scrollTo({ top: targetY, behavior: 'smooth' });
+            }
+        }
+
+        if (window.location.hash) {
+            document.addEventListener('DOMContentLoaded', scrollToHashTarget);
+            window.addEventListener('load', () => {
+                setTimeout(scrollToHashTarget, 100);
+                setTimeout(scrollToHashTarget, 500);
+            });
+
+            // Re-align whenever any image above finishes downloading
+            document.querySelectorAll('.case-study-body img').forEach(img => {
+                if (!img.complete) {
+                    img.addEventListener('load', scrollToHashTarget);
+                }
+            });
+
+            // ResizeObserver to track layout height changes
+            if (window.ResizeObserver) {
+                let resizeTimer;
+                const observer = new ResizeObserver(() => {
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(scrollToHashTarget, 50);
+                });
+                const caseBody = document.querySelector('.case-study-body');
+                if (caseBody) observer.observe(caseBody);
+            }
+        }
+
+        // Back to top & TOC scrolled functionality (exactly matching crewcation behavior)
+        const backToTopButton = document.getElementById('backToTop');
+        let stickyThreshold = null;
+        window.addEventListener('scroll', () => {
+            if (backToTopButton) {
+                if (window.scrollY > 500) {
+                    backToTopButton.classList.add('show');
+                } else {
+                    backToTopButton.classList.remove('show');
+                }
+            }
+            
+            // TOC shrink effect
+            if (tocContainer) {
+                if (!tocContainer.classList.contains('scrolled') || stickyThreshold === null) {
+                    stickyThreshold = tocContainer.getBoundingClientRect().top + window.scrollY - 125;
+                }
+                
+                if (window.scrollY >= stickyThreshold) {
+                    tocContainer.classList.add('scrolled');
+                } else {
+                    tocContainer.classList.remove('scrolled');
+                }
+            }
+        });
+        if (backToTopButton) {
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    </script>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+</body>
+</html>

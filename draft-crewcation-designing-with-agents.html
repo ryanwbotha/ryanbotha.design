@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>Designing with Agents: Figma as Source of Truth | Ryan Botha</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="index.css?v=2.7">
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <!-- Feature Flag: Prevent FOUC for hidden writing content -->
+    <script>
+        (function() {
+            var SHOW_WRITING = false;
+            try {
+                var p = new URLSearchParams(window.location.search);
+                var w = p.get('writing');
+                if (w === '1') { localStorage.setItem('showWriting', '1'); }
+                else if (w === '0') { localStorage.removeItem('showWriting'); }
+            } catch (e) {}
+            var isWriting = SHOW_WRITING;
+            try {
+                var p = new URLSearchParams(window.location.search);
+                if (p.get('writing') === '1' || (typeof localStorage !== 'undefined' && localStorage.getItem('showWriting') === '1')) {
+                    isWriting = true;
+                }
+            } catch (e) {}
+            if (!isWriting) {
+                document.documentElement.classList.add('writing-hidden');
+                var path = window.location.pathname;
+                var isWritingPage = path.indexOf('writing.html') !== -1 ||
+                                      path.indexOf('/writing/') !== -1 ||
+                                      path.indexOf('taste-still-matters') !== -1;
+                if (isWritingPage) {
+                    var target = path.indexOf('/writing/') !== -1 ? '../index.html' : 'index.html';
+                    window.location.replace(target);
+                }
+            }
+        })();
+    </script>
+    <style>
+        html.writing-hidden [data-writing],
+        html.writing-hidden .writing-only {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav id="navbar" class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="assets/ryan_botha_logo.svg" alt="ryan_botha logo" class="logo-svg" decoding="async">
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-menu">
+                <span class="nav-toggle-bar bar-1"></span>
+                <span class="nav-toggle-bar bar-2"></span>
+                <span class="nav-toggle-bar bar-3"></span>
+            </button>
+            <div class="nav-backdrop"></div>
+            <ul id="nav-menu" class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="index.html#work" class="nav-link">Work</a></li>
+                <li><a href="index.html#design-process" class="nav-link">Design Process</a></li>
+                <li data-writing="true"><a href="writing.html" class="nav-link">Writing</a></li>
+                <li><a href="https://www.linkedin.com/in/ryanbotha/" target="_blank" class="nav-link">LinkedIn Profile</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Case Study Hero -->
+    <header class="case-study-hero">
+        <div class="case-study-hero-container">
+            <a href="draft-crewcation.html" class="back-home"><i class="fas fa-arrow-left"></i> Back to the Crewcation case study</a>
+            <h1 class="case-study-title">Crewcation: <br><span class="serif-italic">Designing with agents: Figma as the source of truth</span></h1>
+            
+            <div class="case-study-meta">
+                <div class="meta-item">
+                    <h4>My Role</h4>
+                    <p>Founder &amp; Product Designer</p>
+                </div>
+                <div class="meta-item">
+                    <h4>Deliverables</h4>
+                    <p>Design system, parity notes, agent workflow</p>
+                </div>
+                <div class="meta-item">
+                    <h4>Focus</h4>
+                    <p>AI-Assisted Design, Cross-Platform Parity</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Case Study Content -->
+    <main class="case-study-body">
+
+        <!-- Table of Contents -->
+        <div class="toc-container" id="tocContainer">
+            <div class="toc-trigger" id="tocTrigger">Table of Contents</div>
+            <div class="toc-dropdown-menu">
+                <div class="toc-mobile-header">
+                    <h3>Table of Contents</h3>
+                    <button class="toc-close-btn" id="tocCloseBtn" aria-label="Close menu"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="toc-grid">
+
+                    <a href="#figma" class="toc-item">
+                        <div class="toc-number">01</div>
+                        <div class="toc-title-text">Figma is the contract</div>
+                        <span class="toc-sublink">One source of truth</span>
+                    </a>
+
+                    <a href="#agents" class="toc-item">
+                        <div class="toc-number">02</div>
+                        <div class="toc-title-text">Agents build, I review</div>
+                        <span class="toc-sublink">Scoped jobs and walkthroughs</span>
+                    </a>
+
+                    <a href="#loops" class="toc-item">
+                        <div class="toc-number">03</div>
+                        <div class="toc-title-text">A loop per platform</div>
+                        <span class="toc-sublink">Xcode, Android Studio, the browser</span>
+                    </a>
+
+                    <a href="#parity" class="toc-item">
+                        <div class="toc-number">04</div>
+                        <div class="toc-title-text">The same product everywhere</div>
+                        <span class="toc-sublink">Behaviour over pixels</span>
+                    </a>
+
+                    <a href="#taste" class="toc-item">
+                        <div class="toc-number">05</div>
+                        <div class="toc-title-text">Taste over the default</div>
+                        <span class="toc-sublink">The sentiment slider on Android</span>
+                    </a>
+
+                    <a href="#lessons" class="toc-item">
+                        <div class="toc-number">06</div>
+                        <div class="toc-title-text">What it taught me</div>
+                        <span class="toc-sublink">Where the human part sits</span>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Opening -->
+        <section class="case-study-section">
+            <p>This is one piece of the <a href="draft-crewcation.html">Crewcation case study</a>. I'm one designer shipping a product on iOS and the web, with Android on the way. That works because AI agents do much of the coding, and because Figma is the source of truth for how everything looks and behaves. AI speeds up how fast I can explore and build. My taste decides what ships.</p>
+
+            <div class="case-study-image">
+                <img src="assets/Crewcation-Agentic-Workflows.webp" alt="Antigravity agent walkthrough for Android parity work, NotebookLM parity notebooks and the Crewcation Figma file side by side" loading="lazy" decoding="async" width="2400" height="1415">
+            </div>
+            <p class="image-caption">A normal day: an agent's walkthrough on the left, the parity notebooks in the middle, Figma on the right.</p>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="figma">1. Figma is the contract</h2>
+            <p>Every token, layout and brand asset lives in Figma first. The colour tokens map straight into CSS variables on the web, the Xcode asset catalog on iOS and resource values on Android. When an agent builds a screen, Figma is what it checks against. So nobody, person or agent, gets to invent a new shade of grey.</p>
+
+            <div class="case-study-image">
+                <img src="assets/crewcation-architecture.webp" alt="Crewcation architecture diagram: a shared Supabase instance feeding the SwiftUI iOS app and the Next.js web app" loading="lazy" decoding="async" width="1929" height="2400">
+            </div>
+            <p class="image-caption">One Supabase backend keeps the data in sync across apps. Keeping the design in sync is where Figma and the agents come in.</p>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="agents">2. Agents build, I review</h2>
+            <p>I work in Google Antigravity. An agent gets one scoped job, like lining up the Android Popular Places carousel and heading with iOS and web. It writes the code, runs a visual check and reports back with a walkthrough. Shared notes keep the agents on track: one notebook for iOS and web parity, one for the design system. Then I look at the result myself and decide if it's right.</p>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="loops">3. Each platform gets its own loop</h2>
+            <p>The tools change by platform. On iOS, Gemini in Xcode helps me fix builds. The code in that screenshot is the Vibe Match scoring. For Android, I keep Android Studio open next to Chrome DevTools, so the Android screen can be checked against the live web app it has to match.</p>
+
+            <div class="image-gallery">
+                <div class="case-study-image">
+                    <img src="assets/xcode-agentic-workflow.webp" alt="Xcode with Gemini fixing a build in the iOS project" loading="lazy" decoding="async" width="2400" height="1362">
+                </div>
+                <div class="case-study-image">
+                    <img src="assets/pwa-android-workflow.webp" alt="Android Studio and Chrome DevTools open side by side for Android and web parity checks" loading="lazy" decoding="async" width="2400" height="1362">
+                </div>
+            </div>
+            <p class="image-caption">Left: Gemini in Xcode working on the Vibe Match code. Right: Android checked against the web app in the browser.</p>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="parity">4. Parity means the same product on every platform</h2>
+            <p>I don't chase pixel copies. Type is SF Pro on iOS, Roboto on Android and Inter on the web. Date pickers are native on each phone and a custom calendar card on the web. Haptics only exist where the hardware does. What stays the same is the behaviour and the brand: the colours, the rounded corners, the order of the steps. You can see it all in the <a href="crewcation-ui-style-guide.html">live style guide</a>.</p>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="taste">5. Where my taste overrules the default</h2>
+            <p>The sentiment slider is the clearest case. iOS and web share one spec: the same gradient track, thumb size and five moods. Android has a stock Material slider that would work on day one. It isn't in the app, because it wouldn't carry the gradient, the emoji or the moods. The plan is a custom slider that matches. [ASK RYAN: is that the real reason Android doesn't have the slider yet?]</p>
+
+            <div class="case-study-image">
+                <img src="assets/crewcation-ios-sentiment-voting.webp" alt="Crewcation iOS sentiment slider at four positions, from Not for me to I love this, beside the slider open on a place in Athens" loading="lazy" decoding="async" width="2400" height="1407">
+            </div>
+            <p class="image-caption">The bar Android has to meet: gradient track, live label and emoji, five moods across ten points.</p>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="lessons">6. What working this way taught me</h2>
+            <p>Agents are quick, and they are confidently wrong sometimes. [ASK RYAN: one real time an agent got a screen wrong, what you spotted and what you changed.] The fix is always the same. Tighten the source of truth, then rerun. That's the part of the job that stays mine.</p>
+            <p><a href="draft-crewcation.html#how-its-built">Back to the full Crewcation case study</a></p>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2026 Ryan Botha - Senior Product Designer</p>
+            <div class="footer-socials">
+                <a href="https://www.linkedin.com/in/ryanbotha/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Back to Top Button -->
+    <div id="backToTop" class="back-to-top" title="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Custom Script -->
+    <script src="main.js?v=2.5"></script>
+    <script>
+        // TOC Click toggle
+        const tocContainer = document.getElementById('tocContainer');
+        const tocTrigger = document.getElementById('tocTrigger');
+        if (tocTrigger && tocContainer) {
+            tocTrigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                tocContainer.classList.toggle('open');
+            });
+            
+            // Mobile close button
+            const tocCloseBtn = document.getElementById('tocCloseBtn');
+            if (tocCloseBtn) {
+                tocCloseBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    tocContainer.classList.remove('open');
+                });
+            }
+            
+            // Close if clicking outside
+            document.addEventListener('click', (e) => {
+                if (!tocContainer.contains(e.target)) {
+                    tocContainer.classList.remove('open');
+                }
+            });
+            
+            // Close on Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    tocContainer.classList.remove('open');
+                }
+            });
+            
+            // Close when clicking a link inside it & perform smooth precision scroll
+            const tocLinks = tocContainer.querySelectorAll('a[href^="#"]');
+            tocLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    tocContainer.classList.remove('open');
+                    const targetId = link.getAttribute('href');
+                    const targetEl = document.querySelector(targetId);
+                    if (targetEl) {
+                        history.pushState(null, null, targetId);
+                        const targetY = targetEl.getBoundingClientRect().top + window.scrollY - 90;
+                        window.scrollTo({ top: targetY, behavior: 'smooth' });
+                    }
+                });
+            });
+        }
+
+        // Handle initial URL hash routing after all images & layouts load
+        function scrollToHashTarget() {
+            if (!window.location.hash) return;
+            const targetEl = document.querySelector(window.location.hash);
+            if (targetEl) {
+                const targetY = targetEl.getBoundingClientRect().top + window.scrollY - 90;
+                window.scrollTo({ top: targetY, behavior: 'smooth' });
+            }
+        }
+
+        if (window.location.hash) {
+            scrollToHashTarget();
+            document.addEventListener('DOMContentLoaded', scrollToHashTarget);
+            window.addEventListener('load', () => {
+                setTimeout(scrollToHashTarget, 100);
+                setTimeout(scrollToHashTarget, 500);
+            });
+
+            // Re-align whenever any image above finishes downloading
+            document.querySelectorAll('.case-study-body img').forEach(img => {
+                if (!img.complete) {
+                    img.addEventListener('load', scrollToHashTarget);
+                }
+            });
+
+            // ResizeObserver to track layout height changes
+            if (window.ResizeObserver) {
+                let resizeTimer;
+                const observer = new ResizeObserver(() => {
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(scrollToHashTarget, 50);
+                });
+                const caseBody = document.querySelector('.case-study-body');
+                if (caseBody) observer.observe(caseBody);
+            }
+        }
+
+        // Back to top functionality
+        const backToTopButton = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            // Back to top
+            if (window.scrollY > 500) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+            
+            // TOC shrink effect
+            if (tocContainer) {
+                const rect = tocContainer.getBoundingClientRect();
+                if (rect.top <= 126) {
+                    tocContainer.classList.add('scrolled');
+                } else {
+                    tocContainer.classList.remove('scrolled');
+                }
+            }
+        });
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>

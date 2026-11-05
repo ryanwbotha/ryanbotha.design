@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>Arlo: From Email Tsunami to One Lender Dashboard (draft) | Ryan Botha</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="index.css?v=2.7">
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <!-- Feature Flag: Prevent FOUC for hidden writing content -->
+    <script>
+        (function() {
+            var SHOW_WRITING = false;
+            try {
+                var p = new URLSearchParams(window.location.search);
+                var w = p.get('writing');
+                if (w === '1') { localStorage.setItem('showWriting', '1'); }
+                else if (w === '0') { localStorage.removeItem('showWriting'); }
+            } catch (e) {}
+            var isWriting = SHOW_WRITING;
+            try {
+                var p = new URLSearchParams(window.location.search);
+                if (p.get('writing') === '1' || (typeof localStorage !== 'undefined' && localStorage.getItem('showWriting') === '1')) {
+                    isWriting = true;
+                }
+            } catch (e) {}
+            if (!isWriting) {
+                document.documentElement.classList.add('writing-hidden');
+                var path = window.location.pathname;
+                var isWritingPage = path.indexOf('writing.html') !== -1 ||
+                                      path.indexOf('/writing/') !== -1 ||
+                                      path.indexOf('taste-still-matters') !== -1;
+                if (isWritingPage) {
+                    var target = path.indexOf('/writing/') !== -1 ? '../index.html' : 'index.html';
+                    window.location.replace(target);
+                }
+            }
+        })();
+    </script>
+    <style>
+        html.writing-hidden [data-writing],
+        html.writing-hidden .writing-only {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav id="navbar" class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="assets/ryan_botha_logo.svg" alt="ryan_botha logo" class="logo-svg" decoding="async">
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-menu">
+                <span class="nav-toggle-bar bar-1"></span>
+                <span class="nav-toggle-bar bar-2"></span>
+                <span class="nav-toggle-bar bar-3"></span>
+            </button>
+            <div class="nav-backdrop"></div>
+            <ul id="nav-menu" class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="index.html#work" class="nav-link">Work</a></li>
+                <li><a href="index.html#design-process" class="nav-link">Design Process</a></li>
+                <li data-writing="true"><a href="writing.html" class="nav-link">Writing</a></li>
+                <li><a href="https://www.linkedin.com/in/ryanbotha/" target="_blank" class="nav-link">LinkedIn Profile</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Case Study Hero -->
+    <header class="case-study-hero">
+        <div class="case-study-hero-container">
+            <a href="index.html" class="back-home"><i class="fas fa-arrow-left"></i> Back to Home</a>
+            <h1 class="case-study-title">Arlo: <br><span class="serif-italic">From Email Tsunami to One Lender Dashboard</span></h1>
+            
+            <div class="case-study-meta">
+                <div class="meta-item">
+                    <h4>My Role</h4>
+                    <p>Senior Product Designer</p>
+                </div>
+                <div class="meta-item">
+                    <h4>Deliverables</h4>
+                    <p>UX Design, UI Design, Prototyping</p>
+                </div>
+                <div class="meta-item">
+                    <h4>Focus</h4>
+                    <p>Fintech, SaaS, Portals</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Case Study Content -->
+    <main class="case-study-body">
+
+        <!-- Table of Contents -->
+        <div class="toc-container" id="tocContainer">
+            <div class="toc-trigger" id="tocTrigger">Table of Contents</div>
+            <div class="toc-dropdown-menu">
+                <div class="toc-mobile-header">
+                    <h3>Table of Contents</h3>
+                    <button class="toc-close-btn" id="tocCloseBtn" aria-label="Close menu"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="toc-grid">
+                    <a href="#one-dashboard-replaced-the-email-tsunami" class="toc-item">
+                        <div class="toc-number">00</div>
+                        <div class="toc-title-text">One dashboard replaced the email tsunami</div>
+                    </a>
+                    <a href="#weeks-of-chasing-became-a-day-or-two" class="toc-item">
+                        <div class="toc-number">01</div>
+                        <div class="toc-title-text">Weeks of chasing became a day or two</div>
+                    </a>
+                    <a href="#the-lender-was-the-bottleneck-not-the-partner" class="toc-item">
+                        <div class="toc-number">02</div>
+                        <div class="toc-title-text">The lender was the bottleneck, not the partner</div>
+                    </a>
+                    <a href="#faster-reading-didnt-help-if-borrowers-didnt-know-what-to-upload" class="toc-item">
+                        <div class="toc-number">03</div>
+                        <div class="toc-title-text">Faster reading didn&#x27;t help if borrowers didn&#x27;t know what to upload</div>
+                    </a>
+                    <a href="#every-document-has-a-name-an-owner-and-a-next-step" class="toc-item">
+                        <div class="toc-number">04</div>
+                        <div class="toc-title-text">Every document has a name, an owner and a next step</div>
+                    </a>
+                    <a href="#borrowers-could-drop-in-a-pile-of-files-and-walk-away" class="toc-item">
+                        <div class="toc-number">05</div>
+                        <div class="toc-title-text">Borrowers could drop in a pile of files and walk away</div>
+                    </a>
+                    <a href="#a-no-still-needs-a-way-forward" class="toc-item">
+                        <div class="toc-number">06</div>
+                        <div class="toc-title-text">A “no” still needs a way forward</div>
+                    </a>
+                    <a href="#reminders-do-the-chasing-so-lenders-dont-have-to" class="toc-item">
+                        <div class="toc-number">07</div>
+                        <div class="toc-title-text">Reminders do the chasing, so lenders don&#x27;t have to</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <section class="case-study-section">
+            <h2 id="one-dashboard-replaced-the-email-tsunami">One dashboard replaced the email tsunami</h2>
+            <p>Arlo is a lender portal I designed at EnPowered for commercial energy-upgrade financing. I was the only designer on a lean squad with a product manager and one to two engineers. Lenders were collecting loan documents over weeks of email, and nobody could see who owed what. We turned that into one dashboard where every document has an owner and a status, and collection dropped from 2–4 weeks to 1–2 days.</p>
+            <div class="case-study-image">
+                    <img src="assets/MacBook-13.webp" alt="Arlo deal list on a laptop" loading="lazy" decoding="async" width="1695" height="1220">
+                </div>
+                <p class="image-caption">The lender&#x27;s deal list. Each row shows how far the borrower has got, so nobody has to email to ask.</p>
+        </section>
+        <section class="case-study-section">
+            <h2 id="weeks-of-chasing-became-a-day-or-two">Weeks of chasing became a day or two</h2>
+            <p>Once borrowers could see exactly what was missing, and lenders could see where every deal stood, most of the chasing stopped.</p>
+            <ul>
+                <li>Loan document collection went from 2–4 weeks to 1–2 days.</li>
+                <li>80% less back-and-forth between lenders and borrowers.</li>
+                <li>30% fewer handoff revision cycles. Our shared design system let engineers make low-impact design calls without waiting on a review from me.</li>
+            </ul>
+            <div class="image-gallery">
+            <div>
+                <div class="case-study-image">
+                    <img src="assets/Deals-List-Before.webp" alt="Deals list before the redesign" loading="lazy" decoding="async" width="1280" height="832">
+                </div>
+                <p class="image-caption" style="margin-top: 12px; margin-bottom: 0;">Before: deal names and dollar amounts. Nothing told an analyst who had to act next.</p>
+            </div>
+            <div>
+                <div class="case-study-image">
+                    <img src="assets/Arlo-Admin-Role-Updated-Deal-List-1.webp" alt="Deals list after the redesign" loading="lazy" decoding="async" width="1280" height="879">
+                </div>
+                <p class="image-caption" style="margin-top: 12px; margin-bottom: 0;">After: a progress bar and a plain status on every deal, from Created and Sent through to Submitted.</p>
+            </div>
+            </div>
+        </section>
+        <section class="case-study-section">
+            <h2 id="the-lender-was-the-bottleneck-not-the-partner">The lender was the bottleneck, not the partner</h2>
+            <p>When I joined, Arlo was built for energy partners, the middlemen selling the upgrades. Discovery showed the real hold-up was the lender. So we moved from a project view to a portfolio view. One lender might track 150 deals across 20 partners, and one deal might have a lead borrower, three business entities and two personal guarantors. I sketched how data rolls up from a person's tax return to a business's balance sheet before I opened Figma.</p>
+            <div class="image-gallery">
+            <div>
+                <div class="case-study-image">
+                    <img src="assets/IMG_2821-1.webp" alt="Navigation and information architecture sketch" loading="lazy" decoding="async" width="1662" height="2400">
+                </div>
+                <p class="image-caption" style="margin-top: 12px; margin-bottom: 0;">My first IA sketch, still shaped around the partner portal: projects first, financing second.</p>
+            </div>
+            <div>
+                <div class="case-study-image">
+                    <img src="assets/IMG_2817-1.webp" alt="Home screen and project navigation sketch" loading="lazy" decoding="async" width="1761" height="2400">
+                </div>
+                <p class="image-caption" style="margin-top: 12px; margin-bottom: 0;">Nav and actions for a single project. The pivot meant reworking this around a lender&#x27;s whole portfolio.</p>
+            </div>
+            </div>
+        </section>
+        <section class="case-study-section">
+            <h2 id="faster-reading-didnt-help-if-borrowers-didnt-know-what-to-upload">Faster reading didn&#x27;t help if borrowers didn&#x27;t know what to upload</h2>
+            <p>Early on, the team was focused on AI document extraction. Our discovery pointed somewhere else. Documents weren't slow to read, they were slow to arrive, because borrowers didn't know what we needed. I pushed for a workflow-first MVP and worked it through with our product manager, who was also Arlo's founder. We agreed who starts a request, who tracks it, and that progress feedback was the main thing we were offering. The AI features further down sit on top of that loop.</p>
+            <div class="image-gallery">
+            <div>
+                <div class="case-study-image">
+                    <img src="assets/IMG_2826-1.webp" alt="Workflow MVP sketch" loading="lazy" decoding="async" width="1868" height="2400">
+                </div>
+                <p class="image-caption" style="margin-top: 12px; margin-bottom: 0;">The MVP list from that session. Look at the last real item: progress feedback that shows the borrower how far they are.</p>
+            </div>
+            <div>
+                <div class="case-study-image">
+                    <img src="assets/IMG_2820-1.webp" alt="Credit application flow sketch" loading="lazy" decoding="async" width="2400" height="1833">
+                </div>
+                <p class="image-caption" style="margin-top: 12px; margin-bottom: 0;">The first flow: start an application, share a link, set reminders, then a form and an upload area side by side.</p>
+            </div>
+            </div>
+        </section>
+        <section class="case-study-section">
+            <h2 id="every-document-has-a-name-an-owner-and-a-next-step">Every document has a name, an owner and a next step</h2>
+            <p>This is the screen that replaced the email thread. “A tax return” isn't specific enough in B2B lending, so requests are split by person: Suzie's 2023 tax return. Instead of a vague “Under review”, each issue says what's wrong and what to do, like an expired driver's licence. Automatic reminders sit in the sidebar, so the software does the nagging and the lender keeps the relationship.</p>
+            <div class="case-study-image" style="height: 480px; overflow: hidden; border-radius: 8px;">
+                    <img src="assets/Doc-List-Preview.webp" alt="Lender view of one deal&#x27;s documents" style="width: 100%; height: 100%; object-fit: cover; object-position: top;" loading="lazy" decoding="async" width="1175" height="2400">
+                </div>
+                <p class="image-caption">One deal from the lender&#x27;s side. Documents are grouped by business and by person, and issues sit at the top with the reason spelled out.</p>
+            <div class="image-gallery">
+            <div>
+                <div class="case-study-image">
+                    <img src="assets/Arlo-document-processing/Lender-doc%20overview/Arlo%20-%20Deal%20Docs%20tab.webp" alt="Deal documents tab with review dot" loading="lazy" decoding="async" width="2400" height="1560">
+                </div>
+                <p class="image-caption" style="margin-top: 12px; margin-bottom: 0;">A red dot on Review means Arlo found something to check. A tooltip explains it the first time.</p>
+            </div>
+            <div>
+                <div class="case-study-image">
+                    <img src="assets/Arlo-document-processing/Lender-doc%20overview/Arlo%20-%20Deal%20Review%20tab%20-%20Business%20Registry%20Check.webp" alt="Business registry check" loading="lazy" decoding="async" width="2400" height="1560">
+                </div>
+                <p class="image-caption" style="margin-top: 12px; margin-bottom: 0;">Arlo finds a likely business registry match and the lender confirms it in one click.</p>
+            </div>
+            <div>
+                <div class="case-study-image">
+                    <img src="assets/Arlo-document-processing/Lender-doc%20overview/Arlo%20-%20Required%20Docs%20No%20Docs%20Uploaded.webp" alt="New deal with no document list yet" loading="lazy" decoding="async" width="2400" height="1560">
+                </div>
+                <p class="image-caption" style="margin-top: 12px; margin-bottom: 0;">A new deal starts with two choices: import a document list from a template, or add items one by one.</p>
+            </div>
+            <div>
+                <div class="case-study-image">
+                    <img src="assets/Arlo-document-processing/Lender-doc%20overview/Arlo%20-%20Deal%20Review%20tab%20-%20All%20Good.webp" alt="Review tab with nothing to review" loading="lazy" decoding="async" width="2400" height="1560">
+                </div>
+                <p class="image-caption" style="margin-top: 12px; margin-bottom: 0;">When there&#x27;s nothing to review, the screen just says so.</p>
+            </div>
+            </div>
+        </section>
+        <section class="case-study-section">
+            <h2 id="borrowers-could-drop-in-a-pile-of-files-and-walk-away">Borrowers could drop in a pile of files and walk away</h2>
+            <p>Borrowers land on a page branded for their lender, not a generic file-sharing site, and follow three steps: forms, documents, review. We learned that making people rename or sort files caused drop-off, so they can drag in everything at once. Arlo reads, renames and sorts the files, shows what's still missing, and lets them leave while it works.</p>
+            <p><a href="draft-arlo-wait.html">Read the short story: Designing for the wait →</a></p>
+            <div class="case-study-image">
+                    <img src="assets/arlo-upload-intelligence.webp" alt="Upload intelligence screen" loading="lazy" decoding="async" width="2318" height="1308">
+                </div>
+                <p class="image-caption">Each file moves through Uploading, Analyzing, Extracting and Identifying, with a time estimate, while the borrower carries on.</p>
+            <div class="image-gallery">
+            <div>
+                <div class="case-study-image">
+                    <img src="assets/Arlo-document-processing/Landing%20Modal.webp" alt="Borrower landing screen" loading="lazy" decoding="async" width="2400" height="1560">
+                </div>
+                <p class="image-caption" style="margin-top: 12px; margin-bottom: 0;">The borrower&#x27;s first screen: three steps, saved progress, and an email address to get back in.</p>
+            </div>
+            <div>
+                <div class="case-study-image">
+                    <img src="assets/Arlo-document-processing/form-completed.webp" alt="Forms step with status" loading="lazy" decoding="async" width="2400" height="1560">
+                </div>
+                <p class="image-caption" style="margin-top: 12px; margin-bottom: 0;">Each form shows a plain status and date, and the next step is always the yellow button.</p>
+            </div>
+            <div>
+                <div class="case-study-image">
+                    <img src="assets/Arlo-document-processing/Finance%20Application%20-%20Supporting%20Docs%20-%20File%20Issues.webp" alt="Document upload with issues" loading="lazy" decoding="async" width="2322" height="2400">
+                </div>
+                <p class="image-caption" style="margin-top: 12px; margin-bottom: 0;">Problems rise to the top with the fix: the void check name doesn&#x27;t match the business, the licence has expired.</p>
+            </div>
+            <div>
+                <div class="case-study-image">
+                    <img src="assets/Arlo-document-processing/Finance%20Application%20-%20Supporting%20Docs%20-%20Completed%20Status.webp" alt="Document upload completed" loading="lazy" decoding="async" width="2400" height="2340">
+                </div>
+                <p class="image-caption" style="margin-top: 12px; margin-bottom: 0;">Once issues are cleared, the same screen becomes a list of what&#x27;s done, with room for extra documents.</p>
+            </div>
+            </div>
+        </section>
+        <section class="case-study-section">
+            <h2 id="a-no-still-needs-a-way-forward">A “no” still needs a way forward</h2>
+            <p>In lending, the no matters as much as the yes. I mapped an empathetic decline: if revenue is too low, the screen explains why and offers help planning for next time, so a business we decline today can still be a customer later. The review step follows the same idea. When Arlo thinks a document is missing or wrong, the borrower can explain, or disagree with the analysis, instead of hitting a dead end. [ASK RYAN: did the decline screen ship, or did it stay a sketch?]</p>
+            <div class="case-study-image">
+                    <img src="assets/IMG_2824-1.webp" alt="Application review outcomes sketch" loading="lazy" decoding="async" width="2400" height="1651">
+                </div>
+                <p class="image-caption">Review leads to one of two outcomes. The decline path lists common reasons and still ends in a call to action.</p>
+            <div class="image-gallery">
+            <div>
+                <div class="case-study-image">
+                    <img src="assets/Arlo-document-processing/Arlo%20Borrower_%20Application%20Review.webp" alt="Borrower application review" loading="lazy" decoding="async" width="1786" height="2400">
+                </div>
+                <p class="image-caption" style="margin-top: 12px; margin-bottom: 0;">Before submitting, the borrower can say why a document is missing, or that they disagree with Arlo&#x27;s check.</p>
+            </div>
+            <div>
+                <div class="case-study-image">
+                    <img src="assets/Arlo-document-processing/Arlo%20Borrower_%20Application%20Review%20Missing%20text%20area%20reasons.webp" alt="Application review with required reasons" loading="lazy" decoding="async" width="1386" height="2400">
+                </div>
+                <p class="image-caption" style="margin-top: 12px; margin-bottom: 0;">When an answer is needed, the reason field is required and an “Almost done” list links to each open item.</p>
+            </div>
+            </div>
+        </section>
+        <section class="case-study-section">
+            <h2 id="reminders-do-the-chasing-so-lenders-dont-have-to">Reminders do the chasing, so lenders don&#x27;t have to</h2>
+            <p>Lenders set up the nudging once. They connect their own email, so reminders come from a person instead of a no-reply address. They can rewrite the invitation and choose how often reminders go out. Reminders only send on weekdays between 9 and 5 in the time zone the lender picks, and they pause on their own when a borrower unsubscribes.</p>
+            <p><a href="draft-arlo-reminders.html">Read the short story: Reminders that sound like the lender →</a></p>
+            <div class="image-gallery">
+            <div>
+                <div class="case-study-image">
+                    <img src="assets/Arlo-document-processing/Arlo-settings/Arlo-Settings%20-%20Reminders.webp" alt="Reminder settings" loading="lazy" decoding="async" width="2400" height="1560">
+                </div>
+                <p class="image-caption" style="margin-top: 12px; margin-bottom: 0;">Send every two days, weekdays 9 to 5, in a chosen time zone.</p>
+            </div>
+            <div>
+                <div class="case-study-image">
+                    <img src="assets/Arlo-document-processing/Arlo-settings/Arlo-Settings%20-%20Borrower%20Notifications%20-%20Application%20message%20edit.webp" alt="Editing the invitation message" loading="lazy" decoding="async" width="2400" height="1560">
+                </div>
+                <p class="image-caption" style="margin-top: 12px; margin-bottom: 0;">Lenders can rewrite the invitation. Text in square brackets becomes the secure upload link.</p>
+            </div>
+            <div>
+                <div class="case-study-image">
+                    <img src="assets/Arlo-document-processing/Arlo-settings/Arlo-Settings%20-%20Connect%20Email%20Connected%20Account.webp" alt="Connected Google account" loading="lazy" decoding="async" width="2400" height="1560">
+                </div>
+                <p class="image-caption" style="margin-top: 12px; margin-bottom: 0;">Lenders send from their own Google or Microsoft account, connected through OAuth.</p>
+            </div>
+            <div>
+                <div class="case-study-image">
+                    <img src="assets/Arlo-document-processing/Arlo-settings/Arlo-Settings%20-%20Manage%20Users.webp" alt="Manage users" loading="lazy" decoding="async" width="2400" height="1560">
+                </div>
+                <p class="image-caption" style="margin-top: 12px; margin-bottom: 0;">Admins control who on the lending team can use Arlo, and with which role.</p>
+            </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2026 Ryan Botha - Senior Product Designer</p>
+            <div class="footer-socials">
+                <a href="https://www.linkedin.com/in/ryanbotha/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Script -->
+    <script src="main.js?v=2.5"></script>
+    <script>
+        // TOC Click toggle
+        const tocContainer = document.getElementById('tocContainer');
+        const tocTrigger = document.getElementById('tocTrigger');
+        if (tocTrigger && tocContainer) {
+            tocTrigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                
+                const isOpening = !tocContainer.classList.contains('open');
+                if (isOpening) {
+                    if (stickyThreshold === null) {
+                        stickyThreshold = tocContainer.getBoundingClientRect().top + window.scrollY - 125;
+                    }
+                    if (window.scrollY < stickyThreshold) {
+                        window.scrollTo({
+                            top: stickyThreshold,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+                
+                tocContainer.classList.toggle('open');
+            });
+            
+            // Mobile close button
+            const tocCloseBtn = document.getElementById('tocCloseBtn');
+            if (tocCloseBtn) {
+                tocCloseBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    tocContainer.classList.remove('open');
+                });
+            }
+            
+            // Close if clicking outside
+            document.addEventListener('click', (e) => {
+                if (!tocContainer.contains(e.target)) {
+                    tocContainer.classList.remove('open');
+                }
+            });
+            
+            // Close on Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    tocContainer.classList.remove('open');
+                }
+            });
+            
+            // Close when clicking a link inside it & perform smooth precision scroll
+            const tocLinks = tocContainer.querySelectorAll('a[href^="#"]');
+            tocLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    tocContainer.classList.remove('open');
+                    const targetId = link.getAttribute('href');
+                    const targetEl = document.querySelector(targetId);
+                    if (targetEl) {
+                        history.pushState(null, null, targetId);
+                        const targetY = targetEl.getBoundingClientRect().top + window.scrollY - 90;
+                        window.scrollTo({ top: targetY, behavior: 'smooth' });
+                    }
+                });
+            });
+        }
+
+        // Handle initial URL hash routing after all images & layouts load
+        function scrollToHashTarget() {
+            if (!window.location.hash) return;
+            const targetEl = document.querySelector(window.location.hash);
+            if (targetEl) {
+                const targetY = targetEl.getBoundingClientRect().top + window.scrollY - 90;
+                window.scrollTo({ top: targetY, behavior: 'smooth' });
+            }
+        }
+
+        if (window.location.hash) {
+            document.addEventListener('DOMContentLoaded', scrollToHashTarget);
+            window.addEventListener('load', () => {
+                setTimeout(scrollToHashTarget, 100);
+                setTimeout(scrollToHashTarget, 500);
+            });
+
+            // Re-align whenever any image above finishes downloading
+            document.querySelectorAll('.case-study-body img').forEach(img => {
+                if (!img.complete) {
+                    img.addEventListener('load', scrollToHashTarget);
+                }
+            });
+
+            // ResizeObserver to track layout height changes
+            if (window.ResizeObserver) {
+                let resizeTimer;
+                const observer = new ResizeObserver(() => {
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(scrollToHashTarget, 50);
+                });
+                const caseBody = document.querySelector('.case-study-body');
+                if (caseBody) observer.observe(caseBody);
+            }
+        }
+
+        // Back to top & TOC scrolled functionality (exactly matching crewcation behavior)
+        const backToTopButton = document.getElementById('backToTop');
+        let stickyThreshold = null;
+        window.addEventListener('scroll', () => {
+            if (backToTopButton) {
+                if (window.scrollY > 500) {
+                    backToTopButton.classList.add('show');
+                } else {
+                    backToTopButton.classList.remove('show');
+                }
+            }
+            
+            // TOC shrink effect
+            if (tocContainer) {
+                if (!tocContainer.classList.contains('scrolled') || stickyThreshold === null) {
+                    stickyThreshold = tocContainer.getBoundingClientRect().top + window.scrollY - 125;
+                }
+                
+                if (window.scrollY >= stickyThreshold) {
+                    tocContainer.classList.add('scrolled');
+                } else {
+                    tocContainer.classList.remove('scrolled');
+                }
+            }
+        });
+        if (backToTopButton) {
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    </script>
+
+    
+
+    
+
+    
+
+    
+
+</body>
+</html>

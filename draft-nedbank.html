@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>DRAFT: Nedbank Digital Onboarding Experience | Ryan Botha</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="index.css?v=2.7">
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <!-- Feature Flag: Prevent FOUC for hidden writing content -->
+    <script>
+        (function() {
+            var SHOW_WRITING = false;
+            try {
+                var p = new URLSearchParams(window.location.search);
+                var w = p.get('writing');
+                if (w === '1') { localStorage.setItem('showWriting', '1'); }
+                else if (w === '0') { localStorage.removeItem('showWriting'); }
+            } catch (e) {}
+            var isWriting = SHOW_WRITING;
+            try {
+                var p = new URLSearchParams(window.location.search);
+                if (p.get('writing') === '1' || (typeof localStorage !== 'undefined' && localStorage.getItem('showWriting') === '1')) {
+                    isWriting = true;
+                }
+            } catch (e) {}
+            if (!isWriting) {
+                document.documentElement.classList.add('writing-hidden');
+                var path = window.location.pathname;
+                var isWritingPage = path.indexOf('writing.html') !== -1 ||
+                                      path.indexOf('/writing/') !== -1 ||
+                                      path.indexOf('taste-still-matters') !== -1;
+                if (isWritingPage) {
+                    var target = path.indexOf('/writing/') !== -1 ? '../index.html' : 'index.html';
+                    window.location.replace(target);
+                }
+            }
+        })();
+    </script>
+    <style>
+        html.writing-hidden [data-writing],
+        html.writing-hidden .writing-only {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav id="navbar" class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="assets/ryan_botha_logo.svg" alt="ryan_botha logo" class="logo-svg" decoding="async">
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-menu">
+                <span class="nav-toggle-bar bar-1"></span>
+                <span class="nav-toggle-bar bar-2"></span>
+                <span class="nav-toggle-bar bar-3"></span>
+            </button>
+            <div class="nav-backdrop"></div>
+            <ul id="nav-menu" class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="index.html#work" class="nav-link">Work</a></li>
+                <li><a href="index.html#design-process" class="nav-link">Design Process</a></li>
+                <li data-writing="true"><a href="writing.html" class="nav-link">Writing</a></li>
+                <li><a href="https://www.linkedin.com/in/ryanbotha/" target="_blank" class="nav-link">LinkedIn Profile</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Case Study Hero -->
+    <header class="case-study-hero">
+        <div class="case-study-hero-container">
+            <a href="index.html" class="back-home"><i class="fas fa-arrow-left"></i> Back to Home</a>
+            <h1 class="case-study-title">Nedbank <br><span class="serif-italic">Digital Onboarding Experience</span></h1>
+            
+            <div class="case-study-meta">
+                <div class="meta-item">
+                    <h4>My Role</h4>
+                    <p>Senior UX/Product Designer</p>
+                </div>
+                <div class="meta-item">
+                    <h4>Deliverables</h4>
+                    <p>UX Research, Journey Mapping, Personas</p>
+                </div>
+                <div class="meta-item">
+                    <h4>Focus</h4>
+                    <p>Banking, CX Strategy, Customer Journeys</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Case Study Content -->
+    <main class="case-study-body">
+
+                <div class="toc-container" id="tocContainer">
+            <div class="toc-trigger" id="tocTrigger">Table of Contents</div>
+            <div class="toc-dropdown-menu">
+                <div class="toc-mobile-header">
+                    <h3>Table of Contents</h3>
+                    <button class="toc-close-btn" id="tocCloseBtn" aria-label="Close menu"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="toc-grid">
+                    <a href="#overview" class="toc-item">
+                        <div class="toc-number">00</div>
+                        <div class="toc-title-text">Overview</div>
+                    </a>
+                    <a href="#stricter-than-the-rules" class="toc-item">
+                        <div class="toc-number">01</div>
+                        <div class="toc-title-text">The app asked for more than the rules did</div>
+                    </a>
+                    <a href="#one-map" class="toc-item">
+                        <div class="toc-number">02</div>
+                        <div class="toc-title-text">One map gave every group the same picture</div>
+                    </a>
+                    <a href="#unclear-feedback" class="toc-item">
+                        <div class="toc-number">03</div>
+                        <div class="toc-title-text">Unclear feedback sent people to the branch</div>
+                    </a>
+                    <a href="#visible-signals" class="toc-item">
+                        <div class="toc-number">04</div>
+                        <div class="toc-title-text">Customers trusted signals they could see</div>
+                    </a>
+                    <a href="#back-to-the-app" class="toc-item">
+                        <div class="toc-number">05</div>
+                        <div class="toc-title-text">A branch visit should send people back to the app</div>
+                    </a>
+                    <a href="#archetypes" class="toc-item">
+                        <div class="toc-number">06</div>
+                        <div class="toc-title-text">Static personas couldn't cover two million customers</div>
+                    </a>
+                    <a href="#the-impact" class="toc-item">
+                        <div class="toc-number">07</div>
+                        <div class="toc-title-text">Fewer people dropped out, and security held</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <section class="case-study-section">
+            <h2 id="overview">Overview</h2>
+            <p>New Nedbank customers were giving up on digital sign-up partway through and walking into a branch instead. I was the senior UX/product designer on the onboarding work, alongside a design lead and a product owner, on products serving more than 2 million active users. The research turned up the root cause: the live KYC checks were stricter than the bank's own anti-fraud rules required. Bringing them back in line cut new sign-up drop-off by 25–35%, without weakening security.</p>
+            <div class="case-study-image"><img src="assets/Nedbank-digital-customer-journey.webp" alt="Illustrations of the six Nedbank customer archetypes" loading="lazy" decoding="async" width="1260" height="810"></div>
+            <p class="image-caption">The six customer archetypes we built to replace static personas. More on them further down.</p>
+        </section>
+        <section class="case-study-section">
+            <h2 id="stricter-than-the-rules">The app asked for more than the rules did</h2>
+            <p>The live KYC checks in sign-up went further than the bank's own anti-fraud rules asked for. Each extra check was one more place for a genuine customer to get stuck, usually with no clear feedback on what went wrong. Matching the checks to the rules took those dead ends out, and the protection the rules were written for stayed in place.</p>
+            <p style="background:#fff7d6;border-left:3px solid #e0b400;padding:10px 14px;font-size:0.95rem;"><strong>[ASK RYAN:</strong> how did you spot the gap? Comparing the live flow to the written policy, branch staff, drop-off data?<strong>]</strong></p>
+        </section>
+        <section class="case-study-section">
+            <h2 id="one-map">One map gave every stakeholder group the same picture</h2>
+            <p>I went straight to the source: customers, and the branch staff who picked up the pieces when sign-up failed. I mapped the real paths people took, including every detour from the app into a branch, and used those maps with the business stakeholder groups. The maps gave each group the same picture of where the digital journey broke and sent people to a branch.</p>
+            <p style="background:#fff7d6;border-left:3px solid #e0b400;padding:10px 14px;font-size:0.95rem;"><strong>[ASK RYAN:</strong> how did you get compliance and fraud to agree the checks could change? Who pushed back, and what convinced them?<strong>]</strong></p>
+        </section>
+        <section class="case-study-section">
+            <h2 id="unclear-feedback">Unclear feedback sent people to the branch</h2>
+            <p>My research reports pulled together what customers and staff were struggling with. When digital sign-up didn't give clear, real-time feedback, people abandoned it and went to a branch. That loaded up branch staff and pushed processing costs up. Customers said there were too many steps, and some weren't sure the app was safe, yet felt they had to trust it anyway.</p>
+            <div class="case-study-image"><img src="assets/NED-ID-Gold-Std-CX-Report-2020-August_Page_22-1.webp" alt="CX report: customer quotes from SITEisfaction 2020 research" loading="lazy" decoding="async" width="2400" height="1350"></div>
+            <p class="image-caption">From the SITEisfaction 2020 research: too many steps on one side, doubts about security on the other. Both pushed people away from the app.</p>
+        </section>
+        <section class="case-study-section">
+            <h2 id="visible-signals">Customers trusted signals they could see</h2>
+            <p>The SITEisfaction 2020 survey asked customers what made them feel secure. Simple, visible signals came out on top, like SMS alerts and fingerprint login. Heavier steps like live selfie verification ranked much lower. When I looked across the local banks, their registration and security steps were much the same, and customers even read app downtime as a security problem.</p>
+            <div class="image-gallery"><div class="case-study-image"><img src="assets/NED-ID-Gold-Std-CX-Report-2020-August_Page_24.webp" alt="CX report chart: measures that make users feel more secure, SITEisfaction 2020" loading="lazy" decoding="async" width="2400" height="1350"></div><div class="case-study-image"><img src="assets/NED-ID-Gold-Std-CX-Report-2020-August_Page_25-1.webp" alt="CX report: key findings from the competitor scan" loading="lazy" decoding="async" width="2400" height="1350"></div></div>
+            <p class="image-caption">Left: SMS alerts and fingerprint login topped what made customers feel secure (55% each overall), while live selfie verification sat at 22%. Right: every local bank used similar sign-up and security steps.</p>
+        </section>
+        <section class="case-study-section">
+            <h2 id="back-to-the-app">A branch visit should send people back to the app</h2>
+            <p>Some customers will always end up in a branch. So I sketched what that visit should do for them: check their identity once, in person, then hand them to the Money app with a QR code so they leave fully set up. The sketches still had open questions, like whether to add face verification at the QR step. The mapped flow shows where it landed.</p>
+            <div class="image-gallery"><div class="case-study-image"><img src="assets/nedback-branch-visit-concept-sketch.webp" alt="Hand sketch of the branch visit concept" loading="lazy" decoding="async" width="1000" height="712"></div><div class="case-study-image"><img src="assets/QR-Code-Process-sketch.webp" alt="Hand sketch of the QR code handoff process" loading="lazy" decoding="async" width="1000" height="710"></div></div>
+            <p class="image-caption">Left: the branch visit sketch, ending in "You're in!" on the customer's own phone. Right: the QR handoff, with face verification still a question mark.</p>
+            <div class="case-study-image"><img src="assets/branch-visit-user-flow.webp" alt="Branch visit user flow with consultant ID check and QR handoff to the Money app" loading="lazy" decoding="async" width="2400" height="1043"></div>
+            <p class="image-caption">The branch path mapped end to end: the consultant checks ID, creates a Nedbank ID, then a QR code hands the customer to the Money app or a self-service kiosk.</p>
+        </section>
+        <section class="case-study-section">
+            <h2 id="archetypes">Static personas couldn't cover two million customers</h2>
+            <p>Nedbank's customer base was too big and too varied for a few static personas. We built dynamic archetypes instead, based on digital literacy and onboarding intent. People move between them depending on how they're routed and helped, so a Digital Demander can become a Damsel-in-Distress when a step fails. Product teams used them to fit screens to how people actually behave.</p>
+            <p><a href="draft-nedbank-archetypes.html">Read the archetypes case study <i class="fas fa-arrow-right"></i></a></p>
+            <div class="case-study-image"><img src="assets/image-1.webp" alt="Customer archetype spectrum: entry mindsets and four core archetypes" loading="lazy" decoding="async" width="2400" height="1293"></div>
+            <p class="image-caption">The archetype spectrum. Digital Demanders and Human Dependents are starting mindsets; most people move between the four core archetypes in the middle.</p>
+        </section>
+        <section class="case-study-section">
+            <h2 id="the-impact">Fewer people dropped out, and security held</h2>
+            <p>Matching the live checks to the anti-fraud rules cut new sign-up drop-off by 25–35%, without weakening security, on products serving more than 2 million active users. Several design and product teams adopted my research reports and the archetypes to guide their own onboarding work.</p>
+            <p style="background:#fff7d6;border-left:3px solid #e0b400;padding:10px 14px;font-size:0.95rem;"><strong>[ASK RYAN:</strong> did branch visits or processing costs for new sign-ups drop after the change, and by how much?<strong>]</strong></p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2026 Ryan Botha - Senior Product Designer</p>
+            <div class="footer-socials">
+                <a href="https://www.linkedin.com/in/ryanbotha/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Script -->
+    <script src="main.js?v=2.5"></script>
+    <script>
+        // TOC Click toggle
+        const tocContainer = document.getElementById('tocContainer');
+        const tocTrigger = document.getElementById('tocTrigger');
+        if (tocTrigger && tocContainer) {
+            tocTrigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                
+                const isOpening = !tocContainer.classList.contains('open');
+                if (isOpening) {
+                    if (stickyThreshold === null) {
+                        stickyThreshold = tocContainer.getBoundingClientRect().top + window.scrollY - 125;
+                    }
+                    if (window.scrollY < stickyThreshold) {
+                        window.scrollTo({
+                            top: stickyThreshold,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+                
+                tocContainer.classList.toggle('open');
+            });
+            
+            // Mobile close button
+            const tocCloseBtn = document.getElementById('tocCloseBtn');
+            if (tocCloseBtn) {
+                tocCloseBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    tocContainer.classList.remove('open');
+                });
+            }
+            
+            // Close if clicking outside
+            document.addEventListener('click', (e) => {
+                if (!tocContainer.contains(e.target)) {
+                    tocContainer.classList.remove('open');
+                }
+            });
+            
+            // Close on Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    tocContainer.classList.remove('open');
+                }
+            });
+            
+            // Close when clicking a link inside it & perform smooth precision scroll
+            const tocLinks = tocContainer.querySelectorAll('a[href^="#"]');
+            tocLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    tocContainer.classList.remove('open');
+                    const targetId = link.getAttribute('href');
+                    const targetEl = document.querySelector(targetId);
+                    if (targetEl) {
+                        history.pushState(null, null, targetId);
+                        const targetY = targetEl.getBoundingClientRect().top + window.scrollY - 90;
+                        window.scrollTo({ top: targetY, behavior: 'smooth' });
+                    }
+                });
+            });
+        }
+
+        // Handle initial URL hash routing after all images & layouts load
+        function scrollToHashTarget() {
+            if (!window.location.hash) return;
+            const targetEl = document.querySelector(window.location.hash);
+            if (targetEl) {
+                const targetY = targetEl.getBoundingClientRect().top + window.scrollY - 90;
+                window.scrollTo({ top: targetY, behavior: 'smooth' });
+            }
+        }
+
+        if (window.location.hash) {
+            document.addEventListener('DOMContentLoaded', scrollToHashTarget);
+            window.addEventListener('load', () => {
+                setTimeout(scrollToHashTarget, 100);
+                setTimeout(scrollToHashTarget, 500);
+            });
+
+            // Re-align whenever any image above finishes downloading
+            document.querySelectorAll('.case-study-body img').forEach(img => {
+                if (!img.complete) {
+                    img.addEventListener('load', scrollToHashTarget);
+                }
+            });
+
+            // ResizeObserver to track layout height changes
+            if (window.ResizeObserver) {
+                let resizeTimer;
+                const observer = new ResizeObserver(() => {
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(scrollToHashTarget, 50);
+                });
+                const caseBody = document.querySelector('.case-study-body');
+                if (caseBody) observer.observe(caseBody);
+            }
+        }
+
+        // Back to top & TOC scrolled functionality (exactly matching crewcation behavior)
+        const backToTopButton = document.getElementById('backToTop');
+        let stickyThreshold = null;
+        window.addEventListener('scroll', () => {
+            if (backToTopButton) {
+                if (window.scrollY > 500) {
+                    backToTopButton.classList.add('show');
+                } else {
+                    backToTopButton.classList.remove('show');
+                }
+            }
+            
+            // TOC shrink effect
+            if (tocContainer) {
+                if (!tocContainer.classList.contains('scrolled') || stickyThreshold === null) {
+                    stickyThreshold = tocContainer.getBoundingClientRect().top + window.scrollY - 125;
+                }
+                
+                if (window.scrollY >= stickyThreshold) {
+                    tocContainer.classList.add('scrolled');
+                } else {
+                    tocContainer.classList.remove('scrolled');
+                }
+            }
+        });
+        if (backToTopButton) {
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    </script>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+</body>
+</html>

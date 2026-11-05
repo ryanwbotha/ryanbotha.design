@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>From Wizard to Tabs: Financing Accelerator IA (Draft) | Ryan Botha</title>
+    <meta name="robots" content="noindex">
+    <style>
+        /* draft-only: captions inside galleries */
+        .draft-figure { margin: 0; }
+        .draft-figure .image-caption { margin: 12px 0 0; }
+        .ask-ryan { background: #fff3b0; padding: 0 4px; border-radius: 3px; font-style: normal; }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="index.css?v=2.7">
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <!-- Feature Flag: Prevent FOUC for hidden writing content -->
+    <script>
+        (function() {
+            var SHOW_WRITING = false;
+            try {
+                var p = new URLSearchParams(window.location.search);
+                var w = p.get('writing');
+                if (w === '1') { localStorage.setItem('showWriting', '1'); }
+                else if (w === '0') { localStorage.removeItem('showWriting'); }
+            } catch (e) {}
+            var isWriting = SHOW_WRITING;
+            try {
+                var p = new URLSearchParams(window.location.search);
+                if (p.get('writing') === '1' || (typeof localStorage !== 'undefined' && localStorage.getItem('showWriting') === '1')) {
+                    isWriting = true;
+                }
+            } catch (e) {}
+            if (!isWriting) {
+                document.documentElement.classList.add('writing-hidden');
+                var path = window.location.pathname;
+                var isWritingPage = path.indexOf('writing.html') !== -1 ||
+                                      path.indexOf('/writing/') !== -1 ||
+                                      path.indexOf('taste-still-matters') !== -1;
+                if (isWritingPage) {
+                    var target = path.indexOf('/writing/') !== -1 ? '../index.html' : 'index.html';
+                    window.location.replace(target);
+                }
+            }
+        })();
+    </script>
+    <style>
+        html.writing-hidden [data-writing],
+        html.writing-hidden .writing-only {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav id="navbar" class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="assets/ryan_botha_logo.svg" alt="ryan_botha logo" class="logo-svg" decoding="async">
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-menu">
+                <span class="nav-toggle-bar bar-1"></span>
+                <span class="nav-toggle-bar bar-2"></span>
+                <span class="nav-toggle-bar bar-3"></span>
+            </button>
+            <div class="nav-backdrop"></div>
+            <ul id="nav-menu" class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="index.html#work" class="nav-link">Work</a></li>
+                <li><a href="index.html#design-process" class="nav-link">Design Process</a></li>
+                <li data-writing="true"><a href="writing.html" class="nav-link">Writing</a></li>
+                <li><a href="https://www.linkedin.com/in/ryanbotha/" target="_blank" class="nav-link">LinkedIn Profile</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Case Study Hero -->
+    <header class="case-study-hero">
+        <div class="case-study-hero-container">
+            <a href="index.html" class="back-home"><i class="fas fa-arrow-left"></i> Back to Home</a>
+            <h1 class="case-study-title">From wizard to tabs <br><span class="serif-italic">Financing Accelerator IA</span></h1>
+            
+            <div class="case-study-meta">
+                <div class="meta-item">
+                    <h4>My Role</h4>
+                    <p>Lead UX/UI Designer</p>
+                </div>
+                <div class="meta-item">
+                    <h4>Deliverables</h4>
+                    <p>Information Architecture, Sketches, UI Design</p>
+                </div>
+                <div class="meta-item">
+                    <h4>Focus</h4>
+                    <p>Navigation &amp; Structure, B2B SaaS</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Case Study Content -->
+    <main class="case-study-body">
+
+        <!-- Table of Contents -->
+        <div class="toc-container" id="tocContainer">
+            <div class="toc-trigger" id="tocTrigger">Table of Contents</div>
+            <div class="toc-dropdown-menu">
+                <div class="toc-mobile-header">
+                    <h3>Table of Contents</h3>
+                    <button class="toc-close-btn" id="tocCloseBtn" aria-label="Close menu"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="toc-grid">
+                    <a href="#overview" class="toc-item">
+                        <div class="toc-number">00</div>
+                        <div class="toc-title-text">Overview</div>
+                    </a>
+                    <a href="#the-wizard-was-right" class="toc-item">
+                        <div class="toc-number">01</div>
+                        <div class="toc-title-text">The wizard was right first</div>
+                    </a>
+                    <a href="#editing-was-the-problem" class="toc-item">
+                        <div class="toc-number">02</div>
+                        <div class="toc-title-text">Editing was the problem</div>
+                    </a>
+                    <a href="#map-first" class="toc-item">
+                        <div class="toc-number">03</div>
+                        <div class="toc-title-text">Map first</div>
+                    </a>
+                    <a href="#simplest-layout" class="toc-item">
+                        <div class="toc-number">04</div>
+                        <div class="toc-title-text">Simplest layout</div>
+                    </a>
+                    <a href="#inputs-and-results" class="toc-item">
+                        <div class="toc-number">05</div>
+                        <div class="toc-title-text">Inputs and results together</div>
+                    </a>
+                    <a href="#what-i-took-from-it" class="toc-item">
+                        <div class="toc-number">06</div>
+                        <div class="toc-title-text">What I took from it</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        
+
+
+        
+
+
+        
+
+
+        
+
+
+        
+
+        <section class="case-study-section">
+            <h2 id="overview">Built around the deal, not the form</h2>
+            <p>This is one piece of the <a href="draft-enpowered.html">EnPowered Financing Accelerator</a>. Its first two versions were wizards: one question per screen, a summary at the end. That got partners started, but it fought them every time they needed to change something. I restructured the product around the deal instead of the form, with tabbed sections partners could move between freely and a real-time summary of the results next to the inputs.</p>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="the-wizard-was-right">The wizard was the right call for the MVP</h2>
+            <p>A wizard was a good first move. It turned a dense loan spreadsheet into a short run of plain questions and gave partners a clean proposal at the end. Calls with partners and the usage data told us it worked. They also showed us where it stopped working.</p>
+            <div class="case-study-image">
+                <img src="assets/Wizard-MVP01.webp" alt="Wizard MVP Step 1" loading="lazy" decoding="async" width="2083" height="1080">
+            </div>
+            <p class="image-caption">The Typeform MVP. One field, one screen, and no sense of the whole deal.</p>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="editing-was-the-problem">Every change meant walking back through the steps</h2>
+            <p>Financing is a what-if exercise. What if the incentive lands later? What if the term is longer? In a wizard, each of those questions means stepping back through the flow, and the end of the flow is a review of what you typed. The financial results only came back after you submitted. Partners couldn't see an input and its effect on the same screen.</p>
+            <div class="case-study-image">
+                <img src="assets/Payment-Proposal-Summary.webp" alt="Payment Proposal Summary" loading="lazy" decoding="async" width="1512" height="982">
+            </div>
+            <p class="image-caption">Before: the last step reviewed the inputs. The money answers came later.</p>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="map-first">I mapped the product around the deal before drawing screens</h2>
+            <p>I started with a flow map, not layouts. Two hubs came out of it: a list of projects (later called deals) and a summary page for each one. Everything partners actually do hangs off those two pages: share, export, preview the report, request financing, edit and save. The form stopped being the product and became one way to fill in a deal.</p>
+            <div class="case-study-image">
+                <img src="assets/Pre-sales-Tools-User-Flow.webp" alt="Pre-sales Tools User Flow IA Map" loading="lazy" decoding="async" width="2046" height="1245">
+            </div>
+            <p class="image-caption">The IA map. Two blue hubs, list and summary, with every action branching from them.</p>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="simplest-layout">The simplest layout won</h2>
+            <p>I sketched several layouts, including one with an info panel beside the form. I kept the simplest: the same sections the wizard already had, now as tabs down the left. Partners didn't have to relearn the content, only how to move through it.</p>
+            <div class="case-study-image">
+                <img src="assets/layout-sketch-01.webp" alt="Layout Sketch 1" loading="lazy" decoding="async" width="2400" height="1501">
+            </div>
+            <p class="image-caption">Sketching the left-hand tabs. The section names carried straight over from the wizard.</p>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="inputs-and-results">Inputs and results on one screen</h2>
+            <p>In the shipped version, the Cost &amp; Savings tab shows the inputs at the top and the first-year estimates and payment schedule right underneath. Change the utility costs or the escalator and you see what it does to the deal straight away. The projects list means any deal can be picked up again later, which a wizard never allowed.</p>
+            <div class="image-gallery">
+                <figure class="draft-figure">
+                    <div class="case-study-image"><img src="assets/Finance-Proposal-Cost-Savings-information.webp" alt="Finance Proposal Cost and Savings Information" loading="lazy" decoding="async" width="1502" height="731"></div>
+                    <p class="image-caption">After: inputs, results and the annualized payment schedule on one tab.</p>
+                </figure>
+                <figure class="draft-figure">
+                    <div class="case-study-image"><img src="assets/Projects-List.webp" alt="Projects List Interface" loading="lazy" decoding="async" width="1512" height="982"></div>
+                    <p class="image-caption">The deal list, the second hub from the map.</p>
+                </figure>
+            </div>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="what-i-took-from-it">Structure should follow the thing people change</h2>
+            <p>Wizards are good at starting things and poor at changing them. When a task is going to be revisited, I build the structure around the object being changed, not the order it was first entered in. <mark class="ask-ryan">[ASK RYAN: any sign the change helped, such as faster edits or fewer support calls?]</mark> <a href="draft-enpowered.html">Back to the full Financing Accelerator case study</a>.</p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2026 Ryan Botha - Senior Product Designer</p>
+            <div class="footer-socials">
+                <a href="https://www.linkedin.com/in/ryanbotha/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Script -->
+    <script src="main.js?v=2.5"></script>
+    <script>
+        // TOC Click toggle
+        const tocContainer = document.getElementById('tocContainer');
+        const tocTrigger = document.getElementById('tocTrigger');
+        if (tocTrigger && tocContainer) {
+            tocTrigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                
+                const isOpening = !tocContainer.classList.contains('open');
+                if (isOpening) {
+                    if (stickyThreshold === null) {
+                        stickyThreshold = tocContainer.getBoundingClientRect().top + window.scrollY - 125;
+                    }
+                    if (window.scrollY < stickyThreshold) {
+                        window.scrollTo({
+                            top: stickyThreshold,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+                
+                tocContainer.classList.toggle('open');
+            });
+            
+            // Mobile close button
+            const tocCloseBtn = document.getElementById('tocCloseBtn');
+            if (tocCloseBtn) {
+                tocCloseBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    tocContainer.classList.remove('open');
+                });
+            }
+            
+            // Close if clicking outside
+            document.addEventListener('click', (e) => {
+                if (!tocContainer.contains(e.target)) {
+                    tocContainer.classList.remove('open');
+                }
+            });
+            
+            // Close on Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    tocContainer.classList.remove('open');
+                }
+            });
+            
+            // Close when clicking a link inside it & perform smooth precision scroll
+            const tocLinks = tocContainer.querySelectorAll('a[href^="#"]');
+            tocLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    tocContainer.classList.remove('open');
+                    const targetId = link.getAttribute('href');
+                    const targetEl = document.querySelector(targetId);
+                    if (targetEl) {
+                        history.pushState(null, null, targetId);
+                        const targetY = targetEl.getBoundingClientRect().top + window.scrollY - 90;
+                        window.scrollTo({ top: targetY, behavior: 'smooth' });
+                    }
+                });
+            });
+        }
+
+        // Handle initial URL hash routing after all images & layouts load
+        function scrollToHashTarget() {
+            if (!window.location.hash) return;
+            const targetEl = document.querySelector(window.location.hash);
+            if (targetEl) {
+                const targetY = targetEl.getBoundingClientRect().top + window.scrollY - 90;
+                window.scrollTo({ top: targetY, behavior: 'smooth' });
+            }
+        }
+
+        if (window.location.hash) {
+            document.addEventListener('DOMContentLoaded', scrollToHashTarget);
+            window.addEventListener('load', () => {
+                setTimeout(scrollToHashTarget, 100);
+                setTimeout(scrollToHashTarget, 500);
+            });
+
+            // Re-align whenever any image above finishes downloading
+            document.querySelectorAll('.case-study-body img').forEach(img => {
+                if (!img.complete) {
+                    img.addEventListener('load', scrollToHashTarget);
+                }
+            });
+
+            // ResizeObserver to track layout height changes
+            if (window.ResizeObserver) {
+                let resizeTimer;
+                const observer = new ResizeObserver(() => {
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(scrollToHashTarget, 50);
+                });
+                const caseBody = document.querySelector('.case-study-body');
+                if (caseBody) observer.observe(caseBody);
+            }
+        }
+
+        // Back to top & TOC scrolled functionality (exactly matching crewcation behavior)
+        const backToTopButton = document.getElementById('backToTop');
+        let stickyThreshold = null;
+        window.addEventListener('scroll', () => {
+            if (backToTopButton) {
+                if (window.scrollY > 500) {
+                    backToTopButton.classList.add('show');
+                } else {
+                    backToTopButton.classList.remove('show');
+                }
+            }
+            
+            // TOC shrink effect
+            if (tocContainer) {
+                if (!tocContainer.classList.contains('scrolled') || stickyThreshold === null) {
+                    stickyThreshold = tocContainer.getBoundingClientRect().top + window.scrollY - 125;
+                }
+                
+                if (window.scrollY >= stickyThreshold) {
+                    tocContainer.classList.add('scrolled');
+                } else {
+                    tocContainer.classList.remove('scrolled');
+                }
+            }
+        });
+        if (backToTopButton) {
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    </script>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+</body>
+</html>

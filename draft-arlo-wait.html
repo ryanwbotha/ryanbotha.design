@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>Arlo: Designing for the Wait (draft) | Ryan Botha</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="index.css?v=2.7">
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <!-- Feature Flag: Prevent FOUC for hidden writing content -->
+    <script>
+        (function() {
+            var SHOW_WRITING = false;
+            try {
+                var p = new URLSearchParams(window.location.search);
+                var w = p.get('writing');
+                if (w === '1') { localStorage.setItem('showWriting', '1'); }
+                else if (w === '0') { localStorage.removeItem('showWriting'); }
+            } catch (e) {}
+            var isWriting = SHOW_WRITING;
+            try {
+                var p = new URLSearchParams(window.location.search);
+                if (p.get('writing') === '1' || (typeof localStorage !== 'undefined' && localStorage.getItem('showWriting') === '1')) {
+                    isWriting = true;
+                }
+            } catch (e) {}
+            if (!isWriting) {
+                document.documentElement.classList.add('writing-hidden');
+                var path = window.location.pathname;
+                var isWritingPage = path.indexOf('writing.html') !== -1 ||
+                                      path.indexOf('/writing/') !== -1 ||
+                                      path.indexOf('taste-still-matters') !== -1;
+                if (isWritingPage) {
+                    var target = path.indexOf('/writing/') !== -1 ? '../index.html' : 'index.html';
+                    window.location.replace(target);
+                }
+            }
+        })();
+    </script>
+    <style>
+        html.writing-hidden [data-writing],
+        html.writing-hidden .writing-only {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav id="navbar" class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="assets/ryan_botha_logo.svg" alt="ryan_botha logo" class="logo-svg" decoding="async">
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-menu">
+                <span class="nav-toggle-bar bar-1"></span>
+                <span class="nav-toggle-bar bar-2"></span>
+                <span class="nav-toggle-bar bar-3"></span>
+            </button>
+            <div class="nav-backdrop"></div>
+            <ul id="nav-menu" class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="index.html#work" class="nav-link">Work</a></li>
+                <li><a href="index.html#design-process" class="nav-link">Design Process</a></li>
+                <li data-writing="true"><a href="writing.html" class="nav-link">Writing</a></li>
+                <li><a href="https://www.linkedin.com/in/ryanbotha/" target="_blank" class="nav-link">LinkedIn Profile</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Case Study Hero -->
+    <header class="case-study-hero">
+        <div class="case-study-hero-container">
+            <a href="draft-arlo.html" class="back-home"><i class="fas fa-arrow-left"></i> Back to the Arlo case study</a>
+            <h1 class="case-study-title">Arlo: <br><span class="serif-italic">Designing for the Wait</span></h1>
+            
+            <div class="case-study-meta">
+                <div class="meta-item">
+                    <h4>My Role</h4>
+                    <p>Senior Product Designer</p>
+                </div>
+                <div class="meta-item">
+                    <h4>Deliverables</h4>
+                    <p>UX Design, UI Design, Prototyping</p>
+                </div>
+                <div class="meta-item">
+                    <h4>Focus</h4>
+                    <p>Fintech, SaaS, Portals</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Case Study Content -->
+    <main class="case-study-body">
+
+        <!-- Table of Contents -->
+        <div class="toc-container" id="tocContainer">
+            <div class="toc-trigger" id="tocTrigger">Table of Contents</div>
+            <div class="toc-dropdown-menu">
+                <div class="toc-mobile-header">
+                    <h3>Table of Contents</h3>
+                    <button class="toc-close-btn" id="tocCloseBtn" aria-label="Close menu"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="toc-grid">
+                    <a href="#nobody-should-stare-at-a-spinner" class="toc-item">
+                        <div class="toc-number">00</div>
+                        <div class="toc-title-text">Nobody should stare at a spinner</div>
+                    </a>
+                    <a href="#dont-make-people-tidy-their-files-first" class="toc-item">
+                        <div class="toc-number">01</div>
+                        <div class="toc-title-text">Don&#x27;t make people tidy their files first</div>
+                    </a>
+                    <a href="#i-sketched-every-state-a-file-can-be-in" class="toc-item">
+                        <div class="toc-number">02</div>
+                        <div class="toc-title-text">I sketched every state a file can be in</div>
+                    </a>
+                    <a href="#tell-people-they-can-leave" class="toc-item">
+                        <div class="toc-number">03</div>
+                        <div class="toc-title-text">Tell people they can leave</div>
+                    </a>
+                    <a href="#the-result-is-a-to-do-list" class="toc-item">
+                        <div class="toc-number">04</div>
+                        <div class="toc-title-text">The result is a to-do list</div>
+                    </a>
+                    <a href="#what-it-did" class="toc-item">
+                        <div class="toc-number">05</div>
+                        <div class="toc-title-text">What it did</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <section class="case-study-section">
+            <h2 id="nobody-should-stare-at-a-spinner">Nobody should stare at a spinner</h2>
+            <p>This is one piece of <a href="draft-arlo.html">Arlo</a>, the lender portal I designed at EnPowered. Borrowers had to upload stacks of financial documents, and our AI needed time to read them. A 100-page bank statement doesn't process in a second. I didn't want anyone watching a spinning wheel and wondering if it had worked, or giving up halfway.</p>
+            <div class="case-study-image">
+                    <img src="assets/arlo-upload-intelligence.webp" alt="Upload intelligence screen" loading="lazy" decoding="async" width="2318" height="1308">
+                </div>
+                <p class="image-caption">The finished design: every file shows its own status, with a count and a time estimate for the batch.</p>
+        </section>
+        <section class="case-study-section">
+            <h2 id="dont-make-people-tidy-their-files-first">Don&#x27;t make people tidy their files first</h2>
+            <p>We learned that asking borrowers to rename or sort their files caused drop-off. So the upload area takes whatever they drop in, a whole pile at once. Arlo works out what each file is, renames it and matches it to the right requirement. The borrower's job is to find the documents. Sorting them is ours.</p>
+            <div class="case-study-image">
+                    <img src="assets/IMG_2818-1.webp" alt="Upload modal sketch" loading="lazy" decoding="async" width="2400" height="1642">
+                </div>
+                <p class="image-caption">My first pass: a drag-and-drop modal that closes itself once the files are accepted, then a progress bar on each required file.</p>
+        </section>
+        <section class="case-study-section">
+            <h2 id="i-sketched-every-state-a-file-can-be-in">I sketched every state a file can be in</h2>
+            <p>Before any high-fidelity work, I drew each state on paper: waiting, uploading with progress text, done with the file name showing, and failed with a clear retry. I questioned the small stuff too. One note asks whether people would recognize an icon-only upload button, or if it needed a label.</p>
+            <div class="case-study-image">
+                    <img src="assets/IMG_2819-1.webp" alt="Annotated upload states sketch" loading="lazy" decoding="async" width="2400" height="1840">
+                </div>
+                <p class="image-caption">Numbered notes on paper: show the file name once it&#x27;s uploaded, show progress text while it&#x27;s uploading, and flag errors with a retry.</p>
+        </section>
+        <section class="case-study-section">
+            <h2 id="tell-people-they-can-leave">Tell people they can leave</h2>
+            <p>In the final design, each file shows where it's at, from Uploading to Identifying, with a time estimate for the batch. Files Arlo can't read, like a zip, go into their own Unsupported files box instead of failing quietly. And the borrower knows they can move on to the next step while the AI works in the background.</p>
+            <div class="case-study-image">
+                    <img src="assets/Arlo-document-processing/Finance%20Application%20-%20Supporting%20Docs%20-%20File%20Issues.webp" alt="Document upload with issues" loading="lazy" decoding="async" width="2322" height="2400">
+                </div>
+                <p class="image-caption">Issues sit at the top with the reason and the fix. Unsupported files get their own box, so nothing disappears.</p>
+        </section>
+        <section class="case-study-section">
+            <h2 id="the-result-is-a-to-do-list">The result is a to-do list</h2>
+            <p>When processing finishes, problems rise to the top with what to do next: the name on the void check doesn't match the business, or the driver's licence has expired. Everything else drops into Completed. The borrower never has to guess what's left.</p>
+            <div class="case-study-image">
+                    <img src="assets/Arlo-document-processing/Finance%20Application%20-%20Supporting%20Docs%20-%20Completed%20Status.webp" alt="Document upload completed" loading="lazy" decoding="async" width="2400" height="2340">
+                </div>
+                <p class="image-caption">With the issues cleared, the screen is a list of what&#x27;s done, with room for extra documents the lender didn&#x27;t ask for.</p>
+        </section>
+        <section class="case-study-section">
+            <h2 id="what-it-did">What it did</h2>
+            <p>This flow was part of the wider Arlo change that cut document collection from 2–4 weeks to 1–2 days, with 80% less back-and-forth between lenders and borrowers. I can't separate this piece's share from that total. [ASK RYAN: any number just for the upload flow, like fewer abandoned uploads or fewer re-requested documents?]</p>
+            <p><a href="draft-arlo.html">← Back to the full Arlo case study</a></p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2026 Ryan Botha - Senior Product Designer</p>
+            <div class="footer-socials">
+                <a href="https://www.linkedin.com/in/ryanbotha/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Script -->
+    <script src="main.js?v=2.5"></script>
+    <script>
+        // TOC Click toggle
+        const tocContainer = document.getElementById('tocContainer');
+        const tocTrigger = document.getElementById('tocTrigger');
+        if (tocTrigger && tocContainer) {
+            tocTrigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                
+                const isOpening = !tocContainer.classList.contains('open');
+                if (isOpening) {
+                    if (stickyThreshold === null) {
+                        stickyThreshold = tocContainer.getBoundingClientRect().top + window.scrollY - 125;
+                    }
+                    if (window.scrollY < stickyThreshold) {
+                        window.scrollTo({
+                            top: stickyThreshold,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+                
+                tocContainer.classList.toggle('open');
+            });
+            
+            // Mobile close button
+            const tocCloseBtn = document.getElementById('tocCloseBtn');
+            if (tocCloseBtn) {
+                tocCloseBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    tocContainer.classList.remove('open');
+                });
+            }
+            
+            // Close if clicking outside
+            document.addEventListener('click', (e) => {
+                if (!tocContainer.contains(e.target)) {
+                    tocContainer.classList.remove('open');
+                }
+            });
+            
+            // Close on Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    tocContainer.classList.remove('open');
+                }
+            });
+            
+            // Close when clicking a link inside it & perform smooth precision scroll
+            const tocLinks = tocContainer.querySelectorAll('a[href^="#"]');
+            tocLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    tocContainer.classList.remove('open');
+                    const targetId = link.getAttribute('href');
+                    const targetEl = document.querySelector(targetId);
+                    if (targetEl) {
+                        history.pushState(null, null, targetId);
+                        const targetY = targetEl.getBoundingClientRect().top + window.scrollY - 90;
+                        window.scrollTo({ top: targetY, behavior: 'smooth' });
+                    }
+                });
+            });
+        }
+
+        // Handle initial URL hash routing after all images & layouts load
+        function scrollToHashTarget() {
+            if (!window.location.hash) return;
+            const targetEl = document.querySelector(window.location.hash);
+            if (targetEl) {
+                const targetY = targetEl.getBoundingClientRect().top + window.scrollY - 90;
+                window.scrollTo({ top: targetY, behavior: 'smooth' });
+            }
+        }
+
+        if (window.location.hash) {
+            document.addEventListener('DOMContentLoaded', scrollToHashTarget);
+            window.addEventListener('load', () => {
+                setTimeout(scrollToHashTarget, 100);
+                setTimeout(scrollToHashTarget, 500);
+            });
+
+            // Re-align whenever any image above finishes downloading
+            document.querySelectorAll('.case-study-body img').forEach(img => {
+                if (!img.complete) {
+                    img.addEventListener('load', scrollToHashTarget);
+                }
+            });
+
+            // ResizeObserver to track layout height changes
+            if (window.ResizeObserver) {
+                let resizeTimer;
+                const observer = new ResizeObserver(() => {
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(scrollToHashTarget, 50);
+                });
+                const caseBody = document.querySelector('.case-study-body');
+                if (caseBody) observer.observe(caseBody);
+            }
+        }
+
+        // Back to top & TOC scrolled functionality (exactly matching crewcation behavior)
+        const backToTopButton = document.getElementById('backToTop');
+        let stickyThreshold = null;
+        window.addEventListener('scroll', () => {
+            if (backToTopButton) {
+                if (window.scrollY > 500) {
+                    backToTopButton.classList.add('show');
+                } else {
+                    backToTopButton.classList.remove('show');
+                }
+            }
+            
+            // TOC shrink effect
+            if (tocContainer) {
+                if (!tocContainer.classList.contains('scrolled') || stickyThreshold === null) {
+                    stickyThreshold = tocContainer.getBoundingClientRect().top + window.scrollY - 125;
+                }
+                
+                if (window.scrollY >= stickyThreshold) {
+                    tocContainer.classList.add('scrolled');
+                } else {
+                    tocContainer.classList.remove('scrolled');
+                }
+            }
+        });
+        if (backToTopButton) {
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    </script>
+
+    
+
+    
+
+    
+
+    
+
+</body>
+</html>

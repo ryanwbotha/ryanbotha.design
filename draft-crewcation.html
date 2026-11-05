@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>Crewcation: Getting Group Trips Out of the Chat | Ryan Botha</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="index.css?v=2.7">
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <!-- Feature Flag: Prevent FOUC for hidden writing content -->
+    <script>
+        (function() {
+            var SHOW_WRITING = false;
+            try {
+                var p = new URLSearchParams(window.location.search);
+                var w = p.get('writing');
+                if (w === '1') { localStorage.setItem('showWriting', '1'); }
+                else if (w === '0') { localStorage.removeItem('showWriting'); }
+            } catch (e) {}
+            var isWriting = SHOW_WRITING;
+            try {
+                var p = new URLSearchParams(window.location.search);
+                if (p.get('writing') === '1' || (typeof localStorage !== 'undefined' && localStorage.getItem('showWriting') === '1')) {
+                    isWriting = true;
+                }
+            } catch (e) {}
+            if (!isWriting) {
+                document.documentElement.classList.add('writing-hidden');
+                var path = window.location.pathname;
+                var isWritingPage = path.indexOf('writing.html') !== -1 ||
+                                      path.indexOf('/writing/') !== -1 ||
+                                      path.indexOf('taste-still-matters') !== -1;
+                if (isWritingPage) {
+                    var target = path.indexOf('/writing/') !== -1 ? '../index.html' : 'index.html';
+                    window.location.replace(target);
+                }
+            }
+        })();
+    </script>
+    <style>
+        html.writing-hidden [data-writing],
+        html.writing-hidden .writing-only {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav id="navbar" class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="assets/ryan_botha_logo.svg" alt="ryan_botha logo" class="logo-svg" decoding="async">
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-menu">
+                <span class="nav-toggle-bar bar-1"></span>
+                <span class="nav-toggle-bar bar-2"></span>
+                <span class="nav-toggle-bar bar-3"></span>
+            </button>
+            <div class="nav-backdrop"></div>
+            <ul id="nav-menu" class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="index.html#work" class="nav-link">Work</a></li>
+                <li><a href="index.html#design-process" class="nav-link">Design Process</a></li>
+                <li data-writing="true"><a href="writing.html" class="nav-link">Writing</a></li>
+                <li><a href="https://www.linkedin.com/in/ryanbotha/" target="_blank" class="nav-link">LinkedIn Profile</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Case Study Hero -->
+    <header class="case-study-hero">
+        <div class="case-study-hero-container">
+            <a href="index.html" class="back-home"><i class="fas fa-arrow-left"></i> Back to Home</a>
+            <h1 class="case-study-title">Crewcation: <br><span class="serif-italic">Getting group trips out of the chat</span></h1>
+            
+            <div class="case-study-meta">
+                <div class="meta-item">
+                    <h4>My Role</h4>
+                    <p>Founder & Product Designer</p>
+                </div>
+                <div class="meta-item">
+                    <h4>Deliverables</h4>
+                    <p>UX Research, Component Library, Design Tokens, Figma Mockups</p>
+                </div>
+                <div class="meta-item">
+                    <h4>Focus</h4>
+                    <p>Group Travel, Social UX, Mobile-First Design System</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Case Study Content -->
+    <main class="case-study-body">
+        
+        <!-- Table of Contents -->
+        <div class="toc-container" id="tocContainer">
+            <div class="toc-trigger" id="tocTrigger">Table of Contents</div>
+            <div class="toc-dropdown-menu">
+                <div class="toc-mobile-header">
+                    <h3>Table of Contents</h3>
+                    <button class="toc-close-btn" id="tocCloseBtn" aria-label="Close menu"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="toc-grid">
+                    
+                    <a href="#the-problem" class="toc-item">
+                        <div class="toc-number">01</div>
+                        <div class="toc-title-text">Group trips die in the chat</div>
+                        <span class="toc-sublink">The problem and two roles</span>
+                    </a>
+
+                    <a href="#joining" class="toc-item">
+                        <div class="toc-number">02</div>
+                        <div class="toc-title-text">Join without the app</div>
+                        <span class="toc-sublink">Why I built a web front door</span>
+                    </a>
+
+                    <a href="#consensus-and-vibe-check" class="toc-item">
+                        <div class="toc-number">03</div>
+                        <div class="toc-title-text">Budgets stay private</div>
+                        <span class="toc-sublink">The Vibe Check</span>
+                    </a>
+
+                    <a href="#map-and-voting" class="toc-item">
+                        <div class="toc-number">04</div>
+                        <div class="toc-title-text">A map, then a real vote</div>
+                        <span class="toc-sublink">Shared map and the 10-point slider</span>
+                    </a>
+
+                    <a href="#how-its-built" class="toc-item">
+                        <div class="toc-number">05</div>
+                        <div class="toc-title-text">One designer, three platforms</div>
+                        <span class="toc-sublink">Figma, parity and AI agents</span>
+                    </a>
+
+                    <a href="#whats-next" class="toc-item">
+                        <div class="toc-number">06</div>
+                        <div class="toc-title-text">Next: settling up</div>
+                        <span class="toc-sublink">Expense splitter and itineraries</span>
+                    </a>
+
+                    <a href="#ios-app-gallery" class="toc-item">
+                        <div class="toc-number">07</div>
+                        <div class="toc-title-text">Every screen</div>
+                        <span class="toc-sublink">iOS app, web app and marketing site</span>
+                    </a>
+
+                    <a href="#results" class="toc-item">
+                        <div class="toc-number">08</div>
+                        <div class="toc-title-text">What shipped</div>
+                        <span class="toc-sublink">Outcome and what's open</span>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Opening -->
+        <section class="case-study-section">
+            <p>Group trips usually die in the group chat. Crewcation is my own product: an app that gets a group of friends from "we should go somewhere" to an actual plan. One person sets up the trip, and everyone else shares what they want in private and votes on places. I designed it and built it on my own, with AI agents doing much of the coding and Figma as the source of truth, and it's live on iOS and the web, with Android in development.</p>
+
+            <div class="case-study-image">
+                <img src="assets/crewcation-dashboard-mockup.webp" alt="Crewcation iOS screens: trip home, Paris places with Votes Needed and Crew Picks tabs, and the sentiment slider open on a place" loading="lazy" decoding="async" width="2400" height="1422">
+            </div>
+            <p class="image-caption">Home, a city's places, then the slider mid-vote. A trip goes from idea to decision in three screens.</p>
+        </section>
+
+        <!-- Section 1: The Problem & Roles -->
+        <section class="case-study-section">
+            <h2 id="the-problem">1. Group trips die in the chat</h2>
+            <p>A group trip starts as a great idea and turns into a 150-message thread, a spreadsheet nobody updates and map pins scattered across five phones. One person ends up doing all the admin, and open-ended planning leaves everyone stuck. So I split the work into two roles. The Captain sets where, when and who, and moves the trip forward. The Crew shares preferences privately, suggests places and votes.</p>
+            <p style="font-weight: 600; text-align: center; margin: 1.5rem 0; color: var(--text-primary);">Create &gt; Invite &gt; Suggest &gt; Vote &gt; Finalize.</p>
+
+            <div class="case-study-image">
+                <img src="assets/crewcation-funnel-infographic.webp" alt="Funnel comparison: traditional planning ends in decision fatigue, Crewcation's steps end in an itinerary" loading="lazy" decoding="async" width="1854" height="2400">
+            </div>
+            <p class="image-caption">The old way ends in decision fatigue. Crewcation turns the same group into five steps that end in a plan.</p>
+
+            <div class="staggered-timeline-container">
+                <div class="bauhaus-dot-grid">
+                    <span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span>
+                </div>
+                <div class="bauhaus-accent-circle"></div>
+                
+                <!-- Step 1 -->
+                <div class="timeline-item upstream">
+                    <div class="timeline-badge">01</div>
+                    <div class="timeline-card">
+                        <h4>Chat thread chaos</h4>
+                        <p>Ideas buried in messages</p>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="timeline-item upstream">
+                    <div class="timeline-badge">02</div>
+                    <div class="timeline-card">
+                        <h4>Budget awkwardness</h4>
+                        <p>Nobody wants to speak up</p>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="timeline-item upstream">
+                    <div class="timeline-badge">03</div>
+                    <div class="timeline-card">
+                        <h4>Too many options</h4>
+                        <p>Different tastes, no decision</p>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="timeline-item downstream">
+                    <div class="timeline-badge">04</div>
+                    <div class="timeline-card">
+                        <h4>The trip never happens</h4>
+                        <p>It dies in the chat</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Joining (working-with-me decision) -->
+        <section class="case-study-section">
+            <h2 id="joining">2. Friends can say yes without downloading anything</h2>
+            <p>This was the biggest call I made. The Captain cares enough to install an app. The Crew mostly wants to see the plan and say yes. So the invite email opens the trip in a web app, and you only sign up (Apple, Google or an email code) once you've accepted. Building a second client as a solo founder is expensive. I took that cost on purpose, because every extra step at the invite is a chance for a friend to drift off.</p>
+
+            <div class="case-study-image">
+                <img src="assets/Trip%20Creation%20Flow.webp" alt="Wireframe flow for trip creation: new trip modal, map discovery, search, curated trip, trip edit, trip created with stops" loading="lazy" decoding="async" width="2400" height="1015">
+            </div>
+            <p class="image-caption">The Captain picks single, multi-stop or road trip first. Curated trips arrive with their stops already built in.</p>
+
+            <div class="case-study-image">
+                <img src="assets/Crew%20Invitation.webp" alt="Wireframe flow for crew invitation: invite by email, invite sent, invitee home screen, invitation email and web invitation" loading="lazy" decoding="async" width="2400" height="1688">
+            </div>
+            <p class="image-caption">Notice the fork. Existing users see the invite on their home screen, everyone else gets an email that opens on the web.</p>
+        </section>
+
+        <!-- Section 3: Vibe Check -->
+        <section class="case-study-section">
+            <h2 id="consensus-and-vibe-check">3. Nobody has to say their budget out loud</h2>
+            <p>Money is the awkward part of a group trip. It's easier to go along with a plan you can't afford than to be the one who says so. The Vibe Check asks each traveller three things, once: energy, eating style and budget tier. Budgets are never shown to anyone else. The app combines them into a match score for each destination, so the group sees what fits without anyone naming a number.</p>
+
+            <div class="case-study-image">
+                <img src="assets/crewcation-vibe-check.webp" alt="Crewcation iOS Vibe Check: three steps for vibe (chill to thrill), eating style and budget tier" loading="lazy" decoding="async" width="2400" height="1422">
+            </div>
+            <p class="image-caption">One question per screen on iOS: chill or thrill, how you like to eat, and a budget tier from $ to $$$$.</p>
+
+            <div class="case-study-image" style="max-width: 60%; margin: 40px auto;">
+                <img src="assets/crewcation-PWA-vibe-check.webp" alt="Crewcation web app Vibe Check settings: energy level slider, eating style and budget rating" loading="lazy" decoding="async" width="1422" height="2400">
+            </div>
+            <p class="image-caption">On the web the same three questions sit together in settings, so they're quick to change later.</p>
+
+            <div class="style-guide-preview-card">
+                <div class="bauhaus-dot-grid">
+                    <span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span>
+                </div>
+                <div class="bauhaus-accent-circle"></div>
+                <div class="preview-header">
+                    <h4>Short case study</h4>
+                    <h3>The Vibe Check: private budgets, shared decisions</h3>
+                </div>
+                <p>How the Vibe Check keeps each budget private and still helps a group agree on where to go.</p>
+                <a href="draft-crewcation-vibe-check.html" class="preview-btn">Read the Vibe Check story <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </section>
+
+        <!-- Section 4: Map & Voting -->
+        <section class="case-study-section">
+            <h2 id="map-and-voting">4. Ideas go on a map, then get a real vote</h2>
+            <p>Links pasted into a chat get lost. In Crewcation anyone can pin a place to a shared map, filter by Stay, Do or Eat, and leave crew notes on the place itself. Then everyone rates it. A thumbs-up can't tell "sure, fine" from "I really want this", so I designed a 10-point slider from "Not for me" to "I love this!". On iOS each step gives a light haptic tick.</p>
+
+            <div class="case-study-image">
+                <img src="assets/crewcation-ios-places-map.webp" alt="Crewcation iOS places map: Stay, Do and Eat filters, search this area, place cards and a place detail with crew notes" loading="lazy" decoding="async" width="2400" height="1422">
+            </div>
+            <p class="image-caption">Filter, search the area, open a place. Crew notes and "Assign to day" live on the place, not in the chat.</p>
+
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px 12px; margin: 32px 0; font-weight: 500; text-align: center; font-size: 0.95rem;">
+                <div style="display: flex; flex-direction: column; align-items: center; background: rgba(255,255,255,0.03); padding: 8px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
+                    <span style="white-space: nowrap;">[🫣 Not for me]</span>
+                    <span style="font-family: monospace; color: var(--text-muted); margin-top: 4px;">1 &nbsp; 2</span>
+                </div>
+                <span style="color: var(--text-muted);">➔</span>
+                <div style="display: flex; flex-direction: column; align-items: center; background: rgba(255,255,255,0.03); padding: 8px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
+                    <span style="white-space: nowrap;">[🤨 Might Skip]</span>
+                    <span style="font-family: monospace; color: var(--text-muted); margin-top: 4px;">3 &nbsp; 4</span>
+                </div>
+                <span style="color: var(--text-muted);">➔</span>
+                <div style="display: flex; flex-direction: column; align-items: center; background: rgba(255,255,255,0.03); padding: 8px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
+                    <span style="white-space: nowrap;">[🙂 Could be fun]</span>
+                    <span style="font-family: monospace; color: var(--text-muted); margin-top: 4px;">5 &nbsp; 6</span>
+                </div>
+                <span style="color: var(--text-muted);">➔</span>
+                <div style="display: flex; flex-direction: column; align-items: center; background: rgba(255,255,255,0.03); padding: 8px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
+                    <span style="white-space: nowrap;">[😃 I'm Down!]</span>
+                    <span style="font-family: monospace; color: var(--text-muted); margin-top: 4px;">7 &nbsp; 8</span>
+                </div>
+                <span style="color: var(--text-muted);">➔</span>
+                <div style="display: flex; flex-direction: column; align-items: center; background: rgba(255,255,255,0.03); padding: 8px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
+                    <span style="white-space: nowrap;">[🤩 I love this!]</span>
+                    <span style="font-family: monospace; color: var(--text-muted); margin-top: 4px;">9 &nbsp; 10</span>
+                </div>
+            </div>
+
+            <div class="case-study-image">
+                <img src="assets/crewcation-ios-sentiment-voting.webp" alt="Crewcation iOS sentiment slider at four positions, from Not for me to I love this, beside the slider open on a place in Athens" loading="lazy" decoding="async" width="2400" height="1407">
+            </div>
+            <p class="image-caption">Ten points, five moods. The label and emoji change as you drag, so you always know what your vote says.</p>
+        </section>
+
+        <!-- Section 5: How It's Built -->
+        <section class="case-study-section">
+            <h2 id="how-its-built">5. One designer, three platforms, one source of truth</h2>
+            <p><strong>Stack:</strong> one Supabase backend, SwiftUI for iOS, Next.js for the web app, Jetpack Compose for Android (in progress).</p>
+            <p>Figma holds every token, layout and asset. Agents in Google Antigravity do much of the coding, and they check each build against Figma and against the other platforms. I don't ask for pixel copies. A date picker should feel native on iPhone and Android and light on the web. AI gets me to working code fast. My eye decides what ships.</p>
+
+            <div class="case-study-image">
+                <img src="assets/crewcation-architecture.webp" alt="Crewcation architecture diagram: a Supabase backend with Postgres, Realtime and Storage feeding the SwiftUI iOS app and the Next.js web app" loading="lazy" decoding="async" width="1929" height="2400">
+            </div>
+            <p class="image-caption">One backend keeps every trip in sync in real time, whichever app a friend happens to use.</p>
+
+            <div class="style-guide-preview-card">
+                <div class="bauhaus-dot-grid">
+                    <span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span>
+                </div>
+                <div class="bauhaus-accent-circle"></div>
+                <div class="preview-header">
+                    <h4>Interactive design specimen</h4>
+                    <h3>Crewcation UI Style Guide</h3>
+                </div>
+                <p>The live style guide: tokens, icons, type and components, and how each one maps to web, iOS and Android.</p>
+                <a href="crewcation-ui-style-guide.html" class="preview-btn">View the style guide <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="case-study-image">
+                <img src="assets/Crewcation-Agentic-Workflows.webp" alt="Antigravity agent walkthrough for Android parity work, NotebookLM parity notebooks and the Crewcation Figma file side by side" loading="lazy" decoding="async" width="2400" height="1415">
+            </div>
+            <p class="image-caption">An agent aligning an Android carousel to the iOS and web versions, with the parity notes and the Figma file it checks against.</p>
+
+            <div class="image-gallery">
+                <div class="case-study-image">
+                    <img src="assets/xcode-agentic-workflow.webp" alt="Xcode with Gemini fixing a build in the iOS project" loading="lazy" decoding="async" width="2400" height="1362">
+                </div>
+                <div class="case-study-image">
+                    <img src="assets/pwa-android-workflow.webp" alt="Android Studio and Chrome DevTools open side by side for Android and web parity checks" loading="lazy" decoding="async" width="2400" height="1362">
+                </div>
+            </div>
+            <p class="image-caption">Each platform has its own loop. Left: Gemini fixing an iOS build in Xcode. Right: the Android app checked against the live web app.</p>
+
+            <div class="style-guide-preview-card">
+                <div class="bauhaus-dot-grid">
+                    <span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span>
+                </div>
+                <div class="bauhaus-accent-circle"></div>
+                <div class="preview-header">
+                    <h4>Short case study</h4>
+                    <h3>Designing with agents</h3>
+                </div>
+                <p>How I keep iOS, web and Android in step with Figma as the source of truth and AI agents doing the heavy lifting.</p>
+                <a href="draft-crewcation-designing-with-agents.html" class="preview-btn">Read how I work with agents <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="whats-next">6. Next: settling up without the awkward IOU</h2>
+            <p>Money comes back at the end of a trip, so the next feature is an expense splitter, now in development. Snap a receipt, pick a photo or type it in. Gemini reads the receipt and fills in the amount, place and category. The app works out who owes whom and writes the request for you to post in the trip chat. It started as a sketch on paper.</p>
+
+            <div class="case-study-image">
+                <img class="no-modal" src="assets/ios-trip-screens/expense/crewcation-split-bill.webp" alt="Hand-drawn concept for the Crewcation travel expense feature: record, track, reconcile, then request payment" loading="lazy" decoding="async" width="2400" height="1847">
+            </div>
+            <p class="image-caption">The first sketch. Note the default: AI reads the receipt and splits it with the whole crew, and you untick anyone who wasn't there.</p>
+
+            <div class="ios-phone-grid" style="margin-top: 32px;">
+                <article class="ios-phone-card in-view" style="animation-delay: 0s;">
+                    <figure class="ios-phone-frame">
+                        <img class="ios-phone-screen" src="assets/ios-trip-screens/expense/ios-split-bill-mvp.webp" alt="Split Bill Overview" loading="lazy" decoding="async" width="1104" height="2400">
+                        <figcaption class="ios-phone-overlay">
+                            <span class="ios-overlay-category" style="color:#f59e0b">Step 1</span>
+                            <span class="ios-overlay-title">Trip Expense Overview</span>
+                        </figcaption>
+                    </figure>
+                    <p class="image-caption" style="font-size: 0.85em; margin-top: 12px; text-align: center;">1. Trip Expense Overview</p>
+                </article>
+                <article class="ios-phone-card in-view" style="animation-delay: 0.05s;">
+                    <figure class="ios-phone-frame">
+                        <img class="ios-phone-screen" src="assets/ios-trip-screens/expense/ios-split-bill-mvp-receipt-pic.webp" alt="Capture Receipt" loading="lazy" decoding="async" width="1104" height="2400">
+                        <figcaption class="ios-phone-overlay">
+                            <span class="ios-overlay-category" style="color:#f59e0b">Step 2</span>
+                            <span class="ios-overlay-title">Capture Receipt</span>
+                        </figcaption>
+                    </figure>
+                    <p class="image-caption" style="font-size: 0.85em; margin-top: 12px; text-align: center;">2. Capture Receipt</p>
+                </article>
+                <article class="ios-phone-card in-view" style="animation-delay: 0.1s;">
+                    <figure class="ios-phone-frame">
+                        <img class="ios-phone-screen" src="assets/ios-trip-screens/expense/ios-split-bill-mvp-ai-reading-receipt.webp" alt="AI Reading Receipt" loading="lazy" decoding="async" width="1104" height="2400">
+                        <figcaption class="ios-phone-overlay">
+                            <span class="ios-overlay-category" style="color:#f59e0b">Step 3</span>
+                            <span class="ios-overlay-title">AI Reading Receipt</span>
+                        </figcaption>
+                    </figure>
+                    <p class="image-caption" style="font-size: 0.85em; margin-top: 12px; text-align: center;">3. AI Reading Receipt</p>
+                </article>
+                <article class="ios-phone-card in-view" style="animation-delay: 0.15s;">
+                    <figure class="ios-phone-frame">
+                        <img class="ios-phone-screen" src="assets/ios-trip-screens/expense/ios-split-bill-mvp-ai-read-receipt-result.webp" alt="AI Extraction Result" loading="lazy" decoding="async" width="1104" height="2400">
+                        <figcaption class="ios-phone-overlay">
+                            <span class="ios-overlay-category" style="color:#f59e0b">Step 4</span>
+                            <span class="ios-overlay-title">AI Extraction Result</span>
+                        </figcaption>
+                    </figure>
+                    <p class="image-caption" style="font-size: 0.85em; margin-top: 12px; text-align: center;">4. AI Extraction Result</p>
+                </article>
+                <article class="ios-phone-card in-view" style="animation-delay: 0.2s;">
+                    <figure class="ios-phone-frame">
+                        <img class="ios-phone-screen" src="assets/ios-trip-screens/expense/ios-split-bill-mvp-expense-added.webp" alt="Expense Added" loading="lazy" decoding="async" width="1104" height="2400">
+                        <figcaption class="ios-phone-overlay">
+                            <span class="ios-overlay-category" style="color:#f59e0b">Step 5</span>
+                            <span class="ios-overlay-title">Expense Added to Trip</span>
+                        </figcaption>
+                    </figure>
+                    <p class="image-caption" style="font-size: 0.85em; margin-top: 12px; text-align: center;">5. Expense Added to Trip</p>
+                </article>
+                <article class="ios-phone-card in-view" style="animation-delay: 0.25s;">
+                    <figure class="ios-phone-frame">
+                        <img class="ios-phone-screen" src="assets/ios-trip-screens/expense/ios-split-bill-mvp-crew-settle-split.webp" alt="Settle Split" loading="lazy" decoding="async" width="1104" height="2400">
+                        <figcaption class="ios-phone-overlay">
+                            <span class="ios-overlay-category" style="color:#f59e0b">Step 6</span>
+                            <span class="ios-overlay-title">Settle Split Balances</span>
+                        </figcaption>
+                    </figure>
+                    <p class="image-caption" style="font-size: 0.85em; margin-top: 12px; text-align: center;">6. Confirm a payment to settle</p>
+                </article>
+                <article class="ios-phone-card in-view" style="animation-delay: 0.3s;">
+                    <figure class="ios-phone-frame">
+                        <img class="ios-phone-screen" src="assets/ios-trip-screens/expense/ios-split-bill-mvp-crew-settle-message.webp" alt="Settle Message" loading="lazy" decoding="async" width="1104" height="2400">
+                        <figcaption class="ios-phone-overlay">
+                            <span class="ios-overlay-category" style="color:#f59e0b">Step 7</span>
+                            <span class="ios-overlay-title">Request from Crew</span>
+                        </figcaption>
+                    </figure>
+                    <p class="image-caption" style="font-size: 0.85em; margin-top: 12px; text-align: center;">7. Request posted to trip chat</p>
+                </article>
+            </div>
+
+            <p class="image-caption">The iOS build follows the sketch closely, from an empty "all settled up" state to a request posted in the trip chat.</p>
+
+            <h4 style="margin-top: 32px; font-size: 1.1em; font-weight: 500;">The same flow, explored for Android</h4>
+            <p>Same steps, same backend, explored in Material 3 Expressive so it feels at home on Android.</p>
+            <div class="ios-phone-grid" style="margin-top: 24px;">
+                <article class="ios-phone-card in-view" style="animation-delay: 0s;">
+                    <div class="ios-flat-frame">
+                        <img class="ios-flat-image" src="assets/ios-trip-screens/expense/android-split-bill-idea-01.webp" alt="Android Concept 1" loading="lazy" decoding="async" width="1106" height="2400">
+                        <div class="ios-phone-overlay ios-flat-overlay">
+                            <span class="ios-overlay-category" style="color:#10b981">Concept 1</span>
+                            <span class="ios-overlay-title">Material 3 Dashboard</span>
+                        </div>
+                    </div>
+                    <p class="image-caption" style="font-size: 0.85em; margin-top: 12px; text-align: center;">1. Material 3 Dashboard</p>
+                </article>
+                <article class="ios-phone-card in-view" style="animation-delay: 0.05s;">
+                    <div class="ios-flat-frame">
+                        <img class="ios-flat-image" src="assets/ios-trip-screens/expense/android-split-bill-idea-02.webp" alt="Android Concept 2" loading="lazy" decoding="async" width="1106" height="2400">
+                        <div class="ios-phone-overlay ios-flat-overlay">
+                            <span class="ios-overlay-category" style="color:#10b981">Concept 2</span>
+                            <span class="ios-overlay-title">Expense Summary</span>
+                        </div>
+                    </div>
+                    <p class="image-caption" style="font-size: 0.85em; margin-top: 12px; text-align: center;">2. Expense Summary</p>
+                </article>
+                <article class="ios-phone-card in-view" style="animation-delay: 0.1s;">
+                    <div class="ios-flat-frame">
+                        <img class="ios-flat-image" src="assets/ios-trip-screens/expense/android-split-bill-idea-scan.webp" alt="Scan Receipt" loading="lazy" decoding="async" width="1106" height="2400">
+                        <div class="ios-phone-overlay ios-flat-overlay">
+                            <span class="ios-overlay-category" style="color:#10b981">Scan</span>
+                            <span class="ios-overlay-title">Capture Receipt</span>
+                        </div>
+                    </div>
+                    <p class="image-caption" style="font-size: 0.85em; margin-top: 12px; text-align: center;">3. Capture Receipt</p>
+                </article>
+                <article class="ios-phone-card in-view" style="animation-delay: 0.15s;">
+                    <div class="ios-flat-frame">
+                        <img class="ios-flat-image" src="assets/ios-trip-screens/expense/android-split-bill-ai-read-receipt.webp" alt="AI Reading Receipt" loading="lazy" decoding="async" width="1106" height="2400">
+                        <div class="ios-phone-overlay ios-flat-overlay">
+                            <span class="ios-overlay-category" style="color:#10b981">AI Processing</span>
+                            <span class="ios-overlay-title">Reading Details</span>
+                        </div>
+                    </div>
+                    <p class="image-caption" style="font-size: 0.85em; margin-top: 12px; text-align: center;">4. AI Reading Receipt</p>
+                </article>
+                <article class="ios-phone-card in-view" style="animation-delay: 0.2s;">
+                    <div class="ios-flat-frame">
+                        <img class="ios-flat-image" src="assets/ios-trip-screens/expense/android-split-bill-ai-read-receipt-result.webp" alt="AI Result" loading="lazy" decoding="async" width="1106" height="2400">
+                        <div class="ios-phone-overlay ios-flat-overlay">
+                            <span class="ios-overlay-category" style="color:#10b981">AI Result</span>
+                            <span class="ios-overlay-title">Extraction Complete</span>
+                        </div>
+                    </div>
+                    <p class="image-caption" style="font-size: 0.85em; margin-top: 12px; text-align: center;">5. AI Extraction Result</p>
+                </article>
+            </div>
+
+            <p class="image-caption">Android concepts: overview, summary, scan, AI reading, and the result to check before saving.</p>
+
+            <h3>After that: a day-by-day plan</h3>
+            <p>Once the crew has voted, Gemini will group the top-voted places and everyone's Vibe Checks into a day-by-day plan.</p>
+        </section>
+
+
+        <!-- Section 5: iOS App Screen Gallery -->
+        <section class="case-study-section ios-showcase-section" id="ios-screens">
+            <div class="ios-showcase-inner">
+                <div class="ios-showcase-header">
+                    <h2 id="ios-app-gallery">7. Every screen, iOS and web</h2>
+                    <p class="ios-showcase-subtitle">All 50 iOS screens, built in SwiftUI to Apple's Human Interface Guidelines. Filter by part of the trip, or tap a screen to see what it does.</p>
+                    <div class="ios-showcase-divider"></div>
+                </div>
+
+                <!-- Filter Bar -->
+                <div class="ios-filter-bar" id="iosFilterBar" role="toolbar" aria-label="Filter screens by category">
+                    <button class="ios-filter-chip active" data-filter="all">All <span class="chip-count">50</span></button>
+                    <button class="ios-filter-chip" data-filter="onboarding">Onboarding <span class="chip-count">6</span></button>
+                    <button class="ios-filter-chip" data-filter="crew">Crew <span class="chip-count">7</span></button>
+                    <button class="ios-filter-chip" data-filter="trip-planning">Trip Planning <span class="chip-count">14</span></button>
+                    <button class="ios-filter-chip" data-filter="places-map">Places &amp; Map <span class="chip-count">13</span></button>
+                    <button class="ios-filter-chip" data-filter="hotels">Hotels <span class="chip-count">3</span></button>
+                    <button class="ios-filter-chip" data-filter="sentiment">Sentiment <span class="chip-count">2</span></button>
+                    <button class="ios-filter-chip" data-filter="vibe-check">Vibe Check <span class="chip-count">4</span></button>
+                    <button class="ios-filter-chip" data-filter="settings">Settings <span class="chip-count">1</span></button>
+                </div>
+
+                <!-- Phone Grid (dynamically populated) -->
+                <div class="ios-phone-grid" id="iosPhoneGrid" aria-label="iOS app screenshots"></div>
+            </div>
+
+            <!-- Lightbox -->
+            <div class="ios-lightbox" id="iosLightbox" aria-modal="true" role="dialog" aria-label="Screen detail view">
+                <button class="ios-lb-close" id="iosLbClose" aria-label="Close lightbox">&#x2715;</button>
+                <button class="ios-lb-nav ios-lb-prev" id="iosLbPrev" aria-label="Previous screen">&#8592;</button>
+                <button class="ios-lb-nav ios-lb-next" id="iosLbNext" aria-label="Next screen">&#8594;</button>
+                <div class="ios-lb-content">
+                    <div class="ios-lb-phone-frame" id="iosLbPhoneFrame">
+                        <img class="ios-lb-image" id="iosLbImage" src="" alt="" loading="lazy" decoding="async">
+                    </div>
+                    <div class="ios-lb-meta">
+                        <span class="ios-lb-category" id="iosLbCategory"></span>
+                        <h3 class="ios-lb-title" id="iosLbTitle"></h3>
+                        <p class="ios-lb-desc" id="iosLbDesc"></p>
+                        <p class="ios-lb-counter" id="iosLbCounter"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <script>
+        (function () {
+            /* ---- Screen Data ---- */
+            var IOS_SCREENS = [
+                // Onboarding: logo + loader first
+                { file: 'crewcation-ios-app-logo.webp',              title: 'App Logo',             category: 'onboarding',    alt: 'Crewcation iOS app logo splash screen',                      desc: 'Crewcation brand identity displayed on the iOS splash screen.' },
+                { file: 'crewcation-ios-loading-screen.webp',        title: 'Loading Screen',       category: 'onboarding',    alt: 'Crewcation iOS animated loading screen',                     desc: 'Loading state shown while the app syncs trip data from Supabase.' },
+                { file: 'crewcation-ios-onboarding.webp',            title: 'Onboarding',           category: 'onboarding',    alt: 'Crewcation iOS app onboarding welcome screen',               desc: 'Full-screen onboarding experience introducing Crewcation\'s group travel planning concept.' },
+                { file: 'crewcation-ios-get-started-card.webp',      title: 'Get Started',          category: 'onboarding',    alt: 'Crewcation iOS get started card screen',                     desc: 'Entry card welcoming users and guiding them to create their first trip.' },
+                { file: 'crewcation-ios-email-sign-in.webp',         title: 'Email Sign In',        category: 'onboarding',    alt: 'Crewcation iOS email sign in screen',                        desc: 'Magic link authentication via email: no password required.' },
+                { file: 'crewcation-ios-sign-in-verification.webp',  title: 'Sign In Verification', category: 'onboarding',    alt: 'Crewcation iOS sign in verification code screen',             desc: 'Email verification code entry for a quick, secure login.' },
+                // Crew: phone screens first, flat email/web last
+                { file: 'crewcation-ios-invite-crew.webp',                 title: 'Invite Crew',            category: 'crew',          alt: 'Crewcation iOS invite crew members screen',            desc: 'Captain\'s interface for entering and sending email invites to crew members.' },
+                { file: 'crewcation-ios-invite-crew-invited-state.webp',   title: 'Crew Invited',           category: 'crew',          alt: 'Crewcation iOS crew invited confirmation state',        desc: 'Confirmation state after crew invitations have been dispatched.' },
+                { file: 'crewcation-ios-invitation-modal.webp',            title: 'Invitation Modal',       category: 'crew',          alt: 'Crewcation iOS in-app invitation modal',               desc: 'In-app modal showing trip invitation details and accept/decline actions.' },
+                { file: 'crewcation-ios-manage-crew-popover.webp',         title: 'Manage Crew',            category: 'crew',          alt: 'Crewcation iOS manage crew members popover',           desc: 'Popover sheet for managing crew member roles and permissions.' },
+                { file: 'crewcation-ios-trip-invite-card.webp',            title: 'Trip Invite Card',       category: 'crew',          alt: 'Crewcation iOS shareable trip invite card',            desc: 'Shareable trip invite card displaying destination and crew details.' },
+                { file: 'crewcation-ios-invitation-email-screen.webp',     title: 'Invitation Email',       category: 'crew',          noBezel: true, alt: 'Crewcation iOS trip invitation email screen',   desc: 'Email notification design for crew trip invitations sent to guests.' },
+                { file: 'crewcation-ios-web-invitation-screen.webp',       title: 'Web Invitation',         category: 'crew',          noBezel: true, alt: 'Crewcation iOS web invitation landing screen',  desc: 'Cross-platform invitation view seen by guests joining via web link.' },
+                // Trip Planning: place suggestions second, detail stops last
+                { file: 'crewcation-ios-trip-list.webp',                   title: 'Trip List',              category: 'trip-planning', alt: 'Crewcation iOS trip list dashboard',                   desc: 'Main dashboard showing all active and past trips with status indicators.' },
+                { file: 'crewcation-ios-stop-place-suggestions.webp',      title: 'Place Suggestions',      category: 'trip-planning', alt: 'Crewcation iOS crew place suggestions for a stop',     desc: 'Crew-sourced place suggestions for a trip stop, ranked by vote count.' },
+                { file: 'crewcation-ios-new-trip.webp',                    title: 'New Trip',               category: 'trip-planning', alt: 'Crewcation iOS new trip creation screen',              desc: 'Trip creation flow: entering destination, dates, and trip type.' },
+                { file: 'crewcation-ios-new-trip-stops.webp',              title: 'Trip Stops',             category: 'trip-planning', alt: 'Crewcation iOS new trip multi-stop screen',            desc: 'Adding multiple destination stops for a multi-city trip itinerary.' },
+                { file: 'crewcation-ios-trip-date-selector.webp',          title: 'Date Selector',          category: 'trip-planning', alt: 'Crewcation iOS native calendar date selector',         desc: 'Native iOS calendar picker for selecting trip departure and return dates.' },
+                { file: 'crewcation-ios-update-trip-type.webp',            title: 'Update Trip Type',       category: 'trip-planning', alt: 'Crewcation iOS update trip type selector',             desc: 'Trip type selector: weekend getaway, city break, adventure, and more.' },
+                { file: 'crewcation-ios-curated-trip.webp',                title: 'Curated Trip',           category: 'trip-planning', alt: 'Crewcation iOS AI curated trip suggestion screen',     desc: 'AI-curated trip suggestion based on collective crew vibe check preferences.' },
+                { file: 'crewcation-ios-curated-trip-continued.webp',      title: 'Curated Trip (cont.)',   category: 'trip-planning', alt: 'Crewcation iOS curated trip details continued',        desc: 'Continuation of the curated trip view showing additional destination details.' },
+                { file: 'crewcation-ios-curated-destinations.webp',        title: 'Curated Destinations',   category: 'trip-planning', alt: 'Crewcation iOS curated destination discovery grid',    desc: 'Destination discovery grid filtered by crew vibe check match scores.' },
+                { file: 'crewcation-ios-single-destination.webp',          title: 'Single Destination',     category: 'trip-planning', alt: 'Crewcation iOS single destination match card',         desc: 'Focused destination card showing match score, highlights, and quick add action.' },
+                { file: 'crewcation-ios-select-destination.webp',          title: 'Select Destination',     category: 'trip-planning', alt: 'Crewcation iOS select trip destination screen',        desc: 'Destination selection interface for locking in the trip location.' },
+                { file: 'crewcation-ios-stop-itinerary.webp',              title: 'Stop Itinerary',         category: 'trip-planning', alt: 'Crewcation iOS stop day-by-day itinerary view',        desc: 'Day-by-day itinerary view for a single trip stop.' },
+                { file: 'crewcation-ios-stop-timeline.webp',               title: 'Stop Timeline',          category: 'trip-planning', alt: 'Crewcation iOS trip stop chronological timeline',      desc: 'Chronological timeline view of all activities and events for a trip stop.' },
+                { file: 'crewcation-ios-trip-detail-stops.webp',           title: 'Trip Detail Stops',      category: 'trip-planning', alt: 'Crewcation iOS trip detail stops view',                desc: 'Detailed view of all trip stops with crew activity and status per stop.' },
+                // Places & Map
+                { file: 'crewcation-ios-map-loading.webp',                 title: 'Map Loading',            category: 'places-map',    alt: 'Crewcation iOS shared map loading screen',             desc: 'Animated map loading state as place pins and crew suggestions load in real-time.' },
+                { file: 'crewcation-ios-map-pin-added.webp',               title: 'Map Pin Added',          category: 'places-map',    alt: 'Crewcation iOS map pin added confirmation',            desc: 'Success state shown after a crew member pins a new place to the shared map.' },
+                { file: 'crewcation-ios-map-pins.webp',                    title: 'Map Pins',               category: 'places-map',    alt: 'Crewcation iOS map with all crew suggestion pins',     desc: 'Shared crew map showing all pinned locations with custom Crewcation markers.' },
+                { file: 'crewcation-ios-map-place-cards.webp',             title: 'Map Place Cards',        category: 'places-map',    alt: 'Crewcation iOS map with scrollable place cards',       desc: 'Horizontal scrollable place cards overlaid on the map for quick discovery.' },
+                { file: 'crewcation-ios-place-details.webp',               title: 'Place Details',          category: 'places-map',    alt: 'Crewcation iOS place detail sheet',                    desc: 'Full detail sheet for a suggested place: photos, crew notes, voting, and booking.' },
+                { file: 'crewcation-ios-place-added-confirmation.webp',    title: 'Place Added',            category: 'places-map',    alt: 'Crewcation iOS place added to trip confirmation',      desc: 'Confirmation screen after successfully adding a place to the crew trip.' },
+                { file: 'crewcation-ios-add-place-to-day.webp',            title: 'Add Place to Day',       category: 'places-map',    alt: 'Crewcation iOS add place to itinerary day screen',     desc: 'Bottom sheet for assigning a suggested place to a specific itinerary day.' },
+                { file: 'crewcation-ios-assign-place-to-day-sheet.webp',   title: 'Assign to Day Sheet',    category: 'places-map',    alt: 'Crewcation iOS assign place to day sheet with picker', desc: 'Day assignment sheet with date picker for scheduling places in the itinerary.' },
+                { file: 'crewcation-ios-place-crew-notes.webp',            title: 'Crew Notes',             category: 'places-map',    alt: 'Crewcation iOS collaborative place crew notes',        desc: 'Collaborative crew notes panel: members share links, tips, and logistics per place.' },
+                { file: 'crewcation-ios-place-crew-picks.webp',            title: 'Crew Picks',             category: 'places-map',    alt: 'Crewcation iOS crew top picks ranked list',            desc: 'Curated list of top crew-voted places ranked by collective sentiment scores.' },
+                { file: 'crewcation-ios-stop-votes-needed.webp',           title: 'Votes Needed',           category: 'places-map',    alt: 'Crewcation iOS stop votes needed prompt',              desc: 'Prompt shown when a trip stop still has pending votes required from crew.' },
+                { file: 'crewcation-ios-voted-place-status.webp',          title: 'Voted Place Status',     category: 'places-map',    alt: 'Crewcation iOS voted place voting progress screen',    desc: 'Place card status view showing current voting progress across crew members.' },
+                { file: 'crewcation-ios-place-voted-notice.webp',          title: 'Place Voted Notice',     category: 'places-map',    alt: 'Crewcation iOS vote recorded notice',                  desc: 'In-app notice confirming a user\'s vote has been recorded for a suggested place.' },
+                // Hotels: alt hotels last
+                { file: 'crewcation-ios-hotel-availability.webp',             title: 'Hotel Availability',  category: 'hotels',        alt: 'Crewcation iOS live hotel availability screen',         desc: 'Live hotel availability pulled from the LiteAPI integration for the trip destination.' },
+                { file: 'crewcation-ios-hotel-no-rooms.webp',                 title: 'No Rooms Available',  category: 'hotels',        alt: 'Crewcation iOS hotel no rooms available empty state',  desc: 'Empty state shown when a hotel has no available rooms for the selected dates.' },
+                { file: 'crewcation-ios-hotel-alternative-availability.webp', title: 'Alternative Hotels',  category: 'hotels',        alt: 'Crewcation iOS alternative hotel options screen',      desc: 'Alternative hotel options shown when the preferred property is fully booked.' },
+                // Sentiment
+                { file: 'crewcation-ios-sentiment-slider.webp',            title: 'Sentiment Slider',       category: 'sentiment',     alt: 'Crewcation iOS 10-point sentiment voting slider',       desc: '10-point sentiment slider with haptic feedback for nuanced place preference voting.' },
+                { file: 'crewcation-ios-sentiment-slider-action.webp',     title: 'Slider in Action',       category: 'sentiment',     alt: 'Crewcation iOS sentiment slider dragging in action',   desc: 'Slider in active dragging state: emoji feedback updates in real-time as users vote.' },
+                // Vibe Check: budget third
+                { file: 'crewcation-ios-vibe-check.webp',                  title: 'Vibe Check',             category: 'vibe-check',    alt: 'Crewcation iOS vibe check travel preferences screen',  desc: 'Vibe Check preference setup: travellers choose energy level, budget tier, and food style.' },
+                { file: 'crewcation-ios-vibe-check-eat.webp',              title: 'Vibe Check: Food',       category: 'vibe-check',    alt: 'Crewcation iOS vibe check food preference screen',     desc: 'Foodie type selector: Fine Dining, Street Food, or Balanced Mix.' },
+                { file: 'crewcation-ios-vibe-check-budget.webp',           title: 'Vibe Check: Budget',     category: 'vibe-check',    alt: 'Crewcation iOS vibe check private budget selector',    desc: 'Private budget preference selector: values are never exposed to other crew members.' },
+                { file: 'crewcation-ios-vibe-check-updated.webp',          title: 'Vibe Check Updated',     category: 'vibe-check',    alt: 'Crewcation iOS vibe check updated confirmation',       desc: 'Confirmation state after successfully updating Vibe Check preferences.' },
+                // Settings
+                { file: 'crewcation-ios-settings.webp',                    title: 'Settings',               category: 'settings',      alt: 'Crewcation iOS app settings and account screen',       desc: 'User settings and account management: notifications, profile, and app preferences.' }
+            ];
+
+            var CATEGORY_LABELS = {
+                'all': 'All', 'onboarding': 'Onboarding', 'crew': 'Crew',
+                'trip-planning': 'Trip Planning', 'places-map': 'Places & Map',
+                'hotels': 'Hotels', 'sentiment': 'Sentiment',
+                'vibe-check': 'Vibe Check', 'settings': 'Settings',
+                'expense': 'Expense'
+            };
+
+            var CATEGORY_COLORS = {
+                'onboarding': '#6366f1', 'crew': '#f37b67', 'trip-planning': '#3db9cf',
+                'places-map': '#10b981', 'hotels': '#f59e0b', 'sentiment': '#ec4899',
+                'vibe-check': '#8b5cf6', 'settings': '#6b7280',
+                'expense': '#f43f5e'
+            };
+
+            var currentFilter = 'all';
+            var filteredScreens = [];
+            var currentLightboxIndex = 0;
+
+            function renderGrid(filter) {
+                var grid = document.getElementById('iosPhoneGrid');
+                filteredScreens = filter === 'all'
+                    ? IOS_SCREENS.slice()
+                    : IOS_SCREENS.filter(function(s) { return s.category === filter; });
+
+                grid.innerHTML = filteredScreens.map(function(screen, i) {
+                    var delay = ((i % 12) * 0.045) + 's';
+                    var catColor = CATEGORY_COLORS[screen.category] || '#fff';
+                    var catLabel = CATEGORY_LABELS[screen.category];
+                    var imgPath = 'assets/ios-trip-screens/' + screen.file;
+
+                    if (screen.noBezel) {
+                        /* Flat card: email / web screenshots, no phone bezel */
+                        return '<article class="ios-phone-card ios-flat-card" data-index="' + i + '" style="animation-delay:' + delay + '">' +
+                            '<div class="ios-flat-frame" role="button" tabindex="0" aria-label="View ' + screen.title + '">' +
+                                '<img class="ios-flat-image" src="' + imgPath + '" alt="' + screen.alt + '" loading="lazy" decoding="async">' +
+                                '<div class="ios-phone-overlay ios-flat-overlay">' +
+                                    '<span class="ios-overlay-category" style="color:' + catColor + '">' + catLabel + '</span>' +
+                                    '<span class="ios-overlay-title">' + screen.title + '</span>' +
+                                    '<span class="ios-overlay-hint"><i class="fas fa-expand-alt"></i> View</span>' +
+                                '</div>' +
+                            '</div>' +
+                        '</article>';
+                    }
+
+                    /* Standard phone bezel card */
+                    return '<article class="ios-phone-card" data-index="' + i + '" style="animation-delay:' + delay + '">' +
+                        '<figure class="ios-phone-frame" role="button" tabindex="0" aria-label="View ' + screen.title + ' screenshot">' +
+                            '<img class="ios-phone-screen" src="' + imgPath + '" alt="' + screen.alt + '" loading="lazy" decoding="async">' +
+                            '<figcaption class="ios-phone-overlay">' +
+                                '<span class="ios-overlay-category" style="color:' + catColor + '">' + catLabel + '</span>' +
+                                '<span class="ios-overlay-title">' + screen.title + '</span>' +
+                                '<span class="ios-overlay-hint"><i class="fas fa-expand-alt"></i> View</span>' +
+                            '</figcaption>' +
+                        '</figure>' +
+                    '</article>';
+                }).join('');
+
+                /* Bind click/keyboard events on both frame types */
+                grid.querySelectorAll('.ios-phone-frame, .ios-flat-frame').forEach(function(frame, i) {
+                    frame.addEventListener('click', function() { openLightbox(i); });
+                    frame.addEventListener('keydown', function(e) {
+                        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(i); }
+                    });
+                });
+
+                /* Intersection Observer for entrance animations */
+                var observer = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('in-view');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
+
+                grid.querySelectorAll('.ios-phone-card').forEach(function(card) { observer.observe(card); });
+            }
+
+            /* ---- Filter chips ---- */
+            document.getElementById('iosFilterBar').addEventListener('click', function(e) {
+                var chip = e.target.closest('.ios-filter-chip');
+                if (!chip) return;
+                document.querySelectorAll('.ios-filter-chip').forEach(function(c) { c.classList.remove('active'); });
+                chip.classList.add('active');
+                currentFilter = chip.dataset.filter;
+
+                var grid = document.getElementById('iosPhoneGrid');
+                grid.style.opacity = '0';
+                grid.style.transform = 'translateY(8px)';
+                grid.style.transition = 'opacity 0.18s ease, transform 0.18s ease';
+
+                setTimeout(function() {
+                    renderGrid(currentFilter);
+                    grid.style.transition = 'opacity 0.28s ease, transform 0.28s ease';
+                    grid.style.opacity = '1';
+                    grid.style.transform = 'translateY(0)';
+                }, 180);
+            });
+
+            /* ---- Lightbox ---- */
+            var lightboxMode = 'dynamic';
+            var staticScreens = [];
+            var currentStaticIndex = 0;
+
+            function openLightbox(index) {
+                console.log("openLightbox called with index:", index);
+                lightboxMode = 'dynamic';
+                currentLightboxIndex = index;
+                updateLightbox();
+                document.getElementById('iosLightbox').classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function openStaticLightbox(screens, index) {
+                console.log("openStaticLightbox called with index:", index);
+                lightboxMode = 'static';
+                staticScreens = screens;
+                currentStaticIndex = index;
+                updateStaticLightbox();
+                document.getElementById('iosLightbox').classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeLightbox() {
+                console.log("closeLightbox called");
+                document.getElementById('iosLightbox').classList.remove('open');
+                document.body.style.overflow = '';
+            }
+
+            function updateLightbox() {
+                var screen = filteredScreens[currentLightboxIndex];
+                console.log("updateLightbox index:", currentLightboxIndex, "screen file:", screen ? screen.file : "undefined");
+                var img = document.getElementById('iosLbImage');
+                var phoneFrame = document.getElementById('iosLbPhoneFrame');
+
+                img.style.opacity = '0';
+                img.src = 'assets/ios-trip-screens/' + screen.file;
+                img.alt = screen.alt;
+                
+                // Clear dynamic width classes first
+                phoneFrame.classList.remove('ios-lb-wide-mode', 'ios-lb-phone-width');
+                
+                img.onload = function() {
+                    img.style.transition = 'opacity 0.25s ease';
+                    img.style.opacity = '1';
+                    
+                    var ratio = img.naturalWidth / img.naturalHeight;
+                    if (ratio > 0.8) {
+                        phoneFrame.classList.add('ios-lb-wide-mode');
+                        phoneFrame.classList.remove('ios-lb-phone-width');
+                    } else {
+                        phoneFrame.classList.remove('ios-lb-wide-mode');
+                        phoneFrame.classList.add('ios-lb-phone-width');
+                    }
+                };
+
+                /* Toggle flat vs phone-bezel mode */
+                if (screen.noBezel) {
+                    phoneFrame.classList.add('ios-lb-flat-mode');
+                } else {
+                    phoneFrame.classList.remove('ios-lb-flat-mode');
+                }
+
+                document.getElementById('iosLbTitle').textContent = screen.title;
+                document.getElementById('iosLbDesc').textContent = screen.desc;
+                document.getElementById('iosLbCounter').textContent = (currentLightboxIndex + 1) + ' / ' + filteredScreens.length;
+
+                var catEl = document.getElementById('iosLbCategory');
+                catEl.textContent = CATEGORY_LABELS[screen.category];
+                var col = CATEGORY_COLORS[screen.category] || '#fff';
+                catEl.style.background = col + '22';
+                catEl.style.color = col;
+                catEl.style.borderColor = col + '55';
+            }
+
+            function updateStaticLightbox() {
+                var screen = staticScreens[currentStaticIndex];
+                console.log("updateStaticLightbox index:", currentStaticIndex, "screen src:", screen ? screen.src : "undefined");
+                var img = document.getElementById('iosLbImage');
+                var phoneFrame = document.getElementById('iosLbPhoneFrame');
+
+                img.style.opacity = '0';
+                img.src = screen.src;
+                img.alt = screen.alt;
+                
+                // Clear dynamic width classes first
+                phoneFrame.classList.remove('ios-lb-wide-mode', 'ios-lb-phone-width');
+                
+                img.onload = function() {
+                    img.style.transition = 'opacity 0.25s ease';
+                    img.style.opacity = '1';
+                    
+                    var ratio = img.naturalWidth / img.naturalHeight;
+                    if (ratio > 0.8) {
+                        phoneFrame.classList.add('ios-lb-wide-mode');
+                        phoneFrame.classList.remove('ios-lb-phone-width');
+                    } else {
+                        phoneFrame.classList.remove('ios-lb-wide-mode');
+                        phoneFrame.classList.add('ios-lb-phone-width');
+                    }
+                };
+
+                if (screen.noBezel) {
+                    phoneFrame.classList.add('ios-lb-flat-mode');
+                } else {
+                    phoneFrame.classList.remove('ios-lb-flat-mode');
+                }
+
+                document.getElementById('iosLbTitle').textContent = screen.title;
+                document.getElementById('iosLbDesc').textContent = screen.desc;
+                document.getElementById('iosLbCounter').textContent = (currentStaticIndex + 1) + ' / ' + staticScreens.length;
+
+                var catEl = document.getElementById('iosLbCategory');
+                var catText = screen.category || 'Expense';
+                var col = screen.catColor || '#f43f5e';
+                catEl.textContent = catText;
+                catEl.style.background = col + '22';
+                catEl.style.color = col;
+                catEl.style.borderColor = col + '55';
+            }
+
+            function navigatePrev() {
+                if (lightboxMode === 'dynamic') {
+                    currentLightboxIndex = (currentLightboxIndex - 1 + filteredScreens.length) % filteredScreens.length;
+                    updateLightbox();
+                } else {
+                    currentStaticIndex = (currentStaticIndex - 1 + staticScreens.length) % staticScreens.length;
+                    updateStaticLightbox();
+                }
+            }
+
+            function navigateNext() {
+                if (lightboxMode === 'dynamic') {
+                    currentLightboxIndex = (currentLightboxIndex + 1) % filteredScreens.length;
+                    updateLightbox();
+                } else {
+                    currentStaticIndex = (currentStaticIndex + 1) % staticScreens.length;
+                    updateStaticLightbox();
+                }
+            }
+
+            document.getElementById('iosLbClose').addEventListener('click', closeLightbox);
+            document.getElementById('iosLbPrev').addEventListener('click', navigatePrev);
+            document.getElementById('iosLbNext').addEventListener('click', navigateNext);
+            
+            document.getElementById('iosLightbox').addEventListener('click', function(e) {
+                if (e.target === e.currentTarget) closeLightbox();
+            });
+            document.addEventListener('keydown', function(e) {
+                var lb = document.getElementById('iosLightbox');
+                if (!lb.classList.contains('open')) return;
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') navigatePrev();
+                if (e.key === 'ArrowRight') navigateNext();
+            });
+
+            /* Swipe support */
+            var touchStartX = 0;
+            document.getElementById('iosLightbox').addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
+            document.getElementById('iosLightbox').addEventListener('touchend', function(e) {
+                var delta = e.changedTouches[0].clientX - touchStartX;
+                if (Math.abs(delta) > 48) {
+                    if (delta < 0) {
+                        navigateNext();
+                    } else {
+                        navigatePrev();
+                    }
+                }
+            }, { passive: true });
+
+            /* Initialise */
+            renderGrid('all');
+
+            // Scrape and bind static grids
+            (function() {
+                var EXPENSE_SCREENS = [
+                    {
+                        file: 'crewcation-split-bill.webp',
+                        title: 'Expense Concept',
+                        category: 'Concept',
+                        catColor: '#ec4899',
+                        desc: 'Primary concept drawing for the split-cost expense manager, showing user flow and wireframe layout.',
+                        noBezel: true
+                    },
+                    {
+                        file: 'ios-split-bill-mvp.webp',
+                        title: 'Trip Expense Overview',
+                        category: 'iOS Step 1',
+                        catColor: '#f59e0b',
+                        desc: 'The main trip expense dashboard showing outstanding balances, total spending, and the list of group expenses.',
+                        noBezel: false
+                    },
+                    {
+                        file: 'ios-split-bill-mvp-receipt-pic.webp',
+                        title: 'Capture Receipt',
+                        category: 'iOS Step 2',
+                        catColor: '#f59e0b',
+                        desc: 'Camera interface within the iOS app used to snap a photo of a receipt for automatic extraction.',
+                        noBezel: false
+                    },
+                    {
+                        file: 'ios-split-bill-mvp-ai-reading-receipt.webp',
+                        title: 'AI Reading Receipt',
+                        category: 'iOS Step 3',
+                        catColor: '#f59e0b',
+                        desc: 'Loading state indicating that a Supabase Edge Function is running multimodal OCR analysis via the Gemini API.',
+                        noBezel: false
+                    },
+                    {
+                        file: 'ios-split-bill-mvp-ai-read-receipt-result.webp',
+                        title: 'AI Extraction Result',
+                        category: 'iOS Step 4',
+                        catColor: '#f59e0b',
+                        desc: 'Extracted receipt details including merchant, date, currency, and line items, presented for user verification.',
+                        noBezel: false
+                    },
+                    {
+                        file: 'ios-split-bill-mvp-expense-added.webp',
+                        title: 'Expense Added to Trip',
+                        category: 'iOS Step 5',
+                        catColor: '#f59e0b',
+                        desc: 'Confirmation screen showing the expense successfully logged and split among the selected crew members.',
+                        noBezel: false
+                    },
+                    {
+                        file: 'ios-split-bill-mvp-crew-settle-split.webp',
+                        title: 'Settle Split Balances',
+                        category: 'iOS Step 6',
+                        catColor: '#f59e0b',
+                        desc: 'Settlement screen showing who owes whom, with quick actions to settle up or send payment nudges.',
+                        noBezel: false
+                    },
+                    {
+                        file: 'ios-split-bill-mvp-crew-settle-message.webp',
+                        title: 'Settle Message',
+                        category: 'iOS Step 7',
+                        catColor: '#f59e0b',
+                        desc: 'In-app group chat notification confirming a settlement and letting other crew members know they are even.',
+                        noBezel: false
+                    },
+                    {
+                        file: 'android-split-bill-idea-01.webp',
+                        title: 'Material 3 Dashboard',
+                        category: 'Android Concept 1',
+                        catColor: '#10b981',
+                        desc: 'Android implementation dashboard showcasing Material Design 3 Expressive layout with split bill totals.',
+                        noBezel: true
+                    },
+                    {
+                        file: 'android-split-bill-idea-02.webp',
+                        title: 'Expense Summary',
+                        category: 'Android Concept 2',
+                        catColor: '#10b981',
+                        desc: 'Android trip expense details view listing logged costs and individual crew contributions.',
+                        noBezel: true
+                    },
+                    {
+                        file: 'android-split-bill-idea-scan.webp',
+                        title: 'Capture Receipt',
+                        category: 'Android Concept 3',
+                        catColor: '#10b981',
+                        desc: 'Android camera scanner interface optimized for capturing clear receipt images.',
+                        noBezel: true
+                    },
+                    {
+                        file: 'android-split-bill-ai-read-receipt.webp',
+                        title: 'Reading Details',
+                        category: 'Android Concept 4',
+                        catColor: '#10b981',
+                        desc: 'OCR process screen scanning the receipt layout using AI vision APIs.',
+                        noBezel: true
+                    },
+                    {
+                        file: 'android-split-bill-ai-read-receipt-result.webp',
+                        title: 'Extraction Complete',
+                        category: 'Android Concept 5',
+                        catColor: '#10b981',
+                        desc: 'Material Design 3 verification form displaying the automatically extracted receipt totals and categories.',
+                        noBezel: true
+                    }
+                ];
+
+                var expenseScreens = [];
+                var whatsNext = document.getElementById('whats-next');
+                if (!whatsNext) return;
+                
+                var section6 = whatsNext.closest('.case-study-section');
+                if (!section6) return;
+
+                // Helper to match element by src filename
+                function getScreenMetadata(src) {
+                    var filename = src.substring(src.lastIndexOf('/') + 1);
+                    for (var i = 0; i < EXPENSE_SCREENS.length; i++) {
+                        if (EXPENSE_SCREENS[i].file === filename) {
+                            return EXPENSE_SCREENS[i];
+                        }
+                    }
+                    return null;
+                }
+
+                // 1. Add the primary concept drawing image
+                var conceptImg = section6.querySelector('img.no-modal');
+                if (conceptImg) {
+                    var src = conceptImg.getAttribute('src');
+                    var meta = getScreenMetadata(src) || {
+                        title: 'Expense Concept',
+                        category: 'Concept',
+                        catColor: '#ec4899',
+                        desc: 'Primary Concept Drawing: Split-Cost Expense Manager',
+                        noBezel: true
+                    };
+                    
+                    var screenIndex = expenseScreens.length;
+                    expenseScreens.push({
+                        src: src,
+                        alt: conceptImg.getAttribute('alt') || '',
+                        title: meta.title,
+                        category: meta.category,
+                        catColor: meta.catColor,
+                        desc: meta.desc,
+                        noBezel: meta.noBezel
+                    });
+                    
+                    conceptImg.style.cursor = 'pointer';
+                    conceptImg.setAttribute('tabindex', '0');
+                    conceptImg.setAttribute('role', 'button');
+                    conceptImg.setAttribute('aria-label', 'View ' + meta.title);
+                    
+                    conceptImg.addEventListener('click', function() {
+                        openStaticLightbox(expenseScreens, screenIndex);
+                    });
+                    conceptImg.addEventListener('keydown', function(e) {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            openStaticLightbox(expenseScreens, screenIndex);
+                        }
+                    });
+                }
+
+                // 2. Add static grids (Grid 0 is iOS, Grid 1 is Android)
+                var grids = section6.querySelectorAll('.ios-phone-grid');
+                grids.forEach(function(grid) {
+                    var frames = grid.querySelectorAll('.ios-phone-frame, .ios-flat-frame');
+                    frames.forEach(function(frame) {
+                        var img = frame.querySelector('img');
+                        if (!img) return;
+                        
+                        var src = img.getAttribute('src');
+                        var meta = getScreenMetadata(src) || {
+                            title: 'Expense screen',
+                            category: 'Expense',
+                            catColor: '#f43f5e',
+                            desc: '',
+                            noBezel: frame.classList.contains('ios-flat-frame')
+                        };
+                        
+                        var screenIndex = expenseScreens.length;
+                        expenseScreens.push({
+                            src: src,
+                            alt: img.getAttribute('alt') || '',
+                            title: meta.title,
+                            category: meta.category,
+                            catColor: meta.catColor,
+                            desc: meta.desc,
+                            noBezel: meta.noBezel
+                        });
+                        
+                        // Inject "View" overlay hint
+                        var overlay = frame.querySelector('.ios-phone-overlay');
+                        if (overlay && !overlay.querySelector('.ios-overlay-hint')) {
+                            var hint = document.createElement('span');
+                            hint.className = 'ios-overlay-hint';
+                            hint.innerHTML = '<i class="fas fa-expand-alt"></i> View';
+                            overlay.appendChild(hint);
+                        }
+                        
+                        // Inject accessibility attributes
+                        frame.setAttribute('tabindex', '0');
+                        frame.setAttribute('role', 'button');
+                        frame.setAttribute('aria-label', 'View ' + meta.title + ' screenshot');
+                        
+                        frame.addEventListener('click', function() {
+                            openStaticLightbox(expenseScreens, screenIndex);
+                        });
+                        frame.addEventListener('keydown', function(e) {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                                e.preventDefault();
+                                openStaticLightbox(expenseScreens, screenIndex);
+                            }
+                        });
+                    });
+                });
+            })();
+        }());
+        </script>
+
+
+        <!-- Web app & marketing showcase (part of section 7) -->
+        <section class="case-study-section pwa-showcase-section" id="pwa-gallery">
+            <h3>The web side: marketing site and travel guides</h3>
+            <p>The web app is where invited friends land first, so it has to feel as finished as the iOS app. The marketing site and travel guides are built from the same design system, and each layout holds up from a laptop down to a phone.</p>
+
+            <h3>On a laptop</h3>
+            <div class="pwa-showcase-grid desktop-grid">
+                <!-- Marketing Desktop Mockup -->
+                <div class="pwa-showcase-card desktop-card">
+                    <h3>Marketing site</h3>
+                    <div class="pwa-desktop-frame">
+                        <div class="pwa-desktop-header">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                            <span class="pwa-desktop-url">crewcation.app/marketing</span>
+                        </div>
+                        <img src="assets/crewcation-pwa-marketing-desktop.webp" alt="Crewcation web Marketing Site Desktop View" loading="lazy" decoding="async" width="1280" height="800">
+                    </div>
+                </div>
+
+                <!-- Travel Guides Index Mockup -->
+                <div class="pwa-showcase-card desktop-card">
+                    <h3>Travel guides hub</h3>
+                    <div class="pwa-desktop-frame">
+                        <div class="pwa-desktop-header">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                            <span class="pwa-desktop-url">crewcation.app/travel-guides</span>
+                        </div>
+                        <img src="assets/crewcation-pwa-travel-guides-desktop.webp" alt="Crewcation web Travel Guides Page View" loading="lazy" decoding="async" width="1280" height="800">
+                    </div>
+                </div>
+
+                <!-- Guide Detail What Is -->
+                <div class="pwa-showcase-card desktop-card">
+                    <h3>Guide: what is a crewcation?</h3>
+                    <div class="pwa-desktop-frame">
+                        <div class="pwa-desktop-header">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                            <span class="pwa-desktop-url">crewcation.app/travel-guides/what-is-a-crewcation</span>
+                        </div>
+                        <img src="assets/crewcation-pwa-guide-detail-whatis.webp" alt="Crewcation web Travel Guide Detail View" loading="lazy" decoding="async" width="1280" height="800">
+                    </div>
+                </div>
+
+                <!-- Guide Detail Paris -->
+                <div class="pwa-showcase-card desktop-card">
+                    <h3>Guide: hidden gems in Paris</h3>
+                    <div class="pwa-desktop-frame">
+                        <div class="pwa-desktop-header">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                            <span class="pwa-desktop-url">crewcation.app/travel-guides/hidden-gems-in-paris</span>
+                        </div>
+                        <img src="assets/crewcation-pwa-guide-detail-paris.webp" alt="Paris Hidden Gems Guide Detail Page View" loading="lazy" decoding="async" width="1280" height="800">
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 50px;">On a phone</h3>
+            <div class="pwa-showcase-grid mobile-grid">
+                <!-- Marketing Mobile Mockup -->
+                <div class="pwa-showcase-card mobile-card">
+                    <h3>Marketing site on a phone</h3>
+                    <div class="pwa-mobile-frame">
+                        <img src="assets/crewcation-pwa-marketing-mobile.webp" alt="Crewcation web Marketing Site Mobile View" loading="lazy" decoding="async" width="390" height="844">
+                    </div>
+                </div>
+
+                <!-- Travel Guides Mobile Mockup -->
+                <div class="pwa-showcase-card mobile-card">
+                    <h3>Travel guides on a phone</h3>
+                    <div class="pwa-mobile-frame">
+                        <img src="assets/crewcation-pwa-travel-guides-mobile.webp" alt="Crewcation web Travel Guides Mobile View" loading="lazy" decoding="async" width="390" height="844">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 8 -->
+        <section class="case-study-section">
+            <h2 id="results">8. What shipped</h2>
+            <p>Crewcation is live on iOS and the web, and Android is in development. I did the research, design and build myself, from paper sketches to the live apps. What I'd point to:</p>
+            <ul>
+                <li><strong>Joining is quick.</strong> Friends open the invite on the web and sign up only after they accept, so a group can start planning the day the trip is created.</li>
+                <li><strong>Decisions have a path.</strong> Suggest-and-vote rounds replace open-ended chat, and the slider shows how strongly people feel, not only whether they agree.</li>
+                <li><strong>The web app holds up next to native.</strong> It carries the iOS app's motion and polish from one shared design system.</li>
+            </ul>
+            <p>[ASK RYAN: is there a number you're happy to share, such as trips created, crews invited or an App Store rating, or a quote from a group that planned a real trip with it?]</p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2026 Ryan Botha - Senior Product Designer</p>
+            <div class="footer-socials">
+                <a href="https://www.linkedin.com/in/ryanbotha/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Back to Top Button -->
+    <div id="backToTop" class="back-to-top" title="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Custom Script -->
+    <script src="main.js?v=2.5"></script>
+    <script>
+        // TOC Click toggle
+        const tocContainer = document.getElementById('tocContainer');
+        const tocTrigger = document.getElementById('tocTrigger');
+        if (tocTrigger && tocContainer) {
+            tocTrigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                tocContainer.classList.toggle('open');
+            });
+            
+            // Mobile close button
+            const tocCloseBtn = document.getElementById('tocCloseBtn');
+            if (tocCloseBtn) {
+                tocCloseBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    tocContainer.classList.remove('open');
+                });
+            }
+            
+            // Close if clicking outside
+            document.addEventListener('click', (e) => {
+                if (!tocContainer.contains(e.target)) {
+                    tocContainer.classList.remove('open');
+                }
+            });
+            
+            // Close on Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    tocContainer.classList.remove('open');
+                }
+            });
+            
+            // Close when clicking a link inside it & perform smooth precision scroll
+            const tocLinks = tocContainer.querySelectorAll('a[href^="#"]');
+            tocLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    tocContainer.classList.remove('open');
+                    const targetId = link.getAttribute('href');
+                    const targetEl = document.querySelector(targetId);
+                    if (targetEl) {
+                        history.pushState(null, null, targetId);
+                        const targetY = targetEl.getBoundingClientRect().top + window.scrollY - 90;
+                        window.scrollTo({ top: targetY, behavior: 'smooth' });
+                    }
+                });
+            });
+        }
+
+        // Handle initial URL hash routing after all images & layouts load
+        function scrollToHashTarget() {
+            if (!window.location.hash) return;
+            const targetEl = document.querySelector(window.location.hash);
+            if (targetEl) {
+                const targetY = targetEl.getBoundingClientRect().top + window.scrollY - 90;
+                window.scrollTo({ top: targetY, behavior: 'smooth' });
+            }
+        }
+
+        if (window.location.hash) {
+            scrollToHashTarget();
+            document.addEventListener('DOMContentLoaded', scrollToHashTarget);
+            window.addEventListener('load', () => {
+                setTimeout(scrollToHashTarget, 100);
+                setTimeout(scrollToHashTarget, 500);
+            });
+
+            // Re-align whenever any image above finishes downloading
+            document.querySelectorAll('.case-study-body img').forEach(img => {
+                if (!img.complete) {
+                    img.addEventListener('load', scrollToHashTarget);
+                }
+            });
+
+            // ResizeObserver to track layout height changes
+            if (window.ResizeObserver) {
+                let resizeTimer;
+                const observer = new ResizeObserver(() => {
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(scrollToHashTarget, 50);
+                });
+                const caseBody = document.querySelector('.case-study-body');
+                if (caseBody) observer.observe(caseBody);
+            }
+        }
+
+        // Back to top functionality
+        const backToTopButton = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            // Back to top
+            if (window.scrollY > 500) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+            
+            // TOC shrink effect
+            if (tocContainer) {
+                const rect = tocContainer.getBoundingClientRect();
+                if (rect.top <= 126) {
+                    tocContainer.classList.add('scrolled');
+                } else {
+                    tocContainer.classList.remove('scrolled');
+                }
+            }
+        });
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>

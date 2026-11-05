@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>Absa App: Prepaid Electricity UX Case Study (Draft) | Ryan Botha</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="index.css?v=2.7">
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <!-- Feature Flag: Prevent FOUC for hidden writing content -->
+    <script>
+        (function() {
+            var SHOW_WRITING = false;
+            try {
+                var p = new URLSearchParams(window.location.search);
+                var w = p.get('writing');
+                if (w === '1') { localStorage.setItem('showWriting', '1'); }
+                else if (w === '0') { localStorage.removeItem('showWriting'); }
+            } catch (e) {}
+            var isWriting = SHOW_WRITING;
+            try {
+                var p = new URLSearchParams(window.location.search);
+                if (p.get('writing') === '1' || (typeof localStorage !== 'undefined' && localStorage.getItem('showWriting') === '1')) {
+                    isWriting = true;
+                }
+            } catch (e) {}
+            if (!isWriting) {
+                document.documentElement.classList.add('writing-hidden');
+                var path = window.location.pathname;
+                var isWritingPage = path.indexOf('writing.html') !== -1 ||
+                                      path.indexOf('/writing/') !== -1 ||
+                                      path.indexOf('taste-still-matters') !== -1;
+                if (isWritingPage) {
+                    var target = path.indexOf('/writing/') !== -1 ? '../index.html' : 'index.html';
+                    window.location.replace(target);
+                }
+            }
+        })();
+    </script>
+    <style>
+        html.writing-hidden [data-writing],
+        html.writing-hidden .writing-only {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav id="navbar" class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="assets/ryan_botha_logo.svg" alt="ryan_botha logo" class="logo-svg" decoding="async">
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-menu">
+                <span class="nav-toggle-bar bar-1"></span>
+                <span class="nav-toggle-bar bar-2"></span>
+                <span class="nav-toggle-bar bar-3"></span>
+            </button>
+            <div class="nav-backdrop"></div>
+            <ul id="nav-menu" class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="index.html#work" class="nav-link">Work</a></li>
+                <li><a href="index.html#design-process" class="nav-link">Design Process</a></li>
+                <li data-writing="true"><a href="writing.html" class="nav-link">Writing</a></li>
+                <li><a href="https://www.linkedin.com/in/ryanbotha/" target="_blank" class="nav-link">LinkedIn Profile</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Case Study Hero -->
+    <header class="case-study-hero">
+        <div class="case-study-hero-container">
+            <a href="index.html" class="back-home"><i class="fas fa-arrow-left"></i> Back to Home</a>
+            <h1 class="case-study-title">Absa App: <br><span class="serif-italic">Prepaid Electricity UX Case Study (2016)</span></h1>
+            
+            <div class="case-study-meta">
+                <div class="meta-item">
+                    <h4>My Role</h4>
+                    <p>Lead UX Designer</p>
+                </div>
+                <div class="meta-item">
+                    <h4>Deliverables</h4>
+                    <p>UX Design, UI Design, Information Architecture, Prototyping</p>
+                </div>
+                <div class="meta-item">
+                    <h4>Focus</h4>
+                    <p>FinTech, Utilities, Mobile Banking App</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Case Study Content -->
+        <main class="case-study-body">
+
+        <!-- Table of Contents -->
+        <div class="toc-container" id="tocContainer">
+            <div class="toc-trigger" id="tocTrigger">Table of Contents</div>
+            <div class="toc-dropdown-menu">
+                <div class="toc-mobile-header">
+                    <h3>Table of Contents</h3>
+                    <button class="toc-close-btn" id="tocCloseBtn" aria-label="Close menu"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="toc-grid">
+                    <a href="#overview" class="toc-item">
+                        <div class="toc-number">00</div>
+                        <div class="toc-title-text">Overview</div>
+                    </a>
+                    <a href="#lights-off" class="toc-item">
+                        <div class="toc-number">01</div>
+                        <div class="toc-title-text">When the lights are already off</div>
+                    </a>
+                    <a href="#old-way" class="toc-item">
+                        <div class="toc-number">02</div>
+                        <div class="toc-title-text">A trip and a slip of paper</div>
+                    </a>
+                    <a href="#fewer-digits" class="toc-item">
+                        <div class="toc-number">03</div>
+                        <div class="toc-title-text">Fewer digits to type</div>
+                    </a>
+                    <a href="#token-first" class="toc-item">
+                        <div class="toc-number">04</div>
+                        <div class="toc-title-text">The token goes first</div>
+                    </a>
+                    <a href="#i-m-in-the-dark" class="toc-item">
+                        <div class="toc-number">05</div>
+                        <div class="toc-title-text">I&#x27;m in the dark!</div>
+                    </a>
+                    <a href="#outcome" class="toc-item">
+                        <div class="toc-number">06</div>
+                        <div class="toc-title-text">Usage grew on its own</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <section class="case-study-section">
+            <h2 id="overview">Overview</h2>
+            <p>In 2016 Absa wanted customers to buy prepaid electricity in the Absa app instead of queuing at a shop for a paper slip. I led UX, working with two UI designers and a systems analyst.</p>
+            <p>Our biggest insight was about mood: people usually buy electricity under stress, often at night after the power has already gone, so every screen had to work for someone in a hurry and possibly in the dark. Usage grew month on month before any commercial push, and most people who tried it kept using it.</p>
+            <div class="case-study-image">
+                <img src="assets/Absa-Prepaid-Electricity-mockup-1.webp" alt="Absa prepaid electricity purchase flow on Android" loading="lazy" decoding="async" width="1500" height="1125">
+            </div>
+            <p class="image-caption">The finished flow: choose prepaid electricity, enter or pick a meter, check the recipient, pay, then get your tokens.</p>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="lights-off">People buy electricity when the lights are already off</h2>
+            <p>We ran workshops and interviews and mapped the journey from cash in hand to token in the meter. The pattern that stuck was the state people were in. Buying electricity was rarely planned. It happened when the meter ran out, often late at night or in bad weather, so people were stressed and wanted it done fast. That shaped every decision that followed.</p>
+            <div class="case-study-image">
+                <img src="assets/prepaid%20infographic.webp" alt="The pain of prepaid: journey pain points" loading="lazy" decoding="async" width="1920" height="2400">
+            </div>
+            <p class="image-caption">The journey we mapped: inconvenient hours, the queue, paying in cash, losing the slip and typing a 20-digit token.</p>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="old-way">The old way meant a trip and a slip of paper</h2>
+            <p>By 2016 about 90% of South African households had electricity, and prepaid meters were the norm, especially in lower-income areas and new developments. Buying meant a trip to a shop or petrol station, often paying cash, for a slip with a 20-digit token you then typed into a keypad at home. Many households on uneven incomes bought small amounts often, so they made that trip a lot.</p>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="fewer-digits">Fewer digits to type at the worst moment</h2>
+            <p>Meter numbers run to 11 or 13 digits, and nobody wants to type one in a hurry. So customers can save a meter and pick it next time, next to their recent purchases. We also guessed people wouldn&rsquo;t always be at home when they bought. Every token goes into a purchase history, so you can buy at work and find the token again when you get to the meter.</p>
+            <div class="case-study-image">
+                <img src="assets/Absa-App_-Basic-Prepaid-Electricity-Purchase.webp" alt="Greyscale wireframes of the basic prepaid electricity purchase flow" loading="lazy" decoding="async" width="2400" height="1274">
+            </div>
+            <p class="image-caption">The greyscale flow, start to finish, including the hard cases: an invalid or blocked meter, a meter that&#x27;s already saved, and a wait of up to 60 seconds while the utility replies.</p>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="token-first">The token goes first on the receipt</h2>
+            <p>The utility&rsquo;s system sent back a long receipt, and much of it was detail nobody needs while standing at a meter. We reordered it so the 20-digit token and the kWh you bought sit at the top, and the rest moves to a separate receipt view. Some purchases return more than one token, like key-change tokens that must go in a set order, so we show them one at a time and numbered.</p>
+            <p><mark>[ASK RYAN: What did the systems analyst or the utility insist had to stay on the receipt, and how did you agree what moved down?]</mark></p>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="i-m-in-the-dark">A torch switch on the token screen</h2>
+            <p>In one workshop we pictured where people actually are at this point: often in the dark, trying to make dinner or light the house, phone in one hand, squinting at a meter keypad. So we put an on/off torch switch on the screen that shows the token. One tap turns on the phone&rsquo;s flashlight, and the token stays on screen while you type it in.</p>
+            <div class="case-study-image">
+                <img src="assets/Absa-Prepaid-Electricity-flash.webp" alt="Token screen with the torch switch turned on" loading="lazy" decoding="async" width="1600" height="1060">
+            </div>
+            <p class="image-caption">The torch sits in the middle of the token screen&#x27;s top bar, between Receipt and Share.</p>
+            <p><a href="draft-absa-electricity-torch.html"><strong>Read the short case study: I&#x27;m in the dark! The torch switch</strong> <i class="fas fa-arrow-right"></i></a></p>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="outcome">Usage grew before anyone marketed it</h2>
+            <p>The feature took off on its own. Usage grew month on month before any commercial push.</p>
+            <p><mark>[ASK RYAN: the month-on-month growth number, and the repeat-purchase rate if you have it.]</mark></p>
+            <p>Repeat purchases were high, which told us people who tried it once mostly stopped going to the shop. It also gave the bank a new revenue stream.</p>
+            <p>This sat inside the wider Absa app redesign, which reached a 4-star average on both app stores and reduced calls to the call centre. Those are app-wide results, not this feature&rsquo;s alone.</p>
+            <div class="case-study-image">
+                <img src="assets/Absa-Prepaid-App-Old-vs-New-1.webp" alt="Old versus new Absa prepaid purchase" loading="lazy" decoding="async" width="1500" height="1021">
+            </div>
+            <p class="image-caption">Before and after: Absa&#x27;s earlier three-step prepaid form (left), and the new app flow ending on a numbered token card with the torch above it (right).</p>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2026 Ryan Botha - Senior Product Designer</p>
+            <div class="footer-socials">
+                <a href="https://www.linkedin.com/in/ryanbotha/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Script -->
+    <script src="main.js?v=2.5"></script>
+    <script>
+        // TOC Click toggle
+        const tocContainer = document.getElementById('tocContainer');
+        const tocTrigger = document.getElementById('tocTrigger');
+        if (tocTrigger && tocContainer) {
+            tocTrigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                
+                const isOpening = !tocContainer.classList.contains('open');
+                if (isOpening) {
+                    if (stickyThreshold === null) {
+                        stickyThreshold = tocContainer.getBoundingClientRect().top + window.scrollY - 125;
+                    }
+                    if (window.scrollY < stickyThreshold) {
+                        window.scrollTo({
+                            top: stickyThreshold,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+                
+                tocContainer.classList.toggle('open');
+            });
+            
+            // Mobile close button
+            const tocCloseBtn = document.getElementById('tocCloseBtn');
+            if (tocCloseBtn) {
+                tocCloseBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    tocContainer.classList.remove('open');
+                });
+            }
+            
+            // Close if clicking outside
+            document.addEventListener('click', (e) => {
+                if (!tocContainer.contains(e.target)) {
+                    tocContainer.classList.remove('open');
+                }
+            });
+            
+            // Close on Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    tocContainer.classList.remove('open');
+                }
+            });
+            
+            // Close when clicking a link inside it & perform smooth precision scroll
+            const tocLinks = tocContainer.querySelectorAll('a[href^="#"]');
+            tocLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    tocContainer.classList.remove('open');
+                    const targetId = link.getAttribute('href');
+                    const targetEl = document.querySelector(targetId);
+                    if (targetEl) {
+                        history.pushState(null, null, targetId);
+                        const targetY = targetEl.getBoundingClientRect().top + window.scrollY - 90;
+                        window.scrollTo({ top: targetY, behavior: 'smooth' });
+                    }
+                });
+            });
+        }
+
+        // Handle initial URL hash routing after all images & layouts load
+        function scrollToHashTarget() {
+            if (!window.location.hash) return;
+            const targetEl = document.querySelector(window.location.hash);
+            if (targetEl) {
+                const targetY = targetEl.getBoundingClientRect().top + window.scrollY - 90;
+                window.scrollTo({ top: targetY, behavior: 'smooth' });
+            }
+        }
+
+        if (window.location.hash) {
+            document.addEventListener('DOMContentLoaded', scrollToHashTarget);
+            window.addEventListener('load', () => {
+                setTimeout(scrollToHashTarget, 100);
+                setTimeout(scrollToHashTarget, 500);
+            });
+
+            // Re-align whenever any image above finishes downloading
+            document.querySelectorAll('.case-study-body img').forEach(img => {
+                if (!img.complete) {
+                    img.addEventListener('load', scrollToHashTarget);
+                }
+            });
+
+            // ResizeObserver to track layout height changes
+            if (window.ResizeObserver) {
+                let resizeTimer;
+                const observer = new ResizeObserver(() => {
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(scrollToHashTarget, 50);
+                });
+                const caseBody = document.querySelector('.case-study-body');
+                if (caseBody) observer.observe(caseBody);
+            }
+        }
+
+        // Back to top & TOC scrolled functionality (exactly matching crewcation behavior)
+        const backToTopButton = document.getElementById('backToTop');
+        let stickyThreshold = null;
+        window.addEventListener('scroll', () => {
+            if (backToTopButton) {
+                if (window.scrollY > 500) {
+                    backToTopButton.classList.add('show');
+                } else {
+                    backToTopButton.classList.remove('show');
+                }
+            }
+            
+            // TOC shrink effect
+            if (tocContainer) {
+                if (!tocContainer.classList.contains('scrolled') || stickyThreshold === null) {
+                    stickyThreshold = tocContainer.getBoundingClientRect().top + window.scrollY - 125;
+                }
+                
+                if (window.scrollY >= stickyThreshold) {
+                    tocContainer.classList.add('scrolled');
+                } else {
+                    tocContainer.classList.remove('scrolled');
+                }
+            }
+        });
+        if (backToTopButton) {
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    </script>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+</body>
+</html>

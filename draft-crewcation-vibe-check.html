@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>The Vibe Check: Private Budgets, Shared Decisions | Ryan Botha</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="index.css?v=2.7">
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <!-- Feature Flag: Prevent FOUC for hidden writing content -->
+    <script>
+        (function() {
+            var SHOW_WRITING = false;
+            try {
+                var p = new URLSearchParams(window.location.search);
+                var w = p.get('writing');
+                if (w === '1') { localStorage.setItem('showWriting', '1'); }
+                else if (w === '0') { localStorage.removeItem('showWriting'); }
+            } catch (e) {}
+            var isWriting = SHOW_WRITING;
+            try {
+                var p = new URLSearchParams(window.location.search);
+                if (p.get('writing') === '1' || (typeof localStorage !== 'undefined' && localStorage.getItem('showWriting') === '1')) {
+                    isWriting = true;
+                }
+            } catch (e) {}
+            if (!isWriting) {
+                document.documentElement.classList.add('writing-hidden');
+                var path = window.location.pathname;
+                var isWritingPage = path.indexOf('writing.html') !== -1 ||
+                                      path.indexOf('/writing/') !== -1 ||
+                                      path.indexOf('taste-still-matters') !== -1;
+                if (isWritingPage) {
+                    var target = path.indexOf('/writing/') !== -1 ? '../index.html' : 'index.html';
+                    window.location.replace(target);
+                }
+            }
+        })();
+    </script>
+    <style>
+        html.writing-hidden [data-writing],
+        html.writing-hidden .writing-only {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav id="navbar" class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="assets/ryan_botha_logo.svg" alt="ryan_botha logo" class="logo-svg" decoding="async">
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-menu">
+                <span class="nav-toggle-bar bar-1"></span>
+                <span class="nav-toggle-bar bar-2"></span>
+                <span class="nav-toggle-bar bar-3"></span>
+            </button>
+            <div class="nav-backdrop"></div>
+            <ul id="nav-menu" class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="index.html#work" class="nav-link">Work</a></li>
+                <li><a href="index.html#design-process" class="nav-link">Design Process</a></li>
+                <li data-writing="true"><a href="writing.html" class="nav-link">Writing</a></li>
+                <li><a href="https://www.linkedin.com/in/ryanbotha/" target="_blank" class="nav-link">LinkedIn Profile</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Case Study Hero -->
+    <header class="case-study-hero">
+        <div class="case-study-hero-container">
+            <a href="draft-crewcation.html" class="back-home"><i class="fas fa-arrow-left"></i> Back to the Crewcation case study</a>
+            <h1 class="case-study-title">Crewcation: <br><span class="serif-italic">The Vibe Check: private budgets, shared decisions</span></h1>
+            
+            <div class="case-study-meta">
+                <div class="meta-item">
+                    <h4>My Role</h4>
+                    <p>Founder &amp; Product Designer</p>
+                </div>
+                <div class="meta-item">
+                    <h4>Deliverables</h4>
+                    <p>Preference flow, match scoring, iOS and web UI</p>
+                </div>
+                <div class="meta-item">
+                    <h4>Focus</h4>
+                    <p>Privacy, Group Decisions</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Case Study Content -->
+    <main class="case-study-body">
+
+        <!-- Table of Contents -->
+        <div class="toc-container" id="tocContainer">
+            <div class="toc-trigger" id="tocTrigger">Table of Contents</div>
+            <div class="toc-dropdown-menu">
+                <div class="toc-mobile-header">
+                    <h3>Table of Contents</h3>
+                    <button class="toc-close-btn" id="tocCloseBtn" aria-label="Close menu"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="toc-grid">
+
+                    <a href="#the-problem" class="toc-item">
+                        <div class="toc-number">01</div>
+                        <div class="toc-title-text">Money is the thing nobody says</div>
+                        <span class="toc-sublink">Why budgets stay private</span>
+                    </a>
+
+                    <a href="#three-questions" class="toc-item">
+                        <div class="toc-number">02</div>
+                        <div class="toc-title-text">Three questions, asked once</div>
+                        <span class="toc-sublink">Energy, eating style, budget tier</span>
+                    </a>
+
+                    <a href="#match-score" class="toc-item">
+                        <div class="toc-number">03</div>
+                        <div class="toc-title-text">A match, not a person</div>
+                        <span class="toc-sublink">How answers become a score</span>
+                    </a>
+
+                    <a href="#web" class="toc-item">
+                        <div class="toc-number">04</div>
+                        <div class="toc-title-text">A different form on the web</div>
+                        <span class="toc-sublink">Same data, one card</span>
+                    </a>
+
+                    <a href="#next" class="toc-item">
+                        <div class="toc-number">05</div>
+                        <div class="toc-title-text">Where it goes next</div>
+                        <span class="toc-sublink">Itineraries and open questions</span>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Opening -->
+        <section class="case-study-section">
+            <p>This is one piece of the <a href="draft-crewcation.html">Crewcation case study</a>. The Vibe Check is how Crewcation helps a group agree on where to go without anyone having to say what they can afford. I designed the questions, the privacy rule and the way answers turn into a match score, and I built it for iOS and the web.</p>
+
+            <div class="case-study-image">
+                <img src="assets/crewcation-vibe-check.webp" alt="Crewcation iOS Vibe Check: three steps for vibe (chill to thrill), eating style and budget tier" loading="lazy" decoding="async" width="2400" height="1422">
+            </div>
+            <p class="image-caption">The whole Vibe Check on iOS: three screens, one question each, a progress bar across the top.</p>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="the-problem">1. Money is the thing nobody says</h2>
+            <p>In a group chat, the friend on a tighter budget has two options. Speak up and feel awkward, or go along and spend more than they want to. It's easy to stay quiet. [ASK RYAN: where did you see this, for example your own trips or talks with friends?] So the rule came before any screen: your budget is yours. Nobody in the crew sees it, not even the Captain.</p>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="three-questions">2. Three questions, asked once</h2>
+            <p>I kept it to the three things that change a trip the most. Energy, from chill to thrill. Eating style: street food, a bit of both, or fine dining. And a budget tier from $ Budget to $$$$ Luxury. You answer once in your profile, and every trip you join uses it. A tier is quicker to pick than a dollar figure, and it means the same thing in any city. [ASK RYAN: is that why you chose tiers?]</p>
+
+            <div class="ios-phone-grid" style="margin-top: 32px;">
+                <article class="ios-phone-card in-view" style="animation-delay: 0s;">
+                    <figure class="ios-phone-frame">
+                        <img class="ios-phone-screen" src="assets/ios-trip-screens/crewcation-ios-vibe-check-budget.webp" alt="Crewcation iOS Vibe Check budget tier screen with four tiers from Budget to Luxury" loading="lazy" decoding="async" width="1104" height="2400">
+                    </figure>
+                    <p class="image-caption" style="font-size: 0.85em; margin-top: 12px; text-align: center;">Four tiers, no numbers. This answer never leaves your profile.</p>
+                </article>
+                <article class="ios-phone-card in-view" style="animation-delay: 0.05s;">
+                    <figure class="ios-phone-frame">
+                        <img class="ios-phone-screen" src="assets/ios-trip-screens/crewcation-ios-vibe-check-updated.webp" alt="Crewcation iOS Vibe Check updated confirmation" loading="lazy" decoding="async" width="1104" height="2400">
+                    </figure>
+                    <p class="image-caption" style="font-size: 0.85em; margin-top: 12px; text-align: center;">A plain confirmation, then you are back to the trip.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="match-score">3. The group sees a match, not a person</h2>
+            <p>The app combines the crew's answers into a match score for each destination. On the Where screen, places come with a Vibe Match percentage, and an Edit Vibe button sits right there if your mood has changed. What you never see is whose budget pulled a score down. The group gets a shortlist that fits, and the money talk doesn't have to happen.</p>
+
+            <div class="ios-phone-grid" style="margin-top: 32px;">
+                <article class="ios-phone-card in-view" style="animation-delay: 0s;">
+                    <figure class="ios-phone-frame">
+                        <img class="ios-phone-screen" src="assets/ios-trip-screens/crewcation-ios-curated-destinations.webp" alt="Crewcation iOS Where screen with Vibe Match destinations, showing an 87% Vibe Match card" loading="lazy" decoding="async" width="1104" height="2400">
+                    </figure>
+                    <p class="image-caption" style="font-size: 0.85em; margin-top: 12px; text-align: center;">Vibe Match picks: each card shows a percentage, never a budget.</p>
+                </article>
+                <article class="ios-phone-card in-view" style="animation-delay: 0.05s;">
+                    <figure class="ios-phone-frame">
+                        <img class="ios-phone-screen" src="assets/ios-trip-screens/crewcation-ios-select-destination.webp" alt="Crewcation iOS Where screen in Seasonal mode, showing an 82% Vibe Match card" loading="lazy" decoding="async" width="1104" height="2400">
+                    </figure>
+                    <p class="image-caption" style="font-size: 0.85em; margin-top: 12px; text-align: center;">The score follows you into Seasonal ideas too.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="web">4. Same answers, a different form on the web</h2>
+            <p>Invited friends who don't have the app meet Crewcation in the browser. On the web, the three questions sit together in settings: an energy slider, three eating-style cards and four budget cards. Same data, same privacy rule, laid out so it's easy to see and change in one place. iOS keeps the guided, one-at-a-time flow.</p>
+
+            <div class="case-study-image" style="max-width: 60%; margin: 40px auto;">
+                <img src="assets/crewcation-PWA-vibe-check.webp" alt="Crewcation web app Vibe Check settings: energy level slider, eating style and budget rating" loading="lazy" decoding="async" width="1422" height="2400">
+            </div>
+            <p class="image-caption">The web version: all three answers on one card, each editable in a tap.</p>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="next">5. Where it goes next</h2>
+            <p>The Vibe Check also feeds the next feature. Once the crew has voted on places, Gemini will use everyone's Vibe Checks to plan the days, so a chill traveller and a thrill-seeker both get something. I haven't measured the Vibe Check with users yet. [ASK RYAN: has a group used it on a real trip, and did anyone say how it felt to set a budget privately?]</p>
+            <p><a href="draft-crewcation.html#consensus-and-vibe-check">Back to the full Crewcation case study</a></p>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2026 Ryan Botha - Senior Product Designer</p>
+            <div class="footer-socials">
+                <a href="https://www.linkedin.com/in/ryanbotha/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Back to Top Button -->
+    <div id="backToTop" class="back-to-top" title="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Custom Script -->
+    <script src="main.js?v=2.5"></script>
+    <script>
+        // TOC Click toggle
+        const tocContainer = document.getElementById('tocContainer');
+        const tocTrigger = document.getElementById('tocTrigger');
+        if (tocTrigger && tocContainer) {
+            tocTrigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                tocContainer.classList.toggle('open');
+            });
+            
+            // Mobile close button
+            const tocCloseBtn = document.getElementById('tocCloseBtn');
+            if (tocCloseBtn) {
+                tocCloseBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    tocContainer.classList.remove('open');
+                });
+            }
+            
+            // Close if clicking outside
+            document.addEventListener('click', (e) => {
+                if (!tocContainer.contains(e.target)) {
+                    tocContainer.classList.remove('open');
+                }
+            });
+            
+            // Close on Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    tocContainer.classList.remove('open');
+                }
+            });
+            
+            // Close when clicking a link inside it & perform smooth precision scroll
+            const tocLinks = tocContainer.querySelectorAll('a[href^="#"]');
+            tocLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    tocContainer.classList.remove('open');
+                    const targetId = link.getAttribute('href');
+                    const targetEl = document.querySelector(targetId);
+                    if (targetEl) {
+                        history.pushState(null, null, targetId);
+                        const targetY = targetEl.getBoundingClientRect().top + window.scrollY - 90;
+                        window.scrollTo({ top: targetY, behavior: 'smooth' });
+                    }
+                });
+            });
+        }
+
+        // Handle initial URL hash routing after all images & layouts load
+        function scrollToHashTarget() {
+            if (!window.location.hash) return;
+            const targetEl = document.querySelector(window.location.hash);
+            if (targetEl) {
+                const targetY = targetEl.getBoundingClientRect().top + window.scrollY - 90;
+                window.scrollTo({ top: targetY, behavior: 'smooth' });
+            }
+        }
+
+        if (window.location.hash) {
+            scrollToHashTarget();
+            document.addEventListener('DOMContentLoaded', scrollToHashTarget);
+            window.addEventListener('load', () => {
+                setTimeout(scrollToHashTarget, 100);
+                setTimeout(scrollToHashTarget, 500);
+            });
+
+            // Re-align whenever any image above finishes downloading
+            document.querySelectorAll('.case-study-body img').forEach(img => {
+                if (!img.complete) {
+                    img.addEventListener('load', scrollToHashTarget);
+                }
+            });
+
+            // ResizeObserver to track layout height changes
+            if (window.ResizeObserver) {
+                let resizeTimer;
+                const observer = new ResizeObserver(() => {
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(scrollToHashTarget, 50);
+                });
+                const caseBody = document.querySelector('.case-study-body');
+                if (caseBody) observer.observe(caseBody);
+            }
+        }
+
+        // Back to top functionality
+        const backToTopButton = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            // Back to top
+            if (window.scrollY > 500) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+            
+            // TOC shrink effect
+            if (tocContainer) {
+                const rect = tocContainer.getBoundingClientRect();
+                if (rect.top <= 126) {
+                    tocContainer.classList.add('scrolled');
+                } else {
+                    tocContainer.classList.remove('scrolled');
+                }
+            }
+        });
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
