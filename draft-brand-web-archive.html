@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>Other Work: Logos and Illustration (Draft) | Ryan Botha</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="index.css?v=2.7">
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <!-- Feature Flag: Prevent FOUC for hidden writing content -->
+    <script>
+        (function() {
+            var SHOW_WRITING = false;
+            try {
+                var p = new URLSearchParams(window.location.search);
+                var w = p.get('writing');
+                if (w === '1') { localStorage.setItem('showWriting', '1'); }
+                else if (w === '0') { localStorage.removeItem('showWriting'); }
+            } catch (e) {}
+            var isWriting = SHOW_WRITING;
+            try {
+                var p = new URLSearchParams(window.location.search);
+                if (p.get('writing') === '1' || (typeof localStorage !== 'undefined' && localStorage.getItem('showWriting') === '1')) {
+                    isWriting = true;
+                }
+            } catch (e) {}
+            if (!isWriting) {
+                document.documentElement.classList.add('writing-hidden');
+                var path = window.location.pathname;
+                var isWritingPage = path.indexOf('writing.html') !== -1 ||
+                                      path.indexOf('/writing/') !== -1 ||
+                                      path.indexOf('taste-still-matters') !== -1;
+                if (isWritingPage) {
+                    var target = path.indexOf('/writing/') !== -1 ? '../index.html' : 'index.html';
+                    window.location.replace(target);
+                }
+            }
+        })();
+    </script>
+    <style>
+        html.writing-hidden [data-writing],
+        html.writing-hidden .writing-only {
+            display: none !important;
+        }
+    </style>
+<style>
+.mz{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:4px;grid-auto-flow:row dense;column-gap:28px;margin:40px 0}
+.mz-wide{grid-column:span 2}
+@media(max-width:1000px){.mz{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.mz{grid-template-columns:1fr}.mz-wide{grid-column:auto}}
+.mz-item{margin:0;align-self:start;opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.mz-item.in{opacity:1;transform:none}
+.mz-item .case-study-image{transition:transform .35s ease,box-shadow .35s ease}
+.mz-item:hover .case-study-image{transform:translateY(-4px);box-shadow:0 12px 28px rgba(15,23,42,.10)}
+.mz-item img{display:block;width:100%;height:auto}
+@media(prefers-reduced-motion:reduce){.mz-item{opacity:1;transform:none;transition:none}.mz-item .case-study-image{transition:none}}
+.image-modal-overlay{align-items:center;padding:40px 0}
+.image-modal-content{width:auto;max-width:min(1200px,92vw);max-height:calc(100vh - 100px);max-height:calc(100dvh - 100px)}
+.image-modal-caption:empty{display:none}
+</style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav id="navbar" class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="assets/ryan_botha_logo.svg" alt="ryan_botha logo" class="logo-svg" decoding="async">
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-menu">
+                <span class="nav-toggle-bar bar-1"></span>
+                <span class="nav-toggle-bar bar-2"></span>
+                <span class="nav-toggle-bar bar-3"></span>
+            </button>
+            <div class="nav-backdrop"></div>
+            <ul id="nav-menu" class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="index.html#work" class="nav-link">Work</a></li>
+                <li><a href="index.html#design-process" class="nav-link">Design Process</a></li>
+                <li data-writing="true"><a href="writing.html" class="nav-link">Writing</a></li>
+                <li><a href="https://www.linkedin.com/in/ryanbotha/" target="_blank" class="nav-link">LinkedIn Profile</a></li>
+            </ul>
+        </div>
+    </nav>
+
+        <!-- Case Study Hero -->
+    <header class="case-study-hero">
+        <div class="case-study-hero-container">
+            <a href="index.html" class="back-home"><i class="fas fa-arrow-left"></i> Back to Home</a>
+            <h1 class="case-study-title">Other work: <span class="serif-italic">Logos and illustration</span></h1>
+
+            <div class="case-study-meta">
+                <div class="meta-item">
+                    <h4>My Role</h4>
+                    <p>Designer</p>
+                </div>
+                <div class="meta-item">
+                    <h4>Focus</h4>
+                    <p>Brand identity, Illustration</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Case Study Content -->
+    <main class="case-study-body">
+
+        <section class="case-study-section">
+            <p>Most of my work is product design, but it isn&rsquo;t the only thing I make. I&rsquo;ve designed logos for small businesses and photographers, mostly in South Africa, and I draw whenever I can, including the illustration sets I made for Arlo. This page shows some of that range.</p>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="logos">Logos and identities</h2>
+            <div class="mz">
+                <figure class="mz-item">
+                    <div class="case-study-image" style="margin:0;background:#f8f9fa;border-radius:12px;overflow:hidden;">
+                        <img src="assets/archive/logo-pro-active-sa.webp" alt="Pro-Active SA logo on stationery" loading="lazy" decoding="async" width="1000" height="1274">
+                    </div>
+                </figure>
+                <figure class="mz-item">
+                    <div class="case-study-image" style="margin:0;background:#f8f9fa;border-radius:12px;overflow:hidden;">
+                        <img src="assets/archive/logo-herbst-property-admin.webp" alt="Herbst Property Admin logo on a letterhead" loading="lazy" decoding="async" width="1000" height="1194">
+                    </div>
+                </figure>
+                <figure class="mz-item">
+                    <div class="case-study-image" style="margin:0;background:#f8f9fa;border-radius:12px;overflow:hidden;">
+                        <img src="assets/archive/logo-valor-lifestyle.webp" alt="Valor Lifestyle logo" loading="lazy" decoding="async" width="924" height="447">
+                    </div>
+                </figure>
+                <figure class="mz-item mz-wide">
+                    <div class="case-study-image" style="margin:0;background:#f8f9fa;border-radius:12px;overflow:hidden;">
+                        <img src="assets/archive/logo-sketchbook.webp" alt="Open sketchbook with pencil logo sketches of hearts, a woven heart mark and a leaf star" loading="lazy" decoding="async" width="2000" height="1521">
+                    </div>
+                </figure>
+                <figure class="mz-item">
+                    <div class="case-study-image" style="margin:0;background:#f8f9fa;border-radius:12px;overflow:hidden;">
+                        <img src="assets/archive/logo-build-web-mark.webp" alt="Build Web shield mark in blue and grey" loading="lazy" decoding="async" width="1000" height="1000">
+                    </div>
+                </figure>
+                <figure class="mz-item mz-wide">
+                    <div class="case-study-image" style="margin:0;background:#f8f9fa;border-radius:12px;overflow:hidden;">
+                        <img src="assets/archive/logo-build-web.webp" alt="Build Web logo on a phone and laptop" loading="lazy" decoding="async" width="1500" height="925">
+                    </div>
+                </figure>
+                <figure class="mz-item">
+                    <div class="case-study-image" style="margin:0;background:#f8f9fa;border-radius:12px;overflow:hidden;">
+                        <img src="assets/archive/logo-shopnpay-badge.webp" alt="ShopnPay shopping cart badge in orange and white, two colourways" loading="lazy" decoding="async" width="1000" height="1000">
+                    </div>
+                </figure>
+                <figure class="mz-item mz-wide">
+                    <div class="case-study-image" style="margin:0;background:#f8f9fa;border-radius:12px;overflow:hidden;">
+                        <img src="assets/archive/logo-shopnpay.webp" alt="ShopnPay logo on a tablet web shop" loading="lazy" decoding="async" width="1272" height="1000">
+                    </div>
+                </figure>
+                <figure class="mz-item">
+                    <div class="case-study-image" style="margin:0;background:#f8f9fa;border-radius:12px;overflow:hidden;">
+                        <img src="assets/archive/logo-adf.webp" alt="ADF cube logo" loading="lazy" decoding="async" width="643" height="789">
+                    </div>
+                </figure>
+                <figure class="mz-item">
+                    <div class="case-study-image" style="margin:0;background:#f8f9fa;border-radius:12px;overflow:hidden;">
+                        <img src="assets/archive/logo-nunubugz.webp" alt="Nunubugz bug illustration mark" loading="lazy" decoding="async" width="502" height="618">
+                    </div>
+                </figure>
+                <figure class="mz-item">
+                    <div class="case-study-image" style="margin:0;background:#f8f9fa;border-radius:12px;overflow:hidden;">
+                        <img src="assets/archive/logo-enkulu.webp" alt="Enkulu Designs tree logo" loading="lazy" decoding="async" width="460" height="460">
+                    </div>
+                </figure>
+            </div>
+        </section>
+
+        <section class="case-study-section">
+            <h2 id="illustration">Illustration</h2>
+            <div class="mz">
+                <figure class="mz-item mz-wide">
+                    <div class="case-study-image" style="margin:0;background:#f8f9fa;border-radius:12px;overflow:hidden;">
+                        <img src="assets/archive/ill-arlo-90s.webp" alt="Five hand-drawn Arlo illustrations on a cream-to-lavender gradient: a monitor with a form, a computer with an alert, a star, a stack of documents and an upload window" loading="lazy" decoding="async" width="1882" height="1455">
+                    </div>
+                </figure>
+                <figure class="mz-item mz-wide">
+                    <div class="case-study-image" style="margin:0;background:#f8f9fa;border-radius:12px;overflow:hidden;">
+                        <img src="assets/archive/ill-arlo-enpowered-spots.webp" alt="Spot illustrations of signed documents, a document folder, a thumbs-up, a blocked email, a checked button, a shared link and an application form" loading="lazy" decoding="async" width="1968" height="1398">
+                    </div>
+                </figure>
+                <figure class="mz-item">
+                    <div class="case-study-image" style="margin:0;background:#f8f9fa;border-radius:12px;overflow:hidden;">
+                        <img src="assets/archive/ill-alien-creature-2017.webp" alt="Coloured alien creature illustration" loading="lazy" decoding="async" width="1150" height="1600">
+                    </div>
+                </figure>
+                <figure class="mz-item">
+                    <div class="case-study-image" style="margin:0;background:#f8f9fa;border-radius:12px;overflow:hidden;">
+                        <img src="assets/archive/ill-creature-sketch-2017.webp" alt="Pencil sketch of the alien creature" loading="lazy" decoding="async" width="1150" height="1600">
+                    </div>
+                </figure>
+                <figure class="mz-item">
+                    <div class="case-study-image" style="margin:0;background:#f8f9fa;border-radius:12px;overflow:hidden;">
+                        <img src="assets/archive/ill-astronaut.webp" alt="Pencil drawing of an astronaut on grid paper" loading="lazy" decoding="async" width="1600" height="1600">
+                    </div>
+                </figure>
+                <figure class="mz-item">
+                    <div class="case-study-image" style="margin:0;background:#f8f9fa;border-radius:12px;overflow:hidden;">
+                        <img src="assets/archive/ill-male-dancer.webp" alt="Charcoal drawing of a dancer" loading="lazy" decoding="async" width="1600" height="1200">
+                    </div>
+                </figure>
+                <figure class="mz-item mz-wide">
+                    <div class="case-study-image" style="margin:0;background:#f8f9fa;border-radius:12px;overflow:hidden;">
+                        <img src="assets/archive/ill-dancer.webp" alt="Charcoal drawing of a dancer reaching up" loading="lazy" decoding="async" width="1600" height="1171">
+                    </div>
+                </figure>
+                <figure class="mz-item">
+                    <div class="case-study-image" style="margin:0;background:#f8f9fa;border-radius:12px;overflow:hidden;">
+                        <img src="assets/archive/ill-sir-anthony.webp" alt="Sketchbook portrait drawing" loading="lazy" decoding="async" width="1600" height="1200">
+                    </div>
+                </figure>
+                <figure class="mz-item">
+                    <div class="case-study-image" style="margin:0;background:#f8f9fa;border-radius:12px;overflow:hidden;">
+                        <img src="assets/archive/ill-hands-and-pearls.webp" alt="Drawing of hands holding pearls" loading="lazy" decoding="async" width="1290" height="1600">
+                    </div>
+                </figure>
+            </div>
+            <p><a href="index.html"><i class="fas fa-arrow-left"></i> Back to Home</a></p>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2026 Ryan Botha - Senior Product Designer</p>
+            <div class="footer-socials">
+                <a href="https://www.linkedin.com/in/ryanbotha/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Script -->
+    <script src="main.js?v=2.5"></script>
+    <script>
+        // TOC Click toggle
+        const tocContainer = document.getElementById('tocContainer');
+        const tocTrigger = document.getElementById('tocTrigger');
+        if (tocTrigger && tocContainer) {
+            tocTrigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                
+                const isOpening = !tocContainer.classList.contains('open');
+                if (isOpening) {
+                    if (stickyThreshold === null) {
+                        stickyThreshold = tocContainer.getBoundingClientRect().top + window.scrollY - 125;
+                    }
+                    if (window.scrollY < stickyThreshold) {
+                        window.scrollTo({
+                            top: stickyThreshold,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+                
+                tocContainer.classList.toggle('open');
+            });
+            
+            // Mobile close button
+            const tocCloseBtn = document.getElementById('tocCloseBtn');
+            if (tocCloseBtn) {
+                tocCloseBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    tocContainer.classList.remove('open');
+                });
+            }
+            
+            // Close if clicking outside
+            document.addEventListener('click', (e) => {
+                if (!tocContainer.contains(e.target)) {
+                    tocContainer.classList.remove('open');
+                }
+            });
+            
+            // Close on Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    tocContainer.classList.remove('open');
+                }
+            });
+            
+            // Close when clicking a link inside it & perform smooth precision scroll
+            const tocLinks = tocContainer.querySelectorAll('a[href^="#"]');
+            tocLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    tocContainer.classList.remove('open');
+                    const targetId = link.getAttribute('href');
+                    const targetEl = document.querySelector(targetId);
+                    if (targetEl) {
+                        history.pushState(null, null, targetId);
+                        const targetY = targetEl.getBoundingClientRect().top + window.scrollY - 90;
+                        window.scrollTo({ top: targetY, behavior: 'smooth' });
+                    }
+                });
+            });
+        }
+
+        // Handle initial URL hash routing after all images & layouts load
+        function scrollToHashTarget() {
+            if (!window.location.hash) return;
+            const targetEl = document.querySelector(window.location.hash);
+            if (targetEl) {
+                const targetY = targetEl.getBoundingClientRect().top + window.scrollY - 90;
+                window.scrollTo({ top: targetY, behavior: 'smooth' });
+            }
+        }
+
+        if (window.location.hash) {
+            document.addEventListener('DOMContentLoaded', scrollToHashTarget);
+            window.addEventListener('load', () => {
+                setTimeout(scrollToHashTarget, 100);
+                setTimeout(scrollToHashTarget, 500);
+            });
+
+            // Re-align whenever any image above finishes downloading
+            document.querySelectorAll('.case-study-body img').forEach(img => {
+                if (!img.complete) {
+                    img.addEventListener('load', scrollToHashTarget);
+                }
+            });
+
+            // ResizeObserver to track layout height changes
+            if (window.ResizeObserver) {
+                let resizeTimer;
+                const observer = new ResizeObserver(() => {
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(scrollToHashTarget, 50);
+                });
+                const caseBody = document.querySelector('.case-study-body');
+                if (caseBody) observer.observe(caseBody);
+            }
+        }
+
+        // Back to top & TOC scrolled functionality (exactly matching crewcation behavior)
+        const backToTopButton = document.getElementById('backToTop');
+        let stickyThreshold = null;
+        window.addEventListener('scroll', () => {
+            if (backToTopButton) {
+                if (window.scrollY > 500) {
+                    backToTopButton.classList.add('show');
+                } else {
+                    backToTopButton.classList.remove('show');
+                }
+            }
+            
+            // TOC shrink effect
+            if (tocContainer) {
+                if (!tocContainer.classList.contains('scrolled') || stickyThreshold === null) {
+                    stickyThreshold = tocContainer.getBoundingClientRect().top + window.scrollY - 125;
+                }
+                
+                if (window.scrollY >= stickyThreshold) {
+                    tocContainer.classList.add('scrolled');
+                } else {
+                    tocContainer.classList.remove('scrolled');
+                }
+            }
+        });
+        if (backToTopButton) {
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    </script>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<script>
+(function(){function lay(){document.querySelectorAll('.mz').forEach(function(g){var cs=getComputedStyle(g),r=parseFloat(cs.gridAutoRows),gap=28;g.querySelectorAll('.mz-item').forEach(function(it){var img=it.querySelector('img'),w=it.getBoundingClientRect().width,h=img.naturalWidth?w*img.naturalHeight/img.naturalWidth:w*(img.getAttribute('height')/img.getAttribute('width'));it.style.gridRowEnd='span '+Math.ceil((h+gap)/r)})})}
+lay();window.addEventListener('resize',lay);window.addEventListener('load',lay);document.querySelectorAll('.mz img').forEach(function(i){i.addEventListener('load',lay)})})();
+(function(){var els=document.querySelectorAll('.mz-item');if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return}
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var i=[].indexOf.call(e.target.parentNode.children,e.target);e.target.style.transitionDelay=(i%3)*90+'ms';e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});
+els.forEach(function(e){io.observe(e)})})();
+</script>
+</body>
+</html>
