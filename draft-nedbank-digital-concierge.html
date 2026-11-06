@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>Nedbank: Digital Concierge (Draft) | Ryan Botha</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="index.css?v=2.7">
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <!-- Feature Flag: Prevent FOUC for hidden writing content -->
+    <script>
+        (function() {
+            var SHOW_WRITING = false;
+            try {
+                var p = new URLSearchParams(window.location.search);
+                var w = p.get('writing');
+                if (w === '1') { localStorage.setItem('showWriting', '1'); }
+                else if (w === '0') { localStorage.removeItem('showWriting'); }
+            } catch (e) {}
+            var isWriting = SHOW_WRITING;
+            try {
+                var p = new URLSearchParams(window.location.search);
+                if (p.get('writing') === '1' || (typeof localStorage !== 'undefined' && localStorage.getItem('showWriting') === '1')) {
+                    isWriting = true;
+                }
+            } catch (e) {}
+            if (!isWriting) {
+                document.documentElement.classList.add('writing-hidden');
+                var path = window.location.pathname;
+                var isWritingPage = path.indexOf('writing.html') !== -1 ||
+                                      path.indexOf('/writing/') !== -1 ||
+                                      path.indexOf('taste-still-matters') !== -1;
+                if (isWritingPage) {
+                    var target = path.indexOf('/writing/') !== -1 ? '../index.html' : 'index.html';
+                    window.location.replace(target);
+                }
+            }
+        })();
+    </script>
+    <style>
+        html.writing-hidden [data-writing],
+        html.writing-hidden .writing-only {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav id="navbar" class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="assets/ryan_botha_logo.svg" alt="ryan_botha logo" class="logo-svg" decoding="async">
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-menu">
+                <span class="nav-toggle-bar bar-1"></span>
+                <span class="nav-toggle-bar bar-2"></span>
+                <span class="nav-toggle-bar bar-3"></span>
+            </button>
+            <div class="nav-backdrop"></div>
+            <ul id="nav-menu" class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="index.html#work" class="nav-link">Work</a></li>
+                <li><a href="index.html#design-process" class="nav-link">Design Process</a></li>
+                <li data-writing="true"><a href="writing.html" class="nav-link">Writing</a></li>
+                <li><a href="https://www.linkedin.com/in/ryanbotha/" target="_blank" class="nav-link">LinkedIn Profile</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Case Study Hero -->
+    <header class="case-study-hero">
+        <div class="case-study-hero-container">
+            <a href="index.html#work" class="back-home"><i class="fas fa-arrow-left"></i> Back to work</a>
+            <h1 class="case-study-title">Nedbank Digital Concierge: <br><span class="serif-italic">One Chat Button, Three Kinds of Help</span></h1>
+            
+            <div class="case-study-meta">
+                <div class="meta-item">
+                    <h4>My Role</h4>
+                    <p>CX and Product Design Lead</p>
+                </div>
+                <div class="meta-item">
+                    <h4>Deliverables</h4>
+                    <p>Research, Service Design, Chat UX</p>
+                </div>
+                <div class="meta-item">
+                    <h4>Focus</h4>
+                    <p>Banking, Chat, Chatbots, Contact Centre</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Case Study Content -->
+    <main class="case-study-body">
+
+        <!-- Table of Contents -->
+        <div class="toc-container" id="tocContainer">
+            <div class="toc-trigger" id="tocTrigger">Table of Contents</div>
+            <div class="toc-dropdown-menu">
+                <div class="toc-mobile-header">
+                    <h3>Table of Contents</h3>
+                    <button class="toc-close-btn" id="tocCloseBtn" aria-label="Close menu"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="toc-grid">
+                    <a href="#one-button-for-every-kind-of-help" class="toc-item">
+                        <div class="toc-number">00</div>
+                        <div class="toc-title-text">One button for every kind of help</div>
+                    </a>
+                    <a href="#two-systems-that-worked-in-opposite-ways" class="toc-item">
+                        <div class="toc-number">01</div>
+                        <div class="toc-title-text">Two systems that worked in opposite ways</div>
+                    </a>
+                    <a href="#sitting-beside-the-agents" class="toc-item">
+                        <div class="toc-number">02</div>
+                        <div class="toc-title-text">Sitting beside the agents</div>
+                    </a>
+                    <a href="#clients-wanted-a-person" class="toc-item">
+                        <div class="toc-number">03</div>
+                        <div class="toc-title-text">Clients wanted a person</div>
+                    </a>
+                    <a href="#three-rounds-to-get-one-button-right" class="toc-item">
+                        <div class="toc-number">04</div>
+                        <div class="toc-title-text">Three rounds to get one button right</div>
+                    </a>
+                    <a href="#a-bot-that-knows-when-to-step-aside" class="toc-item">
+                        <div class="toc-number">05</div>
+                        <div class="toc-title-text">A bot that knows when to step aside</div>
+                    </a>
+                    <a href="#what-shipped-and-what-didnt" class="toc-item">
+                        <div class="toc-number">06</div>
+                        <div class="toc-title-text">What shipped, and what didn&#x27;t</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <section class="case-study-section">
+            <div class="case-study-image" style="margin: 0 auto 40px;">
+                <img src="assets/nedbank-concierge/dc-hero.webp" alt="Three Nedbank chat screens: a choice between a banking agent and a HeyNed lifestyle assistant, the bot's product cards with photos of people, and the bot handing a loan query to Dave" loading="eager" decoding="async" width="2400" height="1300">
+            </div>
+            <h2 id="one-button-for-every-kind-of-help">One button for every kind of help</h2>
+            <aside class="dc-callout" style="background:#eff4ff;border-radius:16px;padding:24px 28px;margin:8px 0 32px;font-size:1.05rem;line-height:1.6;color:#1f2937;">First, a word about agents. This was 2018, so every agent in this story is a real person with a headset, a queue and a lunch break. <span style="font-family:'Playfair Display',serif;font-style:italic;color:#2563eb;">Nobody here was prompted.</span></aside>
+            <p>Nedbank wanted one chat button in the Money App that could reach a banking agent, a chatbot, or HeyNed, a paid lifestyle concierge run with partner Hey Jude.</p>
+            <p>I was the CX and product design lead from 2018 to 2020, reporting to the VP of Design, working with a UX designer, two UI designers, a product manager and engineering. I led the research and turned it into the flows the team built.</p>
+        </section>
+        <section class="case-study-section">
+            <h2 id="two-systems-that-worked-in-opposite-ways">Two systems that worked in opposite ways</h2>
+            <p>Hey Jude ran long-lived tasks. A client could have several open, any agent could reply, and replies arrived by push. Banking chat ran one short session at a time and closed after two minutes of silence. The design problem was making both feel like one conversation.</p>
+            <div class="case-study-image">
+                    <img src="assets/nedbank-concierge/dc-whiteboard.webp" alt="Whiteboard covered in chat wireframes, notes on bot routing and a sketch of banking and lifestyle chat in one feed" loading="lazy" decoding="async" width="2400" height="1326">
+                </div>
+                <p class="image-caption">The first whiteboard session: chat first, the bot decides, and how to switch between banking and lifestyle in a single feed.</p>
+        </section>
+        <section class="case-study-section">
+            <h2 id="sitting-beside-the-agents">Sitting beside the agents</h2>
+            <p>A teammate and I each sat in on 10 live chats at the contact centre. When the agent's tools failed, freezing or letting a new chat take over the screen, the client felt it straight away. Fixing the client screens alone wouldn't fix the experience.</p>
+            <div class="case-study-image">
+                    <img src="assets/nedbank-concierge/dc-chat-review.webp" alt="A row of live chat screens with sticky notes such as &#x27;This message needs to change&#x27; and &#x27;Automated message, can we remove this?&#x27;" loading="lazy" decoding="async" width="2400" height="576">
+                </div>
+                <p class="image-caption">Reviewing a real chat screen by screen, with notes on every system message that needed to change.</p>
+        </section>
+        <section class="case-study-section">
+            <h2 id="clients-wanted-a-person">Clients wanted a person</h2>
+            <p>We briefed Nedbank's research team on who to recruit and what to learn. Clients struggled to find chat at all; one spent more than 10 minutes looking. Bots felt "like chatting to a ghost". People tapped preset options happily, but nobody wanted to make a payment through a bot.</p>
+            <div class="case-study-image">
+                    <img src="assets/nedbank-concierge/dc-affinity.webp" alt="Pink sticky notes from user testing, including &#x27;I don&#x27;t have trust issues with the bot&#x27; and &#x27;would not give the bot a pin to complete a transaction&#x27;" loading="lazy" decoding="async" width="2400" height="2022">
+                </div>
+                <p class="image-caption">One participant's notes from the affinity map. She'd chat to a bot "if it did it", but wouldn't give it a PIN.</p>
+        </section>
+        <section class="case-study-section">
+            <h2 id="three-rounds-to-get-one-button-right">Three rounds to get one button right</h2>
+            <p>Our first version opened three choices: chatbot, banking chat and lifestyle chat. Testers skipped the bot. The second used Banking and Lifestyle tabs, and nobody noticed the Lifestyle tab.</p>
+            <p>The third was a simple choice of two, each with its own illustration: a Nedbank banking agent or a HeyNed lifestyle assistant. People could tell them apart at a glance.</p>
+            <div class="case-study-image">
+                    <img src="assets/nedbank-concierge/dc-rounds.webp" alt="Three chat entry screens: three round icons, Banking and Lifestyle tabs, and a two-option screen for a banking agent or a HeyNed lifestyle assistant" loading="lazy" decoding="async" width="2400" height="1360">
+                </div>
+                <p class="image-caption">Round one, a pop-out of three options. Round two, tabs. Round three, the choice we went with.</p>
+        </section>
+        <section class="case-study-section">
+            <h2 id="a-bot-that-knows-when-to-step-aside">A bot that knows when to step aside</h2>
+            <p>The bot greets clients with the contact centre's most common queries, like reversing a debit order or resetting a password, and passes the chat to a person, history included, when it can't help. Testing shaped the words. "Back" and "Not what I wanted" meant the same thing to everyone, so one had to go.</p>
+            <div class="case-study-image">
+                    <img src="assets/nedbank-concierge/dc-handover.webp" alt="The banking chat list, with open and closed queries on separate tabs" loading="lazy" decoding="async" width="2400" height="1360">
+                </div>
+                <p class="image-caption">The bot opens with the top queries. Open and closed chats keep each conversation in one place.</p>
+        </section>
+        <section class="case-study-section">
+            <h2 id="what-shipped-and-what-didnt">What shipped, and what didn't</h2>
+            <p>Two kinds of chat launched. The Nedbank banking agent routed clients to a person in the bank's own call centre. The HeyNed lifestyle assistant handed them to a Hey Jude agent, sometimes sitting inside Nedbank's systems. We didn't control those replies or how that infrastructure was built, so we designed our side around it. HeyNed started with a limited set of features so the bank could test it.</p>
+            <p>The chatbot was harder. This was before today's large language models, so it had to be trained by hand with experts and lots of data. It wasn't live when I left. Co-browsing didn't launch; it was complicated on phones.</p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2026 Ryan Botha - Senior Product Designer</p>
+            <div class="footer-socials">
+                <a href="https://www.linkedin.com/in/ryanbotha/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Script -->
+    <script src="main.js?v=2.5"></script>
+    <script>
+        // TOC Click toggle
+        const tocContainer = document.getElementById('tocContainer');
+        const tocTrigger = document.getElementById('tocTrigger');
+        if (tocTrigger && tocContainer) {
+            tocTrigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                
+                const isOpening = !tocContainer.classList.contains('open');
+                if (isOpening) {
+                    if (stickyThreshold === null) {
+                        stickyThreshold = tocContainer.getBoundingClientRect().top + window.scrollY - 125;
+                    }
+                    if (window.scrollY < stickyThreshold) {
+                        window.scrollTo({
+                            top: stickyThreshold,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+                
+                tocContainer.classList.toggle('open');
+            });
+            
+            // Mobile close button
+            const tocCloseBtn = document.getElementById('tocCloseBtn');
+            if (tocCloseBtn) {
+                tocCloseBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    tocContainer.classList.remove('open');
+                });
+            }
+            
+            // Close if clicking outside
+            document.addEventListener('click', (e) => {
+                if (!tocContainer.contains(e.target)) {
+                    tocContainer.classList.remove('open');
+                }
+            });
+            
+            // Close on Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    tocContainer.classList.remove('open');
+                }
+            });
+            
+            // Close when clicking a link inside it & perform smooth precision scroll
+            const tocLinks = tocContainer.querySelectorAll('a[href^="#"]');
+            tocLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    tocContainer.classList.remove('open');
+                    const targetId = link.getAttribute('href');
+                    const targetEl = document.querySelector(targetId);
+                    if (targetEl) {
+                        history.pushState(null, null, targetId);
+                        const targetY = targetEl.getBoundingClientRect().top + window.scrollY - 90;
+                        window.scrollTo({ top: targetY, behavior: 'smooth' });
+                    }
+                });
+            });
+        }
+
+        // Handle initial URL hash routing after all images & layouts load
+        function scrollToHashTarget() {
+            if (!window.location.hash) return;
+            const targetEl = document.querySelector(window.location.hash);
+            if (targetEl) {
+                const targetY = targetEl.getBoundingClientRect().top + window.scrollY - 90;
+                window.scrollTo({ top: targetY, behavior: 'smooth' });
+            }
+        }
+
+        if (window.location.hash) {
+            document.addEventListener('DOMContentLoaded', scrollToHashTarget);
+            window.addEventListener('load', () => {
+                setTimeout(scrollToHashTarget, 100);
+                setTimeout(scrollToHashTarget, 500);
+            });
+
+            // Re-align whenever any image above finishes downloading
+            document.querySelectorAll('.case-study-body img').forEach(img => {
+                if (!img.complete) {
+                    img.addEventListener('load', scrollToHashTarget);
+                }
+            });
+
+            // ResizeObserver to track layout height changes
+            if (window.ResizeObserver) {
+                let resizeTimer;
+                const observer = new ResizeObserver(() => {
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(scrollToHashTarget, 50);
+                });
+                const caseBody = document.querySelector('.case-study-body');
+                if (caseBody) observer.observe(caseBody);
+            }
+        }
+
+        // Back to top & TOC scrolled functionality (exactly matching crewcation behavior)
+        const backToTopButton = document.getElementById('backToTop');
+        let stickyThreshold = null;
+        window.addEventListener('scroll', () => {
+            if (backToTopButton) {
+                if (window.scrollY > 500) {
+                    backToTopButton.classList.add('show');
+                } else {
+                    backToTopButton.classList.remove('show');
+                }
+            }
+            
+            // TOC shrink effect
+            if (tocContainer) {
+                if (!tocContainer.classList.contains('scrolled') || stickyThreshold === null) {
+                    stickyThreshold = tocContainer.getBoundingClientRect().top + window.scrollY - 125;
+                }
+                
+                if (window.scrollY >= stickyThreshold) {
+                    tocContainer.classList.add('scrolled');
+                } else {
+                    tocContainer.classList.remove('scrolled');
+                }
+            }
+        });
+        if (backToTopButton) {
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    </script>
+
+    
+
+    
+
+    
+
+    
+
+</body>
+</html>
