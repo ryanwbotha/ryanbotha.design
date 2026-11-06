@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>Nedbank: Bill Payments (Draft) | Ryan Botha</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="index.css?v=2.7">
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <!-- Feature Flag: Prevent FOUC for hidden writing content -->
+    <script>
+        (function() {
+            var SHOW_WRITING = false;
+            try {
+                var p = new URLSearchParams(window.location.search);
+                var w = p.get('writing');
+                if (w === '1') { localStorage.setItem('showWriting', '1'); }
+                else if (w === '0') { localStorage.removeItem('showWriting'); }
+            } catch (e) {}
+            var isWriting = SHOW_WRITING;
+            try {
+                var p = new URLSearchParams(window.location.search);
+                if (p.get('writing') === '1' || (typeof localStorage !== 'undefined' && localStorage.getItem('showWriting') === '1')) {
+                    isWriting = true;
+                }
+            } catch (e) {}
+            if (!isWriting) {
+                document.documentElement.classList.add('writing-hidden');
+                var path = window.location.pathname;
+                var isWritingPage = path.indexOf('writing.html') !== -1 ||
+                                      path.indexOf('/writing/') !== -1 ||
+                                      path.indexOf('taste-still-matters') !== -1;
+                if (isWritingPage) {
+                    var target = path.indexOf('/writing/') !== -1 ? '../index.html' : 'index.html';
+                    window.location.replace(target);
+                }
+            }
+        })();
+    </script>
+    <style>
+        html.writing-hidden [data-writing],
+        html.writing-hidden .writing-only {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav id="navbar" class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="assets/ryan_botha_logo.svg" alt="ryan_botha logo" class="logo-svg" decoding="async">
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-menu">
+                <span class="nav-toggle-bar bar-1"></span>
+                <span class="nav-toggle-bar bar-2"></span>
+                <span class="nav-toggle-bar bar-3"></span>
+            </button>
+            <div class="nav-backdrop"></div>
+            <ul id="nav-menu" class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="index.html#work" class="nav-link">Work</a></li>
+                <li><a href="index.html#design-process" class="nav-link">Design Process</a></li>
+                <li data-writing="true"><a href="writing.html" class="nav-link">Writing</a></li>
+                <li><a href="https://www.linkedin.com/in/ryanbotha/" target="_blank" class="nav-link">LinkedIn Profile</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Case Study Hero -->
+    <header class="case-study-hero">
+        <div class="case-study-hero-container">
+            <a href="index.html#work" class="back-home"><i class="fas fa-arrow-left"></i> Back to work</a>
+            <h1 class="case-study-title">Nedbank Bill Payments: <br><span class="serif-italic">Load Your Bill Once</span></h1>
+            
+            <div class="case-study-meta">
+                <div class="meta-item">
+                    <h4>My Role</h4>
+                    <p>Product Design Lead</p>
+                </div>
+                <div class="meta-item">
+                    <h4>Deliverables</h4>
+                    <p>UX Direction, UI Design, Team Mentoring</p>
+                </div>
+                <div class="meta-item">
+                    <h4>Focus</h4>
+                    <p>Banking, Payments, iOS, Android, Web</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Case Study Content -->
+    <main class="case-study-body">
+
+        <!-- Table of Contents -->
+        <div class="toc-container" id="tocContainer">
+            <div class="toc-trigger" id="tocTrigger">Table of Contents</div>
+            <div class="toc-dropdown-menu">
+                <div class="toc-mobile-header">
+                    <h3>Table of Contents</h3>
+                    <button class="toc-close-btn" id="tocCloseBtn" aria-label="Close menu"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="toc-grid">
+                    <a href="#bills-shouldnt-depend-on-memory" class="toc-item">
+                        <div class="toc-number">00</div>
+                        <div class="toc-title-text">Bills shouldn&#x27;t depend on memory</div>
+                    </a>
+                    <a href="#find-the-biller-not-the-form" class="toc-item">
+                        <div class="toc-number">01</div>
+                        <div class="toc-title-text">Find the biller, not the form</div>
+                    </a>
+                    <a href="#automatic-but-with-a-ceiling" class="toc-item">
+                        <div class="toc-number">02</div>
+                        <div class="toc-title-text">Automatic, but with a ceiling</div>
+                    </a>
+                    <a href="#small-rules-prevent-big-mistakes" class="toc-item">
+                        <div class="toc-number">03</div>
+                        <div class="toc-title-text">Small rules prevent big mistakes</div>
+                    </a>
+                    <a href="#security-without-a-dead-end" class="toc-item">
+                        <div class="toc-number">04</div>
+                        <div class="toc-title-text">Security without a dead end</div>
+                    </a>
+                    <a href="#leading-a-small-team" class="toc-item">
+                        <div class="toc-number">05</div>
+                        <div class="toc-title-text">Leading a small team</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <section class="case-study-section">
+            <div class="case-study-image" style="margin: 0 auto 40px;">
+                <img src="assets/nedbank-bills/nedbank-bills-hero.webp?v=3" alt="Three Nedbank Bill payments screens on a green gradient: the first onboarding screen, payment details with a R500 auto-payment limit, and the recurring bills list" loading="eager" decoding="async" width="2400" height="1280">
+            </div>
+            <h2 id="bills-shouldnt-depend-on-memory">Bills shouldn't depend on memory</h2>
+            <p>Paying recurring bills in the Nedbank app meant remembering each one: the municipality, the insurer, the store card. Bill payments lets people load a bill once. Nedbank fetches it and pays it on the day they choose, from the card they choose, and lets them know every time.</p>
+            <p>I was the product design lead. I worked with a junior UX designer and a junior UI designer: I set the direction, handled the stakeholders and mentored both of them through the work. We designed it for iOS, Android, mobile web, tablet and desktop.</p>
+            <div class="case-study-image">
+                    <img src="assets/nedbank-bills/bills-01-start.webp?v=3" alt="Nedbank Pay menu with Bill payments, and two Bill payments onboarding screens" loading="lazy" decoding="async" width="2400" height="1360">
+                </div>
+                <p class="image-caption">The Pay menu, then the first two onboarding screens: less admin, paid bills, and load your bill once.</p>
+        </section>
+        <section class="case-study-section">
+            <h2 id="find-the-biller-not-the-form">Find the biller, not the form</h2>
+            <p>Setting up a bill starts with who you're paying. People search an A to Z list of service providers, from municipalities to insurers, instead of typing bank details. Then they add the reference they already have on their bill, an account number or an EasyPay number, choose scheduled or once-off, and give it a name they'll remember.</p>
+            <div class="case-study-image">
+                    <img src="assets/nedbank-bills/bills-02-biller.webp?v=3" alt="Four screens: choose a service provider, search the provider list, pick account number or EasyPay number, and enter payment details" loading="lazy" decoding="async" width="2400" height="1120">
+                </div>
+                <p class="image-caption">Pick a service provider, choose the type of reference, then add it with a name you'll recognize later.</p>
+        </section>
+        <section class="case-study-section">
+            <h2 id="automatic-but-with-a-ceiling">Automatic, but with a ceiling</h2>
+            <p>Automatic payment is the point, but a surprise bill shouldn't empty someone's account. When people turn auto payment on, they set a maximum amount. If a bill comes in higher, we let them know. People who'd rather check each bill can choose manual: we fetch it on the day they pick and wait for their approval.</p>
+            <div class="case-study-image">
+                    <img src="assets/nedbank-bills/bills-03-ceiling.webp?v=3" alt="Payment details with auto payment on and a R500 maximum, and with auto payment off and a fetch-bill day" loading="lazy" decoding="async" width="2400" height="1360">
+                </div>
+                <p class="image-caption">Auto payment asks for a maximum amount. Manual payment fetches the bill on a chosen day and waits for approval.</p>
+        </section>
+        <section class="case-study-section">
+            <h2 id="small-rules-prevent-big-mistakes">Small rules prevent big mistakes</h2>
+            <p>A lot of the design lived in short notes at the point of choice. Pick the 31st and the bill is paid on the last day of shorter months. Choose a payment day and you're reminded to leave enough money in the account. The card list shows only active cards the biller accepts, and an Amex card shows the double Greenbacks it earns.</p>
+            <div class="case-study-image">
+                    <img src="assets/nedbank-bills/bills-04-rules.webp?v=3" alt="Payment details with a note about the 31st, a payment-day list with a reminder to leave enough money, and a list of accepted cards" loading="lazy" decoding="async" width="2400" height="1360">
+                </div>
+                <p class="image-caption">Each note answers the question people would otherwise have to call about.</p>
+        </section>
+        <section class="case-study-section">
+            <h2 id="security-without-a-dead-end">Security without a dead end</h2>
+            <p>Every new biller is confirmed with Approve-it, Nedbank's in-app approval, with a countdown on screen. If the message doesn't arrive, a one-time PIN by SMS takes over, so nobody gets stuck halfway. Afterwards each bill has its own page with its details and payment history.</p>
+            <div class="case-study-image">
+                    <img src="assets/nedbank-bills/bills-05-approve.webp?v=3" alt="Approve-it waiting screen with a 53-second countdown, and the Water and lights bill details" loading="lazy" decoding="async" width="2400" height="1360">
+                </div>
+                <p class="image-caption">Approve-it with a countdown and an SMS fallback, then a page for each bill.</p>
+        </section>
+        <section class="case-study-section">
+            <h2 id="leading-a-small-team">Leading a small team</h2>
+            <p>I directed the work and made the design calls with the two designers. I took the stakeholder conversations and mentored both of them as we went. Together we carried one flow across every platform the bank supports, from iOS and Android to mobile web, tablet and desktop.</p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2026 Ryan Botha - Senior Product Designer</p>
+            <div class="footer-socials">
+                <a href="https://www.linkedin.com/in/ryanbotha/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Script -->
+    <script src="main.js?v=2.5"></script>
+    <script>
+        // TOC Click toggle
+        const tocContainer = document.getElementById('tocContainer');
+        const tocTrigger = document.getElementById('tocTrigger');
+        if (tocTrigger && tocContainer) {
+            tocTrigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                
+                const isOpening = !tocContainer.classList.contains('open');
+                if (isOpening) {
+                    if (stickyThreshold === null) {
+                        stickyThreshold = tocContainer.getBoundingClientRect().top + window.scrollY - 125;
+                    }
+                    if (window.scrollY < stickyThreshold) {
+                        window.scrollTo({
+                            top: stickyThreshold,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+                
+                tocContainer.classList.toggle('open');
+            });
+            
+            // Mobile close button
+            const tocCloseBtn = document.getElementById('tocCloseBtn');
+            if (tocCloseBtn) {
+                tocCloseBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    tocContainer.classList.remove('open');
+                });
+            }
+            
+            // Close if clicking outside
+            document.addEventListener('click', (e) => {
+                if (!tocContainer.contains(e.target)) {
+                    tocContainer.classList.remove('open');
+                }
+            });
+            
+            // Close on Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    tocContainer.classList.remove('open');
+                }
+            });
+            
+            // Close when clicking a link inside it & perform smooth precision scroll
+            const tocLinks = tocContainer.querySelectorAll('a[href^="#"]');
+            tocLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    tocContainer.classList.remove('open');
+                    const targetId = link.getAttribute('href');
+                    const targetEl = document.querySelector(targetId);
+                    if (targetEl) {
+                        history.pushState(null, null, targetId);
+                        const targetY = targetEl.getBoundingClientRect().top + window.scrollY - 90;
+                        window.scrollTo({ top: targetY, behavior: 'smooth' });
+                    }
+                });
+            });
+        }
+
+        // Handle initial URL hash routing after all images & layouts load
+        function scrollToHashTarget() {
+            if (!window.location.hash) return;
+            const targetEl = document.querySelector(window.location.hash);
+            if (targetEl) {
+                const targetY = targetEl.getBoundingClientRect().top + window.scrollY - 90;
+                window.scrollTo({ top: targetY, behavior: 'smooth' });
+            }
+        }
+
+        if (window.location.hash) {
+            document.addEventListener('DOMContentLoaded', scrollToHashTarget);
+            window.addEventListener('load', () => {
+                setTimeout(scrollToHashTarget, 100);
+                setTimeout(scrollToHashTarget, 500);
+            });
+
+            // Re-align whenever any image above finishes downloading
+            document.querySelectorAll('.case-study-body img').forEach(img => {
+                if (!img.complete) {
+                    img.addEventListener('load', scrollToHashTarget);
+                }
+            });
+
+            // ResizeObserver to track layout height changes
+            if (window.ResizeObserver) {
+                let resizeTimer;
+                const observer = new ResizeObserver(() => {
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(scrollToHashTarget, 50);
+                });
+                const caseBody = document.querySelector('.case-study-body');
+                if (caseBody) observer.observe(caseBody);
+            }
+        }
+
+        // Back to top & TOC scrolled functionality (exactly matching crewcation behavior)
+        const backToTopButton = document.getElementById('backToTop');
+        let stickyThreshold = null;
+        window.addEventListener('scroll', () => {
+            if (backToTopButton) {
+                if (window.scrollY > 500) {
+                    backToTopButton.classList.add('show');
+                } else {
+                    backToTopButton.classList.remove('show');
+                }
+            }
+            
+            // TOC shrink effect
+            if (tocContainer) {
+                if (!tocContainer.classList.contains('scrolled') || stickyThreshold === null) {
+                    stickyThreshold = tocContainer.getBoundingClientRect().top + window.scrollY - 125;
+                }
+                
+                if (window.scrollY >= stickyThreshold) {
+                    tocContainer.classList.add('scrolled');
+                } else {
+                    tocContainer.classList.remove('scrolled');
+                }
+            }
+        });
+        if (backToTopButton) {
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    </script>
+
+    
+
+    
+
+    
+
+    
+
+</body>
+</html>
