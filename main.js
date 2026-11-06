@@ -321,7 +321,7 @@ function initApp() {
 
         function setView(view, animate = false) {
             const currentView = workSection.getAttribute('data-view');
-            if (currentView === view && !animate) return;
+            if (currentView === view && !animate) { updateButtons(view); return; }
 
             const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
